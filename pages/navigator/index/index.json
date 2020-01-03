@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "s-spu-scroll": "/components/spu-scroll/index"
+  }
+}

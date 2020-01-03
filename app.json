@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/navigator/index/index",
+    "pages/navigator/mine/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "企业宣传",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#aaa",
+    "selectedColor": "#3963BC",
+    "backgroundColor": "black",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/navigator/index/index",
+        "text": "首页",
+        "iconPath": "/imgs/tabbar/base.png",
+        "selectedIconPath": "/imgs/tabbar/base-select.png"
+      },
+      {
+        "pagePath": "pages/navigator/mine/index",
+        "text": "我的",
+        "iconPath": "/imgs/tabbar/team.png",
+        "selectedIconPath": "/imgs/tabbar/team-select.png"
+      }
+    ]
+  },
+    "usingComponents": {
+      "s-hot-list": "/components/hot-list/index",
+      "s-spu-preview": "components/spu-preview/index"
+    },
+  "style": "v2",
+  "subPackages": [
+    {
+      "root": "pages/subpackages/mall",
+      "pages": [
+        "product/productList/index",
+        "product/productDetail/index"
+      ]
+    }
+  ],
+  "sitemapLocation": "sitemap.json"
+}

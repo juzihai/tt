@@ -1,0 +1,37 @@
+<view class="container">
+  <!-- 主题图片展示-->
+  <image class="top-theme" src="{{themeA.entrance_img}}" mode="widthFix"></image>
+  <!-- 轮播图   -->
+  <swiper class="swiper" indicator-dots indicator-active-color="#157658" autoplay circular>
+    <!--        循环遍历-->
+    <block wx:for="{{bannerB.items}}" wx:key="index">
+      <swiper-item>
+        <!--                遍历的默认变量名称是item-->
+        <image class="swiper" src="{{item.img}}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <!-- 分类六宫格 -->
+  <view class='cu-list grid col-3 no-border inner-container'>
+    <view class='cu-item ' style="height: 120rpx;" wx:for="{{grid}}" wx:key="index" data-navigateMark="{{item.navigateMark}}" bindtap='onNaviCard'>
+      <view class='{{item.icon}} {{item.color}} text-shadow'>
+        <image class="img" src="{{item.img}}"></image>
+      </view>
+      <text>{{item.title}}</text>
+    </view>
+  </view>
+  <!--活动展示-->
+  <image class="activity" src="{{activityD.entrance_img}}" mode="widthFix"></image>
+  <!--每周上新-->
+  <s-spu-scroll theme="{{themeE}}" my-class="text-price" spu-list="{{themeESpu}}" wx:if="{{themeE.online}}">
+  </s-spu-scroll>
+  <!-- 热卖 -->
+  <s-hot-list banner="{{bannerG}}"></s-hot-list>
+  <!--推荐-->
+  <view class="spu-bottom">
+    <image class="title-spu-bottom" src="/imgs/home/title@interest.png"></image>
+    <s-spu-preview banner="{{themeE}}"></s-spu-preview>
+  </view>
+
+</view>
