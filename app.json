@@ -1,5 +1,5 @@
 {
-  "pages": [
+  "pages": ["pages/navigator/detail/detail",
     "pages/navigator/index/index",
     "pages/navigator/mine/index",
     "pages/navigator/home/home",
@@ -7,7 +7,7 @@
     "pages/navigator/center/index",
     "pages/navigator/active-home/active-home",
     "pages/subpackages/activity/hotKind/location/index"
-
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -35,10 +35,10 @@
       }
     ]
   },
-    "usingComponents": {
-      "s-spu-preview": "components/spu-preview/index",
-      "l-loadmore": "/components/lin-ui/loadmore/index"
-    },
+  "usingComponents": {
+    "s-spu-preview": "components/spu-preview/index",
+    "l-loadmore": "/components/lin-ui/loadmore/index"
+  },
   "style": "v2",
   "subPackages": [
     {
