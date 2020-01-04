@@ -3804,7 +3804,7 @@ scroll-view.cu-steps .cu-item {
 }
 
 .text-xxl {
-	font-size: 44rpx;
+	font-size: 44rpx!important;
 }
 
 .text-sl {

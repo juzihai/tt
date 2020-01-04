@@ -1,6 +1,6 @@
 <view >
   <view class=" text-shadow panding panding-left  text-red">
-					<view class=" text-xxl">
+					<view class="cuIcon-icon text-xxl">
           公司名称：金朵科技
           </view>
 	</view>
