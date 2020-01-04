@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/navigator/index/index",
-    "pages/navigator/mine/index"
+    "pages/navigator/mine/index",
+    "pages/navigator/home/home"
   ],
   "window": {
     "backgroundTextStyle": "light",

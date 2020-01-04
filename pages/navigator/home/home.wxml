@@ -1,0 +1,53 @@
+<view class="text-shadow">
+  <view class="search">
+    <view class="weui-search-bar">
+      <view class="weui-search-bar__form">
+        <!-- 搜索框 -->
+        <view class="weui-search-bar__box">
+          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+          <input type="text" class="weui-search-bar__input" placeholder="请输入搜索内容" />
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="Hot">
+    <image src="images/fire.png" mode="widthFix" class="fire" />
+    <view class="Cuxiao" bindtap="">热门活动促销</view>
+  </view>
+  <view class="Allhd">
+    <view class="huoDong">
+      <view bindtap="" class="huodong" wx:for="{{HuoDong}}">
+        <image class="Huodong" src="{{item.img}}" />
+        <view class="huodongName">
+          <view class="text-shadow">{{item.name}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="Swiper">
+    <swiper class="y-swiper" indicator-color="gray" indicator-dots="true" indicator-active-color="white" autoplay="true">
+      <swiper-item wx:for="{{SwiperImg}}" indicator-dots="true">
+        <image class="swiperimg" src="{{item.img}}"></image>
+      </swiper-item>
+    </swiper>
+  </view>
+  <view class="TuiJian">
+    <view class="HaoWu" bindtap="">
+      <view class="text-shadow">好物推荐</view>
+    </view>
+    <view class="YouHui" bindtap="">
+      <view class="text-shadow">优惠专区</view>
+    </view>
+  </view>
+  <view class="YouZhi">优质好品</view>
+  <view class="HaoPin">
+    <!-- <view class="cu-tag bg-red light">特价优惠</view> -->
+    <view class="ShangPin" wx:for="{{HaoPin}}" wx:key bindtap="">
+      <image class="ShangPinT"  src="{{item.img}}"/>
+      <view class="text-shadow">{{item.name}}</view>
+      <view class="ShangPinP">￥{{item.price}}</view>
+      <view class="{{item.tag==1 ? 'cu-tag bg-red light tag1': ''}}" wx:if="{{item.tag==1}}">限时促销</view>
+      <!-- <view class="u-tag bg-red light">111</view> -->
+    </view>
+  </view>
+</view>
