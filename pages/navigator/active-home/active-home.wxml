@@ -9,7 +9,7 @@
   </swiper>
 
   <view class=" text-shadow text-blue panding panding-left">
-    <view class="cuIcon-ellipse text-xxl">
+    <view class="cuIcon-icon text-xxl">
       热门种类
     </view>
   </view>
