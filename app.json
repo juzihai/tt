@@ -30,8 +30,8 @@
     ]
   },
     "usingComponents": {
-      "s-hot-list": "/components/hot-list/index",
-      "s-spu-preview": "components/spu-preview/index"
+      "s-spu-preview": "components/spu-preview/index",
+      "l-loadmore": "/components/lin-ui/loadmore/index"
     },
   "style": "v2",
   "subPackages": [
