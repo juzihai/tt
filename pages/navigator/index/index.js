@@ -25,9 +25,21 @@ Page({
    */
   onLoad: function(options) {
     this.initAllData();
+    this.initBottomSpuList();
   },
-  onShow(){
-   
+  onShow() {
+
+  },
+  /**
+   * 初始化首页的底部瀑布流图片
+   * @returns {Promise<void>}
+   */
+  initBottomSpuList(){
+    const data = this.data.themeESpu;
+    if (!data) {
+      return;
+    }
+    wx.lin.renderWaterFlow(data);//lin-ui  瀑布流函数
   },
   initAllData() {
     //TODO:真实数据
@@ -35,10 +47,10 @@ Page({
     const themeA = this.json1;
     const themeE = this.json5;
     let themeESpu = [];
-    if (themeE.online){
+    if (themeE.online) {
       const data = themeE.spu_list
-      if(data){
-        themeESpu = data.slice(0, 8)//截取前8个
+      if (data) {
+        themeESpu = data.slice(0, 8) //截取前8个
       }
     }
     const bannerB = this.json2;
@@ -62,7 +74,7 @@ Page({
     })
 
   },
-  onNaviCard(){
+  onNaviCard() {
     wx.navigateTo({
       url: '/pages/subpackages/mall/product/productList/index',
     })
