@@ -1,0 +1,87 @@
+.text{
+  font-size: 44rpx;
+}
+.panding{
+  margin-top: 20rpx;
+}
+.tar-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around
+
+}
+
+.img{
+  width: 180rpx;
+  height: 180rpx;
+  margin-left:30rpx;
+  margin-top:30rpx; 
+}
+.text-container{
+  display: flex;
+  flex-direction: column;
+    margin-top:50rpx; 
+}
+.text{
+  margin-left:140rpx; 
+}
+.item{
+  display: flex;
+}
+
+.swiper-slide{height:100rpx} /* 随意指定一个height值即可 */    
+.swiper-slide-active { height:auto}
+
+.panding-left{
+  margin-left:16rpx; 
+}
+.style{
+  height:50rpx; 
+  width: 100%;
+}
+.item-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-right: 20rpx;
+  padding-left: 20rpx;
+
+}
+
+
+/* .scroll_notice {
+position: absolute;
+left: 0px;
+top: 0px;
+width: 100%;
+white-space: nowrap;
+height: 65rpx;
+background-color: #e6513e;
+}
+ 
+.scroll_notice_item_image {
+position: absolute;
+left: 0px;
+top: 14rpx;
+width: 49rpx;
+height: 38rpx;
+}
+ 
+.scroll_notice_item {
+margin-left: 61rpx;
+margin-top: 14rpx;
+height: 37rpx;
+font-family: PingFangSC;
+font-size: 26rpx;
+font-weight: 500;
+letter-spacing: 1rpx;
+text-align: left;
+color: #fff;
+}
+ 
+.scroll_notice_item_bg {
+position: relative;
+margin-left: 20rpx;
+height: 100%;
+display: inline-flex;
+} */

@@ -2,7 +2,12 @@
   "pages": [
     "pages/navigator/index/index",
     "pages/navigator/mine/index",
-    "pages/navigator/home/home"
+    "pages/navigator/home/home",
+    "pages/navigator/publicity/home",
+    "pages/navigator/center/index",
+    "pages/navigator/active-home/active-home",
+    "pages/subpackages/activity/hotKind/location/index"
+
   ],
   "window": {
     "backgroundTextStyle": "light",

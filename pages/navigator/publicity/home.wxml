@@ -1,0 +1,99 @@
+<view >
+  <view class=" text-shadow panding panding-left  text-red">
+					<view class=" text-xxl">
+          公司名称：金朵科技
+          </view>
+	</view>
+
+  <swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+  <swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
+    <view class="swiper-item">
+      <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+      <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+    </view>
+  </swiper-item>
+</swiper>
+
+  <view class=" text-shadow text-red panding panding-left">
+					<view class="text-xxl">
+          新闻焦点
+          </view>
+	</view>
+
+  
+<swiper  class="style panding " circular="true" autoplay="true" interval="5000" duration="500" vertical = "true"  >
+  <swiper-item >
+    <view class="item-container">
+      <view>新闻：xxxx</view>
+      <view>日期：xxxx</view>
+    </view>
+  </swiper-item>
+  <swiper-item >
+    <view  class="item-container">
+       <view>新闻：xxxx</view>
+       <view>日期：1111</view>
+    </view>
+  </swiper-item>
+</swiper>
+
+
+  <view class="cu-list grid col-4 panding ">
+  <view class="cu-item " wx:for="{{icon}}" wx:key>
+    <text class="cuIcon-{{item.name}} lg text-gray"></text>
+    <text>{{item.title}}</text>
+  </view>
+</view>
+  
+<scroll-view scroll-x class="bg-red nav text-center panding  shadow-blur bg-gradual-red">
+  <view class="cu-item {{index==TabCur?'text-white cur':''}}" wx:for="{{3}}" wx:key bindtap="tabSelect" data-id="{{item}}">
+    {{List[item]}}
+  </view>
+</scroll-view>
+
+<view hidden="{{hiddenName1}}" class="panding"> 
+  <view class="tar-container">
+    <text class="text-red text-xxl panding-left">TOP1</text>
+    <image src="images/timg8.jpg" class="img"></image>
+    <view class="text-container panding-left">
+      <text class="text-glory text-xl panding-left" >标题</text>
+      <text class="text-glory text-l panding-left">内容</text>
+    </view>
+    <view class=" text">
+    <text class="text-red text-xxl ">更多 </text>
+      <text class="cuIcon-right lg text-red"></text>
+      </view>
+  </view>
+</view>
+
+
+<view hidden="{{hiddenName2}}" class="panding"> 
+  <view class="tar-container">
+    <text class="text-red text-xxl panding-left">TOP1</text>
+    <image src="images/timg9.jpg" class="img"></image>
+    <view class="text-container panding-left">
+      <text class="text-glory text-xl panding-left" >标题</text>
+      <text class="text-glory text-l panding-left">内容</text>
+    </view>
+    <view class=" text">
+    <text class="text-red text-xxl ">更多 </text>
+      <text class="cuIcon-right lg text-red"></text>
+      </view>
+  </view>
+</view>
+
+<view hidden="{{hiddenName3}}" class="panding"> 
+  <view class="tar-container">
+    <text class="text-red text-xxl panding-left">TOP1</text>
+    <image src="images/timg10.jpg" class="img"></image>
+    <view class="text-container panding-left">
+      <text class="text-glory text-xl panding-left" >标题</text>
+      <text class="text-glory text-l panding-left">内容</text>
+    </view>
+    <view class=" text">
+    <text class="text-red text-xxl ">更多 </text>
+      <text class="cuIcon-right lg text-red"></text>
+      </view>
+  </view>
+</view>
+
+</view>

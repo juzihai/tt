@@ -41,13 +41,77 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
-		"miniprogram": {
+		"gamePlugin": {
 			"current": -1,
 			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "pages/subpackages/mall/product/productList/index",
+					"pathName": "pages/subpackages/mall/product/productList/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/navigator/mine/index",
+					"pathName": "pages/navigator/mine/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/navigator/index/index",
+					"pathName": "pages/navigator/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/navigator/home/home",
+					"pathName": "pages/navigator/home/home",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/navigator/active-home/active-home",
+					"pathName": "pages/navigator/active-home/active-home",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/subpackages/mall/product/productList/index",
+					"pathName": "pages/subpackages/mall/product/productList/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/navigator/publicity/home",
+					"pathName": "pages/navigator/publicity/home",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/navigator/center/index",
+					"pathName": "pages/navigator/center/index",
+					"scene": null
+				}
+			]
 		}
 	}
 }

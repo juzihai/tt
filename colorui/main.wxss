@@ -5,7 +5,14 @@
   
   （QQ交流群：240787041）
 */
-
+.bg-gradual-blue3 {
+	background-image: var(--gradualBlue3);
+	color: var(--white);
+}
+.bg-gradual-red3 {
+	background-image: var(--gradualRed3);
+	color: var(--white);
+}
 /* ==================
         初始化
  ==================== */
@@ -50,6 +57,8 @@ page {
 	--gradualPurple: linear-gradient(45deg, #9000ff, #5e00ff);
 	--gradualPink: linear-gradient(45deg, #ec008c, #6739b6);
 	--gradualBlue: linear-gradient(45deg, #0081ff, #1cbbb4);
+    --gradualBlue3: linear-gradient(45deg, #0081ff, #1cbbb4,#0354a5dc);
+  --gradualRed3: linear-gradient(180deg, #e7594f, #ff1da5,#5f023aa8);
 	/* 阴影透明色 */
 	--ShadowSize: 6rpx 6rpx 8rpx;
 	--redShadow: rgba(204, 69, 59, 0.2);
