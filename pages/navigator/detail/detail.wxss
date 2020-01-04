@@ -51,6 +51,6 @@ view{
   flex-direction: row;
   justify-content: center; 
   margin-top: 20px;
-  bottom: 0%;
+  bottom: 3%;
   width: 89%;
 }
