@@ -1,10 +1,9 @@
 // pages/navigator/home/home.js
 import {
-  ProductModel
+  Product
 } from '../../../models/product.js'
 import { icon, List, swiperList} from 'parameter.js'
-//使用类下的实例化方法 不能直接Http.request. 需先实例化类的对象
-let productModel = new ProductModel()
+
 
 Page({
 
@@ -156,7 +155,7 @@ Page({
       "Limit": 10
     }
     //产品查询
-    productModel.search(obj.EnterpriseID, obj.ProductCode, obj.ProductName, obj.Page,obj.Limit).then(res => {
+    Product.PageSearch(obj.EnterpriseID, obj.ProductCode, obj.ProductName, obj.Page,obj.Limit).then(res => {
 
       console.log('在页面中接受的res=',res)
     });

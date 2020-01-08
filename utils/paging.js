@@ -18,36 +18,48 @@ class Paging {
   accumulator = []; //存储池，存储的所有数据
 
 
-  //返回对创建此对象的数组函数的引用
+  /**
+   *
+   * @param req 请求 url?data=data等
+   * @param start 从第几条开始
+   * @param count 每页条数
+   */
   constructor(req, limit = 10, page = 1) {
     this.page = page;
     this.limit = limit;
     this.req = req;
-    this.url = req.url; //保存最原始的url
+    this.url = req.url; 
   }
-  //加载数据的判断
+
+  /**
+   * 获取数据
+   */
   async getMoreData() {
-    if (!this.moreData) return; //如果没有更多的数据，直接返回，不再进行http请求
+    if (!this.moreData) {//判断是否有更多数据
+      return
+    }
     if (!this._getLocker()) { //网络请求锁，正在加载时不在加载
       return;
     }
     const data = await this._actualGetData();
     this._releaseLocker(); //请求成功后解除锁
-
     return data;
   }
-  //加载数据
+
+  /**
+   * 发送请求
+   * @returns {Promise<*>}
+   * @private
+   */
   async _actualGetData() {
     const req =  this._getCurrentReq();
-
+    console.log(req)
     let paging = await Http.request(req);//数据请求
     
-    paging = paging.ResultValue
-
-    if (!paging) { //服务端出现问题
+    if (!paging) { //获取失败
       return null;
     }
-    if (paging.TotalCount === 0) { //返回的是空数据
+    if (paging.TotalCount === 0) { //数据为空
       return {
         empty: true, //是否是空数据
         items: [],
@@ -56,10 +68,10 @@ class Paging {
       }
     }
     //如果请求的有数据
-    this.moreData = Paging._moreData(paging.TotalPage, paging.Page); //判断后续是否还有数据
+    this.moreData = this._isMoreData(paging.TotalPage, paging.Page); //判断后续是否还有数据
     if (this.moreData) {
       // this.start += this.count; //更改下次的start
-      this.page += 1;//更改下次的page
+      this.page += 1;//记录page
     }
     let items = paging.Data;
     let ShowResourcesUrl = paging.ShowResourcesUrl;
@@ -68,7 +80,7 @@ class Paging {
         items[index].baseUrl=ShowResourcesUrl;
       }
     }
-    this._accumulate(items);
+    this._accumulate(items);//累加
     return {
       empty: false,
       items: items, //当前request返回的数据
@@ -79,32 +91,31 @@ class Paging {
 
 
   }
-  /**
-   * 获取累加之后的数据
-   * @param items
-   * @private
-   */
-  _accumulate(items) {
-    this.accumulator = this.accumulator.concat(items); //将原数组与items数组进行合并
-  }
-  static _moreData(totalPage, pageNum) {
-    //如果当前页 < 最后一页，代表还有一页的数据
-    return pageNum < totalPage ;
 
+  _accumulate(items) {
+    this.accumulator = this.accumulator.concat(items); 
   }
-  /**
-   * 获取实时的request对象
-   * @returns {*}
-   * @private
-   */
+
   _getCurrentReq() {
     this.req.data.Page = this.page;
     this.req.data.Limit = this.limit;
 
     return this.req;
   }
+
   /**
-   * 获取锁
+   * 判断是否有更多数据
+   * @param totalPage 总页数
+   * @param pageNum 当前页数 从1开始
+   * @returns {boolean}
+   * @private
+   */
+  _isMoreData(totalPage, pageNum) {
+    return pageNum < totalPage ;
+  }
+
+  /**
+   * 获取锁, 加锁
    * @returns {boolean}
    * @private
    */
@@ -120,7 +131,7 @@ class Paging {
    * 释放锁
    * @private
    */
-  _releaseLocker() { //释放锁
+  _releaseLocker() { 
     this.locker = false;
   }
 

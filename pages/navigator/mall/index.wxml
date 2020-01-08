@@ -13,18 +13,18 @@
   </swiper>
 
   <!-- 分类六宫格 -->
-  <view class='cu-list grid col-5 no-border inner-container'>
-    <view class='cu-item ' style="height: 120rpx;" wx:for="{{grid}}" wx:key="index" data-navigateMark="{{item.navigateMark}}" bindtap='onNaviCard'>
+  <view class='cu-list grid col-4 no-border inner-container'>
+    <view class='cu-item ' style="height: 120rpx;" wx:for="{{grid.Data}}" wx:key="index" data-navigateMark="{{item.navigateMark}}" bindtap='onNaviCard'>
       <view class='{{item.icon}} {{item.color}} text-shadow'>
-        <image class="img" src="{{item.img}}"></image>
+        <image class="img" src="{{grid.ShowResourcesUrl}}{{item.ImageUrl}}"></image>
       </view>
-      <text>{{item.title}}</text>
+      <text>{{item.ClassName}}</text>
     </view>
   </view>
   <!--活动展示-->
   <image class="activity" src="{{activityD.entrance_img}}" mode="widthFix"></image>
   <!--每周上新-->
-  <s-spu-scroll theme="{{themeE}}" my-class="text-price" spu-list="{{themeESpu}}" wx:if="{{themeE.online}}">
+  <s-spu-scroll theme="{{themeE}}" my-class="text-price" spu-list="{{themeESpu}}" >
   </s-spu-scroll>
   <!-- 热卖 -->
   <s-hot-list banner="{{bannerG}}"></s-hot-list>

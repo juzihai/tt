@@ -2,12 +2,12 @@
 <view class="container" bind:tap="onItemTap" data-pid="{{data.ID}}">
   <image bind:load="onImgLoad" style="width:{{w}}rpx; height: {{h}}rpx; " src="{{data.baseUrl + data.ProductImage}}" ></image>
   <view class="content-container">
-    <text class="title">{{data.title}}</text>
+    <text class="title">{{data.ProductName}}</text>
     <view class="price-row">
-      <text class="my-class price-value">¥ {{data.price}}</text>
+      <text class="my-class price-value">¥ {{data.Price}}</text>
     </view>
 
-    <text class="subtitle">{{data.baseUrl + data.ProductImage}}~</text>
+    <text class="subtitle">{{data.ProductContent}}~</text>
   </view>
 
 </view>

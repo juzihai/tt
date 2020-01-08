@@ -1,13 +1,14 @@
 <view class="container">
-  <image src="{{banner.img}}" class="title" mode="widthFix" bind:tap="onMoreTap"></image>
+  <!-- <image src="{{banner.img}}" class="title" mode="widthFix" bind:tap="onMoreTap"></image> -->
+  <image src="http://i2.sleeve.7yue.pro/m3.png" class="title" mode="widthFix" bind:tap="onMoreTap"></image>
   <view class="inner-container">
     <view hover-class="rect-hover" hover-stay-time="300">
-      <image class="left" src="{{left.img}}" bind:tap="onItemTap" data-banner_id="{{left.id}}"></image>
+      <image class="left" src="{{banner.ShowResourcesUrl}}{{left.ImageUrl}}" bind:tap="onItemTap" data-banner_id="{{left.ID}}"></image>
     </view>
 
     <view class="right-container" >
-      <image  class="right-size" src="{{rightTop.img}}" bind:tap="onItemTap" data-banner_id="{{rightTop.id}}"></image>
-      <image class="right-size" src="{{rightBottom.img}}" bind:tap="onItemTap" data-banner_id="{{rightBottom.id}}"></image>
+      <image  class="right-size" src="{{banner.ShowResourcesUrl}}{{rightTop.ImageUrl}}" bind:tap="onItemTap" data-banner_id="{{rightTop.ID}}"></image>
+      <image class="right-size" src="{{banner.ShowResourcesUrl}}{{rightBottom.ImageUrl}}" bind:tap="onItemTap" data-banner_id="{{rightBottom.ID}}"></image>
     </view>
 
   </view>

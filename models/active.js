@@ -6,7 +6,7 @@ class ActiveModel extends Http {
 
   //查询
   PageSearch(EnterpriseID, ActivityName, Page, Limit) {
-    return this.request({
+    return Http.request({
       url: "api/V1/HotActivity/PageSearch",
       data: {
         EnterpriseID,

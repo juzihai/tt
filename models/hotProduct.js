@@ -1,19 +1,32 @@
-import { Http } from "../utils/http-p";
+import { Http } from "../utils/http-a";
 import { Paging } from "../utils/paging";
 
 
 class HotProduct{
 
   /**热门产品接口 */
-  static getHotProduct(EnterpriseID, ProductCode, ProductName, Limit = 10, Page= 0) {
-    return new Paging({
-      url: "api/V1/Product/PageSearch",
+
+  //查询
+  static Search(EnterpriseID, ProductCode='', ProductName='', Limit=10, Page=1) {
+    return Http.request({
+      url: "api/V1/HotProduct/PageSearch",
       data: {
         EnterpriseID,
         ProductCode,
         ProductName,
-        Page,
         Limit,
+        Page
+      }
+    })
+  }
+ //分页查询
+  static PageSearch({EnterpriseID, ProductCode, ProductName, Limit, Page}) {
+    return new Paging({
+      url: "api/V1/HotProduct/PageSearch",
+      data: {
+        EnterpriseID,
+        ProductCode,
+        ProductName,
       }
     }, Limit, Page)
   }

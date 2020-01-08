@@ -1,40 +1,24 @@
-import {
-  Http
-} from '../utils/http.js'
+import { Http } from "../utils/http-a";
+import { Paging } from "../utils/paging";
 
-class ProductModel extends Http {
-
-  /**产品种类接口 */
-
-  getProductClass(EnterpriseID, ClassName, Page, Limit) {
-    return this.request({
-      url: "api/V1/ProductClass/PageSearch",
-      data: {
-        EnterpriseID,
-        ClassName,
-        Page,
-        Limit,
-      }
-    })
-  }
+class Product extends Http {
 
   /**产品接口 */
   //查询企业下所有产品
-  getProductPageSearch(EnterpriseID, ProductCode, ProductName, Page, Limit) {
-    return this.request({
-      url: "api/V1/Product/PageSearch",
+  static PageSearch({ EnterpriseID, ProductCode, ProductName, Page, Limit }) {
+    return new Paging({
+      url: `api/V1/Product/PageSearch`,
       data: {
         EnterpriseID,
         ProductCode,
         ProductName,
-        Page,
-        Limit,
       }
-    })
+    }, Limit, Page)
   }
+
   //查询产品详情
-  getProductSearchModelDetails(ID) {
-    return this.request({
+  static SearchModelDetails(ID) {
+    return Http.request({
       url: "api/V1/Product/SearchModelDetails",
       data: {
         ID
@@ -42,33 +26,19 @@ class ProductModel extends Http {
     })
   }
   // 查询产品轮播图列表
-  getProductSearchRotationChart(ProductCode) {
-    return this.request({
+  static SearchRotationChart(ProductCode) {
+    return Http.request({
       url: "api/V1/Product/SearchRotationChart",
       data: {
         ProductCode
       }
     })
   }
-  /**热门产品接口 */
-  getHotProduct(EnterpriseID, ProductCode, ProductName, Page, Limit) {
-    return this.request({
-      url: "api/V1/Product/PageSearch",
-      data: {
-        EnterpriseID,
-        ProductCode,
-        ProductName,
-        Page,
-        Limit,
-      }
-    })
-  }
-
   //其他
 
 
 }
 
 export {
-  ProductModel
+  Product
 }

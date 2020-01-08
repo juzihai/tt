@@ -12,13 +12,16 @@ Component({
       if (!banner) {
         return;
       }
-      if (banner.items.length === 0) {
+      if (banner.Data.length === 0) {
         return;
       }
       //根据json的名称进行数据绑定
-      const left = banner.items.find(i => i.name === 'left'); //js6的语法
-      const rightTop = banner.items.find(i => i.name === 'right-top');
-      const rightBottom = banner.items.find(i => i.name === 'right-bottom');
+      // const left = banner.Data.find(i => i.name === 'left'); //js6的语法
+      // const rightTop = banner.Data.find(i => i.name === 'right-top');
+      // const rightBottom = banner.Data.find(i => i.name === 'right-bottom');
+      const left = banner.Data[0]
+      const rightTop = banner.Data[1]
+      const rightBottom = banner.Data.find[2]
       this.setData({
         left,
         rightTop,
