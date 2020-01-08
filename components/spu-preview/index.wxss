@@ -30,6 +30,7 @@
     font-weight: 300;
     margin-top: 6rpx;
     color: #888;
+    word-break:break-all;/* 小程序view英文数字不换行的问题 */
 }
 .price-value {
     font-size: 26rpx !important;/*加!important ，是因为优先级具有不确定性*/

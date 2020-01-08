@@ -15,7 +15,7 @@ Component({
   data: {
     data: [],
     leftData: [],
-    rightData: []
+    rightData: [],
   },
 
   attached() {
@@ -33,13 +33,13 @@ Component({
   methods: {
     _init() {
       wx.lin = wx.lin || {};
-      wx.lin.renderWaterFlow = (data = [], refresh = false, success) => {
+      wx.lin.renderWaterFlow = (data = [] , refresh = false, success) => {
         if (Object.prototype.toString.call(data) !== '[object Array]') {
           console.error('[data]参数类型错误，渲染失败');
           return false;
         }
         // 绑定data，判断data是否为[]
-        this.setData({ data });
+        this.setData({ data});
         if (refresh) {
           this.data.leftData = [];
           this.data.rightData = [];

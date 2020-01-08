@@ -4,8 +4,8 @@ import {
 
 class ActiveModel extends Http {
 
-  //产品查询
-  search(EnterpriseID, ActivityName, Page, Limit) {
+  //查询
+  PageSearch(EnterpriseID, ActivityName, Page, Limit) {
     return this.request({
       url: "api/V1/HotActivity/PageSearch",
       data: {

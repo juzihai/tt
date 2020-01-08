@@ -1,6 +1,12 @@
+<!--pages/navigator/mall/index.wxml-->
+
 <view class="container">
-  <!-- 主题图片展示-->
-  <image class="top-theme" src="{{themeA.entrance_img}}" mode="widthFix"></image>
+  <!-- 通告栏 -->
+  <view>
+    <l-notice-bar l-class="lssss" tyle="margin-bottom:20rpx" show="{{true}}" type="swip" swip-arr="{{arr}}" front-icon-name="notification">
+    </l-notice-bar>
+  </view>
+
   <!-- 轮播图   -->
   <swiper class="swiper" indicator-dots indicator-active-color="#157658" autoplay circular>
     <!--        循环遍历-->
@@ -12,6 +18,9 @@
     </block>
   </swiper>
 
+
+
+
   <!-- 分类六宫格 -->
   <view class='cu-list grid col-3 no-border inner-container'>
     <view class='cu-item ' style="height: 120rpx;" wx:for="{{grid}}" wx:key="index" data-navigateMark="{{item.navigateMark}}" bindtap='onNaviCard'>
@@ -21,20 +30,37 @@
       <text>{{item.title}}</text>
     </view>
   </view>
-  <!--活动展示-->
-  <image class="activity" src="{{activityD.entrance_img}}" mode="widthFix"></image>
-  <!--每周上新-->
-  <s-spu-scroll theme="{{themeE}}" my-class="text-price" spu-list="{{themeESpu}}" wx:if="{{themeE.online}}">
-  </s-spu-scroll>
-  <!-- 热卖 -->
-  <s-hot-list banner="{{bannerG}}"></s-hot-list>
-  <!--推荐-->
-  <view class="spu-bottom">
-    <image class="title-spu-bottom" src="/imgs/home/title@interest.png"></image>
-    <l-water-flow generic:l-water-flow-item="s-spu-preview"> </l-water-flow><!--lin-ui瀑布流组件的属性中值为自定义组件-->
-  </view>
 
+  <!-- 分页 -->
+  <scroll-view scroll-x class="bg-white nav text-center margin-top">
+    <view class="cu-item {{0==TabCur?'text-gray cur':''}}" bindtap="tabSelect" data-id="0">
+      企业宣传
+    </view>
+    <view class="cu-item {{1==TabCur?'text-gray cur':''}}" bindtap="tabSelect" data-id="1">
+      案例展示
+    </view>
+    <view class="cu-item {{2==TabCur?'text-gray cur':''}}" bindtap="tabSelect" data-id="2">
+      精英人才
+    </view>
+  </scroll-view>
+
+<view class="cu-card article {{isCard?'no-card':'no-card'}}" wx:if="{{0==TabCur}}">
+  <view class="cu-item shadow" bindtap="onCardItem">
+    <view class="title">
+      <view class="text-cut">标题。</view>
+    </view>
+    <view class="content">
+      <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="aspectFill"></image>
+      <view class="desc">
+        <view class="text-content"> 如果不是为了飞翔，。我要这翅膀有何用</view>
+        <view>
+          <view class="cu-tag bg-red light sm round">阅读999</view>
+          <view class="cu-tag bg-green light sm round">评论 99</view>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>
 
 
-<l-loadmore show type="end" end-text="已到底部啦!"></l-loadmore>
+</view>

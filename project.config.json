@@ -6,10 +6,12 @@
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
+		"enhance": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
+		"nodeModules": false,
 		"autoAudits": false,
 		"showShadowRootInWxmlPanel": true,
 		"scopeDataCheck": false,
@@ -109,6 +111,21 @@
 					"id": -1,
 					"name": "pages/navigator/center/index",
 					"pathName": "pages/navigator/center/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "网页",
+					"pathName": "pages/subpackages/mall/activity/web-view/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人中心",
+					"pathName": "pages/navigator/mine/index",
+					"query": "",
 					"scene": null
 				}
 			]

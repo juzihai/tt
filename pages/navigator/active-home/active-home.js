@@ -126,7 +126,7 @@ Page({
       "Limit": 10
     }
     //热门活动查询
-    activeModel.search(obj.EnterpriseID, obj.ActivityName, obj.Page, obj.Limit).then(res => {
+    activeModel.PageSearch(obj.EnterpriseID, obj.ActivityName, obj.Page, obj.Limit).then(res => {
 
       console.log('在页面中接受的res=', res)
     });

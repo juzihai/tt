@@ -1,0 +1,2 @@
+<!--pages/subpackages/mall/activity/web-view/index.wxml-->
+<web-view src="{{url}}"></web-view>

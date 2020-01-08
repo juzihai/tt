@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "s-hot-list": "/components/hot-list/index",
+    "s-spu-scroll": "/components/spu-scroll/index",
+    "l-water-flow": "/components/lin-ui/water-flow/index"
+  }
+}

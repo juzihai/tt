@@ -24,8 +24,8 @@
 
 
   <view class=" text-shadow text-blue panding panding-left rec-container">
-    <view class="cuIcon-icon text-xxl">
-      热门推荐
+    <view class="text-xxl">
+      <text class="cuIcon-icon "></text> 热门推荐
     </view>
     <view class=" text-shadow text-grey" bindtap="showModal" data-target="DrawerModalR">
       <view class="text-xl text-container">

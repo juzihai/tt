@@ -1,13 +1,14 @@
 {
   "pages": [
     "pages/navigator/index/index",
+    "pages/navigator/mall/index",
     "pages/navigator/mine/index",
     "pages/navigator/home/home",
     "pages/navigator/publicity/home",
     "pages/navigator/center/index",
     "pages/navigator/active-home/active-home",
-    "pages/subpackages/activity/hotKind/location/index",
     "pages/navigator/detail/detail"
+
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -24,6 +25,18 @@
       {
         "pagePath": "pages/navigator/index/index",
         "text": "首页",
+        "iconPath": "/imgs/tabbar/base.png",
+        "selectedIconPath": "/imgs/tabbar/base-select.png"
+      },
+      {
+        "pagePath": "pages/navigator/mall/index",
+        "text": "产品",
+        "iconPath": "/imgs/tabbar/base.png",
+        "selectedIconPath": "/imgs/tabbar/base-select.png"
+      },
+      {
+        "pagePath": "pages/navigator/active-home/active-home",
+        "text": "产品首页",
         "iconPath": "/imgs/tabbar/base.png",
         "selectedIconPath": "/imgs/tabbar/base-select.png"
       },
@@ -45,7 +58,9 @@
       "root": "pages/subpackages/mall",
       "pages": [
         "product/productList/index",
-        "product/productDetail/index"
+        "product/productDetail/index",
+        "activity/activity/index",
+        "activity/web-view/index"
       ]
     }
   ],

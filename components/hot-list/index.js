@@ -51,6 +51,16 @@ Component({
     onItemTap(event){
       const banner_id = event.currentTarget.dataset.banner_id
       console.log('点击了商品：banner_id为', banner_id)
+      var that = this;
+      that.setData({
+        animation: 'shake'
+      })
+      setTimeout(function () {
+        that.setData({
+          animation: ''
+        })
+      }, 1000)
+
     }
 
   },

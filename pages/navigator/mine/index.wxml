@@ -1,2 +1,75 @@
-<!--pages/navigator/mine/index.wxml-->
-<text>pages/navigator/mine/index.wxml</text>
+<!--pages/navigator/center/index.wxml-->
+<!--  个人中心 -->
+<view class='content'>
+  <!-- 个人信息 -->
+  <view class='topimg'>
+    <image class='top-bg' src='/imgs/mine/centerBg.jpg'></image>
+    <view class='person' bindtap="showModal" data-target="DialogModal1">
+      <view class='avatar' catchtap="ChooseImage">
+        <image class='avatar' src='{{avatarUrl}}'></image>
+           <!-- <open-data type="userAvatarUrl"></open-data> -->
+      </view>
+      <view class='userinfo'>
+        <view class="name text-xl"> <open-data type="userNickName" ></open-data></view>
+        <text>{{phone?phone:"暂未登陆"}}</text>
+      </view>
+    </view>
+    <!-- 4个功能块 -->
+    <view class='function'>
+      <block wx:for="{{modulecArr}}" wx:key='item.name'>
+        <view class="moudView" data-bean="{{item}}" bindtap='click_functiona'>
+          <image class='moudImg' src="{{item.img}}"></image>
+          <text class='moudName'>{{item.name}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+  <!-- 签到有惊喜 -->
+  <view class='signIn'>
+    <!-- <image class='sign_pic' src='/images/static/tx1.jpg'></image> -->
+    <view class='signIn_text'>
+      <text>签到有礼</text>
+      <text>每日签到赢积分，兑换优惠券</text>
+    </view>
+    <view class='sign_btn'>
+      <button size='mini' class='signBtn' bindtap='click_SignBtn'>{{signIn}}</button>
+    </view>
+  </view>
+  <!-- 列表 -->
+  <view class='list'>
+    <block wx:for="{{listArr}}" wx:key="item.name">
+      <view class='list_item ' bindtap='click_list' data-bean='{{item}}' data-index='{{index}}'>
+        <view class='item_name'>{{item.name}}</view>
+        <image class='arrow ' src='/imgs/mine/arrow.png '></image>
+      </view>
+    </block>
+  </view>
+  <!-- 切换登录 -->
+  <!-- <view class='changeBtn '>
+    <button class='btnuser ' bindtap='adminLogin'>管理员登录</button>
+  </view> -->
+</view>
+
+
+<view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="bg-img adImage" style="height:200px;">
+      <!-- <image src='/images/loading.gif'></image> -->
+    </view>
+    <view class="cu-bar bg-white">
+      <view class='content'>您还未登陆</view>
+    </view>
+    <view class="cu-bar bg-white">
+      <view class='action margin-0 flex-sub  solid-left'>
+        <button class='cu-btn  bg-blue margin-tb-sm lg' bindtap='hideModal'>
+          <text class=''></text> 暂不登陆</button>
+      </view>
+      <view class='action margin-0 flex-sub  solid-left'>
+        <button class='cu-btn  bg-blue margin-tb-sm lg' bindtap='bindLogin'>
+          <text class='icon-dianhua'></text> 立即登陆</button>
+      </view>
+
+
+    </view>
+  </view>
+</view>

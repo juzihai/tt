@@ -1,5 +1,5 @@
 /* components/hot-list/index.wxss */
-
+@import "../../wxss/sleeve.wxss";
 .container {
   padding-top: 40rpx;
   display: flex;
