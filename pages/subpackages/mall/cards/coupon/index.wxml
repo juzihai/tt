@@ -1,0 +1,25 @@
+<view class="coupon-list">
+<block wx:for="{{3}}" wx:key>
+<view class="container ">
+<image class="bgimg" src="images/coupon.jpg"></image>
+    <view class="before-part">
+      <view class="price">
+        <text class="text-price  " style="color:rgb(179, 85, 42);font-size:36px;">100</text>
+        <text style="color:rgb(179, 85, 42);font-size:14px;">满500减100券</text>
+      </view>
+      <view class="tips" style=" color:rgba(131, 32, 32, 0.993);font-size:12px;">
+    限服装、居家、文具等使用爱上到了拉萨凯迪拉克速度快
+      </view>
+    </view>
+    <view class="after-part">
+      <view class="take">
+        <text style="color:white;font-size:20px;">立即</text>
+        <text style="color:white;font-size:20px;">领券</text>
+      </view>
+      <view class="time"style="olor:rgb(80, 39, 20); font-size:10px;font-weight: lighter">
+    2018/1/9-2019/12/9
+      </view>
+    </view>
+  </view>
+  </block>
+ </view>

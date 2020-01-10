@@ -16,6 +16,9 @@ Page({
     scrollLeft: 0,
     List,
     swiperList,
+    hiddenName1:false,
+    hiddenName2:false,
+    hiddenName3:false
   },
   tabSelect(e) {
     this.setData({
@@ -43,6 +46,13 @@ Page({
             hiddenName3: false,
           })
         }
+  },
+
+  onMore(){
+    let TabCur = this.data.TabCur
+    wx.navigateTo({
+      url: `/pages/navigator/introduce/index?Tabcub=${TabCur}`
+    })
   },
 
   onLoad() {
@@ -156,8 +166,7 @@ Page({
     }
     //产品查询
     Product.PageSearch(obj.EnterpriseID, obj.ProductCode, obj.ProductName, obj.Page,obj.Limit).then(res => {
-
-      console.log('在页面中接受的res=',res)
+ console.log('在页面中接受的res=',res)
     });
   },
   

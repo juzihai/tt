@@ -1,20 +1,27 @@
+<wxs src='../../../utils/util.wxs' module='util' />
 <view>
+
+<!-- 轮播图 -->
   <swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+
+  <!-- 循环遍历 -->
     <swiper-item wx:for="{{swiperList}}" wx:key class="{{cardCur==index?'cur':''}}">
       <view class="swiper-item">
+          <!--                遍历的默认变量名称是item-->
         <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
         <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
       </view>
     </swiper-item>
   </swiper>
 
+<!-- 热门种类标题 -->
   <view class=" text-shadow text-blue panding panding-left">
     <view class="cuIcon-icon text-xxl">
       热门种类
     </view>
   </view>
 
-
+<!-- 四格功能块 -->
   <view class="cu-list grid col-4 panding">
     <view class="cu-item" wx:for="{{hotKind}}" wx:key>
       <text class="cuIcon-{{item.icon}} lg text-gray" data-url="{{item.url}}" bindtap="onHotKind"></text>
@@ -22,7 +29,7 @@
     </view>
   </view>
 
-
+<!-- 热门推荐以及查看更多标题 -->
   <view class=" text-shadow text-blue panding panding-left rec-container">
     <view class="text-xxl">
       <text class="cuIcon-icon "></text> 热门推荐
@@ -35,34 +42,34 @@
     </view>
   </view>
 
+<!-- 热门推荐展示块 -->
   <view class="item-container">
-    <block wx:for='{{hotRec}}' wx:key>
-      <view bindtap="onHotRec" class="item panding" data-index="{{index}}">
-        <image mode="widthFix" src="{{item.Img}}" class="img" />
-        <view class="text">{{item.Name}}</view>
-        <view class="price">￥{{item.Price}}</view>
+    <block wx:for='{{util.limit(hotProduct,3)}}' wx:key>
+      <view bindtap="onHotRec" class="item panding limit-container" data-index="{{index}}">
+        <image mode="widthFix" src="{{item.ImageUrl}}" class="img" />
+        <text class="text-cut text-xl text-black" style="">{{item.ProductName}}</text>
+        <text class="text-l text-gray text " >{{item.ProductContent}}</text>
       </view>
     </block>
   </view>
 </view>
 
-
+<!-- 热门活动标题 -->
 <view class=" text-shadow text-blue panding panding-left">
   <view class="cuIcon-icon text-xxl">
     热门活动
   </view>
 </view>
 
-<view class="act-container">
-  <image src="images/timg11.jpg" class="col-img"></image>
-  <view class="img-container">
-    <image src="images/timg8.jpg" class="row-img1"></image>
-    <image src="images/timg8.jpg" class="row-img2"></image>
-  </view>
+<!-- 热门活动展示块 -->
+<view class="act-container no-pandding panding">
+  <block wx:for="{{util.limit(hotActivity,3)}}" wx:key>
+    <image src="{{item.ImageUrl}}" class=" {{index==0?'item-1 img':'img1'}}"></image>
+  </block>
 </view>
 
 
-
+<!-- 查看更多展示块 -->
 <view class="cu-modal drawer-modal justify-start {{modalName=='DrawerModalL'?'show':''}}" bindtap="hideModal">
   <view class="cu-dialog basis-lg" catchtap style="top:{{CustomBar}}px;height:calc(100vh - {{CustomBar}}px)">
     <view class="cu-list menu text-left">

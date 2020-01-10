@@ -5,6 +5,7 @@ import { ProductClass } from "../../../models/productClass.js";
 import { HotProduct } from "../../../models/hotProduct.js";
 import { HotActivity } from "../../../models/hotActivity.js";
 
+
 Page({
 
   /**

@@ -7,8 +7,9 @@
     "pages/navigator/publicity/home",
     "pages/navigator/center/index",
     "pages/navigator/active-home/active-home",
-    "pages/navigator/detail/detail"
-
+    "pages/subpackages/activity/hotKind/location/index",
+    "pages/navigator/detail/detail",
+    "pages/navigator/introduce/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -60,7 +61,8 @@
         "product/productList/index",
         "product/productDetail/index",
         "activity/activity/index",
-        "activity/web-view/index"
+        "activity/web-view/index",
+        "cards/coupon/index"
       ]
     }
   ],

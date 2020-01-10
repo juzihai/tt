@@ -1,10 +1,13 @@
 // pages/navigator/home/home.js
-import { hotKind, hotRec,swiperList} from 'parameter.js'
 import {
-  ActiveModel
-} from '../../../models/active.js'
+  HotActivityModel
+} from '../../../models/HotActivity.js'
+// import {
+//   HotProductModel
+// } from '../../../models/hotProduct.js'
 //使用类下的实例化方法 不能直接Http.request. 需先实例化类的对象
-let activeModel = new ActiveModel()
+let hotactivityModel = new HotActivityModel()
+// let hotproductModel = new HotProductModel()
 // pages/navigator/active-home/active-home.js
 Page({
 
@@ -12,10 +15,48 @@ Page({
    * 页面的初始数据
    */
   data: {
-    hotKind,
-    hotRec,
+    //热门种类
+    hotKind: [{ 
+
+      icon: 'location',
+
+      title: '名称',
+
+      url: '/pages/subpackages/activity/hotKind/location/index'
+
+    },
+
+    {
+
+      icon: 'phone',
+
+      title: '名称',
+
+    },
+
+    {
+
+      icon: 'list',
+
+      title: '名称',
+
+    },
+
+    {
+
+      icon: 'add',
+
+      title: '更多',
+
+    }
+
+    ]
+ ,
+    hotProduct:[],
     cardCur: 0,
-    swiperList,
+    hotActivity:[],
+    swiperList:[],
+    ShowProductUrl:''
   },
 
   onHotKind(e){
@@ -32,7 +73,9 @@ Page({
   },
 
   onHotRec(e){
-    console.log(e)
+    wx.navigateTo({
+      url: this.data.hotRec.ShowResourcesUrl,
+    })
   },
 
   showModal(e) {
@@ -48,7 +91,9 @@ Page({
   },
   
   onLoad() {
-    this.towerSwiper('swiperList');
+    this.towerSwiper('swiperList')
+    this._loadData()
+   
     // 初始化towerSwiper 传已有的数组名即可
   },
   // DotStyle(e) {
@@ -119,71 +164,37 @@ Page({
   },
 
   _loadData() {
-    let obj = {
+    let hotactivity = {
       "EnterpriseID": "242415",
       "ActivityName": "",
       "Page": 1,
       "Limit": 10
     }
     //热门活动查询
-    activeModel.PageSearch(obj.EnterpriseID, obj.ActivityName, obj.Page, obj.Limit).then(res => {
 
+    hotactivityModel.PageSearch(hotactivity.EnterpriseID, hotactivity.ActivityName, hotactivity.Page, hotactivity.Limit).then(res => {
       console.log('在页面中接受的res=', res)
+      this.setData({
+        hotActivity: res.ResultValue.Data
+      })
+      console.log(this.data.hotActivity)
+    });
+
+    let hotproduct = {
+      "EnterpriseID": "242415",
+      "ProductCode": "",
+      "ProductName":"",
+      "Page": 1,
+      "Limit": 10
+    }
+    //热门产品查询
+    hotproductModel.search(hotproduct.EnterpriseID, hotproduct.ProductCode, hotproduct.ProductName,hotproduct.Page, hotproduct.Limit).then(res => {
+      console.log('在页面中接受的res=', res)
+      this.setData({
+        hotProduct: res.ResultValue.Data,
+        ShowProductUrl: res.ResultValue.ShowResourcesUrl
+      })
+      console.log(this.data.hotProduct)
     });
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    this._loadData() //加载页面数据
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

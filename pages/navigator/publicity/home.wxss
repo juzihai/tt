@@ -1,53 +1,87 @@
-.text{
+.text {
   font-size: 44rpx;
 }
-.panding{
+
+.panding {
   margin-top: 20rpx;
 }
-.tar-container{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around
 
-}
-
-.img{
-  width: 180rpx;
-  height: 180rpx;
-  margin-left:30rpx;
-  margin-top:30rpx; 
-}
-.text-container{
+.tar-container {
   display: flex;
   flex-direction: column;
-    margin-top:50rpx; 
+  width: 100%;
 }
-.text{
-  margin-left:140rpx; 
+
+.img {
+  width: 180rpx;
+  height: 180rpx;
+  margin-left: 30rpx;
+  margin-top: 30rpx;
 }
-.item{
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50rpx;
+  width: 360rpx;
+}
+
+
+.item {
   display: flex;
 }
 
-.swiper-slide{height:100rpx} /* 随意指定一个height值即可 */    
-.swiper-slide-active { height:auto}
+.swiper-slide {
+  height: 100rpx;
+}
 
-.panding-left{
-  margin-left:16rpx; 
+/* 随意指定一个height值即可 */
+
+.swiper-slide-active {
+  height: auto;
 }
-.style{
-  height:50rpx; 
+
+.panding-left {
+  margin-left: 16rpx;
+}
+
+.style {
+  height: 70rpx;
   width: 100%;
+  padding:10rpx 0 10rpx 0; 
 }
-.item-container{
+
+.item-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding-right: 20rpx;
   padding-left: 20rpx;
-
 }
+.text {
+display: -webkit-box;         
+word-break: break-all;
+text-overflow: ellipsis;  
+overflow: hidden;            
+-webkit-box-orient: vertical;    
+-webkit-line-clamp: 2;    
+}  
 
+.content{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content:center; 
+  background-color: rgb(236, 233, 233);
+  border: 1rpx solid rgb(185, 185, 185);
+}
+.content .img{
+  height:200rpx;
+  width:200rpx;
+  border-radius: 20rpx;
+    
+   
+}
 
 /* .scroll_notice {
 position: absolute;
@@ -85,3 +119,5 @@ margin-left: 20rpx;
 height: 100%;
 display: inline-flex;
 } */
+
+

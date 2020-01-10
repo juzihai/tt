@@ -2,7 +2,7 @@ import {
   Http
 } from '../utils/http.js'
 
-class ActiveModel extends Http {
+class HotActivityModel extends Http {
 
   //查询
   PageSearch(EnterpriseID, ActivityName, Page, Limit) {
@@ -23,5 +23,5 @@ class ActiveModel extends Http {
 }
 
 export {
-  ActiveModel
+  HotActivityModel
 }

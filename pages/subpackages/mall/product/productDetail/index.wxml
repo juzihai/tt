@@ -1,2 +1,68 @@
 <!--pages/subpackages/mall/product/productDetail/index.wxml-->
-<text>pages/subpackages/mall/product/productDetail/index.wxml</text>
+
+<swiper class="screen-swiper   d-style" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+  <swiper-item wx:for="{{swiperList}}" wx:key>
+    <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+  </swiper-item>
+</swiper>
+
+
+<!-- 上半部分 -->
+<view class="detail">
+  <text class="title">LANCOME兰蔻小黑瓶精华肌底液</text>
+  <text class="price">￥500</text>
+</view>
+<view class="buy-container ">
+  <view>
+    <text class="text">购买得积分</text>
+  </view>
+  <view bindtap="onCheck" style="margin:10rpx">
+    <text class="text-gray ">查看</text>
+    <text class="cuIcon-right lg text-gray  "></text>
+  </view>
+</view>
+
+<view class="choose-container" bindtap="showModal" data-target="ChooseModal">
+  <view>
+    <text class=" text-black text">选择 ：</text>
+    <text class="  text-gray  text"> xxxxx</text>
+  </view>
+  <view style="margin:10rpx">
+    <text class="cuIcon-right lg text-red text-xl "></text>
+  </view>
+</view>
+
+<view class="cu-modal bottom-modal {{modalName == 'ChooseModal'?'show':''}}" bindtap="hideModal">
+  <view class="cu-dialog" catchtap>
+    <view class="cu-bar bg-white">
+      <view class="action text-blue" bindtap="hideModal">取消</view>
+      <view class="action text-green" bindtap="hideModal">确定</view>
+    </view>
+  </view>
+</view>
+
+<view class="contant">
+  <text class=" text-black text">参数</text>
+  <text class="  text-gray  text"> 昂克赛拉大家埃里克森就打卢克世界大力士昂克赛拉大家埃里克森就打卢克世界大力士昂克赛拉大家埃里克森就打卢克世界大力士</text>
+</view>
+
+<view class="description">
+  <text class=" text-black text">商品描述</text>
+  <text class="  text-gray  text"> 昂克赛拉大家埃里克森就打卢克世界大力士昂克赛拉大家埃里克森就打卢克世界大力士昂克赛拉大家埃里克森就打卢克世界大力士</text>
+</view>
+
+<view class="cu-bar bg-white tabbar border shop  tail">
+  <button class="action" open-type="contact">
+    <view class="cuIcon-service text-green">
+    </view>
+    客服
+  </button>
+  <view class="action">
+    <view class="cuIcon-cart">
+      <view class="cu-tag badge">99</view>
+    </view>
+    购物车
+  </view>
+  <view class="bg-orange submit">分享</view>
+  <view class="bg-red submit">立即购买</view>
+</view>

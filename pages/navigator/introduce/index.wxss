@@ -1,0 +1,7 @@
+/* pages/navigator/introduce/index.wxss */
+.text-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50rpx;
+  width: 360rpx;
+}
