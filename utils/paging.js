@@ -53,7 +53,7 @@ class Paging {
    */
   async _actualGetData() {
     const req =  this._getCurrentReq();
-    console.log(req)
+    console.log('发送请求',req)
     let paging = await Http.request(req);//数据请求
     
     if (!paging) { //获取失败

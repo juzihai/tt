@@ -1,8 +1,6 @@
 
-import { ProductModel } from '../../../../../models/product.js'
+import { Product } from '../../../../../models/product.js'
 
-//使用类下的实例化方法 不能直接Http.request. 需先实例化类的对象
-// let productModel = new ProductModel()
 let _that
 
 Page({
@@ -18,23 +16,50 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    _that = this;//如果使用次数较多使用全局this
-
-    this._loadData();//加载页面数据
+    this.initAllData();
   },
-  _loadData() {
+  async initAllData() {
     let obj = {
       "EnterpriseID": "242415",
       "ProductCode": "",
-      "ProductName": "",
-      "Page": 1,
-      "Limit": 10
+      "ProductName": ""
     }
-    //产品查询
-    // productModel.PageSearch(obj.EnterpriseID, obj.ProductCode, obj.ProductName, obj.Page, obj.Limit).then(res => {
+    const paging = Product.PageSearch(obj);
+    this.data.spuPaging = paging //类属性
+    const data = await paging.getMoreData();//todo
+    if (!data) {
+      return;
+    }
+    // data 数组, refresh 清空元素, success 返回成功
+    wx.lin.renderWaterFlow(data.items);
+  },
+  /**
+  *
+  * 页面上拉触底事件的处理函数
+  */
+  onReachBottom: async function () {
 
-    //   console.log('在页面中接受的res=', res)
-    // });
+    const data = await this.data.spuPaging.getMoreData();
+    console.log(data)
+    if (!data) {
+      this.setData({
+        loadingType: 'end'
+      })
+      return
+    } else {
+      this.setData({
+        loadingType: 'loading'
+      })
+    }
+
+    wx.lin.renderWaterFlow(data.items)
+    if (!data.moreData) {
+      this.setData({
+        loadingType: 'end'
+      })
+
+    }
+
   },
 
 })

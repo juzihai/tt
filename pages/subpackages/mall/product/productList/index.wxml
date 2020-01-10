@@ -1,2 +1,7 @@
 <!--pages/subpackages/mall/product/productList/index.wxml-->
-<text>pages/subpackages/mall/product/productList/index.wxml</text>
+<!--lin-ui瀑布流组件的属性中值为自定义组件-->
+<view class="spu">
+  <l-water-flow generic:l-water-flow-item="s-spu-preview"> </l-water-flow>
+</view>
+
+<l-loadmore show type="{{loadingType}}" end-text="已到底部啦!"></l-loadmore>

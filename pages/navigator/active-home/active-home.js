@@ -1,7 +1,11 @@
 // pages/navigator/home/home.js
 import {
-  HotActivity
-} from '../../../models/hotActivity.js'
+
+  Article
+} from '../../../models/article.js'
+//使用类下的实例化方法 不能直接Http.request. 需先实例化类的对象
+let activeModel = new Article()
+// pages/navigator/active-home/active-home.js
 
 Page({
 

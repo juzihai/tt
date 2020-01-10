@@ -13,7 +13,11 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
-/** 将wx函数转化成 返回为promise 的函数 */
+/**
+ * promisic封装ajax
+ * @param func
+ * @returns {function(*=): Promise<any>}
+ */
 const promisic = function (func) {
   return function (params = {}) {
     return new Promise((resolve, reject) => {

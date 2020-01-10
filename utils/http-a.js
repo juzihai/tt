@@ -1,19 +1,18 @@
+import { config } from "../config/config";
 import { promisic } from "./util";
 
-const config = {
-  /** 正式地址*/
-  // api_base_url: 'https://www.jinduochina.com/webapi/',
-  /** 测试地址*/
-  api_base_url: 'http://180.76.177.49:8011/',
-}
-/**
- * 定义http的request方法，包装wx.request 方法
- */
 
 class Http {
   static async request({url, data, method='POST'}){
+    /**
+     * wx.request promisic封装
+     * @param url   地址
+     * @param data  参数
+     * @param method    请求方式
+     * @returns {Promise<void>}
+     */
     const res = await promisic(wx.request)({
-      url: `${config.api_base_url}${url}`,
+      url: `${config.apiBaseUrl}${url}`,
       data,
       method,
       header:{

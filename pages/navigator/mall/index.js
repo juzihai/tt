@@ -88,9 +88,15 @@ Page({
    // data 数组, refresh 清空元素, success 返回成功
     wx.lin.renderWaterFlow(data.items);
   },
-  onNaviCard() {
+  onNaviCard(e) {
+    console.log(e)
+    const a = e.currentTarget
+    console.log(a)
+    const ClassName = e.currentTarget.dataset.name;
+
+    console.log(ClassName)
     wx.navigateTo({
-      url: '/pages/subpackages/mall/product/productList/index',
+      url: `/pages/subpackages/mall/product/productList/index?ClassName=${ClassName}`,
     })
   },
   /**

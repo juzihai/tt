@@ -7,11 +7,13 @@
     <view class='person' bindtap="showModal" data-target="DialogModal1">
       <view class='avatar' catchtap="ChooseImage">
         <image class='avatar' src='{{avatarUrl}}'></image>
-           <!-- <open-data type="userAvatarUrl"></open-data> -->
+        <!-- <open-data type="userAvatarUrl"></open-data> -->
       </view>
       <view class='userinfo'>
-        <view class="name text-xl"> <open-data type="userNickName" ></open-data></view>
-        <text>{{phone?phone:"暂未登陆"}}</text>
+        <view class="name text-xl">
+          <open-data type="userNickName"></open-data>
+        </view>
+        <text>{{phoneNumber?phoneNumber:"暂未登陆"}}</text>
       </view>
     </view>
     <!-- 4个功能块 -->
@@ -73,3 +75,13 @@
     </view>
   </view>
 </view>
+
+<!-- 登陆展示页面 -->
+<l-status-show show="{{!login}}" custom="{{true}}">
+  <block>
+    <image class="top-img" src="/components/lin-ui/status-show/image/error.png"></image>
+    <text class="status-text">您还未登陆，请登陆</text>
+    <button class="bg-green button_margin_top" bindgetphonenumber="onGetPhoneNumber" open-type="getPhoneNumber">授权登陆</button>
+  </block>
+  
+</l-status-show>

@@ -10,6 +10,7 @@
     "pages/subpackages/activity/hotKind/location/index",
     "pages/navigator/detail/detail",
     "pages/navigator/introduce/index"
+
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -51,7 +52,10 @@
   },
   "usingComponents": {
     "s-spu-preview": "components/spu-preview/index",
-    "l-loadmore": "/components/lin-ui/loadmore/index"
+    "l-loadmore": "/components/lin-ui/loadmore/index",
+    "l-water-flow": "/components/lin-ui/water-flow/index",
+    "l-loading": "/components/lin-ui/loading/index",
+    "l-status-show": "/components/lin-ui/status-show/index"
   },
   "style": "v2",
   "subPackages": [
@@ -60,9 +64,17 @@
       "pages": [
         "product/productList/index",
         "product/productDetail/index",
+        "product/productDetail1/index",
         "activity/activity/index",
         "activity/web-view/index",
         "cards/coupon/index"
+      ]
+    },
+    {
+      "root": "pages/subpackages/propaganda",
+      "pages": [
+        "article/articleList/index",
+        "article/articleDetail/index"
       ]
     }
   ],

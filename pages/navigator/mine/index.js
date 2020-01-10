@@ -1,4 +1,7 @@
 // pages/navigator/mine/index.js
+const app = getApp();
+import { Customers } from "../../../models/customers.js";
+
 Page({
 
   /**
@@ -19,16 +22,40 @@ Page({
       { name: '优惠券', url: '' },
       // { name: '收藏', url: '' },
     ],
-    phone: null,
+    phoneNumber: null,
     signIn: '点击签到',
+    login:true,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let phoneNumber = wx.getStorageSync('phoneNumber')
+    this.setData({
+      phoneNumber,
+      login: phoneNumber? true:false
+    })
 
   },
 
+  async onGetPhoneNumber(res){
+    console.log('点击按钮获取个人信息', res)
+    let detail = res.detail;
+    let EncryptedData = detail.encryptedData;
+    let IV = detail.iv;
+    if (detail.errMsg == 'getPhoneNumber:ok') { //获取到用户信息成功
 
+      const SessionKey = app.globalData.openIDAndKey.Session_key
+      const OpenID = app.globalData.openIDAndKey.OpenID
+      const loginInfo = await Customers.GetWeChatUserInfo({ SessionKey, EncryptedData, IV})
+      const register = await Customers.RegisterCustomers({ Phone: loginInfo.phoneNumber, OpenID })
+      wx.setStorageSync("phoneNumber", loginInfo.phoneNumber);
+
+      this.setData({
+        login:true,
+        phoneNumber: loginInfo.phoneNumber
+      })
+    }
+  }
 })

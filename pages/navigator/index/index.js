@@ -1,10 +1,16 @@
 // pages/navigator/mall/index.js
+const app = getApp();
+import { ArticleType } from "../../../models/articleType.js";
+import { Article } from "../../../models/article.js";
+import { CompanyRotationchart } from "../../../models/companyRotationchart.js";
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    loading: true,
     TabCur: 0,
     scrollLeft: 0,
     bannerB: null,
@@ -20,27 +26,58 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    const bannerB = this.json2;
-    const grid = this.json3;
-    this.setData({
-      bannerB,
-      grid
-    })
+
+    this.initAllData();
     wx.showShareMenu({
       withShareTicket: true
     })
   },
-  tabSelect(e) {
+
+  async initAllData(){
+    let obj = {
+      "EnterpriseID": app.config.EnterpriseID,
+    }
+
+    const nav = await ArticleType.Search(obj)
+    const bannerB = await CompanyRotationchart.Search(obj)
+    const grid = this.json3;
     this.setData({
-      TabCur: e.currentTarget.dataset.id,
-      scrollLeft: (e.currentTarget.dataset.id - 1) * 60
+      bannerB,
+      grid,
+      nav,
+      loading:false
+    })
+    
+  },
+
+  tabSelect(e) {
+    let id=e.currentTarget.dataset.id;
+    console.log(id)
+    this.tabSelectGetData(id)
+    this.setData({
+      TabCur: e.currentTarget.dataset.index,
     })
   },
+
+  async tabSelectGetData(ArticleType){
+    let obj={
+      "EnterpriseID": app.config.EnterpriseID,
+      ArticleType
+    }
+    const articleModel = Article.PageSearch(obj)
+    this.data.articleModel = articleModel //类属性
+    const article = await articleModel.getMoreData();//todo
+    this.setData({
+      articleModel,
+      article: article
+    })
+  },
+
   onCardItem(e){
-    let url ='https://www.baidu.com'
+    let id =e.currentTarget.dataset.id;
     console.log(url)
     wx.navigateTo({
-      url: '/pages/subpackages/mall/activity/web-view/index?url='+url,
+      url: `/pages/subpackages/propaganda/article/articleDetail/index?id=${id}`,
     })
   },
 

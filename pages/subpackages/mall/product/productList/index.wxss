@@ -1,1 +1,10 @@
 /* pages/subpackages/mall/product/productList/index.wxss */
+.spu {
+  /* width: 100%; */
+   /* margin-top: 20rpx; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30rpx;
+    background-color: #ffffff;
+}
