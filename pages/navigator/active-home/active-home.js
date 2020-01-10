@@ -1,14 +1,8 @@
 // pages/navigator/home/home.js
 import {
-  HotActivityModel
-} from '../../../models/HotActivity.js'
-// import {
-//   HotProductModel
-// } from '../../../models/hotProduct.js'
-//使用类下的实例化方法 不能直接Http.request. 需先实例化类的对象
-let hotactivityModel = new HotActivityModel()
-// let hotproductModel = new HotProductModel()
-// pages/navigator/active-home/active-home.js
+  HotActivity
+} from '../../../models/hotActivity.js'
+
 Page({
 
   /**
@@ -164,37 +158,37 @@ Page({
   },
 
   _loadData() {
-    let hotactivity = {
-      "EnterpriseID": "242415",
-      "ActivityName": "",
-      "Page": 1,
-      "Limit": 10
-    }
-    //热门活动查询
+    // let hotactivity = {
+    //   "EnterpriseID": "242415",
+    //   "ActivityName": "",
+    //   "Page": 1,
+    //   "Limit": 10
+    // }
+    // //热门活动查询
 
-    hotactivityModel.PageSearch(hotactivity.EnterpriseID, hotactivity.ActivityName, hotactivity.Page, hotactivity.Limit).then(res => {
-      console.log('在页面中接受的res=', res)
-      this.setData({
-        hotActivity: res.ResultValue.Data
-      })
-      console.log(this.data.hotActivity)
-    });
+    // HotActivity.PageSearch(hotactivity.EnterpriseID, hotactivity.ActivityName, hotactivity.Page, hotactivity.Limit).then(res => {
+    //   console.log('在页面中接受的res=', res)
+    //   this.setData({
+    //     hotActivity: res.ResultValue.Data
+    //   })
+    //   console.log(this.data.hotActivity)
+    // });
 
-    let hotproduct = {
-      "EnterpriseID": "242415",
-      "ProductCode": "",
-      "ProductName":"",
-      "Page": 1,
-      "Limit": 10
-    }
-    //热门产品查询
-    hotproductModel.search(hotproduct.EnterpriseID, hotproduct.ProductCode, hotproduct.ProductName,hotproduct.Page, hotproduct.Limit).then(res => {
-      console.log('在页面中接受的res=', res)
-      this.setData({
-        hotProduct: res.ResultValue.Data,
-        ShowProductUrl: res.ResultValue.ShowResourcesUrl
-      })
-      console.log(this.data.hotProduct)
-    });
+    // let hotproduct = {
+    //   "EnterpriseID": "242415",
+    //   "ProductCode": "",
+    //   "ProductName":"",
+    //   "Page": 1,
+    //   "Limit": 10
+    // }
+    // //热门产品查询
+    // HotActivity.search(hotproduct.EnterpriseID, hotproduct.ProductCode, hotproduct.ProductName,hotproduct.Page, hotproduct.Limit).then(res => {
+    //   console.log('在页面中接受的res=', res)
+    //   this.setData({
+    //     hotProduct: res.ResultValue.Data,
+    //     ShowProductUrl: res.ResultValue.ShowResourcesUrl
+    //   })
+    //   console.log(this.data.hotProduct)
+    // });
   },
 })
