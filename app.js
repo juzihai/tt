@@ -1,9 +1,8 @@
 //app.js
-import {
-  Customers
-} from "/models/customers";
-import { config } from "./config/config";
+import {Customers} from "/models/customers";
+import {config} from "./config/config";
 const util = require('utils/util.js');
+
 App({
   config: config,
   util: util,
@@ -13,16 +12,26 @@ App({
 
   },
   async _login() {
-    try{
+    try {
       const code = await Customers.Login()
       const openIDAndKey = await Customers.GetWeChatOpenIDAndKey(config.EnterpriseID, code)
       this.globalData.openIDAndKey = openIDAndKey;
-    }catch(e){
+      wx.setStorageSync("OpenID", openIDAndKey.OpenID);
+      if (this.sharOpenID) {
+        let obj = {
+          EnterpriseID: config.EnterpriseID,
+          OpenIDOne: this.sharOpenID,
+          OpenIDTwo: openIDAndKey.OpenID
+        }
+        Customers.MyCustomersSave(obj)
+      }
+    } catch (e) {
 
     }
   },
   globalData: {
     userInfo: null,
-    openIDAndKey:null,
+    openIDAndKey: null,
+    sharOpenID: null,
   }
 })

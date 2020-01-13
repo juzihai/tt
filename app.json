@@ -10,7 +10,6 @@
     "pages/subpackages/activity/hotKind/location/index",
     "pages/navigator/detail/detail",
     "pages/navigator/introduce/index"
-
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -55,13 +54,19 @@
     "l-loadmore": "/components/lin-ui/loadmore/index",
     "l-water-flow": "/components/lin-ui/water-flow/index",
     "l-loading": "/components/lin-ui/loading/index",
-    "l-status-show": "/components/lin-ui/status-show/index"
+    "l-status-show": "/components/lin-ui/status-show/index",
+    "l-card": "/components/lin-ui/card/index",
+    "l-icon": "/components/lin-ui/icon/index",
+    "l-tag": "/components/lin-ui/tag/index",
+    "l-button": "/components/lin-ui/button/index",
+    "l-price": "/components/lin-ui/price/index"
   },
   "style": "v2",
   "subPackages": [
     {
       "root": "pages/subpackages/mall",
       "pages": [
+        "company/staffList/index",
         "product/productList/index",
         "product/productDetail/index",
         "product/productDetail1/index",

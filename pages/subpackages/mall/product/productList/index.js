@@ -15,14 +15,11 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    this.initAllData();
-  },
-  async initAllData() {
+  onLoad: async function (options) {
+    let classid=options.classid
     let obj = {
       "EnterpriseID": "242415",
-      "ProductCode": "",
-      "ProductName": ""
+      "ClassID": classid,
     }
     const paging = Product.PageSearch(obj);
     this.data.spuPaging = paging //类属性
@@ -33,6 +30,7 @@ Page({
     // data 数组, refresh 清空元素, success 返回成功
     wx.lin.renderWaterFlow(data.items);
   },
+
   /**
   *
   * 页面上拉触底事件的处理函数

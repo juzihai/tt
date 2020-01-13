@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "l-tap-bar": "/components/tap-bar/index",
+    "l-spu-description": "/components/spu-description/index",
+    "l-sale-explain": "/components/sale-explain/index"
+  }
 }

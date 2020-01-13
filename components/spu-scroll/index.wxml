@@ -5,7 +5,7 @@
   <scroll-view scroll-x class="scroll-view">
     <view class="inner">
       <block wx:for="{{spuList}}" wx:key="index">
-        <view class="spu-container">
+        <view class="spu-container" >
           <image class="spu-img" src="{{theme.ShowResourcesUrl}}{{item.ProductImage}}"></image>
           <text class="spu-text">{{item.ProductName}}</text>
           <text class="my-class price-value">{{item.Price}}</text>

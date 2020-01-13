@@ -1,1 +1,2 @@
 /* pages/subpackages/propaganda/article/articleDetail/index.wxss */
+@import "/wxParse/wxParse.wxss";

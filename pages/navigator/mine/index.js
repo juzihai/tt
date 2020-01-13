@@ -19,12 +19,12 @@ Page({
       { name: '积分排行', url: '' }, ///pages/subpackages/integral/pages/integral-ranking/index
       { name: '我的收藏', url: '/pages/subpackages/cars/pages/cars-make/index' },//
       { name: '我的订单', url: '' },
-      { name: '优惠券', url: '' },
+      { name: '优惠券', url: '/pages/subpackages/mall/cards/coupon/index' },
       // { name: '收藏', url: '' },
     ],
     phoneNumber: null,
     signIn: '点击签到',
-    login:true,
+    login:true, 
   },
 
   /**
@@ -57,5 +57,37 @@ Page({
         phoneNumber: loginInfo.phoneNumber
       })
     }
-  }
+  },
+
+    // 点击列表
+  click_list(e) {
+
+    var bean = e.currentTarget.dataset.bean;
+    var index = e.currentTarget.dataset.index;
+    console.log(index)
+    if (bean.url == '') {
+      wx.showModal({
+        title: '提示',
+        content: '功能暂未开放，尽情期待',
+      })
+    } else {
+      if (index == 0) {
+        // var phone = wx.getStorageSync('loginInfo').phone;
+        //   if (phone) {
+        //     wx.showModal({
+        //       title: '提示',
+        //       content: '您已身份验证',
+        //     })
+        //     return;
+        //   }
+        this._manageLogin()
+      } else {
+        wx.navigateTo({
+          url: bean.url,
+        })
+      }
+
+    }
+
+  },
 })

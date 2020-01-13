@@ -4,7 +4,7 @@ import { Paging } from "../utils/paging";
 /**文章接口 */
 class Article extends Http {
 
-  //查询
+  //4. 查询
   static PageSearch({ EnterpriseID, ArticleType, Title, Page, Limit }) {
     return new Paging({
       url: "api/V1/Article/PageSearchWX",
@@ -16,7 +16,7 @@ class Article extends Http {
     }, Page, Limit)
   }
 
-  //查询产品详情
+  //7. 查询文章详情
   static SearchModelDetails(ID) {
     return Http.request({
       url: "api/V1/Article/SearchModelDetails",
@@ -25,6 +25,18 @@ class Article extends Http {
       }
     })
   }
+  //9. 查询置顶文章类型的内容列表
+  static GetTopArticle({ EnterpriseID, Page=1, Limit=10 }) {
+    return Http.request({
+      url: "api/V1/Article/GetTopArticle",
+      data: {
+        EnterpriseID,
+        Page,
+        Limit
+      }
+    })
+  }
+
 }
 
 export {

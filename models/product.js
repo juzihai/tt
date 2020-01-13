@@ -4,14 +4,16 @@ import { Paging } from "../utils/paging";
 class Product extends Http {
 
   /**产品接口 */
-  //查询企业下所有产品
-  static PageSearch({ EnterpriseID, ProductCode, ProductName, Page, Limit }) {
+  //4. 查询企业下所有产品
+  static PageSearch({ EnterpriseID, ProductCode, ProductName, ClassID, Page, Limit }) {
     return new Paging({
       url: `api/V1/Product/PageSearch`,
       data: {
         EnterpriseID,
         ProductCode,
         ProductName,
+        ClassID,
+        ClassID
       }
     }, Limit, Page)
   }

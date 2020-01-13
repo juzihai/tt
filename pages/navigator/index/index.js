@@ -15,41 +15,74 @@ Page({
     scrollLeft: 0,
     bannerB: null,
     grid: [],
-    arr: [
-      '震惊。马化腾和马云在深夜～',
-      '如果不是为了飞翔，。我要这翅膀有何用'
-
-      ]
+ 
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    // 分享后的页面打开先进入首页再跳转到分享的页面,首页的js要做如下设置
+    if (options.url) {
+      let url = decodeURIComponent(options.url);
+      let sharOpenID = decodeURIComponent(options.sharOpenID);
+      if (sharOpenID){
+        app.globalData.sharOpenID = sharOpenID
+      }
+      wx.navigateTo({
+        url
+      })
+    }
+
 
     this.initAllData();
-    wx.showShareMenu({
-      withShareTicket: true
-    })
+    // wx.showShareMenu({
+    //   withShareTicket: true
+    // })
   },
 
   async initAllData(){
     let obj = {
       "EnterpriseID": app.config.EnterpriseID,
     }
-
+    const notice = await Article.GetTopArticle(obj)
     const nav = await ArticleType.Search(obj)
     const bannerB = await CompanyRotationchart.Search(obj)
     const grid = this.json3;
+    const noticeArr=[];
+    if (notice.Data){
+      for (let key of notice.Data){
+        noticeArr.push(key.Title)
+      }
+    }
+
     this.setData({
       bannerB,
       grid,
       nav,
+      notice,
+      noticeArr,
       loading:false
     })
     
   },
-
+  /**通知栏点击 */
+  onNoticeBar(e){
+    let index = e.detail.index
+    let data = this.data.notice.Data;
+    let id = data[index].ID;
+    
+    wx.navigateTo({
+      url: `/pages/subpackages/propaganda/article/articleDetail/index?id=${id}`,
+    })
+  },
+  /**功能块点击 */
+  onNaviCard(e){
+    wx.navigateTo({
+      url: `/pages/subpackages/mall/company/staffList/index`,
+    })
+  },
+  /**切换点击 */
   tabSelect(e) {
     let id=e.currentTarget.dataset.id;
     console.log(id)
@@ -68,14 +101,13 @@ Page({
     this.data.articleModel = articleModel //类属性
     const article = await articleModel.getMoreData();//todo
     this.setData({
-      articleModel,
       article: article
     })
   },
 
   onCardItem(e){
     let id =e.currentTarget.dataset.id;
-    console.log(url)
+    console.log(id)
     wx.navigateTo({
       url: `/pages/subpackages/propaganda/article/articleDetail/index?id=${id}`,
     })

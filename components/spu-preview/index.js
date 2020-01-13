@@ -54,10 +54,12 @@ Component({
     onItemTap(event) {
 
       const pid = event.currentTarget.dataset.pid
+      const pcode = event.currentTarget.dataset.pcode
       console.log(`我点击了${pid}`)
-      // wx.navigateTo({
-      //   url: `/pages/detail/detail?pid=${pid}`
-      // })
+      console.log(`我点击了${pcode}`)
+      wx.navigateTo({
+        url: `/pages/subpackages/mall/product/productDetail1/index?pid=${pid}&pcode=${pcode}`
+      })
 
     }
 

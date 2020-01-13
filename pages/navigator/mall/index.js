@@ -89,15 +89,16 @@ Page({
     wx.lin.renderWaterFlow(data.items);
   },
   onNaviCard(e) {
-    console.log(e)
     const a = e.currentTarget
     console.log(a)
-    const ClassName = e.currentTarget.dataset.name;
+    const classid = e.currentTarget.dataset.classid;
+    if (classid){
+      wx.navigateTo({
+        url: `/pages/subpackages/mall/product/productList/index?classid=${classid}`,
+      })
+    }
 
-    console.log(ClassName)
-    wx.navigateTo({
-      url: `/pages/subpackages/mall/product/productList/index?ClassName=${ClassName}`,
-    })
+
   },
   /**
    *

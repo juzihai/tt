@@ -46,16 +46,28 @@ class Customers{
     })
   }
 
-  // 5. 客户分享
-  static CustomersShareSave({ FromPerson, ToPerson}) {
+  // 4. 客户分享
+  static MyCustomersSave({ EnterpriseID, OpenIDOne, OpenIDTwo }) {
     return Http.request({
-      url: "api/V1/Customers/CustomersShareSave",
+      url: "api/V1/Customers/MyCustomersSave",
       data: {
-        FromPerson,
-        ToPerson
+        EnterpriseID,
+        OpenIDOne,
+        OpenIDTwo
       }
     })
   }
+
+  // // 5. 客户分享
+  // static CustomersShareSave({ FromPerson, ToPerson}) {
+  //   return Http.request({
+  //     url: "api/V1/Customers/CustomersShareSave",
+  //     data: {
+  //       FromPerson,
+  //       ToPerson
+  //     }
+  //   })
+  // }
 
 }
 export {

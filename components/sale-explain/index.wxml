@@ -1,0 +1,10 @@
+<!--components/sale-explain/index.wxml-->
+
+<view class="container">
+  <block wx:for="{{3}}" wx:key="index">
+    <view class="inner">
+      <text>属性：我是一条完整的小青蛙</text>
+    </view>
+  </block>
+
+</view>

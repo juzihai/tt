@@ -1,0 +1,28 @@
+
+<view class="cu-card article no-card}}">
+
+  <view wx:for="{{staff.items}}" wx:key class="cu-item shadow">
+
+    <view class="title">{{item.name}}</view>
+    <view class="content">
+      <image src="{{item.baseUrl}}{{item.HeadImage}}"  mode="aspectFill" bindtap='previewImage'  data-image='{{item.baseUrl}}{{item.HeadImage}}' ></image>
+      <view class="desc">
+        <!-- <view>职位：{{item.job}}</view>
+        <view>工龄：{{item.workEXP}}年</view> -->
+        <view class="cu-capsule radius" bindtap='onPhone' data-phone='{{item.Phone}}'>
+          <view class='cu-tag bg-green '>
+            <text class='cuIcon-dianhua'></text>
+          </view>
+          <view class="cu-tag line-grey">
+            联系电话：{{item.Phone}}
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- <view class='padding'>个人介绍：
+      <text class='text-gray'> {{item.describe}}</text>
+    </view> -->
+    <!-- <view ></view> -->
+  </view>
+
+</view>
