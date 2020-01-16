@@ -1,5 +1,6 @@
 {
   "usingComponents": {
     "l-notice-bar": "/components/lin-ui/notice-bar/index"
-  }
+  },
+  "navigationBarTitleText": "企业宣传"
 }

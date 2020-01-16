@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "l-article-bar": "/components/article-bar/index"
+  }
 }

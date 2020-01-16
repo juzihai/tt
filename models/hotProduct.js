@@ -31,7 +31,15 @@ class HotProduct{
       }
     }, Limit, Page)
   }
-
+  //查询产品详情
+  static SearchModelDetails(ID) {
+    return Http.request({
+      url: "api/V1/HotProduct/SearchModelDetails",
+      data: {
+        ID
+      }
+    })
+  }
 
 }
 export{

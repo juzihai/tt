@@ -21,7 +21,7 @@ Component({
       // const rightBottom = banner.Data.find(i => i.name === 'right-bottom');
       const left = banner.Data[0]
       const rightTop = banner.Data[1]
-      const rightBottom = banner.Data.find[2]
+      const rightBottom = banner.Data[2]
       this.setData({
         left,
         rightTop,

@@ -100,6 +100,16 @@ Page({
 
 
   },
+  onSpuItem(e){
+    let item = e.detail
+    let pid=item.ID
+    let pcode=null
+
+    wx.navigateTo({
+      url: `/pages/subpackages/mall/product/productDetail1/index?pid=${pid}&pcode=${pcode}&pagePath=HotProduct`
+    })
+    
+  },
   /**
    *
    * 页面上拉触底事件的处理函数

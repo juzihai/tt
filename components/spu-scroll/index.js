@@ -20,6 +20,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    onItem(res){
+      let item = res.currentTarget.dataset.item
+      this.triggerEvent('tapping', item, {})
+      
 
+    }
   }
 })

@@ -1,4 +1,6 @@
+const app=getApp()
 import { Product } from '../../../../../models/product.js'
+import { HotProduct } from '../../../../../models/hotProduct.js'
 Page({
 
   /**
@@ -40,11 +42,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad:async function (options) {
-    let scene =decodeURIComponent(options.scene);
-    let pid=options.pid;
-    let pcode = options.pcode;
-    const spu=await Product.SearchModelDetails(pid)
-    const banner = await Product.SearchRotationChart(pcode)
+    let scene =options.scene;
+    let pagePath=options.pagePath;
+
+    let pid,pcode;
+
+    if(scene){
+      scene= decodeURIComponent(scene);
+      pid = scene.pid;
+      pcode = scene.pcode;
+    }else{
+       pid = options.pid;
+       pcode = options.pcode;
+    }
+
+    const spu = pagePath == "HotProduct" ? await HotProduct.SearchModelDetails(pid) : await Product.SearchModelDetails(pid);
+    const banner = await Product.SearchRotationChart(pcode);
     this.setData({ 
       spu,
       banner,
@@ -60,11 +73,12 @@ Page({
     let pid = this.data.pid;
     let pcode = this.data.pcode;
     let OpenID = wx.getStorageSync('OpenID')
-    let url = encodeURIComponent(`/pages/subpackages/mall/product/productDetail1/index?pid=${pid}&pcode=${pcode}`);
+    let PageUrlWithArgs=app.util.getCurrentPageUrlWithArgs();
+    let url = encodeURIComponent(PageUrlWithArgs);
 
     return {
       title: "详情",
-      path: `/pages/navigator/index/index?url=${url}&sharOpenID=${OpenID}`
+      path: `/pages/navigator/index/index?url=${url}&SharOpenID=${OpenID}`
     }
   },
 

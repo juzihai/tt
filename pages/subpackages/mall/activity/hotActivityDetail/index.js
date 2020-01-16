@@ -1,4 +1,4 @@
-// pages/subpackages/activity/hotKind/location/index.js
+// pages/subpackages/mall/activity/hotActivityDetail/index.js
 Page({
 
   /**

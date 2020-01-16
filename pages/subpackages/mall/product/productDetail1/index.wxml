@@ -26,7 +26,7 @@
     </view>
   <!-- 图片展示 -->
     <view class="detail-img-container">
-        <block wx:for="{{swiperList}}" wx:key="{{index}}">
+        <block wx:for="{{swiperList}}" wx:key="index">
             <image mode="widthFix" class="detail-img" src="{{item.url}}"></image>
         </block>
     </view>

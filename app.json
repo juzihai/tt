@@ -7,7 +7,6 @@
     "pages/navigator/publicity/home",
     "pages/navigator/center/index",
     "pages/navigator/active-home/active-home",
-    "pages/subpackages/activity/hotKind/location/index",
     "pages/navigator/detail/detail",
     "pages/navigator/introduce/index"
   ],
@@ -36,7 +35,7 @@
         "selectedIconPath": "/imgs/tabbar/base-select.png"
       },
       {
-        "pagePath": "pages/navigator/active-home/active-home",
+        "pagePath": "pages/navigator/home/home",
         "text": "产品首页",
         "iconPath": "/imgs/tabbar/base.png",
         "selectedIconPath": "/imgs/tabbar/base-select.png"
@@ -71,6 +70,7 @@
         "product/productDetail/index",
         "product/productDetail1/index",
         "activity/activity/index",
+        "activity/hotActivityDetail/index",
         "activity/web-view/index",
         "cards/coupon/index"
       ]

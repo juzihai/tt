@@ -15,11 +15,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
-    let id=options.id
+    let scene = options.scene;
+    let id =0
+    if (scene){
+      scene = decodeURIComponent(scene);
+      id = scene.id
+    }else{
+      id = options.id
+    }
 
-    const article = await Article.SearchModelDetails(id)
+
+
+    const articleModel = await Article.SearchModelDetails(id)
     this.setData({
-      article
+      articleModel: articleModel,
+      article: articleModel,
+      id
     })
 
     /**
@@ -31,10 +42,26 @@ Page({
      * 5.imagePadding为当图片自适应是左右的单一padding(默认为0,可选)
      */
     var that = this;
-    WxParse.wxParse('article', 'html', article.Content, this, 5);
+    WxParse.wxParse('articleModel', 'html', articleModel.Content, this, 5);
 
     
   },
+  /**
+ * 用户点击右上角分享
+ */
+  onShareAppMessage: function () {
+    let id = this.data.id;
+    let OpenID = wx.getStorageSync('OpenID')
+    let url = encodeURIComponent(`/pages/subpackages/mall/article/articleDetail/index?id=${id}`);
 
+    return {
+      title: "详情",
+      path: `/pages/navigator/index/index?url=${url}&SharOpenID=${OpenID}`
+    }
+  },
+
+  onAddToCart(e){
+
+  }
 
 })

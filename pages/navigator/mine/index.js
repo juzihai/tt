@@ -38,6 +38,15 @@ Page({
     })
 
   },
+  onShow(){
+    //自动登陆设置
+    app.util.promisic(wx.checkSession)().then(res => {
+      console.log('session 生效', res)
+    }, err => {
+      console.log('session 失效', err)
+      app.login();
+    })
+  },
 
   async onGetPhoneNumber(res){
     console.log('点击按钮获取个人信息', res)
@@ -46,11 +55,20 @@ Page({
     let IV = detail.iv;
     if (detail.errMsg == 'getPhoneNumber:ok') { //获取到用户信息成功
 
-      const SessionKey = app.globalData.openIDAndKey.Session_key
-      const OpenID = app.globalData.openIDAndKey.OpenID
+      const SessionKey = app.globalData.SessionKey
+      const OpenID = app.globalData.OpenID
       const loginInfo = await Customers.GetWeChatUserInfo({ SessionKey, EncryptedData, IV})
       const register = await Customers.RegisterCustomers({ Phone: loginInfo.phoneNumber, OpenID })
       wx.setStorageSync("phoneNumber", loginInfo.phoneNumber);
+      let SharOpenID = wx.getStorageSync('SharOpenID')
+      if (SharOpenID){
+        let obj = {
+          EnterpriseID: app.config.EnterpriseID,
+          OpenIDOne: 'SharOpenID',
+          OpenIDTwo: OpenID
+        }
+        Customers.MyCustomersSave(obj)
+      }
 
       this.setData({
         login:true,

@@ -4,8 +4,8 @@
   <image class="title" src="http://i2.sleeve.7yue.pro/m3.png" mode="widthFix"></image>
   <scroll-view scroll-x class="scroll-view">
     <view class="inner">
-      <block wx:for="{{spuList}}" wx:key="index">
-        <view class="spu-container" >
+      <block wx:for="{{spuList}}" wx:key="index" >
+        <view class="spu-container" bind:tap="onItem" data-item="{{item}}">
           <image class="spu-img" src="{{theme.ShowResourcesUrl}}{{item.ProductImage}}"></image>
           <text class="spu-text">{{item.ProductName}}</text>
           <text class="my-class price-value">{{item.Price}}</text>

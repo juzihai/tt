@@ -22,12 +22,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+   
     // 分享后的页面打开先进入首页再跳转到分享的页面,首页的js要做如下设置
     if (options.url) {
       let url = decodeURIComponent(options.url);
-      let sharOpenID = decodeURIComponent(options.sharOpenID);
-      if (sharOpenID){
-        app.globalData.sharOpenID = sharOpenID
+      let SharOpenID = decodeURIComponent(options.SharOpenID);
+      if (SharOpenID){
+        app.globalData.SharOpenID = SharOpenID
+        wx.setStorageSync('SharOpenID', SharOpenID)
       }
       wx.navigateTo({
         url
@@ -47,6 +49,10 @@ Page({
     }
     const notice = await Article.GetTopArticle(obj)
     const nav = await ArticleType.Search(obj)
+    if (nav.Data){
+      this.tabSelectGetData(nav.Data[0].ID)
+    }
+  
     const bannerB = await CompanyRotationchart.Search(obj)
     const grid = this.json3;
     const noticeArr=[];

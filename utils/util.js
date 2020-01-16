@@ -13,6 +13,28 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
+/**获取当前页面路径 */
+function getCurrentPageUrl() {
+  const pages = getCurrentPages()
+  const currentPage = pages[pages.length - 1]
+  const url = `/${currentPage.route}`
+  return url
+}
+/**获取当前页面路径和参数 */
+function getCurrentPageUrlWithArgs() {
+  const pages = getCurrentPages()
+  const currentPage = pages[pages.length - 1]
+  const url = currentPage.route
+  const options = currentPage.options
+  let urlWithArgs = `/${url}?`
+  for (let key in options) {
+    const value = options[key]
+    urlWithArgs += `${key}=${value}&`
+  }
+  urlWithArgs = urlWithArgs.substring(0, urlWithArgs.length - 1)
+  return urlWithArgs
+}
+
 /**
  * promisic封装ajax
  * @param func
@@ -36,5 +58,7 @@ const promisic = function (func) {
 
 module.exports = {
   formatTime: formatTime,
-  promisic
+  promisic,
+  getCurrentPageUrl,
+  getCurrentPageUrlWithArgs,
 }

@@ -1,0 +1,25 @@
+<view class="container">
+
+  <view class="icons">
+    <view bind:tap="onGoToHome">
+      <l-icon size="46" name="home" l-class="sleeve"></l-icon>
+      <text>首页</text>
+    </view>
+
+    <!-- <view bind:tap="onGoToCart">
+      <l-badge value="7777">
+        <l-icon size="46" name="spcart" l-class="sleeve"></l-icon>
+      </l-badge>
+      <text>购物车</text>
+    </view> -->
+  </view>
+
+  <view bind:tap="onAddToCart" class="cart btn-font">
+    <!-- <text>分享</text> -->
+    <button class="cart btn-font" open-type="share">分享</button>
+  </view>
+
+  <view bind:tap="onBuy" class="buy btn-font">
+    <button class="buy btn-font">联系我们</button>
+  </view>
+</view>

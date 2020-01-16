@@ -15,12 +15,14 @@ App({
     try {
       const code = await Customers.Login()
       const openIDAndKey = await Customers.GetWeChatOpenIDAndKey(config.EnterpriseID, code)
-      this.globalData.openIDAndKey = openIDAndKey;
+      this.globalData.OpenID = openIDAndKey.OpenID;
+      this.globalData.SessionKey = openIDAndKey.Session_key;
       wx.setStorageSync("OpenID", openIDAndKey.OpenID);
-      if (this.sharOpenID) {
+      wx.setStorageSync("SessionKey", openIDAndKey.Session_key);
+      if (this.globalData.SharOpenID) {
         let obj = {
           EnterpriseID: config.EnterpriseID,
-          OpenIDOne: this.sharOpenID,
+          OpenIDOne: this.globalData.SharOpenID,
           OpenIDTwo: openIDAndKey.OpenID
         }
         Customers.MyCustomersSave(obj)
@@ -30,8 +32,8 @@ App({
     }
   },
   globalData: {
-    userInfo: null,
-    openIDAndKey: null,
-    sharOpenID: null,
+    OpenID: null,
+    SessionKey: null,
+    SharOpenID: null,
   }
 })

@@ -1,6 +1,27 @@
-<!--pages/subpackages/propaganda/article/articleDetail/index.wxml-->
 <import src='../../../../../wxParse/wxParse.wxml' />
-<!-- <rich-text  nodes="{{article.Content}}" ></rich-text> -->
+
+<scroll-view scroll-y>
+
+<view class="cu-bar bg-white">
+  <view class="action ">
+    发表人：{{article.CreationPerson}}
+  </view>
+
+  <view class="action">
+    <text class="cuIcon-attention text-gray"></text> 阅读量：{{article.ReadAmount}}
+  </view>
+
+</view>
+<template  is='wxParse' data="{{wxParseData:articleModel.nodes}}" />
+
+</scroll-view>
 
 
-<template is='wxParse' data="{{wxParseData:article.nodes}}" />
+
+
+<l-article-bar class="tapbar"
+           bind:gotohome="onGotoHome"
+           bind:gotocart="onGotoCart"
+           bind:addtocart="onAddToCart"
+           bind:buy="onBuy"
+></l-article-bar>
