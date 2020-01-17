@@ -1,4 +1,6 @@
 <!--components/spu-scroll/index.wxml-->
+<wxs src="../../wxs/price.wxs" module="p"></wxs>
+
 <view class="container">
   <!-- <image class="title" src="{{theme.title_img}}" mode="widthFix"></image> -->
   <image class="title" src="http://i2.sleeve.7yue.pro/m3.png" mode="widthFix"></image>
@@ -8,7 +10,13 @@
         <view class="spu-container" bind:tap="onItem" data-item="{{item}}">
           <image class="spu-img" src="{{theme.ShowResourcesUrl}}{{item.ProductImage}}"></image>
           <text class="spu-text">{{item.ProductName}}</text>
-          <text class="my-class price-value">{{item.Price}}</text>
+          <l-price
+                  l-unit-class="price-unit"
+                  l-value-class="price-value"
+                  color="#157158"
+                  value="{{p.mainPrice(item.Price,item.DiscountPrice).price}}">
+
+          </l-price>
         </view>
       </block>
 

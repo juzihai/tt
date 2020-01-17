@@ -33,19 +33,19 @@
 
 
   <!-- 分类六宫格 -->
-  <view class='cu-list grid col-3 no-border inner-container'>
-    <view class='cu-item ' style="height: 120rpx;" wx:for="{{grid}}" wx:key="index" data-navigateMark="{{item.navigateMark}}" bindtap='onNaviCard'>
-      <view class='{{item.icon}} {{item.color}} text-shadow'>
+  <view class='cu-list grid col-3 no-border inner-container '>
+    <view class='cu-item ' style="height: 140rpx;" wx:for="{{grid}}" wx:key="index" data-navigateMark="{{item.navigateMark}}" bindtap='onNaviCard'>
+      <view class='{{item.icon}} {{item.color}} text-shadow '>
         <image class="img" src="{{item.img}}"></image>
       </view>
-      <text>{{item.title}}</text>
+      <text class="margin">{{item.title}}</text>
     </view>
   </view>
 
   <!-- 分页 -->
   <scroll-view scroll-x class="bg-white nav text-center margin-top text-lg">
     <block wx:for="{{nav.Data}}" wx:key="index">
-      <view class="cu-item {{index==TabCur?'text-brown cur':''}}" bindtap="tabSelect" data-id="{{item.ID}}" data-index="{{index}}">
+      <view class="cu-item {{index==TabCur?'navColor cur':'text-black'}}" bindtap="tabSelect" data-id="{{item.ID}}" data-index="{{index}}">
         {{item.TypeName}}
       </view>
     </block>
@@ -73,9 +73,9 @@
 </view> -->
 
   <block wx:for='{{article.items}}' wx:key="index">
-    <l-card type="primary" l-class="card" l-img-class="right-card" position="left" image="{{item.baseUrl}}{{item.CoverImage}}" title="{{item.Title}}" bindtap="onCardItem" data-id="{{item.ID}}">
+    <l-card type="primary" l-class="card" l-img-class="right-card" l-title-class="title-card" position="right" full="{{true}}" image="{{item.baseUrl}}{{item.CoverImage}}" title="推荐人：{{item.CreationPerson}}" bindtap="onCardItem" data-id="{{item.ID}}">
       <view class="content">
-        很简单，豆瓣现在这样就给大家指了一条明路:以后凡是这种国产的风口浪尖的的片子...很简单，豆瓣现在这样就给大家指了一条明路:以后凡是这种国产的风口浪尖的的片子...很简单，豆瓣现在这样就给大家指了一条明路:以后凡是这种国产的风口浪尖的的片子...很简单，豆瓣现在这样就给大家指了一条明路:以后凡是这种国产的风口浪尖的的片子...
+       {{item.Title}}
       </view>
       <view class="avter-share-container">
         <view class="like-container">
@@ -83,9 +83,12 @@
           <view class="number">99999</view>
         </view>
         <view class="like-container">
+         <view class="number">/</view>
+        </view>
+        <view class="like-container">
           <l-icon name="default" color="#666" size="28" />
           <!-- <view class="number">{{item.CreationTime}}</view> -->
-          <view class="number">{{util.utcToBj(item.CreationTime)}}</view>
+          <view class="number">{{util.utcToBj(item.CreationTime,"M/D h:m")}}</view>
         </view>
       </view>
     </l-card>

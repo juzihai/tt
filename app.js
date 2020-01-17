@@ -15,15 +15,17 @@ App({
     try {
       const code = await Customers.Login()
       const openIDAndKey = await Customers.GetWeChatOpenIDAndKey(config.EnterpriseID, code)
-      this.globalData.OpenID = openIDAndKey.OpenID;
+      let OpenID = openIDAndKey.OpenID
+      this.globalData.OpenID = OpenID;
       this.globalData.SessionKey = openIDAndKey.Session_key;
       wx.setStorageSync("OpenID", openIDAndKey.OpenID);
       wx.setStorageSync("SessionKey", openIDAndKey.Session_key);
+      const register = await Customers.RegisterCustomers({ OpenID })
       if (this.globalData.SharOpenID) {
         let obj = {
           EnterpriseID: config.EnterpriseID,
           OpenIDOne: this.globalData.SharOpenID,
-          OpenIDTwo: openIDAndKey.OpenID
+          OpenIDTwo: OpenID
         }
         Customers.MyCustomersSave(obj)
       }

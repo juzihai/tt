@@ -1,7 +1,4 @@
 <import src='../../../../../wxParse/wxParse.wxml' />
-
-<scroll-view scroll-y>
-
 <view class="cu-bar bg-white">
   <view class="action ">
     发表人：{{article.CreationPerson}}
@@ -12,6 +9,9 @@
   </view>
 
 </view>
+<scroll-view scroll-y>
+
+
 <template  is='wxParse' data="{{wxParseData:articleModel.nodes}}" />
 
 </scroll-view>

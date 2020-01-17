@@ -61,7 +61,13 @@
 
 /* 文章列表item */
 .card {
-  margin: 20rpx auto !important;
+  /* margin: 20rpx auto !important; */
+  border-bottom: 1px dashed #DCEBE6;
+}
+.title-card{
+  color: rgba(170, 139, 99, 1) !important;
+  /* font-weight: bold !important; */
+  font-size: 12px !important;
 }
 .right-card {
   height: 180rpx !important;
@@ -69,26 +75,28 @@
   border-radius: 12rpx !important;
 }
 .content {
-  margin: 10rpx 0rpx;
+  margin: 20rpx 0rpx;
   color: #666;
-  font-size: 26rpx;
+  font-size: 30rpx;
+  font-weight: bold;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 2;
 }
 
 .avter-share-container{
+  margin: 20rpx 0rpx;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
 }
 
 .like-container{
   display: flex;
   flex-direction: row;
-  margin-left: 10rpx;
+  margin-right: 10rpx;
   align-items: center
 }
 
@@ -96,4 +104,9 @@
   color: #666;
   font-size: 24rpx;
   margin-left: 10rpx;
+}
+
+.navColor{
+  color: rgba(170, 139, 99, 1);
+  font-weight: bold;
 }

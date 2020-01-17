@@ -3,7 +3,7 @@ var limit = function(array,length){
   return array.slice(0,length)
 }
 // utc时间转当地时间
-function utcToBj(utcDateTime, format){
+function utcToBj(utcDateTime, format = 'Y/M/D h:m:s'){
   var date = getDate()
   var min = date.getTimezoneOffset()
   var time = min * 60 * 1000
@@ -12,7 +12,7 @@ function utcToBj(utcDateTime, format){
   var utcDate = getDate(utcDateTime)
   var utcTime=utcDate.getTime()
   var bjTime=utcTime-time
-  var bjDateTime = formatTime(bjTime, 'Y/M/D h:m:s');//转换为日期
+  var bjDateTime = formatTime(bjTime, format);//转换为日期
   return bjDateTime
 }
 
