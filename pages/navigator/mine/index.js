@@ -54,26 +54,33 @@ Page({
     let EncryptedData = detail.encryptedData;
     let IV = detail.iv;
     if (detail.errMsg == 'getPhoneNumber:ok') { //获取到用户信息成功
-
-      const SessionKey = app.globalData.SessionKey
-      const OpenID = app.globalData.OpenID
-      const loginInfo = await Customers.GetWeChatUserInfo({ SessionKey, EncryptedData, IV})
-      const register = await Customers.RegisterCustomers({ Phone: loginInfo.phoneNumber, OpenID })
-      wx.setStorageSync("phoneNumber", loginInfo.phoneNumber);
-      let SharOpenID = wx.getStorageSync('SharOpenID')
-      if (SharOpenID){
-        let obj = {
-          EnterpriseID: app.config.EnterpriseID,
-          OpenIDOne: 'SharOpenID',
-          OpenIDTwo: OpenID
+      try{
+        wx.showLoading({
+          title: '加载中请稍后',
+        })
+        const SessionKey = wx.getStorageSync('SessionKey');
+        const OpenID = wx.getStorageSync('OpenID');
+        const loginInfo = await Customers.GetWeChatUserInfo({ SessionKey, EncryptedData, IV })
+        const register = await Customers.RegisterCustomers({ Phone: loginInfo.phoneNumber, OpenID })
+        wx.setStorageSync("phoneNumber", loginInfo.phoneNumber);
+        let SharOpenID = wx.getStorageSync('SharOpenID')
+        if (SharOpenID) {
+          let obj = {
+            EnterpriseID: app.config.EnterpriseID,
+            OpenIDOne: 'SharOpenID',
+            OpenIDTwo: OpenID
+          }
+          Customers.MyCustomersSave(obj)
         }
-        Customers.MyCustomersSave(obj)
+        wx.hideLoading()
+        this.setData({
+          login: true,
+          phoneNumber: loginInfo.phoneNumber
+        })
+      }catch(e){
+        wx.hideLoading()
       }
 
-      this.setData({
-        login:true,
-        phoneNumber: loginInfo.phoneNumber
-      })
     }
   },
 

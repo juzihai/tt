@@ -1,4 +1,5 @@
 // pages/navigator/index/index.js
+const app = getApp();
 import naviConfigs from './navi.js'
 import { Product } from "../../../models/product";
 import { ProductClass } from "../../../models/productClass.js";
@@ -46,9 +47,12 @@ Page({
 
 
     //TODO:真实数据
-     const grid = await ProductClass.Search("242415");
-     const themeE = await HotProduct.Search("242415");
-     const bannerG = await HotActivity.Search("242415");
+     let obj = {
+       "EnterpriseID": app.config.EnterpriseID,
+     }
+     const grid = await ProductClass.Search(obj);
+     const themeE = await HotProduct.Search(obj);
+     const bannerG = await HotActivity.Search(obj);
 
      let themeESpu = themeE.Data
 
@@ -74,7 +78,7 @@ Page({
  */
   async initBottomSpuList() {
     let obj = {
-      "EnterpriseID": "242415",
+      "EnterpriseID": app.config.EnterpriseID,
       "ProductCode": "",
       "ProductName": "",
       "Limit": 5

@@ -4,7 +4,7 @@ import { Paging } from "../utils/paging";
 class HotActivity extends Http {
 
   /**热门活动接口 */
-  static Search(EnterpriseID, ActivityName = '', Limit = 10, Page = 1) {
+  static Search({EnterpriseID, ActivityName = '', Limit = 10, Page = 1}) {
     return Http.request({
       url: "api/V1/HotActivity/PageSearch",
       data: {
@@ -25,7 +25,15 @@ class HotActivity extends Http {
       }
     }, Limit, Page)
   }
-
+  //7. 查询文章详情
+  static SearchModelDetails(ID) {
+    return Http.request({
+      url: "api/V1/HotActivity/SearchModelDetails",
+      data: {
+        ID
+      }
+    })
+  }
 
 }
 

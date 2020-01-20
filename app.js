@@ -7,6 +7,11 @@ App({
   config: config,
   util: util,
   onLaunch: function() {
+    wx.getSystemInfo({
+      success: function(res) {
+        console.log(res)
+      },
+    })
 
     this._login()
 
@@ -16,9 +21,9 @@ App({
       const code = await Customers.Login()
       const openIDAndKey = await Customers.GetWeChatOpenIDAndKey(config.EnterpriseID, code)
       let OpenID = openIDAndKey.OpenID
-      this.globalData.OpenID = OpenID;
-      this.globalData.SessionKey = openIDAndKey.Session_key;
-      wx.setStorageSync("OpenID", openIDAndKey.OpenID);
+      // this.globalData.OpenID = OpenID;
+      // this.globalData.SessionKey = openIDAndKey.Session_key;
+      wx.setStorageSync("OpenID", OpenID);
       wx.setStorageSync("SessionKey", openIDAndKey.Session_key);
       const register = await Customers.RegisterCustomers({ OpenID })
       if (this.globalData.SharOpenID) {
@@ -34,8 +39,8 @@ App({
     }
   },
   globalData: {
-    OpenID: null,
-    SessionKey: null,
+    // OpenID: null,
+    // SessionKey: null,
     SharOpenID: null,
   }
 })

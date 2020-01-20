@@ -72,6 +72,28 @@ Page({
     })
     
   },
+/** */
+  onOpenLocation(){
+    wx.openLocation({
+      latitude: 39.12,
+      longitude: 117.20 ,
+      scale: '16',
+      name: '名称',
+      address: "天津市和平区",
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+  },
+  /**banner点击 */
+  onBanner(e){
+    console.log(e)
+    let id = e.currentTarget.dataset.id;
+
+    wx.navigateTo({
+      url: `/pages/subpackages/mall/activity/activityDetail/index?id=${id}&pagePath=CompanyRotationchart`,
+    })
+  },
   /**通知栏点击 */
   onNoticeBar(e){
     let index = e.detail.index
@@ -84,9 +106,13 @@ Page({
   },
   /**功能块点击 */
   onNaviCard(e){
+    // wx.navigateTo({
+    //   url: `/pages/subpackages/mall/company/staffList/index`,
+    // })
     wx.navigateTo({
-      url: `/pages/subpackages/mall/company/staffList/index`,
+      url: `/pages/subpackages/mall/product/classiFication/index`,
     })
+
   },
   /**切换点击 */
   tabSelect(e) {

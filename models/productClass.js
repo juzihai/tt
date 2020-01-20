@@ -5,7 +5,7 @@ import { Paging } from "../utils/paging";
 class ProductClass {
 
   /**产品种类接口 */
-  static Search(EnterpriseID, ClassName='', Limit=10, Page=1) {
+  static Search({EnterpriseID, ClassName='', Limit=10, Page=1}) {
     return Http.request({
       url: "api/V1/ProductClass/PageSearch",
       data: {

@@ -5,7 +5,7 @@
     <text class="cuIcon-title text-green"></text>
     <text>天津金朵科技发展有限公司</text>
   </view>
-  <view class="action">
+  <view class="action" bindtap="onOpenLocation">
     <text class="cuIcon-location "></text>
     <text>到这里</text>
   </view>
@@ -17,8 +17,8 @@
   <!-- 轮播图   -->
   <swiper class="swiper" indicator-dots indicator-active-color="#157658" autoplay circular>
     <!--        循环遍历-->
-    <block wx:for="{{bannerB.Data}}" wx:key="index">
-      <swiper-item>
+    <block wx:for="{{bannerB.Data}}" wx:key="index" >
+      <swiper-item bindtap="onBanner" data-id="{{item.ID}}">
         <!--                遍历的默认变量名称是item-->
         <image class="swiper" src="{{bannerB.ShowResourcesUrl}}{{item.CoverImage}}"></image>
       </swiper-item>

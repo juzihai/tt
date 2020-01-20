@@ -2,6 +2,7 @@
   <!-- <image src="{{banner.img}}" class="title" mode="widthFix" bind:tap="onMoreTap"></image> -->
   <image src="http://i2.sleeve.7yue.pro/m4.png" class="title" mode="widthFix" bind:tap="onMoreTap"></image>
   <view class="inner-container">
+  <!--点击态设置 3ms-->
     <view hover-class="rect-hover" hover-stay-time="300">
       <image class="left" src="{{banner.ShowResourcesUrl}}{{left.ImageUrl}}" bind:tap="onItemTap" data-banner_id="{{left.ID}}"></image>
     </view>

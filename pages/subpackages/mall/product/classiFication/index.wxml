@@ -1,0 +1,46 @@
+<wxs src="../../../../../wxs/price.wxs" module="p"></wxs>
+
+<view class="container">
+  <view class="search-container">
+  
+  </view>
+  <view class="main">
+      <l-segment item-jeight="90"
+                 even="{{false}}"
+                 width="160"
+                 l-class="segment-view"
+                 l-active-class="segment-item-active"
+                 l-inactive-class="segment-item"
+                 l-line-class="l-seg-line"
+                 placement="left"
+                 bind:linchange="changeTabs">
+        <l-segment-item  wx:for="{{grid.Data}}" tab="{{item.ClassName}}" key="{{item.ID}}"/>
+
+      </l-segment>
+
+      <view class="p-container">
+        <l-card  type="primary" wx:for='{{product.items}}' bindtap="onSpuItem" data-pid="{{item.ProductID}}" data-pcode="{{item.ProductCode}}"
+                l-img-class="right-card" 
+                position="left" 
+                image="{{item.baseUrl}}{{item.ProductImage}}">
+          <view class="content">
+            <text class="title">{{item.ProductName}}</text>
+            <view class="price-row">
+              <!-- <text class="my-class price-value">¥ {{data.Price}}</text> -->
+              <l-price color="#157658"
+                      value-size="28"
+                      unit-size="20"
+                      autofix
+                      value="{{p.mainPrice(item.Price,item.DiscountPrice).price}}"></l-price>
+              <l-price l-class="discount-price"
+                        color="#999999"
+                        size="26"
+                        wx:if="{{item.DiscountPrice}}"                                                       
+                        deleted value="{{p.slashedPrice(item.Price,item.DiscountPrice).price}}"></l-price>
+            </view>
+          </view>
+        </l-card>
+      </view>
+      
+  </view>
+</view>

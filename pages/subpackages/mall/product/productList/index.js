@@ -1,4 +1,4 @@
-
+const app = getApp()
 import { Product } from '../../../../../models/product.js'
 
 let _that
@@ -18,7 +18,7 @@ Page({
   onLoad: async function (options) {
     let classid=options.classid
     let obj = {
-      "EnterpriseID": "242415",
+      "EnterpriseID": app.config.EnterpriseID,
       "ClassID": classid,
     }
     const paging = Product.PageSearch(obj);

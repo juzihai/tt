@@ -58,6 +58,8 @@
     "l-icon": "/components/lin-ui/icon/index",
     "l-tag": "/components/lin-ui/tag/index",
     "l-button": "/components/lin-ui/button/index",
+    "l-segment": "/components/lin-ui/segment/index",
+    "l-segment-item": "/components/lin-ui/segment-item/index",
     "l-price": "/components/lin-ui/price/index"
   },
   "style": "v2",
@@ -69,7 +71,9 @@
         "product/productList/index",
         "product/productDetail/index",
         "product/productDetail1/index",
+        "product/classiFication/index",
         "activity/activity/index",
+        "activity/activityDetail/index",
         "activity/hotActivityDetail/index",
         "activity/web-view/index",
         "cards/coupon/index"

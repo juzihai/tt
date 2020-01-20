@@ -6,8 +6,8 @@
     <image class='top-bg' src='/imgs/mine/centerBg.jpg'></image>
     <view class='person' bindtap="showModal" data-target="DialogModal1">
       <view class='avatar' catchtap="ChooseImage">
-        <image class='avatar' src='{{avatarUrl}}'></image>
-        <!-- <open-data type="userAvatarUrl"></open-data> -->
+        <!-- <image class='avatar' src='{{avatarUrl}}'></image> -->
+        <open-data type="userAvatarUrl"></open-data>
       </view>
       <view class='userinfo'>
         <view class="name text-xl">

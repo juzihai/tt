@@ -8,7 +8,7 @@ class HotProduct{
   /**热门产品接口 */
 
   //查询
-  static Search(EnterpriseID, ProductCode='', ProductName='', Limit=10, Page=1) {
+  static Search({EnterpriseID, ProductCode='', ProductName='', Limit=10, Page=1}) {
     return Http.request({
       url: "api/V1/HotProduct/PageSearch",
       data: {
