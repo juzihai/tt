@@ -1,2 +1,26 @@
 <!--pages/subpackages/mall/activity/activity/index.wxml-->
-<text>pages/subpackages/mall/activity/activity/index.wxml</text>
+
+<view class='container bg-white padding-bottom-xl '>
+
+  <swiper style='height:{{imgheights[cardCur]}}rpx; ' class='square-dot ' indicator-dots="true" current='{{cardCur}}' bindchange='bindchange'>
+    <swiper-item wx:for="{{1}}" wx:key='{{index}}'>
+      <image bindload='imageLoad' data-id='{{index}}' style='width:100%;' src="{{ModelData.ImageUrl}}" mode='widthFix'></image>
+    </swiper-item>
+  </swiper>
+  <view class="padding ">
+    <view class="text-left padding">
+      <text class='text-sm text-bold'> 活动名称：{{ModelData.ActivityName}}</text>
+    </view>
+    <view class="text-left padding">
+      <text class='text-sm text-bold'> 内容：{{ModelData.ActivityName}}</text>
+    </view>
+    <view class="text-left padding">
+      <text class='text-sm text-bold'> 说明：{{ModelData.Explain}}</text>
+    </view>
+    <view class="text-left padding">
+      <text class='text-sm text-bold'> 规则：{{ModelData.Rule}}</text>
+    </view>
+  </view>
+
+
+</view>

@@ -3,12 +3,18 @@ Component({
   /**
    * 组件的属性列表
    */
-  properties: {},
+  properties: {
+    leftTitle: String,
+    rightTitle: String,
+  },
 
   /**
    * 组件的初始数据
    */
-  data: {},
+  data: {
+    leftTitle: '联系我们',
+    rightTitle:'立即购买',
+  },
 
   /**
    * 组件的方法列表

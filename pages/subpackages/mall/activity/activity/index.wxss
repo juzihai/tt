@@ -1,1 +1,8 @@
 /* pages/subpackages/mall/activity/activity/index.wxss */
+.container{
+  width: 100%;
+  height: 100%;
+}
+.container image{
+  width: 100%;
+}

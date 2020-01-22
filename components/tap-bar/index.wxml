@@ -15,10 +15,10 @@
   </view>
 
   <view bind:tap="onAddToCart" class="cart btn-font">
-    <text>加入收藏</text>
+    <text>{{leftTitle}}</text>
   </view>
 
   <view bind:tap="onBuy" class="buy btn-font">
-    <text>立即购买</text>
+    <text>{{rightTitle}}</text>
   </view>
 </view>

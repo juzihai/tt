@@ -23,8 +23,8 @@ Page({
     }else{
       var Model = await HotActivity.SearchModelDetails(id)
     }
-   
     this.setData({
+      ModelData:Model,
       Model
     })
 

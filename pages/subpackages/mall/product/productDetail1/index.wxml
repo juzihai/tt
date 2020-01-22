@@ -13,7 +13,7 @@
   <view class="sku-pending">
     <view class="specs">
       <text>已选择：</text>
-      <text>一只快乐的小青蛙🐸</text>
+      <text>{{spu.ProductName}}</text>
     </view>
     <view class="arrow-right">
       <l-icon name="right" color="#157658" size="24"></l-icon>
@@ -38,4 +38,6 @@
            bind:gotocart="onGotoCart"
            bind:addtocart="onAddToCart"
            bind:buy="onBuy"
+           leftTitle="联系我们"
+           rightTitle="立即购买"
 ></l-tap-bar>

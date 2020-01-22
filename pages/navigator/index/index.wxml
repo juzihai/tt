@@ -1,19 +1,17 @@
-<!--pages/navigator/mall/index.wxml-->
 <wxs src="../../../utils/util.wxs" module="util"></wxs>
+<!--pages/navigator/mall/index.wxml-->
 <view class="cu-bar bg-white">
   <view class="action">
     <text class="cuIcon-title text-green"></text>
     <text>天津金朵科技发展有限公司</text>
   </view>
   <view class="action" bindtap="onOpenLocation">
-    <text class="cuIcon-location "></text>
+    <text class="cuIcon-location "></text> 
     <text>到这里</text>
   </view>
 </view>
 
 <view class="container">
-
-
   <!-- 轮播图   -->
   <swiper class="swiper" indicator-dots indicator-active-color="#157658" autoplay circular>
     <!--        循环遍历-->
@@ -29,8 +27,6 @@
     <l-notice-bar l-class="bar" tyle="margin-bottom:20rpx" show="{{notice.Online}}" type="swip" swip-arr="{{noticeArr}}" front-icon-name="notification" bind:lintap="onNoticeBar">
     </l-notice-bar>
   </view>
-
-
 
   <!-- 分类六宫格 -->
   <view class='cu-list grid col-3 no-border inner-container '>
@@ -80,7 +76,7 @@
       <view class="avter-share-container">
         <view class="like-container">
           <l-icon name="eye" color="#666" size="28" />
-          <view class="number">99999</view>
+          <view class="number">999+</view>
         </view>
         <view class="like-container">
          <view class="number">/</view>

@@ -56,7 +56,7 @@ Component({
       console.log('点击了商品：banner_id为', banner_id)
 
       wx.navigateTo({
-        url: `/pages/subpackages/mall/activity/activityDetail/index?id=${banner_id}&pagePath=hotActivity`
+        url: `/pages/subpackages/mall/activity/activity/index?id=${banner_id}&pagePath=hotActivity`
       })
 
       // var that = this;

@@ -1,4 +1,11 @@
 <!--pages/subpackages/mall/activity/activityDetail/index.wxml-->
 <import src='../../../../../wxParse/wxParse.wxml' />
+<view class="cu-bar bg-white">
+  <view class="action ">
+    标题：{{ModelData.Title}}
+  </view>
+</view>
 
-<template  is='wxParse' data="{{wxParseData:Model.nodes}}" />
+<scroll-view scroll-y>
+  <template is='wxParse' data="{{wxParseData:Model.nodes}}" />
+</scroll-view>

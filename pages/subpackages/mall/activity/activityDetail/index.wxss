@@ -1,2 +1,5 @@
 /* pages/subpackages/mall/activity/activityDetail/index.wxss */
 @import "/wxParse/wxParse.wxss";
+scroll-view{
+  padding: 10px 10px  ;
+}

@@ -62,6 +62,11 @@ Page({
 
   onAddToCart(e){
 
+  },
+  onBuy(e){
+    wx.navigateTo({
+      url: `/pages/subpackages/mall/company/staffList/index`,
+    })
   }
 
 })
