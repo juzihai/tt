@@ -21,14 +21,17 @@ Page({
       "EnterpriseID": app.config.EnterpriseID,
       "ClassID": classid,
     }
-    const paging = Product.PageSearch(obj);
-    this.data.spuPaging = paging //类属性
-    const data = await paging.getMoreData();//todo
-    if (!data) {
+    const productModel = Product.PageSearch(obj);
+    this.data.productModel = productModel //类属性
+    const product = await productModel.getMoreData();//todo
+    this.setData({
+      product
+    })
+    if (!product) {
       return;
     }
     // data 数组, refresh 清空元素, success 返回成功
-    wx.lin.renderWaterFlow(data.items);
+    wx.lin.renderWaterFlow(product.items);
   },
 
   /**

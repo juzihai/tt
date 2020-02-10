@@ -1,6 +1,13 @@
 //app.js
-import {Customers} from "/models/customers";
-import {config} from "./config/config";
+import {
+  Customers
+} from "/models/customers";
+import {
+  Company
+} from "/models/company.js";
+import {
+  config
+} from "./config/config";
 const util = require('utils/util.js');
 
 App({
@@ -12,6 +19,17 @@ App({
         console.log(res)
       },
     })
+    Company.SearchModelDetails(config.EnterpriseID).then(res => {
+      console.log(res)
+      let shopInfo = res
+
+      if (this.shopInfoReadyCallback) {
+        this.shopInfoReadyCallback(res)
+      }
+      wx.setStorageSync('shopInfo', shopInfo)
+
+    })
+
 
     this._login()
 
@@ -25,7 +43,9 @@ App({
       // this.globalData.SessionKey = openIDAndKey.Session_key;
       wx.setStorageSync("OpenID", OpenID);
       wx.setStorageSync("SessionKey", openIDAndKey.Session_key);
-      const register = await Customers.RegisterCustomers({ OpenID })
+      const register = await Customers.RegisterCustomers({
+        OpenID
+      })
       if (this.globalData.SharOpenID) {
         let obj = {
           EnterpriseID: config.EnterpriseID,

@@ -3,7 +3,7 @@
 <view class="cu-bar bg-white">
   <view class="action">
     <text class="cuIcon-title text-green"></text>
-    <text>天津金朵科技发展有限公司</text>
+    <text>{{shopInfo.CompanyName}}</text>
   </view>
   <view class="action" bindtap="onOpenLocation">
     <text class="cuIcon-location "></text> 
@@ -30,7 +30,7 @@
 
   <!-- 分类六宫格 -->
   <view class='cu-list grid col-3 no-border inner-container '>
-    <view class='cu-item ' style="height: 140rpx;" wx:for="{{grid}}" wx:key="index" data-navigateMark="{{item.navigateMark}}" bindtap='onNaviCard'>
+    <view class='cu-item ' style="height: 140rpx;" wx:for="{{grid}}" wx:key="index" data-name="{{item.title}}" bindtap='onNaviCard'>
       <view class='{{item.icon}} {{item.color}} text-shadow '>
         <image class="img" src="{{item.img}}"></image>
       </view>
@@ -69,14 +69,14 @@
 </view> -->
 
   <block wx:for='{{article.items}}' wx:key="index">
-    <l-card type="primary" l-class="card" l-img-class="right-card" l-title-class="title-card" position="right" full="{{true}}" image="{{item.baseUrl}}{{item.CoverImage}}" title="推荐人：{{item.CreationPerson}}" bindtap="onCardItem" data-id="{{item.ID}}">
+    <l-card type="primary" l-class="card" l-img-class="right-card" l-title-class="title-card" position="right" full="{{true}}" image="{{item.baseUrl}}{{item.CoverImage}}" title="推荐人：{{item.StaffName}}" bindtap="onCardItem" data-id="{{item.ID}}">
       <view class="content">
        {{item.Title}}
       </view>
       <view class="avter-share-container">
         <view class="like-container">
           <l-icon name="eye" color="#666" size="28" />
-          <view class="number">999+</view>
+          <view class="number">{{item.ReadAmount}}</view>
         </view>
         <view class="like-container">
          <view class="number">/</view>

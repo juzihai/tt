@@ -1,7 +1,7 @@
 <import src='../../../../../wxParse/wxParse.wxml' />
 <view class="cu-bar bg-white">
   <view class="action ">
-    发表人：{{article.CreationPerson}}
+    发表人：{{article.StaffName}}
   </view>
 
   <view class="action">

@@ -1,6 +1,8 @@
 {
   "pages": [
+
     "pages/navigator/index/index",
+        "pages/navigator/indexTest/index",
     "pages/navigator/mall/index",
     "pages/navigator/mine/index",
     "pages/navigator/home/home",
@@ -13,7 +15,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "企业宣传",
+    "navigationBarTitleText": "浦商汇",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -31,12 +33,6 @@
       {
         "pagePath": "pages/navigator/mall/index",
         "text": "产品",
-        "iconPath": "/imgs/tabbar/base.png",
-        "selectedIconPath": "/imgs/tabbar/base-select.png"
-      },
-      {
-        "pagePath": "pages/navigator/home/home",
-        "text": "产品首页",
         "iconPath": "/imgs/tabbar/base.png",
         "selectedIconPath": "/imgs/tabbar/base-select.png"
       },
@@ -60,7 +56,8 @@
     "l-button": "/components/lin-ui/button/index",
     "l-segment": "/components/lin-ui/segment/index",
     "l-segment-item": "/components/lin-ui/segment-item/index",
-    "l-price": "/components/lin-ui/price/index"
+    "l-price": "/components/lin-ui/price/index",
+    "l-action-sheet": "/components/lin-ui/action-sheet/index"
   },
   "style": "v2",
   "subPackages": [
@@ -68,6 +65,7 @@
       "root": "pages/subpackages/mall",
       "pages": [
         "company/staffList/index",
+        "company/staffRelationList/index",
         "product/productList/index",
         "product/productDetail/index",
         "product/productDetail1/index",
@@ -83,7 +81,9 @@
       "root": "pages/subpackages/propaganda",
       "pages": [
         "article/articleList/index",
-        "article/articleDetail/index"
+        "article/articleDetail/index",
+        "financeProduct/financeProductList/index",
+        "financeProduct/financeProductDetail/index"
       ]
     }
   ],

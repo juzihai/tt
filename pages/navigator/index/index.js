@@ -22,25 +22,35 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-   
+    
     // 分享后的页面打开先进入首页再跳转到分享的页面,首页的js要做如下设置
     if (options.url) {
       let url = decodeURIComponent(options.url);
+      
       let SharOpenID = decodeURIComponent(options.SharOpenID);
       if (SharOpenID){
         app.globalData.SharOpenID = SharOpenID
         wx.setStorageSync('SharOpenID', SharOpenID)
       }
       wx.navigateTo({
-        url
+        url: url,
+      })
+
+    }
+    app.shopInfoReadyCallback = res => {
+      console.log('刷新店铺信息回调', res)
+      this.setData({
+        shopInfo: res
       })
     }
 
-
-    this.initAllData();
+    
     // wx.showShareMenu({
     //   withShareTicket: true
     // })
+  },
+  onShow(){
+    this.initAllData();
   },
 
   async initAllData(){
@@ -74,12 +84,14 @@ Page({
   },
 /** */
   onOpenLocation(){
+    let shopInfo = this.data.shopInfo
+
     wx.openLocation({
-      latitude: 39.12,
-      longitude: 117.20 ,
+      latitude: shopInfo.Latitude,
+      longitude:shopInfo.Longitude,
       scale: '16',
-      name: '名称',
-      address: "天津市和平区",
+      name: shopInfo.CompanyName,
+      address: shopInfo.Address,
       success: function (res) { },
       fail: function (res) { },
       complete: function (res) { },
@@ -106,12 +118,48 @@ Page({
   },
   /**功能块点击 */
   onNaviCard(e){
-    // wx.navigateTo({
-    //   url: `/pages/subpackages/mall/company/staffList/index`,
-    // })
-    wx.navigateTo({
-      url: `/pages/subpackages/mall/product/classiFication/index`,
-    })
+
+    let name = e.currentTarget.dataset.name;
+    switch(name){
+      case '公司资质':
+        wx.navigateTo({
+          url: `/pages/subpackages/propaganda/article/articleList/index?ArticleType=7`,
+        })
+        break;
+      case '公司招聘':
+        wx.navigateTo({
+          url: `/pages/subpackages/propaganda/article/articleList/index?ArticleType=8`,
+        })
+        break;
+      case '案例展示':
+        wx.navigateTo({
+          url: `/pages/subpackages/propaganda/article/articleList/index?ArticleType=6`,
+        })
+        break;
+      case '员工列表':
+        wx.navigateTo({
+          url: `/pages/subpackages/mall/company/staffList/index`,
+        })
+        break;
+      case '产品查看':
+        wx.navigateTo({
+          url: `/pages/subpackages/mall/product/classiFication/index`,
+        })
+        break;
+      case '金融产品':
+        wx.navigateTo({
+          url: `/pages/subpackages/propaganda/financeProduct/financeProductList/index`,
+        })
+        break;
+
+      default:
+        wx.showToast({
+          title: '即将开放尽情期待',
+        })
+          // wx.navigateTo({
+          //   url: `/pages/subpackages/mall/product/classiFication/index`,
+          // })
+    }
 
   },
   /**切换点击 */
@@ -180,7 +228,7 @@ Page({
   json3: [{
       "id": 1,
       "title": "公司资质",
-      "img": "http://i1.sleeve.7yue.pro/grid/clothing.png",
+    "img": "/imgs/home/guanli.png",
       "name": null,
       "category_id": null,
       "root_category_id": 2
@@ -188,7 +236,7 @@ Page({
     {
       "id": 2,
       "title": "公司招聘",
-      "img": "http://i1.sleeve.7yue.pro/grid/bag.png",
+      "img": "/imgs/home/fenxiang.png",
       "name": null,
       "category_id": null,
       "root_category_id": 3
@@ -196,7 +244,7 @@ Page({
     {
       "id": 3,
       "title": "员工列表",
-      "img": "http://i1.sleeve.7yue.pro/grid/shoes.png",
+      "img": "/imgs/home/kefu.png",
       "name": null,
       "category_id": null,
       "root_category_id": 1
@@ -204,7 +252,7 @@ Page({
     {
       "id": 4,
       "title": "产品查看",
-      "img": "http://i1.sleeve.7yue.pro/grid/jewelry.png",
+      "img": "/imgs/home/chanpinfabu.png",
       "name": null,
       "category_id": null,
       "root_category_id": 5
@@ -212,15 +260,15 @@ Page({
     {
       "id": 5,
       "title": "案例展示",
-      "img": "http://i1.sleeve.7yue.pro/grid/furniture.png",
+      "img": "/imgs/home/diannao.png",
       "name": null,
       "category_id": null,
       "root_category_id": 4
     },
     {
       "id": 6,
-      "title": "更多",
-      "img": "http://i1.sleeve.7yue.pro/grid/book.png",
+      "title": "金融产品",
+      "img": "/imgs/home/shujufenxi.png",
       "name": null,
       "category_id": null,
       "root_category_id": 24

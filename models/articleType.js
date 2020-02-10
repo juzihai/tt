@@ -1,7 +1,7 @@
 import { Http } from "../utils/http-a";
 import { Paging } from "../utils/paging";
 
-/**文章接口 */
+/**文章类型接口 */
 class ArticleType extends Http {
 
   //查询

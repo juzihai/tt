@@ -7,8 +7,8 @@
     <view class="content">
       <image src="{{item.baseUrl}}{{item.HeadImage}}"  mode="aspectFill" bindtap='previewImage'  data-image='{{item.baseUrl}}{{item.HeadImage}}' ></image>
       <view class="desc">
-        <!-- <view>职位：{{item.job}}</view>
-        <view>工龄：{{item.workEXP}}年</view> -->
+        <view>职位：{{item.Position}}</view>
+        <view>姓名：{{item.StaffName}}</view>
         <view class="cu-capsule radius" bindtap='onPhone' data-phone='{{item.Phone}}'>
           <view class='cu-tag bg-green '>
             <text class='cuIcon-dianhua'></text>
@@ -19,10 +19,9 @@
         </view>
       </view>
     </view>
-    <!-- <view class='padding'>个人介绍：
-      <text class='text-gray'> {{item.describe}}</text>
-    </view> -->
-    <!-- <view ></view> -->
+    <view class='padding'>个人介绍：
+      <text class='text-gray'> {{item.PersonalProfile}}</text>
+    </view>
   </view>
 
 </view>

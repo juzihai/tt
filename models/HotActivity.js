@@ -6,7 +6,7 @@ class HotActivity extends Http {
   /**热门活动接口 */
   static Search({EnterpriseID, ActivityName = '', Limit = 10, Page = 1}) {
     return Http.request({
-      url: "api/V1/HotActivity/PageSearch",
+      url: "api/V1/HotActivity/PageSearchWX",
       data: {
         EnterpriseID,
         ActivityName,
@@ -18,7 +18,7 @@ class HotActivity extends Http {
 
   static PageSearch({ EnterpriseID, ActivityName, Limit, Page }) {
     return new Paging({
-      url: "api/V1/HotActivity/PageSearch",
+      url: "api/V1/HotActivity/PageSearchWX",
       data: {
         EnterpriseID,
         ActivityName

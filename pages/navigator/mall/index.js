@@ -25,7 +25,6 @@ Page({
     spuPaging: null,
     loadingType: "loading",
 
-    collecArray: naviConfigs.baseConfig,
   },
 
   /**
@@ -104,6 +103,11 @@ Page({
 
 
   },
+  onActicity(){
+    wx.navigateTo({
+      url: '/pages/subpackages/mall/cards/coupon/index',
+    })
+  },
   onSpuItem(e){
     let item = e.detail
     let pid=item.ID
@@ -114,6 +118,7 @@ Page({
     })
     
   },
+
   /**
    *
    * 页面上拉触底事件的处理函数

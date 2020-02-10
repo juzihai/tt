@@ -10,7 +10,7 @@ class HotProduct{
   //查询
   static Search({EnterpriseID, ProductCode='', ProductName='', Limit=10, Page=1}) {
     return Http.request({
-      url: "api/V1/HotProduct/PageSearch",
+      url: "api/V1/HotProduct/PageSearchWX",
       data: {
         EnterpriseID,
         ProductCode,
@@ -23,7 +23,7 @@ class HotProduct{
  //分页查询
   static PageSearch({EnterpriseID, ProductCode, ProductName, Limit, Page}) {
     return new Paging({
-      url: "api/V1/HotProduct/PageSearch",
+      url: "api/V1/HotProduct/PageSearchWX",
       data: {
         EnterpriseID,
         ProductCode,

@@ -15,11 +15,21 @@ class Article extends Http {
       }
     }, Page, Limit)
   }
-
+  //6. 修改阅读量
+  static UpdateReadAmount({ ID, ReadPerson, ReadTime}) {
+    return Http.request({
+      url: "api/V1/Article/UpdateReadAmount",
+      data: {
+        ID,
+        ReadPerson,
+        ReadTime
+      }
+    })
+  }
   //7. 查询文章详情
   static SearchModelDetails(ID) {
     return Http.request({
-      url: "api/V1/Article/SearchModelDetails",
+      url: "api/V1/Article/SearchModelDetailsWX",
       data: {
         ID
       }

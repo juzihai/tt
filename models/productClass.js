@@ -7,7 +7,7 @@ class ProductClass {
   /**产品种类接口 */
   static Search({EnterpriseID, ClassName='', Limit=10, Page=1}) {
     return Http.request({
-      url: "api/V1/ProductClass/PageSearch",
+      url: "api/V1/ProductClass/PageSearchWX",
       data: {
         EnterpriseID,
         ClassName,
@@ -19,7 +19,7 @@ class ProductClass {
 
   static PageSearch({EnterpriseID, ClassName, Limit , Page }) {
     return new Paging({
-      url: "api/V1/ProductClass/PageSearch",
+      url: "api/V1/ProductClass/PageSearchWX",
       data: {
         EnterpriseID,
         ClassName

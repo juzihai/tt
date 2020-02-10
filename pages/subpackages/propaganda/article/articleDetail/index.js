@@ -23,9 +23,15 @@ Page({
     }else{
       id = options.id
     }
-
-
-
+    const OpenID = wx.getStorageSync('OpenID');
+    const d = new Date();
+    const ReadTime = d.toUTCString()
+    let obj = {
+      "ID": id,
+      ReadPerson: OpenID,
+      ReadTime
+    }
+    Article.UpdateReadAmount(obj)
     const articleModel = await Article.SearchModelDetails(id)
     this.setData({
       articleModel: articleModel,
@@ -52,11 +58,12 @@ Page({
   onShareAppMessage: function () {
     let id = this.data.id;
     let OpenID = wx.getStorageSync('OpenID')
-    let url = encodeURIComponent(`/pages/subpackages/mall/article/articleDetail/index?id=${id}`);
-
+    let url = encodeURIComponent('/pages/subpackages/propaganda/article/articleDetail/index?id='+id);
+    let path = `/pages/navigator/index/index?url=${url}`
+    console.log(path)
     return {
       title: "详情",
-      path: `/pages/navigator/index/index?url=${url}&SharOpenID=${OpenID}`
+      path
     }
   },
 

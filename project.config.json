@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"enhance": true,
 		"postcss": true,
@@ -139,6 +139,22 @@
 					"id": -1,
 					"name": "产品种类",
 					"pathName": "pages/subpackages/mall/product/classiFication/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 12,
+					"name": "pages/navigator/index/index",
+					"pathName": "pages/navigator/index/index",
+					"query": "/page/user?url=123",
+					"scene": 1036,
+					"referrerInfo": {}
+				},
+				{
+					"id": -1,
+					"name": "pages/navigator/index/index",
+					"pathName": "pages/navigator/index/index",
+					"query": "/page/user?url=123",
 					"scene": null
 				}
 			]

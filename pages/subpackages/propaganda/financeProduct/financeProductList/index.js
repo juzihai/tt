@@ -1,6 +1,6 @@
 const app = getApp();
 
-import { Article } from "../../../../../models/article.js";
+import { FinanceProduct } from "../../../../../models/financeProduct.js";
 Page({
 
   /**
@@ -14,17 +14,15 @@ Page({
      * 生命周期函数--监听页面加载
      */
   onLoad: async function (options) {
-    this.data.ArticleType = options.ArticleType
+
 
 
   },
-  onShow: async function () {
-    let ArticleType = this.data.ArticleType
+  onShow: async function(){
     let obj = {
       "EnterpriseID": app.config.EnterpriseID,
-      ArticleType
     }
-    const articleModel = Article.PageSearch(obj)
+    const articleModel = FinanceProduct.PageSearch(obj)
     this.data.articleModel = articleModel //类属性
     const article = await articleModel.getMoreData();//todo
     this.setData({
@@ -35,7 +33,7 @@ Page({
     let id = e.currentTarget.dataset.id;
     console.log(id)
     wx.navigateTo({
-      url: `/pages/subpackages/propaganda/article/articleDetail/index?id=${id}`,
+      url: `/pages/subpackages/propaganda/financeProduct/financeProductDetail/index?id=${id}`,
     })
   },
   /**

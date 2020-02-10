@@ -1,3 +1,12 @@
+/* pages/subpackages/propaganda/article/articleDetail/index.wxss */
+@import "/wxParse/wxParse.wxss";
+.tapbar{
+    position:fixed;
+    bottom:0;
+}
+scroll-view{
+  padding: 10px 10px  130rpx;
+}
 /* 文章列表item */
 .card {
   /* margin: 20rpx auto !important; */

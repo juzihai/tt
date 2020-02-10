@@ -1,12 +1,12 @@
 import { Http } from "../utils/http-a";
 import { Paging } from "../utils/paging";
-
+/**首页轮播图 */
 class CompanyRotationchart extends Http {
 
 
   static Search({EnterpriseID,Title, Page = 1, Limit = 10}) {
     return Http.request({
-      url: "api/V1/CompanyRotationchart/PageSearch",
+      url: "api/V1/CompanyRotationchart/PageSearchWX",
       data: {
         EnterpriseID,
         Title,

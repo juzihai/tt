@@ -1,3 +1,5 @@
+/* pages/subpackages/propaganda/financeProduct/financeProductList/index.wxss */
+
 /* 文章列表item */
 .card {
   /* margin: 20rpx auto !important; */
