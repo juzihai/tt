@@ -28,7 +28,10 @@ Page({
     }
 
     const grid = await ProductClass.Search(obj);
-    this.tabSelectGetData(grid.Data[0].ID)
+    if (grid.Data.length>0){
+      this.tabSelectGetData(grid.Data[0].ID)
+    }
+    
     this.setData({
       grid
     })

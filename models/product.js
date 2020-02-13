@@ -7,7 +7,7 @@ class Product extends Http {
   //4. 查询企业下所有产品
   static PageSearch({ EnterpriseID, ProductCode, ProductName, ClassID, Page, Limit }) {
     return new Paging({
-      url: `api/V1/Product/PageSearch`,
+      url: `api/V1/Product/PageSearchWX`,
       data: {
         EnterpriseID,
         ProductCode,

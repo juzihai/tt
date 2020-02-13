@@ -36,8 +36,8 @@ Page({
     } else {
       id = options.id
     }
-    // let SharOpenID = wx.getStorageSync('SharOpenID')
-    let SharOpenID ='oCqZa5N9cTTH_rbUPt4NkIkQMC7E'
+    let SharOpenID = wx.getStorageSync('SharOpenID')
+    // let SharOpenID ='oCqZa5N9cTTH_rbUPt4NkIkQMC7E'
     let staffModel=null
     if (SharOpenID){
       let staffObj = {

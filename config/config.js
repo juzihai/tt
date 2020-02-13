@@ -7,7 +7,7 @@ const config = {
   "apiBaseUrl": 'https://www.yulongyi.com/',
   // "apiBaseUrl": 'http://180.76.177.49:8011/',
 
-  "EnterpriseID": "242415",//测试id
+  "EnterpriseID": "0666",//测试id
 }
 
 // 配置文件es6导出

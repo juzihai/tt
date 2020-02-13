@@ -3,6 +3,8 @@ const app = getApp();
 import { ArticleType } from "../../../models/articleType.js";
 import { Article } from "../../../models/article.js";
 import { CompanyRotationchart } from "../../../models/companyRotationchart.js";
+import { AppModel} from '../../../models/app.js';
+const appModel = new AppModel()
 
 Page({
 
@@ -43,7 +45,13 @@ Page({
         shopInfo: res
       })
     }
+    // 用户授权
+    appModel.getSetting().then(res => {
+      // 用户定位
+      return appModel.getUserLocation()
+    }).then(res => {
 
+    })
     
     // wx.showShareMenu({
     //   withShareTicket: true
@@ -59,14 +67,10 @@ Page({
     }
     const notice = await Article.GetTopArticle(obj)
     const nav = await ArticleType.Search(obj)
-    if (nav.Data){
-      this.tabSelectGetData(nav.Data[0].ID)
-    }
-  
     const bannerB = await CompanyRotationchart.Search(obj)
     const grid = this.json3;
     const noticeArr=[];
-    if (notice.Data){
+    if (notice){
       for (let key of notice.Data){
         noticeArr.push(key.Title)
       }
@@ -80,22 +84,30 @@ Page({
       noticeArr,
       loading:false
     })
-    
+    this.tabSelectGetData()
   },
 /** */
   onOpenLocation(){
     let shopInfo = this.data.shopInfo
-
-    wx.openLocation({
-      latitude: shopInfo.Latitude,
-      longitude:shopInfo.Longitude,
-      scale: '16',
-      name: shopInfo.CompanyName,
-      address: shopInfo.Address,
-      success: function (res) { },
-      fail: function (res) { },
-      complete: function (res) { },
+    // 用户授权
+    appModel.getSetting().then(res => {
+      // 用户定位
+      return appModel.getUserLocation()
+    }).then(res => {
+      wx.openLocation({
+        latitude: shopInfo.Latitude,
+        longitude: shopInfo.Longitude,
+        scale: '16',
+        name: shopInfo.CompanyName,
+        address: shopInfo.Address,
+        success: function (res) { },
+        fail: function (res) { },
+        complete: function (res) { },
+      })
     })
+
+
+
   },
   /**banner点击 */
   onBanner(e){
@@ -109,8 +121,8 @@ Page({
   /**通知栏点击 */
   onNoticeBar(e){
     let index = e.detail.index
-    let data = this.data.notice.Data;
-    let id = data[index].ID;
+    let notice = this.data.notice;
+    let id = notice.Data[index].ID;
     
     wx.navigateTo({
       url: `/pages/subpackages/propaganda/article/articleDetail/index?id=${id}`,
@@ -164,25 +176,29 @@ Page({
   },
   /**切换点击 */
   tabSelect(e) {
-    let id=e.currentTarget.dataset.id;
-    console.log(id)
-    this.tabSelectGetData(id)
+
     this.setData({
       TabCur: e.currentTarget.dataset.index,
     })
+    this.tabSelectGetData()
   },
 
-  async tabSelectGetData(ArticleType){
-    let obj={
-      "EnterpriseID": app.config.EnterpriseID,
-      ArticleType
+  async tabSelectGetData(){
+    let data=this.data.nav.Data
+    let index =this.data.TabCur;
+    if(data.length>0){
+      let obj = {
+        "EnterpriseID": app.config.EnterpriseID,
+        ArticleType: data[index].ID
+      }
+      const articleModel = Article.PageSearch(obj)
+      this.data.articleModel = articleModel //类属性
+      const article = await articleModel.getMoreData();//todo
+      this.setData({
+        article: article
+      })
     }
-    const articleModel = Article.PageSearch(obj)
-    this.data.articleModel = articleModel //类属性
-    const article = await articleModel.getMoreData();//todo
-    this.setData({
-      article: article
-    })
+
   },
 
   onCardItem(e){

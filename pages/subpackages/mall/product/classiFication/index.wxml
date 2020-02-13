@@ -44,3 +44,6 @@
       
   </view>
 </view>
+
+
+  <l-status-show show="{{grid.Data.length==0}}" type="data"></l-status-show>

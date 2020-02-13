@@ -31,6 +31,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function(options) {
+    
+  },
+  onShow(){
     this.initAllData();
     this.initBottomSpuList();
   },
@@ -89,7 +92,7 @@ Page({
       return;
     }
    // data 数组, refresh 清空元素, success 返回成功
-    wx.lin.renderWaterFlow(data.items);
+    wx.lin.renderWaterFlow(data.items,true);
   },
   onNaviCard(e) {
     const a = e.currentTarget
