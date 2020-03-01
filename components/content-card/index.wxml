@@ -1,0 +1,16 @@
+<view class="content-card">
+  <view class="card-top">
+    <view class="action">
+      <view class="card-dot"></view>
+      <view class="content-name">{{name}}</view>
+    </view>
+    <view class="action" wx:if="{{more}}" bindtap="onMore">
+      <view class="content-name right">更多 》</view>
+    </view>
+
+
+  </view>
+  <view class="card-bottom l-content {{cardPadding?'card-padding':'padd'}}">
+    <slot />
+  </view>
+</view>

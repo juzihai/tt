@@ -4,10 +4,10 @@
   <!-- 轮播图   -->
   <swiper class="swiper" indicator-dots indicator-active-color="#157658" autoplay circular>
     <!--        循环遍历-->
-    <block wx:for="{{bannerB.items}}" wx:key="index">
-      <swiper-item>
+    <block wx:for="{{bannerB.Data}}" wx:key="index">
+      <swiper-item bindtap="onBanner" data-id="{{item.ID}}">
         <!--                遍历的默认变量名称是item-->
-        <image class="swiper" src="{{item.img}}"></image>
+        <image class="swiper" src="{{bannerB.ShowResourcesUrl}}{{item.CoverImage}}"></image>
       </swiper-item>
     </block>
   </swiper>
@@ -24,18 +24,27 @@
   <!--活动展示-->
   <image class="activity" src="{{activityD.entrance_img}}" mode="widthFix" bindtap="onActicity"></image>
   <!--每周上新-->
-  <s-spu-scroll wx:if="{{themeESpu.length>0}}" theme="{{themeE}}" my-class="text-price" spu-list="{{themeESpu}}" bind:tapping="onSpuItem">
-  </s-spu-scroll>
+  <content-card class="content" name="热门产品" more="{{true}}" bind:tapping="onMore">
+    <s-spu-scroll wx:if="{{themeESpu.length>0}}" theme="{{themeE}}" my-class="text-price" spu-list="{{themeESpu}}" bind:tapping="onSpuItem">
+    </s-spu-scroll>
+  </content-card>
+
+  <image class="activity" mode="widthFix" bindtap="onActicity"></image>
   <!-- 热卖 -->
-  <s-hot-list banner="{{bannerG}}"></s-hot-list>
+  <!-- <s-hot-list banner="{{bannerG}}"></s-hot-list> -->
+  <content-card class="content" name="热门活动">
+    <s-hot-scroll banner="{{bannerG}}"></s-hot-scroll>
+  </content-card>
+
   <!--推荐-->
   <view class="spu-bottom">
     <image class="title-spu-bottom" src="/imgs/home/title@interest.png"></image>
-    <l-water-flow generic:l-water-flow-item="s-spu-preview"> </l-water-flow><!--lin-ui瀑布流组件的属性中值为自定义组件-->
+    <l-water-flow generic:l-water-flow-item="s-spu-preview"> </l-water-flow>
+    <!--lin-ui瀑布流组件的属性中值为自定义组件-->
   </view>
 
 
-  
+
 
 </view>
 

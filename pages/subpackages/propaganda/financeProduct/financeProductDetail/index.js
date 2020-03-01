@@ -120,8 +120,9 @@ Page({
 
       this._showActionSheet({ itemList, showCancel: true })
     }else{
+      let id = this.data.id;
     wx.navigateTo({
-      url: `/pages/subpackages/mall/company/staffList/index`,
+      url: `/pages/subpackages/mall/company/staffRelationList/index?id=${id}`,
     })
     }
 

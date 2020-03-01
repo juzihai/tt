@@ -1,0 +1,25 @@
+<!--components/spu-scroll/index.wxml-->
+<wxs src="../../wxs/price.wxs" module="p"></wxs>
+
+<view class="container">
+  <!-- <image class="title" src="{{theme.title_img}}" mode="widthFix"></image> -->
+  <!-- <image src="http://i2.sleeve.7yue.pro/m4.png" class="title" mode="widthFix" bind:tap="onMoreTap"></image> -->
+  <scroll-view scroll-x class="scroll-view">
+    <view class="inner">
+      <block wx:for="{{banner.Data}}" wx:key="index">
+        <view class="spu-container">
+          <!--点击态设置 3ms-->
+          <view hover-class="rect-hover" hover-stay-time="300">
+            <image class="spu-img" src="{{banner.ShowResourcesUrl}}{{item.ImageUrl}}" bind:tap="onItemTap" data-banner_id="{{item.ID}}"></image>
+          </view>
+        </view>
+      </block>
+
+
+
+    </view>
+
+
+  </scroll-view>
+
+</view>

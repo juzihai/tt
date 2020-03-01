@@ -50,7 +50,7 @@
 
 .buy{
     background-color: #157658;
-    width: 260rpx;
+    width: 580rpx;
     height: 100%;
 }
 

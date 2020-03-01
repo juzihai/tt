@@ -1,6 +1,7 @@
 // pages/subpackages/mall/activity/activityDetail/index.js
 import { HotActivity } from '../../../../../models/hotActivity.js'
 import { CompanyRotationchart } from '../../../../../models/companyRotationchart.js'
+import { ProductRotationchart } from '../../../../../models/productRotationchart.js'
 
 var WxParse = require('../../../../../wxParse/wxParse.js');
 Page({
@@ -18,9 +19,11 @@ Page({
   onLoad: async function (options) {
     let pagePath=options.pagePath
     let id = options.id
-    if (pagePath =="CompanyRotationchart"){
+    if (pagePath =="CompanyRotationchart"){//首页轮播图
       var Model = await CompanyRotationchart.SearchModelDetails(id)
-    }else{
+    } else if (pagePath == "ProductRotationchart"){//产品首页轮播图
+      var Model = await ProductRotationchart.SearchModelDetails(id)
+    }else{//热门详情
       var Model = await HotActivity.SearchModelDetails(id)
     }
     this.setData({

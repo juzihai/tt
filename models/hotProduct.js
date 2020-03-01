@@ -40,6 +40,15 @@ class HotProduct{
       }
     })
   }
+  // 查询产品轮播图列表
+  static SearchRotationChart(ProductCode) {
+    return Http.request({
+      url: "api/V1/HotProduct/SearchRotationChartWX",
+      data: {
+        ProductCode
+      }
+    })
+  }
 
 }
 export{

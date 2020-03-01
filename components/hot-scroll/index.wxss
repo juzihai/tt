@@ -6,7 +6,7 @@
   align-items: center; */
   background-color: #ffffff;
 
-  padding: 10rpx 0 10rpx 28rpx;
+  padding: 20rpx 0 20rpx 20rpx;
   box-sizing: border-box;/*更改盒模型，为元素指定的任何内边距和边框都将在已设定的宽度和高度内进行绘制*/
   width: 100%;
 }
@@ -28,16 +28,17 @@
 }
 
 .spu-container {
-    margin-right: 60rpx;
+  margin-right: 20rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 20rpx;
 }
 
 .spu-img {
-
-  width: 160rpx;
-  height: 160rpx;
+  width: 300rpx;
+  height: 225rpx;
+  border-radius: 20rpx;
 }
 
 .spu-text {
@@ -45,11 +46,11 @@
   color: #666;
   margin-top: 20rpx;
 
-     /* !*让文本在行内省略*! */
-    width: 150rpx;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  /* !*让文本在行内省略*! */
+  width: 150rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .price-value {

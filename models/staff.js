@@ -3,17 +3,45 @@ import { Paging } from "../utils/paging";
 
 /**员工staff接口 */
 class Staff extends Http {
-  //4. 查询
-  static PageSearch({ EnterpriseID, StaffCode, StaffName, Page, Limit }) {
+  //4. 查询全部
+  static PageSearch({ EnterpriseID, StaffCode, StaffName, IsService, IsModule, Page, Limit }) {
   return new Paging({
-    url: "api/V1/Staff/PageSearch",
+    url: "api/V1/Staff/PageSearchWX",
     data: {
       EnterpriseID,
       StaffCode,
-      StaffName
+      StaffName,
+      IsService,
+      IsModule
     }
   }, Page, Limit)
 }
+  //4. 个人中心里联系我们的员工接口
+  static StaffServicePageSearch({ EnterpriseID, StaffCode, StaffName, IsService, IsModule, Page, Limit }) {
+    return new Paging({
+      url: "api/V1/StaffService/PageSearchWX",
+      data: {
+        EnterpriseID,
+        StaffCode,
+        StaffName,
+        IsService,
+        IsModule
+      }
+    }, Page, Limit)
+  }
+  //4. 首页员工模块里面的员工列表
+  static StaffModulePageSearch({ EnterpriseID, StaffCode, StaffName, IsService, IsModule, Page, Limit }) {
+    return new Paging({
+      url: "api/V1/StaffModule/PageSearchWX",
+      data: {
+        EnterpriseID,
+        StaffCode,
+        StaffName,
+        IsService,
+        IsModule
+      }
+    }, Page, Limit)
+  }
 
   //7. 查询详情
   static SearchModelDetails(ID) {

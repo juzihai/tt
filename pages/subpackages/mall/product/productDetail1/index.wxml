@@ -1,16 +1,18 @@
+<import src='../../../../../wxParse/wxParse.wxml' />
+
 <scroll-view scroll-y>
 <!-- 轮播 -->
-  <swiper class="top" autoplay indicator-dots>
+  <swiper class="top" autoplay indicator-dots wx:if="{{banner.Data.length>0}}">
     <swiper-item wx:for="{{banner.Data}}" wx:key="index">
       <image class="top" mode="aspectFill" src="{{banner.ShowResourcesUrl}}{{item.ImageUrl}}"></image>
     </swiper-item>
   </swiper>
-
+ <image wx:else class="top" mode="aspectFill" src="{{spu.ProductImage}}"></image>
 <!-- 商品描述 -->
   <l-spu-description spu="{{spu}}"></l-spu-description>
 
 <!-- 选择栏 -->
-  <view class="sku-pending">
+  <!-- <view class="sku-pending">
     <view class="specs">
       <text>已选择：</text>
       <text>{{spu.ProductName}}</text>
@@ -18,17 +20,20 @@
     <view class="arrow-right">
       <l-icon name="right" color="#157658" size="24"></l-icon>
     </view>
-  </view>
+  </view> -->
 
   <!-- 属性 -->
-    <view class="explain">
+    <!-- <view class="explain">
         <l-sale-explain texts="{{explain}}"></l-sale-explain>
-    </view>
+    </view> -->
   <!-- 图片展示 -->
-    <view class="detail-img-container">
+    <!-- <view class="detail-img-container">
         <block wx:for="{{banner.Data}}" wx:key="index">
             <image mode="widthFix" class="detail-img" src="{{banner.ShowResourcesUrl}}{{item.ImageUrl}}"></image>
         </block>
+    </view> -->
+    <view class="detail-img-container" >
+        <template  is='wxParse' data="{{wxParseData:articleModel.nodes}}" />
     </view>
 
 </scroll-view>

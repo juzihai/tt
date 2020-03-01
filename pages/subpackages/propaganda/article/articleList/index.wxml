@@ -1,6 +1,6 @@
 <wxs src="../../../../../utils/util.wxs" module="util"></wxs>
   <block wx:for='{{article.items}}' wx:key="index">
-    <l-card type="primary" l-class="card" l-img-class="right-card" l-title-class="title-card" position="right" full="{{true}}" image="{{item.baseUrl}}{{item.CoverImage}}" title="推荐人：{{item.CreationPerson}}" bindtap="onCardItem" data-id="{{item.ID}}">
+    <l-card type="primary" l-class="card" l-img-class="right-card" l-title-class="title-card" position="right" full="{{true}}" image="{{item.baseUrl}}{{item.CoverImage}}" title="发表人：{{item.StaffName}}" bindtap="onCardItem" data-id="{{item.ID}}">
       <view class="content">
        {{item.Title}}
       </view>

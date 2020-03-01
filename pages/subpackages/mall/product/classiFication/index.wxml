@@ -19,7 +19,7 @@
       </l-segment>
 
       <view class="p-container">
-        <l-card  type="primary" wx:for='{{product.items}}' bindtap="onSpuItem" data-pid="{{item.ProductID}}" data-pcode="{{item.ProductCode}}"
+        <l-card  type="primary" wx:for='{{product.items}}' bindtap="onSpuItem" data-pid="{{item.ID}}" data-pcode="{{item.ProductCode}}"
                 l-img-class="right-card" 
                 position="left" 
                 image="{{item.baseUrl}}{{item.ProductImage}}">

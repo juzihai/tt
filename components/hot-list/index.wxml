@@ -1,15 +1,15 @@
 <view class="container">
   <!-- <image src="{{banner.img}}" class="title" mode="widthFix" bind:tap="onMoreTap"></image> -->
   <image src="http://i2.sleeve.7yue.pro/m4.png" class="title" mode="widthFix" bind:tap="onMoreTap"></image>
-  <view class="inner-container">
+  <view class="inner-container-column">
   <!--点击态设置 3ms-->
     <view hover-class="rect-hover" hover-stay-time="300">
-      <image class="left" src="{{banner.ShowResourcesUrl}}{{left.ImageUrl}}" bind:tap="onItemTap" data-banner_id="{{left.ID}}"></image>
+      <image class="top" src="{{banner.ShowResourcesUrl}}{{left.ImageUrl}}" bind:tap="onItemTap" data-banner_id="{{left.ID}}"></image>
     </view>
 
-    <view class="right-container" >
-      <image  class="right-size" src="{{banner.ShowResourcesUrl}}{{rightTop.ImageUrl}}" bind:tap="onItemTap" data-banner_id="{{rightTop.ID}}"></image>
-      <image class="right-size" src="{{banner.ShowResourcesUrl}}{{rightBottom.ImageUrl}}" bind:tap="onItemTap" data-banner_id="{{rightBottom.ID}}"></image>
+    <view class="bottom-container" >
+      <image  class="bottom-size" src="{{banner.ShowResourcesUrl}}{{rightTop.ImageUrl}}" bind:tap="onItemTap" data-banner_id="{{rightTop.ID}}"></image>
+      <image class="bottom-size" src="{{banner.ShowResourcesUrl}}{{rightBottom.ImageUrl}}" bind:tap="onItemTap" data-banner_id="{{rightBottom.ID}}"></image>
     </view>
 
   </view>

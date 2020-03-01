@@ -8,7 +8,7 @@ Component({
   },
   /**数据监听器 */
   observers: {
-    'banner': function(banner) {
+    'banner': function (banner) {
       if (!banner) {
         return;
       }
@@ -47,15 +47,15 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    onMoreTap(event){
+    onMoreTap(event) {
       wx.showModal({
         title: '提示',
         content: '暂无更多',
-        showCancel:false
+        showCancel: false
       })
 
     },
-    onItemTap(event){
+    onItemTap(event) {
       const banner_id = event.currentTarget.dataset.banner_id
       console.log('点击了商品：banner_id为', banner_id)
 

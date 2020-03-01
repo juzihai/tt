@@ -1,10 +1,14 @@
 import { Http } from "../utils/http-a";
 import { Paging } from "../utils/paging";
-
+//第三方
+var QQMapWX = require('../utils/qqmap-wx-jssdk.js');
+var qqmapsdk = new QQMapWX({ // 实例化API核心类
+  key: 'L22BZ-JQJ6J-YU3F6-KIUWD-TVUWJ-WJF5W' // 必填
+})
 /**app相关功能 */
 class AppModel extends Http {
   //获取定位授权
-  getSetting() {
+  static getSetting() {
     return new Promise((resolve, reject) => {
       wx.getSetting({
         success: res => {
@@ -58,33 +62,32 @@ class AppModel extends Http {
   }
 
   //刷新定位
-  getUserLocation(e) {
+  static getUserLocation(e) {
     return new Promise((resolve, reject) => {
       // type 默认 wgs84 坐标，返回 gps 坐标， type 为 gcj02 返回可用于 wx.openLocation的坐标。
       wx.getLocation({
         type: 'gcj02', // 返回可以用于wx.openLocation的经纬度
         success: function (res) {
           console.log(res) 
-          resolve(res)
-          // qqmapsdk.reverseGeocoder({
-          //   location: {
-          //     latitude: res.latitude,
-          //     longitude: res.longitude
-          //   },
-          //   success: function (res) {
-          //     console.log('刷新当前位置数据sdk:', res)
-          //     wx.setStorageSync("ad_info", res['result']['ad_info'])
-          //     wx.setStorageSync("location", res['result']['location'])
-          //     wx.setStorageSync("address", res['result']['address'])
-          //     resolve(res)
+          qqmapsdk.reverseGeocoder({
+            location: {
+              latitude: res.latitude,
+              longitude: res.longitude
+            },
+            success: function (res) {
+              console.log('刷新当前位置数据sdk:', res)
+              wx.setStorageSync("ad_info", res['result']['ad_info'])
+              wx.setStorageSync("location", res['result']['location'])
+              wx.setStorageSync("address", res['result']['address'])
+              resolve(res)
 
-          //   },
-          //   fail: function (res) {
-          //     console.log(res);
-          //     reject(err)
-          //   },
+            },
+            fail: function (res) {
+              console.log(res);
+              reject(res)
+            },
 
-          // })
+          })
 
         },
         fail: function (err) {

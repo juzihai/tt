@@ -1,10 +1,11 @@
 // pages/navigator/mall/index.js
 const app = getApp();
+import { ArticleModule } from "../../../models/articleModule.js";
 import { ArticleType } from "../../../models/articleType.js";
 import { Article } from "../../../models/article.js";
 import { CompanyRotationchart } from "../../../models/companyRotationchart.js";
 import { AppModel} from '../../../models/app.js';
-const appModel = new AppModel()
+
 
 Page({
 
@@ -44,15 +45,11 @@ Page({
       this.setData({
         shopInfo: res
       })
+      wx.setNavigationBarTitle({
+        title: res.CompanyName
+      })
     }
-    // 用户授权
-    appModel.getSetting().then(res => {
-      // 用户定位
-      return appModel.getUserLocation()
-    }).then(res => {
 
-    })
-    
     // wx.showShareMenu({
     //   withShareTicket: true
     // })
@@ -68,16 +65,21 @@ Page({
     const notice = await Article.GetTopArticle(obj)
     const nav = await ArticleType.Search(obj)
     const bannerB = await CompanyRotationchart.Search(obj)
-    const grid = this.json3;
+    const basicsGrid = this.json3;
+    const grid = await ArticleModule.Search(obj)
     const noticeArr=[];
     if (notice){
-      for (let key of notice.Data){
-        noticeArr.push(key.Title)
+      if (notice.Data){
+        for (let key of notice.Data) {
+          noticeArr.push(key.Title)
+        }
       }
+
     }
 
     this.setData({
       bannerB,
+      basicsGrid,
       grid,
       nav,
       notice,
@@ -90,9 +92,9 @@ Page({
   onOpenLocation(){
     let shopInfo = this.data.shopInfo
     // 用户授权
-    appModel.getSetting().then(res => {
+    AppModel.getSetting().then(res => {
       // 用户定位
-      return appModel.getUserLocation()
+      return AppModel.getUserLocation()
     }).then(res => {
       wx.openLocation({
         latitude: shopInfo.Latitude,
@@ -129,9 +131,30 @@ Page({
     })
   },
   /**功能块点击 */
-  onNaviCard(e){
+  async onNaviCard(e){
+    // 用户授权
+    await AppModel.getSetting()
+    let phone = wx.getStorageSync('phoneNumber')
+    if(!phone){
+      wx.showModal({
+        title: '提示',
+        content: '您还未登录是否现在登录',
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            wx.switchTab({
+              url: '/pages/navigator/mine/index',
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+      return
+    }
 
     let name = e.currentTarget.dataset.name;
+    let id = e.currentTarget.dataset.id;
     switch(name){
       case '公司资质':
         wx.navigateTo({
@@ -163,10 +186,16 @@ Page({
           url: `/pages/subpackages/propaganda/financeProduct/financeProductList/index`,
         })
         break;
+      case '文章':
+        wx.navigateTo({
+          url: `/pages/subpackages/propaganda/article/articleList/index?ArticleType=${id}`,
+        })
+        break;
 
       default:
         wx.showToast({
           title: '即将开放尽情期待',
+          icon:'none'
         })
           // wx.navigateTo({
           //   url: `/pages/subpackages/mall/product/classiFication/index`,
@@ -241,22 +270,23 @@ Page({
       }
     ]
   },
-  json3: [{
-      "id": 1,
-      "title": "公司资质",
-    "img": "/imgs/home/guanli.png",
-      "name": null,
-      "category_id": null,
-      "root_category_id": 2
-    },
-    {
-      "id": 2,
-      "title": "公司招聘",
-      "img": "/imgs/home/fenxiang.png",
-      "name": null,
-      "category_id": null,
-      "root_category_id": 3
-    },
+  json3: [
+    // {
+    //   "id": 1,
+    //   "title": "公司资质",
+    // "img": "/imgs/home/guanli.png",
+    //   "name": null,
+    //   "category_id": null,
+    //   "root_category_id": 2
+    // },
+    // {
+    //   "id": 2,
+    //   "title": "公司招聘",
+    //   "img": "/imgs/home/fenxiang.png",
+    //   "name": null,
+    //   "category_id": null,
+    //   "root_category_id": 3
+    // },
     {
       "id": 3,
       "title": "员工列表",
@@ -265,22 +295,22 @@ Page({
       "category_id": null,
       "root_category_id": 1
     },
-    {
-      "id": 4,
-      "title": "产品查看",
-      "img": "/imgs/home/chanpinfabu.png",
-      "name": null,
-      "category_id": null,
-      "root_category_id": 5
-    },
-    {
-      "id": 5,
-      "title": "案例展示",
-      "img": "/imgs/home/diannao.png",
-      "name": null,
-      "category_id": null,
-      "root_category_id": 4
-    },
+    // {
+    //   "id": 4,
+    //   "title": "产品查看",
+    //   "img": "/imgs/home/chanpinfabu.png",
+    //   "name": null,
+    //   "category_id": null,
+    //   "root_category_id": 5
+    // },
+    // {
+    //   "id": 5,
+    //   "title": "案例展示",
+    //   "img": "/imgs/home/diannao.png",
+    //   "name": null,
+    //   "category_id": null,
+    //   "root_category_id": 4
+    // },
     {
       "id": 6,
       "title": "金融产品",

@@ -5,7 +5,7 @@ import { Product } from "../../../models/product";
 import { ProductClass } from "../../../models/productClass.js";
 import { HotProduct } from "../../../models/hotProduct.js";
 import { HotActivity } from "../../../models/hotActivity.js";
-
+import { ProductRotationchart } from "../../../models/productRotationchart.js";
 
 Page({
 
@@ -31,17 +31,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function(options) {
-    
-  },
-  onShow(){
     this.initAllData();
     this.initBottomSpuList();
+  },
+  onPullDownRefresh(){
+    this.initAllData();
+    this.initBottomSpuList();
+  },
+  onShow(){
+
   },
 
    async initAllData() {
 
     const themeA = this.json1;
-    const bannerB = this.json2;
+    // const bannerB = this.json2;
     // const grid = this.json3;
     const activityD = this.json4;
     // const bannerG = this.json6;
@@ -52,6 +56,7 @@ Page({
      let obj = {
        "EnterpriseID": app.config.EnterpriseID,
      }
+     const bannerB = await ProductRotationchart.Search(obj)
      const grid = await ProductClass.Search(obj);
      const themeE = await HotProduct.Search(obj);
      const bannerG = await HotActivity.Search(obj);
@@ -72,6 +77,7 @@ Page({
       themeE,
       themeESpu,
     })
+    wx.stopPullDownRefresh();
 
   },
   /**
@@ -94,6 +100,16 @@ Page({
    // data 数组, refresh 清空元素, success 返回成功
     wx.lin.renderWaterFlow(data.items,true);
   },
+  /**banner点击 */
+  onBanner(e) {
+    console.log(e)
+    let id = e.currentTarget.dataset.id;
+
+    wx.navigateTo({
+      url: `/pages/subpackages/mall/activity/activityDetail/index?id=${id}&pagePath=ProductRotationchart`,
+    })
+  },
+  /**功能块 */
   onNaviCard(e) {
     const a = e.currentTarget
     console.log(a)
@@ -111,10 +127,15 @@ Page({
       url: '/pages/subpackages/mall/cards/coupon/index',
     })
   },
+  onMore(){
+    wx.navigateTo({
+      url: '/pages/subpackages/mall/product/hotProductList/index',
+    })
+  },
   onSpuItem(e){
     let item = e.detail
     let pid=item.ID
-    let pcode=null
+    let pcode = item.ProductCode
 
     wx.navigateTo({
       url: `/pages/subpackages/mall/product/productDetail1/index?pid=${pid}&pcode=${pcode}&pagePath=HotProduct`

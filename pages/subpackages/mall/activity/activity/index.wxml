@@ -12,7 +12,7 @@
       <text class='text-sm text-bold'> 活动名称：{{ModelData.ActivityName}}</text>
     </view>
     <view class="text-left padding">
-      <text class='text-sm text-bold'> 内容：{{ModelData.ActivityName}}</text>
+      <text class='text-sm text-bold'> 内容：{{ModelData.Content}}</text>
     </view>
     <view class="text-left padding">
       <text class='text-sm text-bold'> 说明：{{ModelData.Explain}}</text>

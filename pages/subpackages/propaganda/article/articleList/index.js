@@ -44,7 +44,7 @@ Page({
   */
   onReachBottom: async function () {
 
-    const data = await this.data.spuPaging.getMoreData();
+    const data = await this.data.articleModel.getMoreData();
     console.log(data)
     if (!data) {
       this.setData({

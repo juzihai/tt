@@ -5,7 +5,7 @@ Component({
    */
   properties: {
     data: Object,
-    type:String,
+    type: String,
   },
 
   /**
@@ -21,7 +21,7 @@ Component({
    * 属性监听器
    */
   observers: {
-    data: function(data) {
+    data: function (data) {
       if (!data) {
         return
       }
@@ -53,17 +53,15 @@ Component({
       })
     },
     onItemTap(event) {
-      const pid = event.currentTarget.dataset.pid
-      const pcode = event.currentTarget.dataset.pcode 
+      // const pcode = event.currentTarget.dataset.pcode
+      let pid = event.currentTarget.dataset.pid
+      let pcode = event.currentTarget.dataset.pcode
 
       wx.navigateTo({
-        url: `/pages/subpackages/mall/product/productDetail1/index?pid=${pid}&pcode=${pcode}`
+        url: `/pages/subpackages/mall/product/productDetail1/index?pid=${pid}&pcode=${pcode}&pagePath=HotProduct`
       })
 
     },
-    // onItemTap(res){
-    //   let item = this.data.data
-    //   this.triggerEvent('tapping', item, {})
-    // }
+
   }
 })

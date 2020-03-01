@@ -14,9 +14,9 @@
     </view> -->
   </view>
 
-  <view bind:tap="onAddToCart" class="cart btn-font">
+  <!-- <view bind:tap="onAddToCart" class="cart btn-font">
     <text>{{leftTitle}}</text>
-  </view>
+  </view> -->
 
   <view bind:tap="onBuy" class="buy btn-font">
     <text>{{rightTitle}}</text>

@@ -38,3 +38,27 @@
   height: 260rpx;
   display: flex;
 }
+
+.inner-container-column {
+  margin-top: 30rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* height: 750rpx; */
+}
+
+.top{
+  /* display: flex; 消除图片之间的间距 */
+  width: 750rpx;
+  height: 375rpx;
+}
+.bottom-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.bottom-size {
+  width: 364rpx;
+  height: 187rpx;
+  display: flex;
+}

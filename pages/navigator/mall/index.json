@@ -1,7 +1,9 @@
 {
   "usingComponents": {
     "s-hot-list": "/components/hot-list/index",
+    "s-hot-scroll": "/components/hot-scroll/index",
     "s-spu-scroll": "/components/spu-scroll/index"
 
-  }
+  },
+  "enablePullDownRefresh": true
 }

@@ -22,7 +22,7 @@
   </block>
 <view wx:else class="cu-bar bg-white">
   <view class="action ">
-    员工：{{article.CreationPerson}}
+    发表人：{{article.StaffName}}
   </view>
 
   <view class="action">

@@ -1,2 +1,27 @@
-<!--pages/subpackages/mall/company/staffRelationList/index.wxml-->
-<text>pages/subpackages/mall/company/staffRelationList/index.wxml</text>
+
+<view class="cu-card article no-card}}">
+
+  <view wx:for="{{staff.items}}" wx:key class="cu-item shadow">
+
+    <view class="title">{{item.name}}</view>
+    <view class="content">
+      <image src="{{item.baseUrl}}{{item.HeadImage}}"  mode="aspectFill" bindtap='previewImage'  data-image='{{item.baseUrl}}{{item.HeadImage}}' ></image>
+      <view class="desc">
+        <view>职位：{{item.Position}}</view>
+        <view>姓名：{{item.StaffName}}</view>
+        <view class="cu-capsule radius" bindtap='onPhone' data-phone='{{item.Phone}}'>
+          <view class='cu-tag bg-green '>
+            <text class='cuIcon-dianhua'></text>
+          </view>
+          <view class="cu-tag line-grey">
+            联系电话：{{item.Phone}}
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='padding'>个人介绍：
+      <text class='text-gray'> {{item.PersonalProfile}}</text>
+    </view>
+  </view>
+
+</view>

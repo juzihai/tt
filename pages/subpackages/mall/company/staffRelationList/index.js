@@ -1,66 +1,62 @@
-// pages/subpackages/mall/company/staffRelationList/index.js
+// pages/subpackages/mall/company/staffList/index.js
+const app = getApp();
+import { Staff } from '../../../../../models/staff.js'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    staffModel: null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: async function (options) {
+    let ID =options.id
+    let obj = {
+      "EnterpriseID": app.config.EnterpriseID,
+      ID,
+      Type:"FinanceProduct"
+    }
 
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+    const staffModel = await Staff.GetStaffRelationList(obj)
+    this.data.staffModel = staffModel
+    const staff = await staffModel.getMoreData();//todo
+    this.setData({
+      staff
+    })
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-
+  onReachBottom: async function () {
+    const staff = await this.data.staffModel.getMoreData();
+    if (!staff) {
+      return;
+    }
+    this.setData({
+      staff
+    })
+  },
+  onPhone(e) {
+    var phone = e.currentTarget.dataset.phone;
+    wx.makePhoneCall({
+      phoneNumber: phone,
+    })
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+  previewImage(e) {
+    var currentImage = e.currentTarget.dataset.image
+    var imageList = []
+    imageList.push(currentImage)
 
-  }
+    wx.previewImage({
+      urls: imageList,
+      current: currentImage
+    })
+  },
+
 })

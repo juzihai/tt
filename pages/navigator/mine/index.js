@@ -15,7 +15,7 @@ Page({
       { img: '/imgs/mine/bar4.png', name: '我的活动', url: '' },//pages/subpackages/activity/pages/luckyDraw/index
     ],
     listArr: [
-      { name: '完善信息', url: '/pages/subpackages/integral/pages/addInfo/index' },
+      { name: '联系我们', url: '/pages/subpackages/mall/company/staffList/index?pagePath=mine' },
       { name: '积分排行', url: '' }, ///pages/subpackages/integral/pages/integral-ranking/index
       { name: '我的收藏', url: '/pages/subpackages/cars/pages/cars-make/index' },//
       { name: '我的订单', url: '' },
@@ -77,6 +77,7 @@ Page({
           login: true,
           phoneNumber: loginInfo.phoneNumber
         })
+        app._addLocation(2)
       }catch(e){
         wx.hideLoading()
       }
@@ -96,7 +97,7 @@ Page({
         content: '功能暂未开放，尽情期待',
       })
     } else {
-      if (index == 0) {
+      // if (index == 0) {
         // var phone = wx.getStorageSync('loginInfo').phone;
         //   if (phone) {
         //     wx.showModal({
@@ -105,12 +106,12 @@ Page({
         //     })
         //     return;
         //   }
-        this._manageLogin()
-      } else {
+      //   this._manageLogin()
+      // } else {
         wx.navigateTo({
           url: bean.url,
         })
-      }
+      // }
 
     }
 

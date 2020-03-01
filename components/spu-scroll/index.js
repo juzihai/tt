@@ -23,8 +23,11 @@ Component({
     onItem(res){
       let item = res.currentTarget.dataset.item
       this.triggerEvent('tapping', item, {})
-      
-
+    },
+    onTitle(){
+      wx.navigateTo({
+        url: '/pages/subpackages/mall/product/hotProductList/index',
+      })
     }
   }
 })

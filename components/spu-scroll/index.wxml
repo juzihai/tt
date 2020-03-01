@@ -3,7 +3,7 @@
 
 <view class="container">
   <!-- <image class="title" src="{{theme.title_img}}" mode="widthFix"></image> -->
-  <image class="title" src="http://i2.sleeve.7yue.pro/m3.png" mode="widthFix"></image>
+  <!-- <image class="title" src="http://i2.sleeve.7yue.pro/m3.png" mode="widthFix" bindtap="onTitle"></image> -->
   <scroll-view scroll-x class="scroll-view">
     <view class="inner">
       <block wx:for="{{spuList}}" wx:key="index" >

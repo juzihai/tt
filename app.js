@@ -6,6 +6,12 @@ import {
   Company
 } from "/models/company.js";
 import {
+  AppModel
+} from "/models/app.js";
+import {
+  Location
+} from "/models/location.js";
+import {
   config
 } from "./config/config";
 const util = require('utils/util.js');
@@ -30,8 +36,42 @@ App({
 
     })
 
-
     this._login()
+    this._addLocation(1)
+
+  },
+  _addLocation(Type){
+    // 用户授权
+    AppModel.getSetting().then(res => {
+      // 用户定位
+      return AppModel.getUserLocation()
+    }).then(res => {
+      console.log(res)
+      let location = res['result']["location"]
+      let Address = res['result']["address"]
+      let AdInfo = res['result']["ad_info"]
+      let Phone = wx.getStorageSync("phoneNumber")
+      const d = new Date();
+      const CreatTime = d.toUTCString()
+      if(Phone){
+        let obj = {
+          OpenID: wx.getStorageSync("OpenID"),
+          Phone: Phone,
+          EnterpriseID: config.EnterpriseID,
+          Nation: AdInfo.nation,
+          Province: AdInfo.province,
+          City: AdInfo.city,
+          Area: AdInfo.district,
+          Address,
+          Lat: location.lat,
+          Lng: location.lng,
+          CreatTime,
+          Type
+        }
+        Location.AddLocation(obj)
+      }
+
+    })
 
   },
   async _login() {

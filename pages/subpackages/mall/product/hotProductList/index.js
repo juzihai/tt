@@ -1,7 +1,6 @@
 const app = getApp()
-import { Product } from '../../../../../models/product.js'
+import { HotProduct } from '../../../../../models/hotProduct.js'
 
-let _that
 
 Page({
 
@@ -16,12 +15,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
-    let classid=options.classid
+    let classid = options.classid
     let obj = {
       "EnterpriseID": app.config.EnterpriseID,
-      "ClassID": classid,
     }
-    const productModel = Product.PageSearch(obj);
+    const productModel = HotProduct.PageSearch(obj);
     this.data.productModel = productModel //类属性
     const product = await productModel.getMoreData();//todo
     this.setData({

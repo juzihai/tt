@@ -1,41 +1,13 @@
 const app=getApp()
 import { Product } from '../../../../../models/product.js'
 import { HotProduct } from '../../../../../models/hotProduct.js'
+var WxParse = require('../../../../../wxParse/wxParse.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    swiperList: [{
-      id: 0,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
-    }, {
-      id: 1,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84001.jpg',
-    }, {
-      id: 2,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg'
-    }, {
-      id: 3,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
-    }, {
-      id: 4,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big25011.jpg'
-    }, {
-      id: 5,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21016.jpg'
-    }, {
-      id: 6,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
-    }],
   },
 
   /**
@@ -57,13 +29,26 @@ Page({
     }
 
     const spu = pagePath == "HotProduct" ? await HotProduct.SearchModelDetails(pid) : await Product.SearchModelDetails(pid);
-    const banner = await Product.SearchRotationChart(pcode);
+    const banner = pagePath == "HotProduct" ? await HotProduct.SearchRotationChart(pcode) :await Product.SearchRotationChart(pcode);
     this.setData({ 
       spu,
       banner,
       pid,
       pcode
     })
+    /**
+     * WxParse.wxParse(bindName , type, data, target,imagePadding)
+     * 1.bindName绑定的数据名(必填)
+     * 2.type可以为html或者md(必填)
+     * 3.data为传入的具体数据(必填)
+     * 4.target为Page对象,一般为this(必填)
+     * 5.imagePadding为当图片自适应是左右的单一padding(默认为0,可选)
+     */
+    if (spu.ProductDetail){
+      WxParse.wxParse('articleModel', 'html', spu.ProductDetail, this, 5);
+    }
+
+   
   },
 
   /**

@@ -15,7 +15,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "浦商汇",
+    "navigationBarTitleText": "",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -46,6 +46,7 @@
   },
   "usingComponents": {
     "s-spu-preview": "components/spu-preview/index",
+    "s-product-preview": "components/product-preview/index",
     "l-loadmore": "/components/lin-ui/loadmore/index",
     "l-water-flow": "/components/lin-ui/water-flow/index",
     "l-loading": "/components/lin-ui/loading/index",
@@ -57,7 +58,8 @@
     "l-segment": "/components/lin-ui/segment/index",
     "l-segment-item": "/components/lin-ui/segment-item/index",
     "l-price": "/components/lin-ui/price/index",
-    "l-action-sheet": "/components/lin-ui/action-sheet/index"
+    "l-action-sheet": "/components/lin-ui/action-sheet/index",
+    "content-card": "/components/content-card/index"
   },
   "style": "v2",
   "subPackages": [
@@ -66,6 +68,7 @@
       "pages": [
         "company/staffList/index",
         "company/staffRelationList/index",
+        "product/hotProductList/index",
         "product/productList/index",
         "product/productDetail/index",
         "product/productDetail1/index",
@@ -90,7 +93,7 @@
   "sitemapLocation": "sitemap.json",
   "permission": {
     "scope.userLocation": {
-      "desc": "授权您的位置为您提供附近的店铺"
+      "desc": "授权您的位置为您提供地图导航及附近信息服务"
     }
   }
 }
