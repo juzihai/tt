@@ -2,15 +2,9 @@
   "pages": [
 
     "pages/navigator/index/index",
-        "pages/navigator/indexTest/index",
+    "pages/navigator/indexTest/index",
     "pages/navigator/mall/index",
-    "pages/navigator/mine/index",
-    "pages/navigator/home/home",
-    "pages/navigator/publicity/home",
-    "pages/navigator/center/index",
-    "pages/navigator/active-home/active-home",
-    "pages/navigator/detail/detail",
-    "pages/navigator/introduce/index"
+    "pages/navigator/mine/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
