@@ -1,0 +1,55 @@
+/* components/table/index.wxss */
+
+/* components/table/index.wxss */
+
+.table {
+  position: relative;
+  border: 1px solid #ccc;
+  font-size: 28rpx;
+  background: #fff;
+  border-right: none;
+}
+
+.table-noborder {
+  border-right: 1rpx solid #ccc;
+}
+
+.tr {
+  /* !*让文本在行内省略*! *//* width: 150rpx; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.td {
+  text-align: center;
+  border: 1px solid #ccc;
+  display: inline-block;
+  border-bottom: none;
+  /* flex: 1; */
+  padding: 10rpx;
+  border-left: none;
+  /* !*让文本在行内省略*! *//* width: 150rpx; */
+  overflow: hidden;  
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 80rpx;
+}
+
+.td-noborder {
+  border-right: none;
+}
+
+.thead .td {
+  border-top: none;
+  padding: 10rpx;
+  font-weight: bold;
+  display: inline-block;
+  white-space: nowrap;
+  line-height: 60rpx;
+}
+
+.thead {
+  /* background-color: #f8f8f9; */
+  overflow: visible;
+}

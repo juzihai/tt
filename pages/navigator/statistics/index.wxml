@@ -1,0 +1,60 @@
+<scroll-view scroll-x class="bg-white nav text-center margin-top margin-bottom text-lg">
+  <block wx:for="{{nav}}" wx:key="index">
+    <view class="cu-item {{index==TabCur?'navColor cur':'text-black'}}" bindtap="tabSelect" data-id="{{item.ID}}" data-index="{{index}}">
+      {{item.TypeName}}
+    </view>
+  </block>
+</scroll-view>
+
+    <content-card
+      class="content"
+      name="查询"
+      cardPadding="{{false}}"
+
+      >
+      <view class='buttun-wrapper'>
+        <l-checkbox-group bind:linchange="change2" placement="row" data-index="2">
+          <l-checkbox
+            l-class="l-checkbox-color"
+            wx:for="{{items2}}"
+            wx:key="{{item.id}}"
+            placement="{{position}}"
+            key="{{item.id}}"
+            checked="{{item.checked}}"
+          >
+          {{item.name}}
+          </l-checkbox>
+        </l-checkbox-group>
+
+      </view>
+    <l-search-bar placeholder="{{searchName}}" bind:lincancel="onCancel" />
+    </content-card>
+    
+
+
+
+<content-card class="container " name="统计" cardPadding="{{false}}" bind:tapping="onMore" wx:if='{{TabCur==0}}'>
+  <view class="container">
+    <f2 class="f2-chart" onInit="{{onInitChart}}" />
+  </view>
+</content-card>
+
+
+<content-card class="container " name="统计" cardPadding="{{false}}" bind:tapping="onMore" wx:if='{{TabCur==1}}'>
+  <view class="container">
+    <f2 class="f2-chart" onInit="{{onInitChart1}}" />
+  </view>
+</content-card>
+
+<!-- <content-card class="container " name="统计" cardPadding="{{false}}" bind:tapping="onMore" wx:if='{{TabCur==2}}'>
+  <view class="container">
+    <f2 class="f2-chart" onInit="{{onInitChart2}}" />
+  </view>
+</content-card> -->
+
+
+<content-card class="container " name="明细" cardPadding="{{false}}" bind:tapping="onMore" wx:if='{{row}}'>
+  <view class="intro">
+    <s-table hasBorder='yes' tdWidth='120' s-class-header='my-class' s-class-row='my-class-row' headers='{{headers}}' list='{{row}}'></s-table>
+  </view>
+</content-card>

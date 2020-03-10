@@ -156,6 +156,12 @@
 					"pathName": "pages/navigator/index/index",
 					"query": "/page/user?url=123",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "统计",
+					"pathName": "pages/navigator/statistics/index",
+					"scene": null
 				}
 			]
 		}

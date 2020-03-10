@@ -4,7 +4,8 @@
     "pages/navigator/index/index",
     "pages/navigator/indexTest/index",
     "pages/navigator/mall/index",
-    "pages/navigator/mine/index"
+    "pages/navigator/mine/index",
+    "pages/navigator/statistics/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -35,6 +36,12 @@
         "text": "我的",
         "iconPath": "/imgs/tabbar/team.png",
         "selectedIconPath": "/imgs/tabbar/team-select.png"
+      },
+      {
+        "pagePath": "pages/navigator/statistics/index",
+        "text": "统计",
+        "iconPath": "/imgs/tabbar/team.png",
+        "selectedIconPath": "/imgs/tabbar/team-select.png"
       }
     ]
   },
@@ -53,6 +60,7 @@
     "l-segment-item": "/components/lin-ui/segment-item/index",
     "l-price": "/components/lin-ui/price/index",
     "l-action-sheet": "/components/lin-ui/action-sheet/index",
+    "l-search-bar": "/components/lin-ui/search-bar/index",
     "content-card": "/components/content-card/index"
   },
   "style": "v2",
