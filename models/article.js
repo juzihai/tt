@@ -5,7 +5,7 @@ import { Paging } from "../utils/paging";
 class Article extends Http {
 
   //4. 查询
-  static PageSearch({ EnterpriseID, ArticleType, Title, Page, Limit }) {
+  static PageSearch({ EnterpriseID, ArticleType, Title, Page, Limit, TerminalType }) {
     return new Paging({
       url: "api/V1/Article/PageSearchWX",
       data: {
@@ -13,7 +13,7 @@ class Article extends Http {
         ArticleType,
         Title
       }
-    }, Page, Limit)
+    }, Page, Limit, TerminalType)
   }
   //6. 修改阅读量
   static UpdateReadAmount({ ID, ReadPerson, ReadTime}) {
@@ -36,14 +36,15 @@ class Article extends Http {
     })
   }
   //9. 查询置顶文章类型的内容列表
-  static GetTopArticle({ EnterpriseID, Page=1, Limit=10 }) {
+  static GetTopArticle({ EnterpriseID, Page = 1, Limit = 10, TerminalType }) {
     return Http.request({
       url: "api/V1/Article/GetTopArticle",
       data: {
         EnterpriseID,
         Page,
         Limit
-      }
+      },
+      TerminalType
     })
   }
 

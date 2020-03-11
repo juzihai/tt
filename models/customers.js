@@ -34,14 +34,18 @@ class Customers{
     })
   }
   // 3. 注册用户
-  static RegisterCustomers({Unionid, OpenID, Phone, Name}) {
+  static RegisterCustomers({ Unionid, OpenID, Phone, Name, QrType, EnterpriseID, AuthorizationType}) {
     return Http.request({
       url: "api/V1/Customers/RegisterCustomers",
       data: {
         Unionid,
         OpenID,
         Phone,
-        Name
+        Name,
+        QrType,
+        EnterpriseID,
+        AuthorizationType
+        // 未授权0，已授权1
       }
     })
   }

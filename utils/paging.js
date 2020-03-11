@@ -24,9 +24,10 @@ class Paging {
    * @param start 从第几条开始
    * @param count 每页条数
    */
-  constructor(req, limit = 10, page = 1) {
+  constructor(req, page = 1,limit = 10,  TerminalType) {
     this.page = page;
     this.limit = limit;
+    this.TerminalType = TerminalType;
     this.req = req;
     this.url = req.url; 
   }
@@ -99,7 +100,7 @@ class Paging {
   _getCurrentReq() {
     this.req.data.Page = this.page;
     this.req.data.Limit = this.limit;
-
+    this.req.TerminalType = this.TerminalType;
     return this.req;
   }
 

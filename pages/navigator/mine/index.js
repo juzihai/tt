@@ -61,7 +61,9 @@ Page({
         const SessionKey = wx.getStorageSync('SessionKey');
         const OpenID = wx.getStorageSync('OpenID');
         const loginInfo = await Customers.GetWeChatUserInfo({ SessionKey, EncryptedData, IV })
-        const register = await Customers.RegisterCustomers({ Phone: loginInfo.phoneNumber, OpenID })
+        const register = await Customers.RegisterCustomers({
+          Phone: loginInfo.phoneNumber, OpenID, EnterpriseID:app.config.EnterpriseID,
+          AuthorizationType:1 })
         wx.setStorageSync("phoneNumber", loginInfo.phoneNumber);
         let SharOpenID = wx.getStorageSync('SharOpenID')
         if (SharOpenID) {

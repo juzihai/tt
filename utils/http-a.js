@@ -12,7 +12,7 @@ class Http {
     url,
     data,
     method = 'POST',
-    header
+    TerminalType = 1
   }) {
     /**
      * wx.request promisic封装
@@ -22,7 +22,7 @@ class Http {
      * @returns {Promise<void>}
      */
     const d = new Date();
-    const CreationTime = d.toUTCString()
+    const CreationTime = d.toUTCString()//当前utc时间
     const SystemUserID = wx.getStorageSync('OpenID')//用户id
 
     const res = await promisic(wx.request)({
@@ -35,7 +35,7 @@ class Http {
         AreaName,
         AreaDisplayName: encodeURI(test1),
         SystemIP: "", //ip
-        TerminalType: 1,
+        TerminalType,
 
       },
     });

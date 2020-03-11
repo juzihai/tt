@@ -19,7 +19,7 @@ const util = require('utils/util.js');
 App({
   config: config,
   util: util,
-  onLaunch: function() {
+  onLaunch: function (options) {
     wx.getSystemInfo({
       success: function(res) {
         console.log(res)
@@ -39,6 +39,9 @@ App({
     this._login()
     this._addLocation(1)
 
+  },
+  onShow(options){
+    wx.setStorageSync('launch', options)
   },
   _addLocation(Type){
     // 用户授权
@@ -83,9 +86,15 @@ App({
       // this.globalData.SessionKey = openIDAndKey.Session_key;
       wx.setStorageSync("OpenID", OpenID);
       wx.setStorageSync("SessionKey", openIDAndKey.Session_key);
+      let launch = wx.getStorageSync('launch')
+      console.log('启动参数',launch)
       const register = await Customers.RegisterCustomers({
-        OpenID
+        OpenID,
+        EnterpriseID: config.EnterpriseID,
+        AuthorizationType:0,
+        QrType:launch.scene
       })
+      console.log('启动参数1', register)
       if (this.globalData.SharOpenID) {
         let obj = {
           EnterpriseID: config.EnterpriseID,
@@ -95,7 +104,7 @@ App({
         Customers.MyCustomersSave(obj)
       }
     } catch (e) {
-
+      console.log('有异常',e)
     }
   },
   globalData: {
