@@ -59,16 +59,21 @@ Page({
     let id = this.data.id;
     let OpenID = wx.getStorageSync('OpenID')
     let url = encodeURIComponent('/pages/subpackages/propaganda/article/articleDetail/index?id='+id);
-    let path = `/pages/navigator/index/index?url=${url}`
+
     console.log(path)
     return {
       title: "详情",
-      path
+      path:`/pages/navigator/index/index?url=${url}&SharOpenID=${OpenID}`
     }
   },
 
   onAddToCart(e){
 
+  },
+  onGotoHome(){
+    wx.switchTab({
+      url: '/pages/navigator/index/index',
+    })
   },
   onBuy(e){
     wx.navigateTo({

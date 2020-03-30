@@ -44,7 +44,7 @@ Page({
       console.log('session 生效', res)
     }, err => {
       console.log('session 失效', err)
-      app.login();
+      app._login();
     })
   },
 
@@ -61,9 +61,10 @@ Page({
         const SessionKey = wx.getStorageSync('SessionKey');
         const OpenID = wx.getStorageSync('OpenID');
         const loginInfo = await Customers.GetWeChatUserInfo({ SessionKey, EncryptedData, IV })
+        let launch = wx.getStorageSync('launch')
         const register = await Customers.RegisterCustomers({
           Phone: loginInfo.phoneNumber, OpenID, EnterpriseID:app.config.EnterpriseID,
-          AuthorizationType:1 })
+          AuthorizationType: 1, QrType: launch.scene})
         wx.setStorageSync("phoneNumber", loginInfo.phoneNumber);
         let SharOpenID = wx.getStorageSync('SharOpenID')
         if (SharOpenID) {

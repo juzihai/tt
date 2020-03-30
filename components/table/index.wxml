@@ -1,4 +1,5 @@
 <!--components/table/index.wxml-->
+<wxs src="../../utils/util.wxs" module="util"></wxs>
  <scroll-view scroll-x="true" enable-flex='true' style="width:{{scrolWidth}}px;"  class="table table-noborder">
     <view class="tr thead s-class-header" style='width:{{theadWidth}}px;'>
       <view wx:for="{{headers}}" class="td td-{{hasBorder}}border" style='width:{{tdWidth}}px;' >{{item.display}}</view>
@@ -11,7 +12,10 @@
     <block wx:for-item='i' wx:for="{{list}}">
       <view class="tr s-class-row" style='width:{{theadWidth}}px;'>
         <view wx:for-item='j' wx:for="{{headers}}" class="td td-{{hasBorder}}border" style='width:{{tdWidth}}px;'>
-        {{i[j['text']]}}
+        <text wx:if="{{j['text']==='phone'||j['text']==='sharePhone'}}">{{util.sub(i[j['text']], 3, 4)}}</text>
+        <text wx:else> {{i[j['text']]}}</text>
+        <!-- {{i[j['text']]}} -->
+
         </view>        
       </view>
     </block>

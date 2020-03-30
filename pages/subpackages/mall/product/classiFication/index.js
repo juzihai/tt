@@ -1,7 +1,11 @@
 // pages/subpackages/mall/product/classiFication/index.js
-const app=getApp()
-import { Product } from '../../../../../models/product.js'
-import { ProductClass } from '../../../../../models/productClass.js'
+const app = getApp()
+import {
+  Product
+} from '../../../../../models/product.js'
+import {
+  ProductClass
+} from '../../../../../models/productClass.js'
 
 Page({
 
@@ -15,7 +19,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
 
     this.initAllData()
   },
@@ -28,22 +32,22 @@ Page({
     }
 
     const grid = await ProductClass.Search(obj);
-    if (grid.Data.length>0){
+    if (grid.Data.length > 0) {
       this.tabSelectGetData(grid.Data[0].ID)
     }
-    
+
     this.setData({
       grid
     })
   },
 
   /**点击切换 */
-  changeTabs(e){
+  changeTabs(e) {
     let ClassID = e.detail.activeKey
     this.tabSelectGetData(ClassID)
 
   },
-/**点击切换加载的数据 */
+  /**点击切换加载的数据 */
   async tabSelectGetData(ClassID) {
     let obj = {
       "EnterpriseID": app.config.EnterpriseID,
@@ -51,7 +55,7 @@ Page({
     }
     const productModel = Product.PageSearch(obj)
     this.data.productModel = productModel //类属性
-    const product = await productModel.getMoreData();//todo
+    const product = await productModel.getMoreData(); //todo
     this.setData({
       product
     })
@@ -62,7 +66,7 @@ Page({
 
     wx.navigateTo({
       url: `/pages/subpackages/mall/product/productDetail1/index?pid=${pid}&pcode=${pcode}`
-    }) 
+    })
   },
 
 })

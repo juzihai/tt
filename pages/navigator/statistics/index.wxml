@@ -6,36 +6,24 @@
   </block>
 </scroll-view>
 
-    <content-card
-      class="content"
-      name="查询"
-      cardPadding="{{false}}"
+<content-card class="content" name="查询" cardPadding="{{false}}">
+  <view class='buttun-wrapper'>
+    <l-checkbox-group bind:linchange="change2" placement="row" data-index="2">
+      <l-checkbox l-class="l-checkbox-color" wx:for="{{items2}}" wx:key="{{item.id}}" placement="{{position}}" key="{{item.id}}" checked="{{item.checked}}">
+        {{item.name}}
+      </l-checkbox>
+    </l-checkbox-group>
 
-      >
-      <view class='buttun-wrapper'>
-        <l-checkbox-group bind:linchange="change2" placement="row" data-index="2">
-          <l-checkbox
-            l-class="l-checkbox-color"
-            wx:for="{{items2}}"
-            wx:key="{{item.id}}"
-            placement="{{position}}"
-            key="{{item.id}}"
-            checked="{{item.checked}}"
-          >
-          {{item.name}}
-          </l-checkbox>
-        </l-checkbox-group>
+  </view>
+  <l-search-bar placeholder="{{searchName}}" bind:lincancel="onCancel" />
+</content-card>
 
-      </view>
-    <l-search-bar placeholder="{{searchName}}" bind:lincancel="onCancel" />
-    </content-card>
-    
 
 
 
 <content-card class="container " name="统计" cardPadding="{{false}}" bind:tapping="onMore" wx:if='{{TabCur==0}}'>
   <view class="container">
-    <f2 class="f2-chart" onInit="{{onInitChart}}" />
+    <f2 type="2d" class="f2-chart" onInit="{{onInitChart}}" />
   </view>
 </content-card>
 

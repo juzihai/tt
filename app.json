@@ -5,7 +5,8 @@
     "pages/navigator/indexTest/index",
     "pages/navigator/mall/index",
     "pages/navigator/mine/index",
-    "pages/navigator/statistics/index"
+    "pages/navigator/statistics/index",
+    "pages/navigator/statisticsTest/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

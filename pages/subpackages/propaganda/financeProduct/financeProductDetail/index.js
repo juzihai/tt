@@ -104,6 +104,11 @@ Page({
       phoneNumber: phoneNumber
     })
   },
+  onGotoHome() {
+    wx.switchTab({
+      url: '/pages/navigator/index/index',
+    })
+  },
   //联系我们
   onBuy(e) {
 

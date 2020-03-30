@@ -275,49 +275,78 @@ Page({
       case 0:
         tabData = [{
           id: 1,
-          share: '合作案例',
-          sharePhone: '76',
+          name: '刑事辩护与代理',
+          count: '76',
+          phone: '13001387099',
           donee: '孙贺良',
-          doneePhone: '案例展示',
+          type: '案例展示',
         }, {
           id: 1,
-          share: '诚邀各路精英加入我们的大家庭',
-          sharePhone: '84',
+          name: '民事诉讼与仲裁',
+          count: '84',
+          phone: '13001387099',
           donee: '孙贺良',
-          doneePhone: '公司招聘',
+            type: '案例展示',
         }, {
           id: 1,
-          share: '天津市延期复工通知',
-          sharePhone: '106',
+          name: '公司企业与上市',
+          count: '106',
+          phone: '13001387099',
           donee: '孙贺良',
-          doneePhone: '新闻',
+            type: '案例展示',
         }, {
           id: 1,
-          share: '白衣天使',
-          sharePhone: '32',
+          name: '建筑工程房地产',
+          count: '32',
+          phone: '13001387099',
           donee: '孙贺良',
-          doneePhone: '新闻',
+            type: '案例展示',
         }, {
           id: 1,
-          share: '中联集团合作新闻发布会圆满成功',
-          sharePhone: '18',
+          name: '融资上市与信贷',
+          count: '18',
+          phone: '13001381096',
           donee: '孙伟',
-          doneePhone: '企业宣传',
-        }, ]
+            type: '案例展示',
+          }, {
+            id: 1,
+            name: '涉外诉讼与仲裁',
+            count: '8',
+            phone: '13001381096',
+            donee: '孙伟',
+            type: '案例展示',
+          }, {
+            id: 1,
+            name: '行政复议与诉讼',
+            count: '10',
+            phone: '13001381096',
+            donee: '孙伟',
+            type: '案例展示',
+          }, {
+            id: 1,
+            name: '知识产权与侵权',
+            count: '19',
+            phone: '13001381096',
+            donee: '孙伟',
+            type: '案例展示',
+          }, ]
 
         headers = [{
-          text: 'share',
+          text: 'name',
           display: '文章名称'
         }, {
-          text: 'sharePhone',
-          display: '访问次数'
+          text: 'count',
+          display: '浏览次数'
+        }, {
+          text: 'phone',
+          display: '浏览人手机号'
+        }, {
+          text: 'type',
+          display: '文章类型'
         }, {
           text: 'donee',
           display: '发表人'
-        }, {
-          text: 'doneePhone',
-          display: '文章分类'
-        }, ]
+        }]
 
         items2 = [{
           id: 1,
@@ -334,41 +363,41 @@ Page({
         tabData = [{
             id: 1,
             share: '黄瓜',
-            sharePhone: '13027603342',
+            phone: '13027603342',
             donee: '蔬菜',
-            doneePhone: '3',
+            phone: '3',
           },
           {
             id: 1,
             share: '西红柿',
-            sharePhone: '13001387099',
+            phone: '13001387099',
             donee: '蔬菜',
-            doneePhone: '9',
+            phone: '9',
           },
           {
             id: 1,
             share: '椅子',
-            sharePhone: '13001387099',
+            phone: '13001387099',
             donee: '家具',
-            doneePhone: '11',
+            phone: '11',
           }, {
             id: 1,
             share: '桌子',
-            sharePhone: '13001387099',
+            phone: '13001387099',
             donee: '家具',
-            doneePhone: '15',
+            phone: '15',
           }, {
             id: 1,
             share: '凳子',
-            sharePhone: '13001387099',
+            phone: '13001387099',
             donee: '家具',
-            doneePhone: '5',
+            phone: '5',
           }, {
             id: 1,
             share: '大黄蜂',
-            sharePhone: '13001387099',
+            phone: '13001387099',
             donee: '玩具',
-            doneePhone: '6',
+            phone: '6',
           },
         ]
 
@@ -379,7 +408,7 @@ Page({
           text: 'donee',
           display: '产品分类'
         }, {
-          text: 'doneePhone',
+          text: 'phone',
           display: '访问次数'
         }, ]
         items2 = [{
@@ -398,46 +427,46 @@ Page({
         tabData = [{
           id: 1,
           share: '曹可',
-          sharePhone: '13027603342',
+          phone: '13027603342',
           donee: '2020-02-01',
-          doneePhone: '天津市和平区',
+          address: '天津市和平区',
         }, {
           id: 1,
           share: '田禹',
-          sharePhone: '13001387099',
+          phone: '13001387099',
           donee: '2020-02-01',
-          doneePhone: '天津市塘沽',
+            address: '天津市塘沽',
         }, {
           id: 1,
           share: '孙贺良',
-          sharePhone: '13001387099',
+          phone: '13001387099',
           donee: '2020-02-01',
-          doneePhone: '天津市宁和',
+            address: '天津市宁和',
         }, {
           id: 1,
           share: '孙伟',
-          sharePhone: '13001387099',
+          phone: '13001387099',
           donee: '2020-02-01',
-          doneePhone: '天津市和平区',
+            address: '天津市和平区',
         }, {
           id: 1,
           share: '吕绍康',
-          sharePhone: '13001387099',
+          phone: '13001387099',
           donee: '2020-02-01',
-          doneePhone: '天津市和平区',
+            address: '天津市和平区',
         }]
 
         headers = [{
           text: 'share',
-          display: '手机号'
-        }, {
-          text: 'sharePhone',
           display: '用户名'
+        }, {
+          text: 'phone',
+          display: '手机号'
         }, {
           text: 'donee',
           display: '打开时间'
         }, {
-          text: 'doneePhone',
+            text: 'address',
           display: '地址'
         }, ]
         items2 = [{
@@ -456,43 +485,43 @@ Page({
         tabData = [{
           id: 1,
           share: '曹可',
-          sharePhone: '13027603342',
+          phone: '13027603342',
           donee: '2020-02-01',
-          doneePhone: '首页',
+          type: '首页',
         }, {
           id: 1,
           share: '田禹',
-          sharePhone: '13001387099',
+          phone: '13001387099',
           donee: '2020-02-01',
-          doneePhone: '新闻',
+            type: '新闻',
         }, {
           id: 1,
           share: '孙贺良',
-          sharePhone: '13001387099',
+          phone: '18522158390',
           donee: '2020-02-01',
-          doneePhone: '活动',
+            type: '活动',
         }, {
           id: 1,
           share: '孙伟',
-          sharePhone: '13001387099',
+          phone: '13001381096',
           donee: '2020-02-01',
-          doneePhone: '招聘',
+            type: '招聘',
         }, {
           id: 1,
           share: '吕绍康',
-          sharePhone: '13001387099',
+          phone: '15501381099',
           donee: '2020-02-01',
-          doneePhone: '热门产品',
+            type: '热门产品',
         }]
 
         headers = [{
           text: 'share',
           display: '用户名'
         }, {
-          text: 'sharePhone',
+          text: 'phone',
           display: '手机号'
         }, {
-          text: 'doneePhone',
+          text: 'type',
           display: '动作显示名称'
         }, {
           text: 'donee',
@@ -515,47 +544,47 @@ Page({
           share: '曹可',
           sharePhone: '13027603342',
           donee: '贺良',
-          doneePhone: '18522158390',
+          phone: '18522158390',
           shareAction: "产品",
           shareName: "ty",
         }, {
           id: 1,
           share: '田禹',
-          sharePhone: '13001387099',
+            sharePhone: '13001387099',
           donee: '李四',
-          doneePhone: '13027603342',
+          phone: '13027603342',
           shareAction: "文章",
           shareName: "ty",
         }, {
           id: 1,
           share: '田禹',
-          sharePhone: '13001387099',
+            sharePhone: '13001387099',
           donee: '李四',
-          doneePhone: '13027603342',
+          phone: '13027603342',
           shareAction: "新闻",
           shareName: "ty",
         }, {
           id: 1,
           share: '田禹',
-          sharePhone: '13001387099',
+            sharePhone: '13001387099',
           donee: '孙贺良',
-          doneePhone: '13027603342',
+          phone: '13027603342',
           shareAction: "活动",
           shareName: "ty",
         }, {
           id: 1,
           share: '田禹',
-          sharePhone: '13001387099',
+            sharePhone: '13001387099',
           donee: '孙伟',
-          doneePhone: '12227603333',
+          phone: '12227603333',
           shareAction: "精选",
           shareName: "ty",
         }, {
           id: 1,
           share: '田禹',
-          sharePhone: '13001387099',
+            sharePhone: '13001387099',
           donee: '吕绍康',
-          doneePhone: '13022223342',
+          phone: '13022223342',
           shareAction: "产品",
           shareName: "ty",
         }, ]
@@ -564,13 +593,13 @@ Page({
           text: 'share',
           display: '分享者'
         }, {
-          text: 'sharePhone',
+            text: 'sharePhone',
           display: '分享者手机号'
         }, {
           text: 'donee',
           display: '被分享者'
         }, {
-          text: 'doneePhone',
+          text: 'phone',
           display: '被分享者手机号'
         }, {
           text: 'shareAction',

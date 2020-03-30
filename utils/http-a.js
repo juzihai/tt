@@ -1,5 +1,11 @@
-import { config} from "../config/config";
-import {  promisic} from "./util";
+import {
+  config,
+  tips
+} from "../config/config";
+
+import {
+  promisic
+} from "./util";
 
 const app = getApp()
 
@@ -22,8 +28,8 @@ class Http {
      * @returns {Promise<void>}
      */
     const d = new Date();
-    const CreationTime = d.toUTCString()//当前utc时间
-    const SystemUserID = wx.getStorageSync('OpenID')//用户id
+    const CreationTime = d.toUTCString() //当前utc时间
+    const SystemUserID = wx.getStorageSync('OpenID') //用户id
 
     const res = await promisic(wx.request)({
       url: `${config.apiBaseUrl}${url}`,
@@ -40,10 +46,30 @@ class Http {
       },
     });
     console.log('接口=', url, '参数=', data, '返回参数', res);
+    const statusCode = res.statusCode.toString()
+    if (statusCode.startsWith('2')) {
+      let resultCode = res.data.ResultCode
+      if (resultCode.startsWith('2')) {} else {
+        this._show_error(resultCode);
+      }
+    } else {
+      this._show_error(statusCode)
+    }
 
     return res.data.ResultValue;
   }
+  static _show_error(error_code) {
 
+    if (!error_code) {
+      error_code = 1
+    }
+    const tip = tips[error_code]
+    wx.showToast({
+      title: tip ? tip : tips[1],
+      icon: 'none',
+      duration: 2000
+    })
+  }
 
 }
 
