@@ -12,7 +12,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    leftTitle: '联系我们',
+    leftTitle: '加入购物车',
     rightTitle:'立即购买',
   },
 

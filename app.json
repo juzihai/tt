@@ -1,9 +1,9 @@
 {
   "pages": [
-
     "pages/navigator/index/index",
     "pages/navigator/indexTest/index",
     "pages/navigator/mall/index",
+    "pages/navigator/cart/index",
     "pages/navigator/mine/index",
     "pages/navigator/statistics/index",
     "pages/navigator/statisticsTest/index"
@@ -33,6 +33,12 @@
         "selectedIconPath": "/imgs/tabbar/base-select.png"
       },
       {
+        "pagePath": "pages/navigator/cart/index",
+        "text": "购物车",
+        "iconPath": "/imgs/tabbar/base.png",
+        "selectedIconPath": "/imgs/tabbar/base-select.png"
+      },
+      {
         "pagePath": "pages/navigator/mine/index",
         "text": "我的",
         "iconPath": "/imgs/tabbar/team.png",
@@ -56,6 +62,7 @@
     "l-card": "/components/lin-ui/card/index",
     "l-icon": "/components/lin-ui/icon/index",
     "l-tag": "/components/lin-ui/tag/index",
+    "l-badge": "/components/lin-ui/badge/index",
     "l-button": "/components/lin-ui/button/index",
     "l-segment": "/components/lin-ui/segment/index",
     "l-segment-item": "/components/lin-ui/segment-item/index",
@@ -64,7 +71,6 @@
     "l-search-bar": "/components/lin-ui/search-bar/index",
     "content-card": "/components/content-card/index"
   },
-  "style": "v2",
   "subPackages": [
     {
       "root": "pages/subpackages/mall",
@@ -93,10 +99,16 @@
       ]
     }
   ],
-  "sitemapLocation": "sitemap.json",
+  "navigateToMiniProgramAppIdList": [
+    "wx149a3a3b51b0e6a7",
+    "wxa93d39f1484ac31a",
+    "wx423a0b38229a4006"
+  ],
   "permission": {
     "scope.userLocation": {
       "desc": "授权您的位置为您提供地图导航及附近信息服务"
     }
-  }
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
 }

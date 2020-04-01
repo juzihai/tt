@@ -1,9 +1,9 @@
 {
   "usingComponents": {
-    "f2": "/components/wx-f2/index",
     "l-checkbox-group": "/components/lin-ui/checkbox-group/index",
     "l-checkbox": "/components/lin-ui/checkbox/index",
-    "s-table": "../components/table/index"
+    "s-table": "../components/table/index",
+        "ff-canvas": "../../../f2-canvas/f2-canvas"
   },
   "navigationBarTitleText": "统计"
 }

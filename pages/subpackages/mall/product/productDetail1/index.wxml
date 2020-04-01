@@ -12,7 +12,18 @@
   <l-spu-description spu="{{spu}}"></l-spu-description>
 
 <!-- 选择栏 -->
-  <!-- <view class="sku-pending">
+  <view class="sku-pending">
+    <view class="specs">
+      <text>优惠券：</text>
+      <text>{{spu.ProductName}}</text>
+    </view>
+    <view class="arrow-right">
+      <l-icon name="right" color="#157658" size="24"></l-icon>
+    </view>
+  </view>
+
+<!-- 选择栏 -->
+  <view class="sku-pending">
     <view class="specs">
       <text>已选择：</text>
       <text>{{spu.ProductName}}</text>
@@ -20,7 +31,18 @@
     <view class="arrow-right">
       <l-icon name="right" color="#157658" size="24"></l-icon>
     </view>
-  </view> -->
+  </view>
+
+<!-- 选择栏 -->
+  <view class="sku-pending">
+    <view class="specs">
+      <text>配送地址：</text>
+      <text>{{spu.ProductName}}</text>
+    </view>
+    <view class="arrow-right">
+      <l-icon name="right" color="#157658" size="24"></l-icon>
+    </view>
+  </view>
 
   <!-- 属性 -->
     <!-- <view class="explain">

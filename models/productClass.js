@@ -24,7 +24,7 @@ class ProductClass {
         EnterpriseID,
         ClassName
       }
-    }, Limit, Page)
+    }, Page, Limit,)
   }
 
 

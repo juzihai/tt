@@ -29,7 +29,7 @@ class HotProduct{
         ProductCode,
         ProductName,
       }
-    }, Limit, Page)
+    }, Page, Limit)
   }
   //查询产品详情
   static SearchModelDetails(ID) {

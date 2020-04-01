@@ -13,7 +13,7 @@
           <l-price
                   l-unit-class="price-unit"
                   l-value-class="price-value"
-                  color="#157158"
+                  color="red"
                   value="{{p.mainPrice(item.Price,item.DiscountPrice).price}}">
 
           </l-price>

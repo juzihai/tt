@@ -1,4 +1,8 @@
-// import F2 from '@antv/wx-f2/index.js';
+const app = getApp();
+import F2 from '../../../f2-canvas/lib/f2.js';
+
+let chart = null;
+let chart1 = null;
 
 Page({
   data: {
@@ -150,9 +154,185 @@ Page({
       title: '提示',
       content: '此统计为预览版，后期将会有升级优化版本，仅供参考，谢谢。',
     })
-    this._loadData()
-    this._loadData1()
+    // this._loadData()
+    // this._loadData1()
+    this._loadChart2()
     this.tabSelectGetData()
+  },
+  /**加载图表 */
+  _loadChart2() {
+    var that = this;
+    // var data = data;
+    that.chartComponent = that.selectComponent("#custom-dom")
+    that.chartComponent.init((canvas, width, height) => {
+      chart = new F2.Chart({
+        el: canvas,
+        width,
+        height,
+        animate: false
+      });
+
+      const data = [{
+        value: 1,
+        type: '刑事辩护与代理',
+        date: '2011-10-01',
+        name: '企业宣传',
+      },
+      {
+        value: 2,
+        type: '民事诉讼与仲裁',
+        date: '2011-10-01',
+        name: '企业宣传'
+      },
+      {
+        value: 3,
+        type: '公司企业与上市',
+        date: '2011-10-01',
+        name: '企业宣传'
+      },
+      {
+        value: 3,
+        type: '刑事辩护与代理',
+        date: '2011-10-02',
+        name: '企业宣传'
+      },
+      {
+        value: 6,
+        type: '民事诉讼与仲裁',
+        date: '2011-10-02',
+        name: '企业宣传'
+      },
+      {
+        value: 9,
+        type: '公司企业与上市',
+        date: '2011-10-02',
+        name: '企业宣传'
+      },
+      {
+        value: 4,
+        type: '刑事辩护与代理',
+        date: '2011-10-03',
+        name: '企业宣传'
+      },
+      {
+        value: 20,
+        type: '民事诉讼与仲裁',
+        date: '2011-10-03',
+        name: '企业宣传'
+      },
+      {
+        value: 40,
+        type: '公司企业与上市',
+        date: '2011-10-03',
+        name: '企业宣传'
+      },
+      ];
+      chart.source(data);
+      chart.scale('date', {
+        type: 'timeCat',
+        tickCount: 3
+      });
+      chart.scale('value', {
+        tickCount: 5
+      });
+      chart.axis('date', {
+        label: function label(text, index, total) {
+          // 只显示每一年的第一天
+          const textCfg = {};
+          if (index === 0) {
+            textCfg.textAlign = 'left';
+          } else if (index === total - 1) {
+            textCfg.textAlign = 'right';
+          }
+          return textCfg;
+        }
+      });
+      chart.tooltip({
+        custom: true, // 自定义 tooltip 内容框
+        onChange: function onChange(obj) {
+          const legend = chart.get('legendController').legends.top[0];
+          const tooltipItems = obj.items;
+          const legendItems = legend.items;
+          const map = {};
+          legendItems.forEach(function (item) {
+            // map[item.name] = _.clone(item);
+            map[item.name] = "企业宣传";
+          });
+          tooltipItems.forEach(function (item) {
+            console.log(item)
+            const name = item.name;
+            const value = item.value;
+            if (map[name]) {
+              map[name].value = value;
+            }
+          });
+          // legend.setItems(_.values(map));
+          legend.setItems("企业宣传");
+        },
+        onHide: function onHide() {
+          const legend = chart.get('legendController').legends.top[0];
+          legend.setItems(chart.getLegendItems().country);
+        }
+      });
+      chart.line().position('date*value').color('type');
+      chart.render();
+    })
+  },
+  _loadChart3() {
+    var that = this;
+    // var data = data;
+    that.chartComponent = that.selectComponent("#custom-dom1")
+    that.chartComponent.init((canvas, width, height) => {
+      chart = new F2.Chart({
+        el: canvas,
+        width,
+        height,
+        animate: false
+      });
+
+      const data = [{
+        year: '精选',
+        sales: 38
+      }, {
+        year: '汽车',
+        sales: 52
+      }, {
+        year: '美容',
+        sales: 61
+      }, {
+        year: '家具',
+        sales: 145
+      }, {
+        year: '服装',
+        sales: 48
+      }, {
+        year: '蔬菜',
+        sales: 38
+      }, {
+        year: '生鲜',
+        sales: 38
+      }, {
+        year: '儿童',
+        sales: 38
+      }];
+
+      chart.source(data, {
+        sales: {
+          tickCount: 5
+        }
+      });
+      chart.tooltip({
+        showItemMarker: false,
+        onShow: function onShow(ev) {
+          const items = ev.items;
+          items[0].name = null;
+          items[0].name = items[0].title;
+          items[0].value = ' ' + items[0].value;
+        }
+      });
+      chart.interval().position('year*sales');
+      chart.render();
+    })
   },
   _loadData() {
 
@@ -358,6 +538,7 @@ Page({
           checked: false
         }]
         searchName = "名称查询";
+        this._loadChart2()
         break;
       case 1:
         tabData = [{
@@ -421,7 +602,7 @@ Page({
           checked: false
         }]
         searchName = "名称查询";
-
+        this._loadChart3()
         break;
       case 2:
         tabData = [{

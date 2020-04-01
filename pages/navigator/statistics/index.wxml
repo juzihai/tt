@@ -22,16 +22,22 @@
 
 
 <content-card class="container " name="统计" cardPadding="{{false}}" bind:tapping="onMore" wx:if='{{TabCur==0}}'>
-  <view class="container">
+  <!-- <view class="container">
     <f2 type="2d" class="f2-chart" onInit="{{onInitChart}}" />
-  </view>
+  </view> -->
+    <view class="container-box">
+      <ff-canvas id="custom-dom" canvas-id="custom-dom"></ff-canvas>
+    </view>
 </content-card>
 
 
 <content-card class="container " name="统计" cardPadding="{{false}}" bind:tapping="onMore" wx:if='{{TabCur==1}}'>
-  <view class="container">
+  <!-- <view class="container">
     <f2 class="f2-chart" onInit="{{onInitChart1}}" />
-  </view>
+  </view> -->
+    <view class="container-box" >
+      <ff-canvas id="custom-dom1" canvas-id="custom-dom1"></ff-canvas>
+    </view>
 </content-card>
 
 <!-- <content-card class="container " name="统计" cardPadding="{{false}}" bind:tapping="onMore" wx:if='{{TabCur==2}}'>

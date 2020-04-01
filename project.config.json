@@ -161,6 +161,13 @@
 					"id": -1,
 					"name": "统计",
 					"pathName": "pages/navigator/statistics/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "购物车",
+					"pathName": "pages/navigator/cart/index",
 					"scene": null
 				}
 			]

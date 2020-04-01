@@ -52,7 +52,7 @@
     white-space: nowrap;
 }
 
-.price-value {
-    font-size: 26rpx !important;/*加!important ，是因为优先级具有不确定性*/
+/* .price-value {
+    font-size: 26rpx !important;
     color: #157658 !important;
-}
+} */

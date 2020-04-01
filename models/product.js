@@ -15,7 +15,7 @@ class Product extends Http {
         ClassID,
         ClassID
       }
-    }, Limit, Page)
+    }, Page, Limit, )
   }
 
   //查询产品详情

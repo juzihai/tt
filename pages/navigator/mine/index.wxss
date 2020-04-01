@@ -1,4 +1,7 @@
 /* pages/navigator/mine/index.wxss */
+page{
+  background-color: white;
+}
 .content{
   width: 100%;
   display: flex;
@@ -148,4 +151,23 @@
 
 .button_margin_top {
   margin-top: 80rpx;
+}
+
+.custom-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-img{
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 20rpx
+}
+
+.custom-txt{
+  padding: 20rpx;
+  color: #bbb;
+  font-size: 20rpx;
 }

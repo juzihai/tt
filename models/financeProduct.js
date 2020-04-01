@@ -12,7 +12,7 @@ class FinanceProduct extends Http {
         EnterpriseID,
         Title
       }
-    }, Limit, Page)
+    }, Page,Limit)
   }
   //6. 修改阅读量
   static UpdateReadAmount({ ID, ReadPerson, ReadTime }) {

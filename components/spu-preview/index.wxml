@@ -7,7 +7,7 @@
     <text class="title">{{data.ProductName}}</text>
     <view class="price-row">
       <!-- <text class="my-class price-value">¥ {{data.Price}}</text> -->
-      <l-price color="#157658"
+      <l-price color="red"
                value-size="28"
                unit-size="20"
                autofix

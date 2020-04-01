@@ -23,7 +23,7 @@ class HotActivity extends Http {
         EnterpriseID,
         ActivityName
       }
-    }, Limit, Page)
+    }, Page,Limit)
   }
   //7. 查询文章详情
   static SearchModelDetails(ID) {

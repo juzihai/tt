@@ -119,4 +119,17 @@ Page({
     }
 
   },
+  onToMini(){
+    console.log(111)
+    wx.navigateToMiniProgram({
+      appId: 'wxa93d39f1484ac31a',
+      success: function (res) {
+
+      },
+      fail: function (err) {
+
+      }
+    })
+  },
+
 })
