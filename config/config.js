@@ -1,17 +1,18 @@
 // 配置项
 const config = {
   /** 正式地址appid：wxa93d39f1484ac31a*/
-  "apiBaseUrl": 'https://www.yulongyi.com/',
-  "EnterpriseID": "242415",//正式id
+  // "apiBaseUrl": 'https://www.yulongyi.com/',
+  // "EnterpriseID": "242415",//正式id
   // "EnterpriseID": "4644",//石家庄测试id
 
   /** 测试地址appid：wx72c692238d3d16bc*/
   // "apiBaseUrl": 'https://www.jinduochina.com/',
-  // "EnterpriseID": "3373",//测试id
+  "apiBaseUrl": 'http://company.jinduochina.com/',
+  "EnterpriseID": "3373",//测试id
 }
 const tips = {
-  1: '服务繁忙,请稍后再试',
-  500: '内部请求出错',
+  "1": '服务繁忙,请稍后再试',
+  "500": '内部请求出错',
   "600.1":'数据已存在',
   "600.2":'输入数据格式不正确',
   "600.3":'参数错误',

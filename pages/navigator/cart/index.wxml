@@ -1,2 +1,13 @@
-<!--pages/navigator/cart/index.wxml-->
-<text>pages/navigator/cart/index.wxml</text>
+<view bindtap="chooseRegion">请选择</view>
+<view>
+    <text wx:if="{{regionValue[0].id}}">{{regionValue[0].name}}</text>
+    <text wx:if="{{regionValue[1].id}}">{{regionValue[1].name}}</text>
+    <text wx:if="{{regionValue[2].id}}">{{regionValue[2].name}}</text>
+</view>
+...
+<region-picker wx:if="{{data}}"
+    areaData="{{data}}"
+    region-value="{{regionValue}}"
+    show-region="{{showRegion}}"
+    bind:myevent="emitHideRegion">
+</region-picker>

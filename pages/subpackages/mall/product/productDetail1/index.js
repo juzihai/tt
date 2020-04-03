@@ -1,6 +1,17 @@
-const app=getApp()
-import { Product } from '../../../../../models/product.js'
-import { HotProduct } from '../../../../../models/hotProduct.js'
+const app = getApp()
+import {
+  Product
+} from '../../../../../models/product.js'
+import {
+  HotProduct
+} from '../../../../../models/hotProduct.js'
+import {
+  getWindowHeightRpx
+} from "../../../../../utils/system";
+import {
+  ShoppingWay
+} from "../../../../../core/enum";
+
 var WxParse = require('../../../../../wxParse/wxParse.js');
 Page({
 
@@ -8,29 +19,33 @@ Page({
    * 页面的初始数据
    */
   data: {
+    showRealm: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad:async function (options) {
-    let scene =options.scene;
-    let pagePath=options.pagePath;
+  onLoad: async function(options) {
+    let scene = options.scene;
+    let pagePath = options.pagePath;
 
-    let pid,pcode;
+    let pid, pcode;
 
-    if(scene){
-      scene= decodeURIComponent(scene);
+    if (scene) {
+      scene = decodeURIComponent(scene);
       pid = scene.pid;
       pcode = scene.pcode;
-    }else{
-       pid = options.pid;
-       pcode = options.pcode;
+    } else {
+      pid = options.pid;
+      pcode = options.pcode;
     }
 
     const spu = pagePath == "HotProduct" ? await HotProduct.SearchModelDetails(pid) : await Product.SearchModelDetails(pid);
-    const banner = pagePath == "HotProduct" ? await HotProduct.SearchRotationChart(pcode) :await Product.SearchRotationChart(pcode);
-    this.setData({ 
+    const banner = pagePath == "HotProduct" ? await HotProduct.SearchRotationChart(pcode) : await Product.SearchRotationChart(pcode);
+    const windowHeight = await getWindowHeightRpx();
+    const h = windowHeight - 100; // 100 是底部tabbar的高度  自定义的tabbar高度是不包含在 windowHeight里的
+    this.setData({
+      h,
       spu,
       banner,
       pid,
@@ -44,21 +59,21 @@ Page({
      * 4.target为Page对象,一般为this(必填)
      * 5.imagePadding为当图片自适应是左右的单一padding(默认为0,可选)
      */
-    if (spu.ProductDetail){
+    if (spu.ProductDetail) {
       WxParse.wxParse('articleModel', 'html', spu.ProductDetail, this, 5);
     }
 
-   
+
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     let pid = this.data.pid;
     let pcode = this.data.pcode;
     let OpenID = wx.getStorageSync('OpenID')
-    let PageUrlWithArgs=app.util.getCurrentPageUrlWithArgs();
+    let PageUrlWithArgs = app.util.getCurrentPageUrlWithArgs();
     let url = encodeURIComponent(PageUrlWithArgs);
 
     return {
@@ -67,19 +82,17 @@ Page({
     }
   },
 
-
-
   onAddToCart(event) {
     this.setData({
       showRealm: true,
-      // orderWay: ShoppingWay.CART
+      orderWay: ShoppingWay.CART
     })
   },
 
   onBuy(event) {
     this.setData({
       showRealm: true,
-      // orderWay: ShoppingWay.BUY
+      orderWay: ShoppingWay.BUY
     })
   },
 
@@ -91,8 +104,28 @@ Page({
 
   onGotoCart(event) {
     wx.switchTab({
-      url: "/pages/cart/cart"
+      url: "/pages/navigator/cart/index"
     })
   },
+  onSpecChange(event) {
+    this.setData({
+      specs: event.detail,
+    })
+  },
+  onSpecAdd(event) {
+    console.log(event)
 
+    if (event.detail.orderWay === ShoppingWay.CART){
+      console.log("加入购物车")
+    } else if (event.detail.orderWay === ShoppingWay.BUY){
+      wx.navigateTo({
+        url: '/pages/subpackages/mall/product/order/index',
+      })
+    }
+
+    this.setData({
+      showRealm: false
+    })
+
+  }
 })

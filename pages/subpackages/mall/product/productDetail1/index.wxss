@@ -44,7 +44,7 @@
     justify-content:center;
 }
 .detail-img-container{
-    margin-bottom: 130rpx;
+    /* margin-bottom: 130rpx; */
     padding: 10rpx;
 }
 

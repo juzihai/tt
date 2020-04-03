@@ -5,5 +5,5 @@
     bottom:0;
 }
 scroll-view{
-  padding: 0 0  130rpx;
+  padding: 10px 10px  130rpx;
 }

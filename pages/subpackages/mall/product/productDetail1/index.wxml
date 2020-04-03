@@ -1,6 +1,6 @@
 <import src='../../../../../wxParse/wxParse.wxml' />
 
-<scroll-view scroll-y>
+<scroll-view scroll-y style="height:{{h}}rpx;">
 <!-- 轮播 -->
   <swiper class="top" autoplay indicator-dots wx:if="{{banner.Data.length>0}}">
     <swiper-item wx:for="{{banner.Data}}" wx:key="index">
@@ -9,7 +9,7 @@
   </swiper>
  <image wx:else class="top" mode="aspectFill" src="{{spu.ProductImage}}"></image>
 <!-- 商品描述 -->
-  <l-spu-description spu="{{spu}}"></l-spu-description>
+  <s-spu-description spu="{{spu}}"></s-spu-description>
 
 <!-- 选择栏 -->
   <view class="sku-pending">
@@ -46,7 +46,7 @@
 
   <!-- 属性 -->
     <!-- <view class="explain">
-        <l-sale-explain texts="{{explain}}"></l-sale-explain>
+        <s-sale-explain texts="{{explain}}"></s-sale-explain>
     </view> -->
   <!-- 图片展示 -->
     <!-- <view class="detail-img-container">
@@ -60,11 +60,16 @@
 
 </scroll-view>
 
-<l-tap-bar class="tapbar"
+<l-popup content-align="bottom" show="{{showRealm}}">
+    <s-realm bind:specadd="onSpecAdd" bind:specchange="onSpecChange" order-way="{{orderWay}}" spu="{{spu}}"></s-realm>
+</l-popup>
+
+
+<s-tap-bar class="tapbar"
            bind:gotohome="onGotoHome"
            bind:gotocart="onGotoCart"
            bind:addtocart="onAddToCart"
            bind:buy="onBuy"
-           leftTitle="联系我们"
+           leftTitle="加入购物车"
            rightTitle="立即购买"
-></l-tap-bar>
+></s-tap-bar>

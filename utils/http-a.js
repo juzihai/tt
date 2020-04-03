@@ -49,7 +49,7 @@ class Http {
     const statusCode = res.statusCode.toString()
     if (statusCode.startsWith('2')) {
       let resultCode = res.data.ResultCode
-      if (resultCode.startsWith('2')) {} else {
+      if (resultCode && resultCode.startsWith('2')) {} else {
         this._show_error(resultCode);
       }
     } else {
