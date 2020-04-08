@@ -11,3 +11,4 @@
     show-region="{{showRegion}}"
     bind:myevent="emitHideRegion">
 </region-picker>
+

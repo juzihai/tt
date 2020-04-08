@@ -1,4 +1,4 @@
-import { Http } from '../utils/http'
+import { Http } from '../utils/http-a'
 class Spu {
 
   static isNoSpec(spu) {

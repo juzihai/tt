@@ -1,4 +1,17 @@
 <view class="container">
+  <view class="search-container">
+          <l-button
+                width="710"
+                height="60"
+                icon="research"
+                icon-size="24"
+                icon-color="#C4C9D2"
+                l-class="search-btn"
+                bind:lintap="onGotoSearch"
+                shape="square">
+            搜索商品
+        </l-button>
+  </view>
   <!-- 主题图片展示-->
   <!-- <image class="top-theme" src="{{themeA.entrance_img}}" mode="widthFix"></image> -->
   <!-- 轮播图   -->

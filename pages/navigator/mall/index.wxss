@@ -1,10 +1,28 @@
 
-
-/* .container{
-    background-color: #000000;
-} */
-
-
+page{
+    background-color: #ffffff;
+}
+.container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.search-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20rpx;
+}
+.search-btn{
+    background-color: #f1f1f1 !important;
+    color: #C4C9D2 !important;
+    font-size: 24rpx !important;
+    font-weight: 400 !important;
+    border-radius: 40rpx !important;
+    justify-content: start !important;
+    padding-left: 20px !important;
+}
 
 .top-theme {
     width: 100%;

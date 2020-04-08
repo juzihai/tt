@@ -122,6 +122,11 @@ Page({
 
 
   },
+  onGotoSearch() {
+    wx.navigateTo({
+      url: `/pages/subpackages/mall/product/search/index`
+    })
+  },
   onActicity(){
     wx.navigateTo({
       url: '/pages/subpackages/mall/cards/coupon/index',

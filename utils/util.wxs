@@ -3,16 +3,24 @@ var limit = function(array, length) {
 }
 // utc时间转当地时间
 function utcToBj(utcDateTime, format = 'Y/M/D h:m:s') {
-  var date = getDate()
-  var min = date.getTimezoneOffset()
-  var time = min * 60 * 1000
+  if (utcDateTime) {
+    var date = getDate()
+    var min = date.getTimezoneOffset()
+    var time = min * 60 * 1000
 
-  // utc时间对象
-  var utcDate = getDate(utcDateTime)
-  var utcTime = utcDate.getTime()
-  var bjTime = utcTime - time
-  var bjDateTime = formatTime(bjTime, format); //转换为日期
-  return bjDateTime
+    // utc时间对象
+    utcDateTime = utcDateTime.replace(getRegExp("T", "g"), ' ').replace(getRegExp("-", "g"), '/') // 将 '-' 替换成 '/'
+    utcDateTime = utcDateTime.slice(0, utcDateTime.indexOf('.'))
+
+    var utcDate = getDate(utcDateTime)
+    var utcTime = utcDate.getTime()
+    var bjTime = utcTime - time
+    var bjDateTime = formatTime(bjTime, format); //转换为日期
+    return bjDateTime
+  } else {
+    return '--'
+  }
+
 }
 
 /** 

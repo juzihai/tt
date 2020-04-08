@@ -6,11 +6,11 @@ const config = {
   // "EnterpriseID": "4644",//石家庄测试id
 
   /** 测试地址appid：wx72c692238d3d16bc*/
-  // "apiBaseUrl": 'https://www.jinduochina.com/',
-  "apiBaseUrl": 'http://company.jinduochina.com/',
-  "EnterpriseID": "3373",//测试id
+  "apiBaseUrl": 'https://company.gzchinaunion.com/',
+  "EnterpriseID": "3373",//金朵 wxa93d39f1484ac31a
 }
 const tips = {
+  /// 平台类接口返回定义   
   "1": '服务繁忙,请稍后再试',
   "500": '内部请求出错',
   "600.1":'数据已存在',
@@ -30,8 +30,6 @@ const tips = {
   "900.2":'员工编码已存在',
   "660.1":' 数据操作失败',
 
-/// 平台类接口返回定义   
-
 }
 
 
@@ -39,5 +37,5 @@ const tips = {
 // 配置文件es6导出
 export {
   config,
-  tips
+  tips,
 }

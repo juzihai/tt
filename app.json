@@ -45,7 +45,7 @@
         "selectedIconPath": "/imgs/tabbar/team-select.png"
       },
       {
-        "pagePath": "pages/navigator/statistics/index",
+        "pagePath": "pages/navigator/statisticsTest/index",
         "text": "统计",
         "iconPath": "/imgs/tabbar/team.png",
         "selectedIconPath": "/imgs/tabbar/team-select.png"
@@ -87,6 +87,7 @@
         "product/productDetail1/index",
         "product/classiFication/index",
         "product/order/index",
+        "product/search/index",
         "activity/activity/index",
         "activity/activityDetail/index",
         "activity/hotActivityDetail/index",

@@ -1,0 +1,58 @@
+<!--pages/subpackages/mall/product/search/index.wxml-->
+<view class="header">
+  <l-search-bar l-class="input" maxlength="11" bg-color="#f1f1f1" bind:linconfirm="onSearch" bind:lincancel="onCancel" placeholder="输入商品名称">
+  </l-search-bar>
+</view>
+
+<view class="container">
+  <view wx:if="{{!search}}">
+    <view class="history-container">
+      <view class="history-title">
+        <view class="slide"></view>
+        <text>历史搜索</text>
+        <view style="flex:1"></view>
+        <view bind:tap="onDeleteHistory" class="icon">
+          <l-icon name="delete" color="#999999" size="32"></l-icon>
+        </view>
+      </view>
+
+      <view class="history-tags">
+        <block wx:for="{{historyTags}}" wx:key="{{index}}">
+          <l-tag bind:lintap="onSearch" l-class="tag" name="{{item}}">
+            {{item}}
+          </l-tag>
+        </block>
+      </view>
+    </view>
+
+    <!-- <view class="history-container">
+      <view class="history-title">
+        <view class="slide"></view>
+        <text>热门搜索</text>
+        <view style="flex:1"></view>
+      </view>
+      <view class="history-tags">
+        <block wx:for="{{9}}" wx:key="{{index}}">
+          <l-tag bind:lintap="onSearch" select="{{item.highlight}}" l-class="tag" l-select-class="tag-selected" name="{{item.title}}">
+            {{item.title}}点我
+          </l-tag>
+        </block>
+      </view>
+    </view> -->
+  </view>
+
+  <view wx:else>
+    <!-- <block wx:for="{{items}}">
+            <s-spu-preview data="{{item}}"></s-spu-preview>
+        </block> -->
+    <view class="spu">
+      <l-water-flow generic:l-water-flow-item="s-spu-preview"> </l-water-flow>
+    </view>
+
+  </view>
+  <l-toast />
+  <l-loading></l-loading>
+  <l-status-show type="product" full-screen="{{true}}" show="{{statusShow}}"></l-status-show>
+</view>
+
+<l-loadmore show type="{{loadingType}}" end-text="已到底部啦!"></l-loadmore>
