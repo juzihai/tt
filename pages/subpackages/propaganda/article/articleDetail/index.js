@@ -1,4 +1,5 @@
 // pages/subpackages/propaganda/article/articleDetail/index.js
+const app = getApp();
 import { Article } from '../../../../../models/article.js'
 
 var WxParse = require('../../../../../wxParse/wxParse.js');
@@ -16,20 +17,24 @@ Page({
    */
   onLoad: async function (options) {
     let scene = options.scene;
-    let id =0
+    let id =0;
+    let GUID=null;
     if (scene){
       scene = decodeURIComponent(scene);
       id = scene.id
+      GUID = scene.GUID
     }else{
       id = options.id
     }
     const OpenID = wx.getStorageSync('OpenID');
-    const d = new Date();
-    const ReadTime = d.toUTCString()
+
+    const FromPerson = app.globalData.SharOpenID
     let obj = {
       "ID": id,
+      FromPerson,
       ReadPerson: OpenID,
-      ReadTime
+      EnterpriseID:app.config.EnterpriseID,
+      GUID
     }
     Article.UpdateReadAmount(obj)
     const articleModel = await Article.SearchModelDetails(id)
@@ -58,12 +63,20 @@ Page({
   onShareAppMessage: function () {
     let id = this.data.id;
     let OpenID = wx.getStorageSync('OpenID')
-    let url = encodeURIComponent('/pages/subpackages/propaganda/article/articleDetail/index?id='+id);
+    let GUID = app.util.random(32)
+    let url = encodeURIComponent(`/pages/subpackages/propaganda/article/articleDetail/index?id=${id}&GUID=${GUID}`);
+    console.log(url)
+    let obj = {
+      ArticleID: id,
+      OpenID: OpenID,
+      EnterpriseID: app.config.EnterpriseID,
+      GUID
+    }
+    Article.ArticleShareRecord(obj)
 
-    console.log(path)
     return {
       title: "详情",
-      path:`/pages/navigator/index/index?url=${url}&SharOpenID=${OpenID}`
+      path: `/pages/navigator/index/index?url=${url}&SharOpenID=${OpenID}`
     }
   },
 

@@ -10,7 +10,7 @@ Component({
     },
     cardPadding: {
       type: Boolean,
-      value: true
+      value: false
     },
     more:{
       type:Boolean,

@@ -5,7 +5,7 @@ import { Paging } from "../utils/paging";
 class ArticleType extends Http {
 
   //查询
-  static Search({EnterpriseID,TypeName, Page=1, Limit=10 }) {
+  static Search({EnterpriseID,TypeName, Page=1, Limit=99 }) {
     return Http.request({
       url: "api/V1/ArticleType/PageSearchWX",
       data: {

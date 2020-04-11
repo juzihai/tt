@@ -1,0 +1,28 @@
+<!--pages/subpackages/mall/product/addressAdd/index.wxml-->
+<form>
+  <content-card class="content" name="地址管理" cardPadding>
+    <view>
+      <l-input label="姓名" placeholder="请输入收货人姓名" required="{{true}}" label-width="170" clear="{{true}}" />
+      <l-input label="手机号码" placeholder="请输入收货人手机号码" required="{{true}}" label-width="170" clear="{{true}}" />
+      <l-list title="所在地区"  bindtap="chooseRegion">
+        <view slot="right-section">
+          <text wx:if="{{regionValue[0].id}}">{{regionValue[0].name}}/</text>
+          <text wx:if="{{regionValue[1].id}}">{{regionValue[1].name}}/</text>
+          <text wx:if="{{regionValue[2].id}}">{{regionValue[2].name}}</text>
+
+        </view>
+      </l-list>
+      <l-textarea  placeholder="详细地址：如道路、门牌号、小区、楼栋号、单元室等"/>
+      <l-list title="设为默认地址" isLink="{{false}}">
+        <view slot="right-section">
+          <switch />
+        </view>
+      </l-list>
+
+    </view>
+  </content-card>
+
+</form>
+
+<region-picker wx:if="{{data}}" areaData="{{data}}" region-value="{{regionValue}}" show-region="{{showRegion}}" bind:myevent="emitHideRegion">
+</region-picker>

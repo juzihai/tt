@@ -45,7 +45,7 @@
         "selectedIconPath": "/imgs/tabbar/team-select.png"
       },
       {
-        "pagePath": "pages/navigator/statisticsTest/index",
+        "pagePath": "pages/navigator/statistics/index",
         "text": "统计",
         "iconPath": "/imgs/tabbar/team.png",
         "selectedIconPath": "/imgs/tabbar/team-select.png"
@@ -55,6 +55,8 @@
   "usingComponents": {
     "s-spu-preview": "components/spu-preview/index",
     "s-product-preview": "components/product-preview/index",
+    "l-input": "/components/lin-ui/input/index",
+    "l-list": "/components/lin-ui/list/index",
     "l-counter": "/components/lin-ui/counter/index",
     "l-loadmore": "/components/lin-ui/loadmore/index",
     "l-water-flow": "/components/lin-ui/water-flow/index",
@@ -71,6 +73,7 @@
     "l-action-sheet": "/components/lin-ui/action-sheet/index",
     "l-search-bar": "/components/lin-ui/search-bar/index",
     "l-popup": "/components/lin-ui/popup/index",
+    "l-textarea": "/components/lin-ui/textarea/index",
     "content-card": "/components/content-card/index",
     "region-picker": "/components/region-picker/index",
     "s-counter": "components/counter/index"
@@ -87,6 +90,8 @@
         "product/productDetail1/index",
         "product/classiFication/index",
         "product/order/index",
+        "product/addressList/index",
+        "product/addressAdd/index",
         "product/search/index",
         "activity/activity/index",
         "activity/activityDetail/index",

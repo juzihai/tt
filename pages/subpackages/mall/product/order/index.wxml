@@ -1,2 +1,16 @@
 <!--pages/subpackages/mall/product/order/index.wxml-->
-<text>pages/subpackages/mall/product/order/index.wxml</text>
+<view class="container">
+  <view class="action">
+    <l-icon color="#157658" name="address"></l-icon>
+  </view>
+  <view class="center">
+    <view>
+      <text class="title">曹可</text>
+      <text class="subtitle"> 13001387099</text>
+    </view>
+    <text class="subtitle">天津市和平区电子商务大厦505</text>
+  </view>
+  <view class="action">
+    <l-icon color="#157658" name="right"></l-icon>
+  </view>
+</view>

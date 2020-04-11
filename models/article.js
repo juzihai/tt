@@ -16,13 +16,15 @@ class Article extends Http {
     }, Page, Limit, TerminalType)
   }
   //6. 修改阅读量
-  static UpdateReadAmount({ ID, ReadPerson, ReadTime}) {
+  static UpdateReadAmount({ ID, ReadPerson, FromPerson, EnterpriseID, GUID}) {
     return Http.request({
       url: "api/V1/Article/UpdateReadAmount",
       data: {
         ID,
         ReadPerson,
-        ReadTime
+        FromPerson,
+        EnterpriseID,
+        GUID
       }
     })
   }
@@ -45,6 +47,19 @@ class Article extends Http {
         Limit
       },
       TerminalType
+    })
+  }
+
+  //11.记录分享数据
+  static ArticleShareRecord({ EnterpriseID, GUID, OpenID, ArticleID }) {
+    return Http.request({
+      url: "api/V1/Article/ArticleShareRecord",
+      data: {
+        EnterpriseID,
+        GUID,
+        OpenID,
+        ArticleID
+      }
     })
   }
 

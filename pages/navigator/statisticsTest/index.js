@@ -229,8 +229,9 @@ Page({
       chart.pieLabel({
         sidePadding: 40,
         label1: function label1(data, color) {
+          let radior = data.radior ? data.radior:0
           return {
-            text: data.name,
+            text: `${data.name} (${radior}%)`,
             fill: color
           };
         },
@@ -245,7 +246,7 @@ Page({
 
       chart.interval()
         .position('*value')
-        .color('name')
+        .color('name', ['#1890FF', '#13C2C2', '#2FC25B', '#FACC14', '#F04864'])
         .adjust('stack');
       chart.render();
     })

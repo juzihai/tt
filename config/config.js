@@ -7,7 +7,7 @@ const config = {
 
   /** 测试地址appid：wx72c692238d3d16bc*/
   "apiBaseUrl": 'https://company.gzchinaunion.com/',
-  "EnterpriseID": "3373",//金朵 wxa93d39f1484ac31a
+  "EnterpriseID": "3373",//金朵 wxa93d39f1484ac31a/wx72c692238d3d16bc
 }
 const tips = {
   /// 平台类接口返回定义   
