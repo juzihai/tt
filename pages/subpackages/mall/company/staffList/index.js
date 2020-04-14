@@ -37,7 +37,8 @@ Page({
     this.data.staffModel = staffModel 
     const staff = await staffModel.getMoreData();//todo
     this.setData({
-      staff
+      staff,
+      pagePath
     })
   },
 

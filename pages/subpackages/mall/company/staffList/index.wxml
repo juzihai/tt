@@ -7,7 +7,7 @@
     <view class="content">
       <image src="{{item.baseUrl}}{{item.HeadImage}}"  mode="aspectFill" bindtap='previewImage'  data-image='{{item.baseUrl}}{{item.HeadImage}}' ></image>
       <view class="desc">
-        <view>职位：{{item.Position}}</view>
+        <view wx:if="{{pagePath!='mine'}}">职位：{{item.Position}}</view>
         <view>姓名：{{item.StaffName}}</view>
         <view class="cu-capsule radius" bindtap='onPhone' data-phone='{{item.Phone}}'>
           <view class='cu-tag bg-green '>
@@ -19,7 +19,7 @@
         </view>
       </view>
     </view>
-    <view class='padding'>个人介绍：
+    <view class='padding' wx:if="{{pagePath!='mine'}}">个人介绍：
       <text class='text-gray'> {{item.PersonalProfile}}</text>
     </view>
   </view>

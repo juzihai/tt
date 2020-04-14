@@ -43,12 +43,6 @@
         "text": "我的",
         "iconPath": "/imgs/tabbar/team.png",
         "selectedIconPath": "/imgs/tabbar/team-select.png"
-      },
-      {
-        "pagePath": "pages/navigator/statistics/index",
-        "text": "统计",
-        "iconPath": "/imgs/tabbar/team.png",
-        "selectedIconPath": "/imgs/tabbar/team-select.png"
       }
     ]
   },
@@ -74,6 +68,8 @@
     "l-search-bar": "/components/lin-ui/search-bar/index",
     "l-popup": "/components/lin-ui/popup/index",
     "l-textarea": "/components/lin-ui/textarea/index",
+    "l-radio-group": "/components/lin-ui/radio-group/index",
+    "l-radio": "/components/lin-ui/radio/index",
     "content-card": "/components/content-card/index",
     "region-picker": "/components/region-picker/index",
     "s-counter": "components/counter/index"

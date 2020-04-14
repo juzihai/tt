@@ -1,5 +1,5 @@
 /* pages/subpackages/mall/product/order/index.wxss */
-.container{
+.address-container{
   box-sizing: border-box;
   background-color: white;
   display: flex;
@@ -29,4 +29,42 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.left-card{
+   width: 150rpx !important;
+  height: 150rpx !important;
+}
+
+.avter-share-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.like-container{
+  display: flex;
+  flex-direction: row;
+  margin-left: 40rpx;
+  align-items: center
+}
+
+.number{
+  color: #666;
+  font-size: 24rpx;
+  margin-left: 12rpx;
+}
+.l-right-class{
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  align-items: center;
+}
+
+.tapbar{
+    position:fixed;
+    bottom:0;
+}
+.button{
+  margin: 0px 10px;
 }

@@ -1,14 +1,28 @@
-<view bindtap="chooseRegion">请选择</view>
-<view>
-    <text wx:if="{{regionValue[0].id}}">{{regionValue[0].name}}</text>
-    <text wx:if="{{regionValue[1].id}}">{{regionValue[1].name}}</text>
-    <text wx:if="{{regionValue[2].id}}">{{regionValue[2].name}}</text>
-</view>
-...
-<region-picker wx:if="{{data}}"
-    areaData="{{data}}"
-    region-value="{{regionValue}}"
-    show-region="{{showRegion}}"
-    bind:myevent="emitHideRegion">
-</region-picker>
 
+<scroll-view scroll-y style="height:{{h}}rpx;">
+
+
+</scroll-view>
+
+<view class="tabbar">
+  <l-list  is-link="{{false}}">
+    <view slot="right-section" class="l-right-class">
+    <text class="subtitle">共2件</text>小计：
+        <view class="price-row">
+          <l-price color="#157658" 
+            value-size="28"
+            unit-size="20"
+            autofix 
+            value="{{p.mainPrice(item.Price,item.DiscountPrice).price}}"></l-price>
+          <l-price l-class="discount-price" 
+            color="#999999" 
+            size="26" 
+            wx:if="{{item.DiscountPrice}}" 
+            deleted 
+            value="{{p.slashedPrice(item.Price,item.DiscountPrice).price}}"></l-price>
+        </view>
+        <l-button bg-color="orange" class="button">提交订单</l-button>
+    </view>
+    
+  </l-list>
+</view>

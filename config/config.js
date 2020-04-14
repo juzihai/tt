@@ -1,13 +1,13 @@
 // 配置项
 const config = {
-  /** 正式地址appid：wxa93d39f1484ac31a*/
-  // "apiBaseUrl": 'https://www.yulongyi.com/',
-  // "EnterpriseID": "242415",//正式id
-  // "EnterpriseID": "4644",//石家庄测试id
+  /** 正式地址*/
+  "apiBaseUrl": 'https://qy.gzchinaunion.com/',
+  // "EnterpriseID": "2645",//金朵正式 wxadb9c5292f70762a
+  "EnterpriseID": "4981",//益清正式 wxdc90f597804fb320
 
-  /** 测试地址appid：wx72c692238d3d16bc*/
-  "apiBaseUrl": 'https://company.gzchinaunion.com/',
-  "EnterpriseID": "3373",//金朵 wxa93d39f1484ac31a/wx72c692238d3d16bc
+  /** 测试地址*/
+  // "apiBaseUrl": 'https://company.gzchinaunion.com/',
+  // "EnterpriseID": "3373",
 }
 const tips = {
   /// 平台类接口返回定义   

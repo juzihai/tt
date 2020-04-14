@@ -1,1 +1,17 @@
 /* pages/navigator/cart/index.wxss */
+
+
+.l-right-class{
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  align-items: center;
+}
+.tapbar{
+    position:fixed;
+    bottom:0;
+    background-color: white !important;
+}
+.button{
+  margin: 0px 10px;
+}

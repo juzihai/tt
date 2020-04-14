@@ -1,4 +1,7 @@
-// pages/subpackages/mall/product/order/index.js
+import {
+  getWindowHeightRpx
+} from "../../../../../utils/system";
+
 Page({
 
   /**
@@ -11,8 +14,12 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: async function (options) {
+    const windowHeight = await getWindowHeightRpx();
+    const h = windowHeight - 100; // 100 是底部tabbar的高度  自定义的tabbar高度是不包含在 windowHeight里的
+    this.setData({
+      h,
+    })
   },
 
   /**

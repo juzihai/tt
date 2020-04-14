@@ -5,7 +5,7 @@ import { Paging } from "../utils/paging";
 class Location extends Http {
 
 
-  //7. 查询文章详情
+  //7. 
   static AddLocation({ OpenID, Phone, EnterpriseID, Nation, Province, City, Area, Address, Lat, Lng, CreatTime, Type}) {
     return Http.request({
       url: "api/V1/Location/AddLocation",

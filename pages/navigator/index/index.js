@@ -57,7 +57,9 @@ Page({
   onShow(){
     this.initAllData();
   },
-
+  onPullDownRefresh() {
+    this.initAllData();
+  },
   async initAllData(){
     let obj = {
       "EnterpriseID": app.config.EnterpriseID,
@@ -87,6 +89,7 @@ Page({
       noticeArr,
       loading:false
     })
+    wx.stopPullDownRefresh();
     this.tabSelectGetData()
   },
 /** */
@@ -100,6 +103,8 @@ Page({
       wx.openLocation({
         latitude: shopInfo.Latitude,
         longitude: shopInfo.Longitude,
+        // longitude:117.20,
+        // latitude:39.12,
         scale: '16',
         name: shopInfo.CompanyName,
         address: shopInfo.Address,
