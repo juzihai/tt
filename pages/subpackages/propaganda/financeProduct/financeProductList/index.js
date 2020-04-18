@@ -43,7 +43,6 @@ Page({
   onReachBottom: async function () {
 
     const data = await this.data.articleModel.getMoreData();
-    console.log(data)
     if (!data) {
       this.setData({
         loadingType: 'end'
@@ -54,13 +53,14 @@ Page({
         loadingType: 'loading'
       })
     }
-
+    this.setData({
+      article: data
+    })
 
     if (!data.moreData) {
       this.setData({
         loadingType: 'end'
       })
-
     }
 
   },

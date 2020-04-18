@@ -28,11 +28,11 @@ class ShoppingCart extends Http {
   }
   
   //3. 查询
-  static Query({ EnterpriseID, OpenId, Page, Limit }) {
+  static Query({ EnterpriseId, OpenId, Page, Limit }) {
     return new Paging({
       url: "api/V1/ShoppingCart/Query",
       data: {
-        EnterpriseID,
+        EnterpriseId,
         OpenId
       }
     }, Page, Limit)

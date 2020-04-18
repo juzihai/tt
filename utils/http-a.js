@@ -9,9 +9,8 @@ import {
 
 const app = getApp()
 
-const AreaName = config.EnterpriseID
-
-var test1 = "金朵科技"
+const EnterpriseId = config.EnterpriseID
+const AuthCode = wx.getStorageSync('OpenID')
 
 class Http {
   static async request({
@@ -37,10 +36,8 @@ class Http {
       method,
       header: {
         SystemUserID,
-        CreationTime,
-        AreaName,
-        AreaDisplayName: encodeURI(test1),
-        SystemIP: "", //ip
+        EnterpriseId,
+        AuthCode,
         TerminalType,
 
       },

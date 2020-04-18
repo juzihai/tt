@@ -47,14 +47,14 @@
     ]
   },
   "usingComponents": {
-    "s-spu-preview": "components/spu-preview/index",
-    "s-product-preview": "components/product-preview/index",
+
     "l-input": "/components/lin-ui/input/index",
     "l-list": "/components/lin-ui/list/index",
     "l-counter": "/components/lin-ui/counter/index",
-    "l-loadmore": "/components/lin-ui/loadmore/index",
     "l-water-flow": "/components/lin-ui/water-flow/index",
     "l-loading": "/components/lin-ui/loading/index",
+    "l-loadmore": "/components/lin-ui/loadmore/index",
+    "l-toast": "/components/lin-ui/toast/index",
     "l-status-show": "/components/lin-ui/status-show/index",
     "l-card": "/components/lin-ui/card/index",
     "l-icon": "/components/lin-ui/icon/index",
@@ -70,6 +70,10 @@
     "l-textarea": "/components/lin-ui/textarea/index",
     "l-radio-group": "/components/lin-ui/radio-group/index",
     "l-radio": "/components/lin-ui/radio/index",
+    "l-checkbox-group": "/components/lin-ui/checkbox-group/index",
+    "l-checkbox": "/components/lin-ui/checkbox/index",
+    "s-spu-preview": "components/spu-preview/index",
+    "s-product-preview": "components/product-preview/index",
     "content-card": "/components/content-card/index",
     "region-picker": "/components/region-picker/index",
     "s-counter": "components/counter/index"

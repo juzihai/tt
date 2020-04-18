@@ -1,7 +1,7 @@
 
 <view class="cu-card article no-card}}">
 
-  <view wx:for="{{staff.items}}" wx:key class="cu-item shadow">
+  <view wx:for="{{staff.accumulator}}" wx:key class="cu-item shadow">
 
     <view class="title">{{item.name}}</view>
     <view class="content">
@@ -25,3 +25,5 @@
   </view>
 
 </view>
+
+  <l-status-show show="{{staff.empty}}" type="data"></l-status-show>

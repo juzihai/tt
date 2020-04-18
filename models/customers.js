@@ -81,6 +81,20 @@ class Customers {
       }
     })
   }
+
+  //7. 查询客户信息
+  static GetCustomersInfo({ EnterpriseID, OpenID}) {
+    return Http.request({
+      url: "api/V1/Customers/GetCustomersInfo",
+      data: {
+        EnterpriseID,
+        OpenID
+      }
+    })
+  }
+
+
+
   /**统计接口 */
   // 1.统计用户进入小程序方式的比例
   static GetChannelCustomer({

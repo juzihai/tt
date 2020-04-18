@@ -1,1 +1,6 @@
 /* pages/subpackages/mall/company/staffList/index.wxss */
+
+.img{
+  width: 200rpx !important;
+  height: 280rpx !important;
+}

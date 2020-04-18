@@ -1,10 +1,41 @@
-
 <scroll-view scroll-y style="height:{{h}}rpx;">
+  <view class="p-container" wx:for="{{shoppingCart.accumulator}}">
+    <view class="round">
+      <l-checkbox-group bind:linchange="onChangeTap">
+        <l-checkbox checked="{{item.checked}}" key="{{item.ID}}" cell="{{item}}"></l-checkbox>
+      </l-checkbox-group>
+    </view>
 
-
+    <image class="img" src="{{item.baseUrl+item.ProductImage}}"></image>
+    <view class="right-container">
+      <text>{{item.ProductName}}</text>
+      <view class="counter-container">
+        <text>¥{{item.ProductPrice}}</text>
+        <s-counter bind:lintap="onSelectCount" count="{{item.StockAmount}}" key="{{item.ID}}"></s-counter>
+      </view>
+    </view>
+  </view>
 </scroll-view>
 
-<view class="tabbar">
+
+<view class="tapbar">
+  <view class="submit-container">
+    <view class="round">
+      <checkbox-group>
+        <checkbox></checkbox>全选
+      </checkbox-group>
+    </view>
+    <view>
+      合计¥999
+      <l-button bg-color="orange" class="button">提交订单</l-button>
+    </view>
+
+
+  </view>
+
+</view>
+
+<!-- <view class="tapbar">
   <l-list  is-link="{{false}}">
     <view slot="right-section" class="l-right-class">
     <text class="subtitle">共2件</text>小计：
@@ -25,4 +56,4 @@
     </view>
     
   </l-list>
-</view>
+</view> -->

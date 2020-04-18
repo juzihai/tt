@@ -15,8 +15,10 @@ import {
   config
 } from "./config/config";
 const util = require('utils/util.js');
+import WxValidate from "utils/WxValidate.js";
 
 App({
+  WxValidate: (rules, messages) => new WxValidate(rules, messages),
   config: config,
   util: util,
   onLaunch: function(options) {

@@ -46,13 +46,26 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: async function () {
-    const staff = await this.data.staffModel.getMoreData();
-    if(!staff){
-      return;
+    const data = await this.data.staffModel.getMoreData();
+    if (!data) {
+      this.setData({
+        loadingType: 'end'
+      })
+      return
+    } else {
+      this.setData({
+        loadingType: 'loading'
+      })
     }
     this.setData({
-      staff
+      staff: data
     })
+
+    if (!data.moreData) {
+      this.setData({
+        loadingType: 'end'
+      })
+    }
   },
   onPhone(e) {
     var phone = e.currentTarget.dataset.phone;

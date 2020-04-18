@@ -14,21 +14,23 @@
 
 <view class='address'>
   <!-- 用户信息列表 -->
-  <view class='address-detail' wx:for="{{2}}">
+  <view class='address-detail' wx:for="{{address.accumulator}}">
     <view catchtap='onDefault' data-id='{{item.Id}}'>
-      <view class='address-name red'>姓名：{{item.PatientName}}</view>
-      <view class='address-phone red'>手机号：{{item.PatientPhone}}</view>
-      <view class='address-phone red'>地址：{{item.PatientPhone}}</view>
+      <view class='address-name red'>姓名：{{item.RealName}}</view>
+      <view class='address-phone red'>手机号：{{item.TelPhone}}</view>
+      <view class='address-phone red'>地址：{{item.Province}}{{item.City}}{{item.Area}}{{item.Street}}</view>
     </view>
 
     <view class='address-edit'>
-      <text class='address-default red' wx:if="{{item.IsDefault==1}}">默认</text>
-      <text wx:else catchtap='onDefault' data-id='{{item.Id}}'>设置默认</text>
+      <text class='address-default red' wx:if="{{item.IsDefaultAddress==1}}">默认</text>
+      <text wx:else catchtap='onDefault' data-id='{{item.ID}}'>设置默认</text>
       <!-- <text>|</text> -->
-      <text catchtap='onDelete' data-id='{{item.Id}}'>删除</text>
+      <text catchtap='onDelete' data-id='{{item.ID}}'>删除</text>
     </view>
   </view>
 
 
 
 </view>
+
+<l-loadmore show type="{{loadingType}}" end-text="已到底部啦!"></l-loadmore>

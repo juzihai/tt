@@ -173,59 +173,59 @@ Page({
       });
 
       const data = [{
-        value: 1,
-        type: '刑事辩护与代理',
-        date: '2011-10-01',
-        name: '企业宣传',
-      },
-      {
-        value: 2,
-        type: '民事诉讼与仲裁',
-        date: '2011-10-01',
-        name: '企业宣传'
-      },
-      {
-        value: 3,
-        type: '公司企业与上市',
-        date: '2011-10-01',
-        name: '企业宣传'
-      },
-      {
-        value: 3,
-        type: '刑事辩护与代理',
-        date: '2011-10-02',
-        name: '企业宣传'
-      },
-      {
-        value: 6,
-        type: '民事诉讼与仲裁',
-        date: '2011-10-02',
-        name: '企业宣传'
-      },
-      {
-        value: 9,
-        type: '公司企业与上市',
-        date: '2011-10-02',
-        name: '企业宣传'
-      },
-      {
-        value: 4,
-        type: '刑事辩护与代理',
-        date: '2011-10-03',
-        name: '企业宣传'
-      },
-      {
-        value: 20,
-        type: '民事诉讼与仲裁',
-        date: '2011-10-03',
-        name: '企业宣传'
-      },
-      {
-        value: 40,
-        type: '公司企业与上市',
-        date: '2011-10-03',
-        name: '企业宣传'
-      },
+          value: 1,
+          type: '刑事辩护与代理',
+          date: '2011-10-01',
+          name: '企业宣传',
+        },
+        {
+          value: 2,
+          type: '民事诉讼与仲裁',
+          date: '2011-10-01',
+          name: '企业宣传'
+        },
+        {
+          value: 3,
+          type: '公司企业与上市',
+          date: '2011-10-01',
+          name: '企业宣传'
+        },
+        {
+          value: 3,
+          type: '刑事辩护与代理',
+          date: '2011-10-02',
+          name: '企业宣传'
+        },
+        {
+          value: 6,
+          type: '民事诉讼与仲裁',
+          date: '2011-10-02',
+          name: '企业宣传'
+        },
+        {
+          value: 9,
+          type: '公司企业与上市',
+          date: '2011-10-02',
+          name: '企业宣传'
+        },
+        {
+          value: 4,
+          type: '刑事辩护与代理',
+          date: '2011-10-03',
+          name: '企业宣传'
+        },
+        {
+          value: 20,
+          type: '民事诉讼与仲裁',
+          date: '2011-10-03',
+          name: '企业宣传'
+        },
+        {
+          value: 40,
+          type: '公司企业与上市',
+          date: '2011-10-03',
+          name: '企业宣传'
+        },
       ];
       chart.source(data);
       chart.scale('date', {
@@ -254,11 +254,11 @@ Page({
           const tooltipItems = obj.items;
           const legendItems = legend.items;
           const map = {};
-          legendItems.forEach(function (item) {
+          legendItems.forEach(function(item) {
             // map[item.name] = _.clone(item);
             map[item.name] = "企业宣传";
           });
-          tooltipItems.forEach(function (item) {
+          tooltipItems.forEach(function(item) {
             console.log(item)
             const name = item.name;
             const value = item.value;
@@ -466,50 +466,50 @@ Page({
           count: '84',
           phone: '13001387099',
           donee: '孙贺良',
-            type: '案例展示',
+          type: '案例展示',
         }, {
           id: 1,
           name: '公司企业与上市',
           count: '106',
           phone: '13001387099',
           donee: '孙贺良',
-            type: '案例展示',
+          type: '案例展示',
         }, {
           id: 1,
           name: '建筑工程房地产',
           count: '32',
           phone: '13001387099',
           donee: '孙贺良',
-            type: '案例展示',
+          type: '案例展示',
         }, {
           id: 1,
           name: '融资上市与信贷',
           count: '18',
           phone: '13001381096',
           donee: '孙伟',
-            type: '案例展示',
-          }, {
-            id: 1,
-            name: '涉外诉讼与仲裁',
-            count: '8',
-            phone: '13001381096',
-            donee: '孙伟',
-            type: '案例展示',
-          }, {
-            id: 1,
-            name: '行政复议与诉讼',
-            count: '10',
-            phone: '13001381096',
-            donee: '孙伟',
-            type: '案例展示',
-          }, {
-            id: 1,
-            name: '知识产权与侵权',
-            count: '19',
-            phone: '13001381096',
-            donee: '孙伟',
-            type: '案例展示',
-          }, ]
+          type: '案例展示',
+        }, {
+          id: 1,
+          name: '涉外诉讼与仲裁',
+          count: '8',
+          phone: '13001381096',
+          donee: '孙伟',
+          type: '案例展示',
+        }, {
+          id: 1,
+          name: '行政复议与诉讼',
+          count: '10',
+          phone: '13001381096',
+          donee: '孙伟',
+          type: '案例展示',
+        }, {
+          id: 1,
+          name: '知识产权与侵权',
+          count: '19',
+          phone: '13001381096',
+          donee: '孙伟',
+          type: '案例展示',
+        }, ]
 
         headers = [{
           text: 'name',
@@ -616,25 +616,25 @@ Page({
           share: '田禹',
           phone: '13001387099',
           donee: '2020-02-01',
-            address: '天津市塘沽',
+          address: '天津市塘沽',
         }, {
           id: 1,
           share: '孙贺良',
           phone: '13001387099',
           donee: '2020-02-01',
-            address: '天津市宁和',
+          address: '天津市宁和',
         }, {
           id: 1,
           share: '孙伟',
           phone: '13001387099',
           donee: '2020-02-01',
-            address: '天津市和平区',
+          address: '天津市和平区',
         }, {
           id: 1,
           share: '吕绍康',
           phone: '13001387099',
           donee: '2020-02-01',
-            address: '天津市和平区',
+          address: '天津市和平区',
         }]
 
         headers = [{
@@ -647,7 +647,7 @@ Page({
           text: 'donee',
           display: '打开时间'
         }, {
-            text: 'address',
+          text: 'address',
           display: '地址'
         }, ]
         items2 = [{
@@ -674,25 +674,25 @@ Page({
           share: '田禹',
           phone: '13001387099',
           donee: '2020-02-01',
-            type: '新闻',
+          type: '新闻',
         }, {
           id: 1,
           share: '孙贺良',
           phone: '18522158390',
           donee: '2020-02-01',
-            type: '活动',
+          type: '活动',
         }, {
           id: 1,
           share: '孙伟',
           phone: '13001381096',
           donee: '2020-02-01',
-            type: '招聘',
+          type: '招聘',
         }, {
           id: 1,
           share: '吕绍康',
           phone: '15501381099',
           donee: '2020-02-01',
-            type: '热门产品',
+          type: '热门产品',
         }]
 
         headers = [{
@@ -731,7 +731,7 @@ Page({
         }, {
           id: 1,
           share: '田禹',
-            sharePhone: '13001387099',
+          sharePhone: '13001387099',
           donee: '李四',
           phone: '13027603342',
           shareAction: "文章",
@@ -739,7 +739,7 @@ Page({
         }, {
           id: 1,
           share: '田禹',
-            sharePhone: '13001387099',
+          sharePhone: '13001387099',
           donee: '李四',
           phone: '13027603342',
           shareAction: "新闻",
@@ -747,7 +747,7 @@ Page({
         }, {
           id: 1,
           share: '田禹',
-            sharePhone: '13001387099',
+          sharePhone: '13001387099',
           donee: '孙贺良',
           phone: '13027603342',
           shareAction: "活动",
@@ -755,7 +755,7 @@ Page({
         }, {
           id: 1,
           share: '田禹',
-            sharePhone: '13001387099',
+          sharePhone: '13001387099',
           donee: '孙伟',
           phone: '12227603333',
           shareAction: "精选",
@@ -763,7 +763,7 @@ Page({
         }, {
           id: 1,
           share: '田禹',
-            sharePhone: '13001387099',
+          sharePhone: '13001387099',
           donee: '吕绍康',
           phone: '13022223342',
           shareAction: "产品",
@@ -774,7 +774,7 @@ Page({
           text: 'share',
           display: '分享者'
         }, {
-            text: 'sharePhone',
+          text: 'sharePhone',
           display: '分享者手机号'
         }, {
           text: 'donee',

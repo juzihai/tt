@@ -1,11 +1,11 @@
 
 <view class="cu-card article no-card}}">
 
-  <view wx:for="{{staff.items}}" wx:key class="cu-item shadow">
+  <view wx:for="{{staff.accumulator}}" wx:key class="cu-item shadow">
 
     <view class="title">{{item.name}}</view>
     <view class="content">
-      <image src="{{item.baseUrl}}{{item.HeadImage}}"  mode="aspectFill" bindtap='previewImage'  data-image='{{item.baseUrl}}{{item.HeadImage}}' ></image>
+      <image src="{{item.baseUrl}}{{item.HeadImage}}"  mode="scaleToFill" bindtap='previewImage'  data-image='{{item.baseUrl}}{{item.HeadImage}}' class="img"></image>
       <view class="desc">
         <view wx:if="{{pagePath!='mine'}}">职位：{{item.Position}}</view>
         <view>姓名：{{item.StaffName}}</view>
@@ -25,3 +25,5 @@
   </view>
 
 </view>
+
+  <l-status-show show="{{staff.empty}}" type="data"></l-status-show>

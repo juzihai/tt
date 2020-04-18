@@ -13,7 +13,7 @@
 
 .swiper {
     width: 100%; 
-    height: 360rpx;
+    height: 420rpx;
 }
 
 .activity {

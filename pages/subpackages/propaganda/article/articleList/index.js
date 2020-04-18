@@ -56,7 +56,9 @@ Page({
         loadingType: 'loading'
       })
     }
-
+    this.setData({
+      article: data
+    })
     if (!data.moreData) {
       this.setData({
         loadingType: 'end'

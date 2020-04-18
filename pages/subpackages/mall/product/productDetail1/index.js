@@ -11,7 +11,9 @@ import {
 import {
   ShoppingWay
 } from "../../../../../core/enum";
-
+import {
+  ShoppingCart
+} from "../../../../../models/shoppingCart.js";
 var WxParse = require('../../../../../wxParse/wxParse.js');
 Page({
 
@@ -49,7 +51,8 @@ Page({
       spu,
       banner,
       pid,
-      pcode
+      pcode,
+      pagePath
     })
     /**
      * WxParse.wxParse(bindName , type, data, target,imagePadding)
@@ -112,11 +115,29 @@ Page({
       specs: event.detail,
     })
   },
-  onSpecAdd(event) {
+  async onSpecAdd(event) {
     console.log(event)
 
     if (event.detail.orderWay === ShoppingWay.CART){
-      console.log("加入购物车")
+      let obj={
+        OpenId: wx.getStorageSync('OpenID'),
+        EnterpriseId: app.config.EnterpriseID,
+        ProductId: event.detail.spu.ID,
+        ProductNum: event.detail.currentSkuCount,
+        ProductType: this.data.pagePath == "HotProduct" ? 2 : 1
+      }
+      const cart=await ShoppingCart.Add(obj)
+      if (cart.Success){
+        console.log("加入购物车")
+
+        wx.lin.showToast({
+          title: '添加成功~',
+          icon: 'success'
+        })
+      }else{
+      console.log('添加err')
+      }
+     
     } else if (event.detail.orderWay === ShoppingWay.BUY){
       wx.navigateTo({
         url: '/pages/subpackages/mall/product/order/index',

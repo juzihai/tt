@@ -73,3 +73,5 @@
            leftTitle="加入购物车"
            rightTitle="立即购买"
 ></s-tap-bar>
+
+<l-toast />

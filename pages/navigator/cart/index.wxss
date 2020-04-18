@@ -1,4 +1,36 @@
 /* pages/navigator/cart/index.wxss */
+/* 商品卡片 */
+.p-container{
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+    /* justify-content: space-between; */
+  padding:  20rpx;
+}
+
+.round{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right:  20rpx;
+}
+
+.img{
+  width: 180rpx;
+  height: 180rpx;
+}
+.right-container{
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+.counter-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
 
 .l-right-class{
@@ -10,8 +42,20 @@
 .tapbar{
     position:fixed;
     bottom:0;
-    background-color: white !important;
+    background-color: #ffffff;
+}
+.submit-container{
+    width: 750rpx;
+    height: 100rpx;
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10rpx;
 }
 .button{
-  margin: 0px 10px;
+  margin: 0px 10rpx;
 }
+
+/* tabbar */

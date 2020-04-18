@@ -63,7 +63,7 @@ Page({
   async initAllData(){
     let obj = {
       "EnterpriseID": app.config.EnterpriseID,
-      TerminalType:0
+      TerminalType:1
     }
     const notice = await Article.GetTopArticle(obj)
     const nav = await ArticleType.Search(obj)
@@ -236,8 +236,57 @@ Page({
     }
 
   },
+  /**
+    *
+    * 页面上拉触底事件的处理函数
+    */
+  onReachBottom: async function () {
 
-  onCardItem(e){
+    const data = await this.data.articleModel.getMoreData();
+    console.log(data)
+    if (!data) {
+      this.setData({
+        loadingType: 'end'
+      })
+      return
+    } else {
+      this.setData({
+        loadingType: 'loading'
+      })
+    }
+    this.setData({
+      article: data
+    })
+
+    if (!data.moreData) {
+      this.setData({
+        loadingType: 'end'
+      })
+
+    }
+
+  },
+  async onCardItem(e){
+    // 用户授权
+    await AppModel.getSetting()
+    let phone = wx.getStorageSync('phoneNumber')
+    if (!phone) {
+      wx.showModal({
+        title: '提示',
+        content: '您还未登录是否现在登录',
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            wx.switchTab({
+              url: '/pages/navigator/mine/index',
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+      return
+    }
     let id =e.currentTarget.dataset.id;
     console.log(id)
     wx.navigateTo({
@@ -294,14 +343,14 @@ Page({
     //   "category_id": null,
     //   "root_category_id": 3
     // },
-    {
-      "id": 3,
-      "title": "员工列表",
-      "img": "/imgs/home/kefu.png",
-      "name": null,
-      "category_id": null,
-      "root_category_id": 1
-    },
+    // {
+    //   "id": 3,
+    //   "title": "员工列表",
+    //   "img": "/imgs/home/kefu.png",
+    //   "name": null,
+    //   "category_id": null,
+    //   "root_category_id": 1
+    // },
     // {
     //   "id": 4,
     //   "title": "产品查看",
@@ -318,14 +367,14 @@ Page({
     //   "category_id": null,
     //   "root_category_id": 4
     // },
-    {
-      "id": 6,
-      "title": "金融产品",
-      "img": "/imgs/home/shujufenxi.png",
-      "name": null,
-      "category_id": null,
-      "root_category_id": 24
-    }
+    // {
+    //   "id": 6,
+    //   "title": "金融产品",
+    //   "img": "/imgs/home/shujufenxi.png",
+    //   "name": null,
+    //   "category_id": null,
+    //   "root_category_id": 24
+    // }
   ],
 
 })
