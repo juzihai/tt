@@ -1,0 +1,4 @@
+/* pages/subpackages/mall/product/orderList/index.wxss */
+.aaa{
+  background-color: white;
+}

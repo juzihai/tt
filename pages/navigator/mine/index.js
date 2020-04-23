@@ -16,7 +16,7 @@ Page({
     ],
     listArr: [
       { name: '联系我们', url: '/pages/subpackages/mall/company/staffList/index?pagePath=mine' },
-      { name: '积分排行', url: '' }, //
+      { name: '全部订单', url: '/pages/subpackages/mall/product/orderList/index' }, //
       { name: '我的收藏', url: '' },//
       { name: '我的订单', url: '' },
       { name: '我的优惠券', url: '/pages/subpackages/mall/cards/couponList/index' },

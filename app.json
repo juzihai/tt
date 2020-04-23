@@ -90,6 +90,7 @@
         "product/productDetail1/index",
         "product/classiFication/index",
         "product/order/index",
+        "product/orderList/index",
         "product/addressList/index",
         "product/addressAdd/index",
         "product/search/index",

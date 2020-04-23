@@ -203,6 +203,13 @@
 					"id": -1,
 					"name": "购物车列表",
 					"pathName": "pages/subpackages/mall/cards/couponList/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "全部订单",
+					"pathName": "pages/subpackages/mall/product/orderList/index",
 					"scene": null
 				}
 			]

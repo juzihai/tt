@@ -1,0 +1,16 @@
+<!--pages/subpackages/mall/product/orderList/index.wxml-->
+   <l-segment bind:linchange="changeTabs" l-class="aaa" item-width="30">
+        <l-segment-item tab="全部" key="0" />
+        <l-segment-item tab="待付款" key="1" />
+        <l-segment-item tab="待发货" key="2" />
+        <l-segment-item tab="待收货" key="3" />
+        <l-segment-item tab="已完成" key="4" />
+    </l-segment>  
+
+
+    <view class="card-container">
+      <view class="top"></view>
+      <view class="content"></view>
+      <view></view>
+    
+    </view>
