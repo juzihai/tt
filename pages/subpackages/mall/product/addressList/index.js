@@ -61,6 +61,13 @@ Page({
       url: '/pages/subpackages/mall/product/addressAdd/index',
     })
   },
+
+  onSelectAddress(e){
+    console.log(e)
+    let address=e.currentTarget.dataset.cell;
+    wx.setStorageSync("ShippingAddress", address)
+    wx.navigateBack()
+  },
   async onDefault (e){
     console.log(e)
     let id = e.currentTarget.dataset.id

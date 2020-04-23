@@ -1,4 +1,12 @@
-<wxs src="../../../../../utils/util.wxs" module="util"></wxs>
+<!--pages/subpackages/mall/cards/couponList/index.wxml-->
+    <wxs src="../../../../../utils/util.wxs" module="util"></wxs>
+   <l-segment bind:linchange="changeTabs" l-class="aaa" item-width="30">
+        <l-segment-item tab="未使用" key="0" />
+        <l-segment-item tab="已使用" key="1" />
+        <l-segment-item tab="已过期" key="2" />
+    </l-segment>  
+
+
 
 <view class="coupon-list">
   <block wx:for="{{coupon.accumulator}}" wx:key>
@@ -15,11 +23,14 @@
       </view>
       <view class="after-part">
         <view class="take">
-          <text style="color:white;font-size:20px;">立即</text>
-          <text style="color:white;font-size:20px;">领券</text>
+          <!-- <text style="color:white;font-size:20px;">立即</text> -->
+          <text style="color:white;font-size:20px;" wx:if="{{activeKey==0}}">去使用</text>
+          <text style="color:white;font-size:20px;" wx:if="{{activeKey==1}}">已使用</text>
+          <text style="color:white;font-size:20px;" wx:if="{{activeKey==2}}">已过期</text>
         </view>
         <view class="time" style="color:rgba(255, 255, 255, 1); font-size:10px;font-weight: lighter">
-          {{util.formatTime(item.BeginValidity*1000,"Y/M/D")}}-{{util.formatTime(item.EndValidity*1000,"Y/M/D")}}
+          <!-- {{util.formatTime(item.BeginValidity*1000,"Y/M/D")}}- -->
+          {{util.formatTime(item.EndValidity*1000,"Y/M/D")}}
         </view>
       </view>
     </view>

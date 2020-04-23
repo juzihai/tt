@@ -1,73 +1,56 @@
 import {
   getWindowHeightRpx
 } from "../../../../../utils/system";
+import { Order } from "../../../../../models/order.js";
 
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
 
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: async function (options) {
+    let ProductModel = JSON.parse(options.ProductModel)
     const windowHeight = await getWindowHeightRpx();
     const h = windowHeight - 100; // 100 是底部tabbar的高度  自定义的tabbar高度是不包含在 windowHeight里的
     this.setData({
       h,
+      ProductModel
     })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
-
+    let ShippingAddress = wx.getStorageSync("ShippingAddress")
+    this.setData({
+      ShippingAddress
+    })
+  },
+  onGetAdd(){
+    wx.navigateTo({
+      url: '/pages/subpackages/mall/product/addressList/index',
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+  async onNextTap(){
+    let ShippingAddress=this.data.ShippingAddress
+    let obj={
+      EnterpriseID: app.config.EnterpriseID,
+      OpenId: wx.getStorageSync('OpenID'),
+      ProductCount:0,//商品数量
+      RealName: ShippingAddress.RealName,
+      TelPhone: ShippingAddress.TelPhone,
+      Address: ShippingAddress.Address ,
+      OrderPrice: this.data.ProductModel.ProductPrice,
+      PayPrice:1,
+      Integra: 1,
+      IntegraPrice: 1,
+      LogisticsFee: 1,
+      Remark: 1,
+      DeliveryModel: 1,//配送方式（1：物流；2：自提；3：包邮）
+      OrderDetailListModel: 1,
+      OrderCouponListModel: 1,
+    }
+    const order=await Order.Add()
 
   }
+
 })

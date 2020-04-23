@@ -1,15 +1,18 @@
 <!--pages/subpackages/mall/product/order/index.wxml-->
 <scroll-view scroll-y style="height:{{h}}rpx;">
-<view class="address-container">
+<view class="address-container" bindtap="onGetAdd">
   <view class="action">
     <l-icon color="#157658" name="address"></l-icon>
   </view>
-  <view class="center">
+  <view class="center" wx:if="{{ShippingAddress}}">
     <view>
-      <text class="title">曹可</text>
-      <text class="subtitle"> 13001387099</text>
+      <text class="title">{{ShippingAddress.RealName}}</text>
+      <text class="subtitle"> {{ShippingAddress.TelPhone}}</text>
     </view>
-    <text class="subtitle">天津市和平区电子商务大厦505</text>
+    <text class="subtitle">{{ShippingAddress.Province+ShippingAddress.City+ShippingAddress.Area+ShippingAddress.Street}}</text>
+  </view> 
+  <view wx:else>
+    选择地址～
   </view>
   <view class="action">
     <l-icon color="#157658" name="right"></l-icon>
@@ -103,21 +106,16 @@
 <view class="tabbar">
   <l-list  is-link="{{false}}">
     <view slot="right-section" class="l-right-class">
-    <text class="subtitle">共2件</text>小计：
+    <text class="subtitle">共{{ProductModel.ProductCount}}件</text>合计：
         <view class="price-row">
           <l-price color="#157658" 
             value-size="28" 
             unit-size="20" 
             autofix 
-            value="{{p.mainPrice(item.Price,item.DiscountPrice).price}}"></l-price>
-          <l-price l-class="discount-price" 
-            color="#999999" 
-            size="26" 
-            wx:if="{{item.DiscountPrice}}" 
-            deleted 
-            value="{{p.slashedPrice(item.Price,item.DiscountPrice).price}}"></l-price>
+            value="{{ProductModel.ProductPrice}}"></l-price>
+
         </view>
-        <l-button bg-color="orange" class="button">提交订单</l-button>
+        <l-button bg-color="orange" class="button" bind:lintap="onNextTap">提交订单</l-button>
     </view>
     
   </l-list>

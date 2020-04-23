@@ -97,6 +97,12 @@ App({
         AuthorizationType: 0,
         QrType: launch.scene
       })
+      let obj = {
+        EnterpriseID: this.config.EnterpriseID,
+        OpenID: wx.getStorageSync("OpenID")
+      }
+      const customers = await Customers.GetCustomersInfo(obj)
+      wx.setStorageSync('userInfo', customers)
       // console.log('启动参数1', register)
       if (this.globalData.SharOpenID) {
         let obj = {

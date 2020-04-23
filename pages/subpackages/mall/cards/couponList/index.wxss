@@ -1,0 +1,92 @@
+/* pages/subpackages/mall/cards/couponList/index.wxss */
+
+.aaa{
+  background-color: white;
+}
+
+.coupon-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+.container {
+  margin: 40rpx 0 0rpx 0;
+  position: relative;
+  color: rgba(131, 32, 32, 0.993)
+}
+.container:after {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 100%;
+  background-size: 30px 30px; /* 一个repeat的大小 */
+  background-repeat: repeat-x;
+  background-image: radial-gradient(#fff 8px, transparent 8px);
+  position: absolute;
+  top: 0;
+}
+
+.before-part {
+  width: 220px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+ top: 10rpx;
+}
+
+.after-part {
+  width: 120px;
+  height: 120px;
+  vertical-align: top;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 40rpx;
+  position: absolute;
+ top: 10rpx;
+ right: 0rpx;
+
+}
+
+.price {
+  width: 210px;
+  height: 80px;
+  text-align: center;
+  padding-top: 45rpx;
+  border-radius: 40rpx;
+}
+
+.tips {
+  width: 180px;
+  padding-left: 10rpx;
+  text-align: center;
+   word-break:break-all;
+}
+
+.take {
+  display: flex;
+  flex-direction: column;
+  width: 120px;
+  height: 90px;
+  text-align: center;
+  padding-top: 45rpx;
+ 
+}
+
+.time {
+  width: 90px;
+  text-align: center;
+  word-break:break-all;
+}
+
+.bgimg {
+  width: 340px;
+  height: 142px;
+}

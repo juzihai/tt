@@ -36,9 +36,13 @@ class Http {
       method,
       header: {
         SystemUserID,
-        EnterpriseId,
-        AuthCode,
+        CreationTime,
+        AreaName: EnterpriseId,
+        AreaDisplayName: encodeURI("果资科技"),
+        SystemIP: "", //ip
         TerminalType,
+        EnterpriseId,
+        AuthCode
 
       },
     });

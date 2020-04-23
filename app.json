@@ -97,7 +97,8 @@
         "activity/activityDetail/index",
         "activity/hotActivityDetail/index",
         "activity/web-view/index",
-        "cards/coupon/index"
+        "cards/coupon/index",
+        "cards/couponList/index"
       ]
     },
     {

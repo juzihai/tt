@@ -14,8 +14,8 @@
 
 <view class='address'>
   <!-- 用户信息列表 -->
-  <view class='address-detail' wx:for="{{address.accumulator}}">
-    <view catchtap='onDefault' data-id='{{item.Id}}'>
+  <view class='address-detail' wx:for="{{address.accumulator}}" >
+    <view bindtap="onSelectAddress" data-cell="{{item}}">
       <view class='address-name red'>姓名：{{item.RealName}}</view>
       <view class='address-phone red'>手机号：{{item.TelPhone}}</view>
       <view class='address-phone red'>地址：{{item.Province}}{{item.City}}{{item.Area}}{{item.Street}}</view>

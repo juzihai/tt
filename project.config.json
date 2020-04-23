@@ -196,6 +196,13 @@
 					"id": -1,
 					"name": "确定订单",
 					"pathName": "pages/subpackages/mall/product/order/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "购物车列表",
+					"pathName": "pages/subpackages/mall/cards/couponList/index",
 					"scene": null
 				}
 			]

@@ -89,5 +89,6 @@ var sub = function (str, startLength, endLength) {
 module.exports = {
   limit: limit,
   utcToBj: utcToBj,
-  sub: sub
+  sub: sub,
+  formatTime: formatTime
 }

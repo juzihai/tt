@@ -19,7 +19,7 @@ Page({
       { name: '积分排行', url: '' }, //
       { name: '我的收藏', url: '' },//
       { name: '我的订单', url: '' },
-      { name: '优惠券', url: '' },///pages/subpackages/mall/cards/coupon/index
+      { name: '我的优惠券', url: '/pages/subpackages/mall/cards/couponList/index' },
       // { name: '收藏', url: '' },
     ],
     phoneNumber: null,

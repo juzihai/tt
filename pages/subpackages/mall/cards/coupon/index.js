@@ -1,6 +1,8 @@
-// pages/subpackages/mall/product/coupon/index.js
+const app = getApp();
+
 import { Time } from '../../../../../utils/time.js'
 import {formatTime} from '../../../../../utils/util.js'
+import { Coupon } from '../../../../../models/coupon.js'
 let time=new Time()
 Page({
 
@@ -35,12 +37,43 @@ Page({
     // console.log("minutes is "+minutes)
     // var afterMinuers = parseInt(total - day * 24 * 60 * 60 - hour * 60 * 60 - minutes * 60) 
     // console.log("second is "+afterMinuers )
+
+    this.initAllData()
+  },
+  async initAllData() {
+    let obj = {
+      EnterpriseID: app.config.EnterpriseID,
+      ProductClassID:0,
+      CouponType:0,
+    }
+    const couponModel = await Coupon.PageSearch(obj)
+    this.data.couponModel = couponModel //类属性
+    const coupon = await couponModel.getMoreData();//todo
+    this.setData({
+      coupon
+    })
   },
 
-  onCard(){
-    wx.showModal({
-      title: '提示',
-      content: '您已成功领取',
-    })
+  async onCard(e){
+
+    let item=e.currentTarget.dataset.cell
+    let userInfo = wx.getStorageSync('userInfo')
+    let obj={
+      EnterpriseID: app.config.EnterpriseID,
+      OpenID: wx.getStorageSync("OpenID"),
+      CustomerID: userInfo.ID,
+      ID: item.ID
+    }
+    const coupon=await Coupon.ReceiveCoupon(obj)
+    if(coupon){
+      wx.showToast({
+        title: '您已领取了该优惠券，在"我的优惠券中"可查看',
+        icon: "none"
+      })
+    }
+
+    // wx.lin.showToast({
+    //   title: '您已领取了该优惠券，在"我的优惠券中"可查看',
+    // })
   }
 })

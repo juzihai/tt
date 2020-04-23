@@ -9,9 +9,12 @@
     <image class="img" src="{{item.baseUrl+item.ProductImage}}"></image>
     <view class="right-container">
       <text>{{item.ProductName}}</text>
+    <l-tag type="reading" bg-color="#DCEBE6" font-color="#157658" size="super-mini" l-class="l-tag">
+        {{item.ProductTypeName}}
+        </l-tag>
       <view class="counter-container">
         <text>¥{{item.ProductPrice}}</text>
-        <s-counter bind:lintap="onSelectCount" count="{{item.StockAmount}}" key="{{item.ID}}"></s-counter>
+        <s-counter bind:lintap="onSelectCount" count="{{item.StockAmount}}" key="{{item.ID}}" data-cell="{{item}}"></s-counter>
       </view>
     </view>
   </view>
@@ -21,19 +24,24 @@
 <view class="tapbar">
   <view class="submit-container">
     <view class="round">
-      <checkbox-group>
+      <l-checkbox-group bind:linchange="onSelectedAllTap">
+        <l-checkbox checked="{{selectAllStatus}}" >全选</l-checkbox>
+      </l-checkbox-group>
+      <!-- <checkbox-group>
         <checkbox></checkbox>全选
-      </checkbox-group>
+      </checkbox-group> -->
     </view>
     <view>
-      合计¥999
-      <l-button bg-color="orange" class="button">提交订单</l-button>
+      合计¥{{total}}
+      <l-button bg-color="{{count==0? 'gray':'green'}}"disabled="{{count==0}}" bind:lintap="onNextTap" class="button">结算（{{count}}）</l-button>
     </view>
 
 
   </view>
 
 </view>
+
+<l-toast />
 
 <!-- <view class="tapbar">
   <l-list  is-link="{{false}}">
