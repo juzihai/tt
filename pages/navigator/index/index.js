@@ -63,7 +63,6 @@ Page({
   async initAllData(){
     let obj = {
       "EnterpriseID": app.config.EnterpriseID,
-      TerminalType:1
     }
     const notice = await Article.GetTopArticle(obj)
     const nav = await ArticleType.Search(obj)
@@ -225,7 +224,6 @@ Page({
       let obj = {
         "EnterpriseID": app.config.EnterpriseID,
         ArticleType: data[index].ID,
-        TerminalType: 0
       }
       const articleModel = Article.PageSearch(obj)
       this.data.articleModel = articleModel //类属性

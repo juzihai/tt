@@ -7,9 +7,10 @@
     </view>
 
     <view bind:tap="onGoToCart" >
-      <l-badge value="9" l-class="l-class">
+      <!-- <l-badge value="9" l-class="l-class">
         <l-icon size="46" name="spcart" l-class="sleeve"></l-icon>
-      </l-badge>
+      </l-badge> -->
+      <l-icon size="46" name="spcart" l-class="sleeve"></l-icon>
       <text>购物车</text>
     </view>
   </view>

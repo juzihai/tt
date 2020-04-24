@@ -72,6 +72,7 @@
     "l-radio": "/components/lin-ui/radio/index",
     "l-checkbox-group": "/components/lin-ui/checkbox-group/index",
     "l-checkbox": "/components/lin-ui/checkbox/index",
+    "l-countdown": "/components/lin-ui/countdown/index",
     "s-spu-preview": "components/spu-preview/index",
     "s-product-preview": "components/product-preview/index",
     "content-card": "/components/content-card/index",

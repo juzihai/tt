@@ -1,17 +1,62 @@
-// pages/subpackages/mall/product/orderList/index.js
+const app = getApp();
+import { Order } from "../../../../../models/order.js";
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    Status:-1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+      this.initAllData()
+  },
+  changeTabs(e){
+    let activeKey = e.detail.activeKey
+    this.setData({
+      Status:activeKey
+    })
+    this.initAllData()
+  },
+  async initAllData() {
+    let obj = {
+      EnterpriseId: app.config.EnterpriseID,
+      OpenId: wx.getStorageSync("OpenID"),
+      Status:this.data.Status
+    }
+    
+    const orderModel = Order.QueryForWx(obj)
+    this.data.orderModel = orderModel //类属性
+    const order = await orderModel.getMoreData();//todo
+    this.setData({
+      order
+    })
+
+  },
+  onTime(e){
+    console.log(e)
+  },
+  onCancelOrder(e){
+    let obj = {
+      EnterpriseId: app.config.EnterpriseID,
+      OpenId: wx.getStorageSync("OpenID"),
+      Status: this.data.Status
+    }
+
+    const orderModel = Order.QueryForWx(obj)
+  },
+  onPay(e){
+
+  },
+  onUrged(e){
+
+  },
+  onReceipt(e){
 
   },
 

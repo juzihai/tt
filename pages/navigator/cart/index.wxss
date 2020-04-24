@@ -6,6 +6,7 @@
   flex-direction: row;
     /* justify-content: space-between; */
   padding:  20rpx;
+  border-bottom: 1px solid #f1f1f1;
 }
 
 .round{
@@ -16,8 +17,8 @@
 }
 
 .img{
-  width: 180rpx;
-  height: 180rpx;
+  width: 160rpx;
+  height: 160rpx;
 }
 .right-container{
   margin-left: 20rpx;

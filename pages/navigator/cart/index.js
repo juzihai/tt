@@ -21,6 +21,9 @@ Page({
     this.setData({
       h
     })
+
+  },
+  onShow(){
     this.initAllData()
   },
   async initAllData(){

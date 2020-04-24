@@ -1,3 +1,5 @@
+const app = getApp();
+
 import {
   getWindowHeightRpx
 } from "../../../../../utils/system";

@@ -11,8 +11,18 @@
 <!-- 商品描述 -->
   <s-spu-description spu="{{spu}}"></s-spu-description>
 
-<!-- 选择栏 -->
   <view class="sku-pending">
+    <view class="specs">
+      <text>发货地址：</text>
+      <text>TODO 暂无</text>
+    </view>
+    <view class="arrow-right">
+      <l-icon name="right" color="#157658" size="24"></l-icon>
+    </view>
+  </view>
+
+
+  <!-- <view class="sku-pending">
     <view class="specs">
       <text>优惠券：</text>
       <text>{{spu.ProductName}}</text>
@@ -22,7 +32,7 @@
     </view>
   </view>
 
-<!-- 选择栏 -->
+
   <view class="sku-pending">
     <view class="specs">
       <text>已选择：</text>
@@ -33,16 +43,8 @@
     </view>
   </view>
 
-<!-- 选择栏 -->
-  <view class="sku-pending">
-    <view class="specs">
-      <text>配送地址：</text>
-      <text>{{spu.ProductName}}</text>
-    </view>
-    <view class="arrow-right">
-      <l-icon name="right" color="#157658" size="24"></l-icon>
-    </view>
-  </view>
+
+ -->
 
   <!-- 属性 -->
     <!-- <view class="explain">

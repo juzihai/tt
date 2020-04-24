@@ -15,22 +15,23 @@ Component({
    * 组件的初始数据
    */
   data: {
-    judger: Object,
+    judger: Object,// TODO 预留
     previewImg: String,
-    currentSkuCount: Cart.SKU_MIN_COUNT
+    currentSkuCount: Cart.SKU_MIN_COUNT,//当前选择的商品数量
   },
   observers: {
     'spu':function(spu){
       if(!spu){
         return
       }
-      // TODO 无规格判断
+      // TODO 判断是否是有规格的产品，后续根据数据结构改变spu内的判断
       // if (Spu.isNoSpec(spu)){
         this.processNoSpec(spu)
       // }else{
+      //   // TODO 有规格的处理
       //   this.processHasSpec(spu)
       // }
-      // TODO 点击事件
+
       this.triggerSpecEvent()
     }
   },
@@ -46,8 +47,9 @@ Component({
       })
       this.bindSkuData(spu);
       // TODO 可购买总数 当前选择数量
-      this.setStockStatus(10,this.datacurrentSkuCount)
+      this.setStockStatus(spu.SalesStock,this.datacurrentSkuCount)
     },
+     // TODO 有规格的情况
     processHasSpec(spu) {
       //处理商品数据
       this.bindSpuData();
@@ -60,6 +62,7 @@ Component({
       })
     },
     triggerSpecEvent() {
+      // TODO 判断是否是有规格的产品
       const noSpec = Spu.isNoSpec(this.properties.spu)
       console.log("点击事件")
       if(noSpec){
@@ -100,15 +103,16 @@ Component({
         title: sku.ProductName,
         price: sku.Price,
         discountPrice: sku.DiscountPrice,
-        stock: 10,
+        stock: sku.SalesStock,
       })
     },
-    // TODO 数量选择 
+    // 组件数量选择器更改触发函数
     onSelectCount(event) {
       console.log(event)
       const currentCount = event.detail.count
-      // this.data.currentSkuCount = currentCount
+      this.data.currentSkuCount = currentCount
 
+      // TODO 如含有规格用规格下的数据判断
       // if (this.data.judger.isSkuIntact()) {
       //   const sku = this.data.judger.getDeterminateSku();
       this.setStockStatus(10, currentCount);

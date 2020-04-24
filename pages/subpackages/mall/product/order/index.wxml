@@ -1,122 +1,95 @@
 <!--pages/subpackages/mall/product/order/index.wxml-->
 <scroll-view scroll-y style="height:{{h}}rpx;">
-<view class="address-container" bindtap="onGetAdd">
-  <view class="action">
-    <l-icon color="#157658" name="address"></l-icon>
-  </view>
-  <view class="center" wx:if="{{ShippingAddress}}">
-    <view>
-      <text class="title">{{ShippingAddress.RealName}}</text>
-      <text class="subtitle"> {{ShippingAddress.TelPhone}}</text>
+  <view class="address-container" bindtap="onGetAdd">
+    <view class="action">
+      <l-icon color="#157658" name="address"></l-icon>
     </view>
-    <text class="subtitle">{{ShippingAddress.Province+ShippingAddress.City+ShippingAddress.Area+ShippingAddress.Street}}</text>
-  </view> 
-  <view wx:else>
-    选择地址～
+    <view class="center" wx:if="{{ShippingAddress}}">
+      <view>
+        <text class="title">{{ShippingAddress.RealName}}</text>
+        <text class="subtitle"> {{ShippingAddress.TelPhone}}</text>
+      </view>
+      <text class="subtitle">{{ShippingAddress.Province+ShippingAddress.City+ShippingAddress.Area+ShippingAddress.Street}}</text>
+    </view>
+    <view wx:else>
+      选择地址～
+    </view>
+    <view class="action">    
+      <l-icon color="#157658" name="right"></l-icon>
+    </view>
   </view>
-  <view class="action">
-    <l-icon color="#157658" name="right"></l-icon>
+  <view class="gogo-container" bindtap="onGetAdd">
+    <l-list title="门店自提"  is-link="{{false}}">
+      <view slot="right-section">
+        <switch />
+      </view>
+    </l-list>
   </view>
-</view>
+  <content-card class="content" name="A类产品">
 
-
-<content-card class="content" name="A类产品">
-
-  <view class="p-container">
-    <l-card type="primary" wx:for='{{2}}' bindtap="onSpuItem" data-pid="{{item.ID}}" data-pcode="{{item.ProductCode}}" 
-            l-img-class="left-card" 
-            position="left" 
-            image="https://qy.gzchinaunion.com/resource/2020-04-13/84fb581c29b14d27b8ee69dbd8c06329.jpg">
-      <view class="content">
-        <text class="title">{{item.ProductName}} 名称</text>
-        <view class="price-row">
-          <l-price color="#157658" 
-            value-size="28" 
-            unit-size="20" 
-            autofix 
-            value="{{p.mainPrice(item.Price,item.DiscountPrice).price}}"></l-price>
-          <l-price l-class="discount-price" 
-            color="#999999" 
-            size="26" 
-            wx:if="{{item.DiscountPrice}}" 
-            deleted 
-            value="{{p.slashedPrice(item.Price,item.DiscountPrice).price}}"></l-price>
-        </view>
-        <text class="subtitle">{{item.ProductContent}} 新鲜的大西瓜v新鲜的大西瓜新鲜的大西瓜新鲜的大西瓜新鲜的大西瓜~</text>
-        <view class="avter-share-container">
-          <view class="like-container">
-            <l-icon name="close" color="#666" size="16" />
-            <view class="number">16</view>
+    <view class="p-container">
+      <l-card type="primary" wx:for='{{2}}' bindtap="onSpuItem" data-pid="{{item.ID}}" data-pcode="{{item.ProductCode}}" l-img-class="left-card" position="left" image="https://qy.gzchinaunion.com/resource/2020-04-13/84fb581c29b14d27b8ee69dbd8c06329.jpg">
+        <view class="content">
+          <text class="title">{{item.ProductName}} 名称</text>
+          <view class="price-row">
+            <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{p.mainPrice(item.Price,item.DiscountPrice).price}}"></l-price>
+            <l-price l-class="discount-price" color="#999999" size="26" wx:if="{{item.DiscountPrice}}" deleted value="{{p.slashedPrice(item.Price,item.DiscountPrice).price}}"></l-price>
+          </view>
+          <text class="subtitle">{{item.ProductContent}} 新鲜的大西瓜v新鲜的大西瓜新鲜的大西瓜新鲜的大西瓜新鲜的大西瓜~</text>
+          <view class="avter-share-container">
+            <view class="like-container">
+              <l-icon name="close" color="#666" size="16" />
+              <view class="number">16</view>
+            </view>
           </view>
         </view>
-      </view>
-    </l-card>
-  </view>
-</content-card>
+      </l-card>
+    </view>
+  </content-card>
 
-<content-card class="content" name="订单信息" cardPadding>
-  <l-list title="配送方式" right-desc="快递 免邮" >
-    <view slot="left-section">
-      <text class="subtitle"> 普通配送</text>
-    </view>
-  </l-list>
-  <l-list title="店铺优惠"  is-link="{{false}}">
-    <view slot="left-section">
-      <text class="subtitle"> 普通配送</text>
-    </view>
-    <view slot="right-section" class="l-right-class">
+  <content-card class="content" name="订单信息" cardPadding>
+    <l-list title="配送方式" right-desc="快递 免邮">
+      <view slot="left-section">
+        <text class="subtitle"> 普通配送</text>
+      </view>
+    </l-list>
+    <l-list title="店铺优惠" is-link="{{false}}">
+      <view slot="left-section">
+        <text class="subtitle"> 普通配送</text>
+      </view>
+      <view slot="right-section" class="l-right-class">
         <view class="price-row">
-          <l-price color="#157658" 
-            value-size="28" 
-            unit-size="20" 
-            autofix 
-            value="{{p.mainPrice(item.Price,item.DiscountPrice).price}}"></l-price>
-          <l-price l-class="discount-price" 
-            color="#999999" 
-            size="26" 
-            wx:if="{{item.DiscountPrice}}" 
-            deleted 
-            value="{{p.slashedPrice(item.Price,item.DiscountPrice).price}}"></l-price>
+          <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{p.mainPrice(item.Price,item.DiscountPrice).price}}"></l-price>
+          <l-price l-class="discount-price" color="#999999" size="26" wx:if="{{item.DiscountPrice}}" deleted value="{{p.slashedPrice(item.Price,item.DiscountPrice).price}}"></l-price>
         </view>
-       <l-radio-group><l-radio key="1"></l-radio></l-radio-group>
-    </view>
-  </l-list>
-  <l-textarea  placeholder="订单备注：选填，请先和商家协商一致"/>
-  <l-list  is-link="{{false}}">
-    <view slot="right-section" class="l-right-class">
-    <text class="subtitle">共2件</text>小计：
+        <l-radio-group>
+          <l-radio key="1"></l-radio>
+        </l-radio-group>
+      </view>
+    </l-list>
+    <l-textarea placeholder="订单备注：选填，请先和商家协商一致" />
+    <l-list is-link="{{false}}">
+      <view slot="right-section" class="l-right-class">
+        <text class="subtitle">共2件</text>小计：
         <view class="price-row">
-          <l-price color="#157658" 
-            value-size="28" 
-            unit-size="20" 
-            autofix 
-            value="{{p.mainPrice(item.Price,item.DiscountPrice).price}}"></l-price>
-          <l-price l-class="discount-price" 
-            color="#999999" 
-            size="26" 
-            wx:if="{{item.DiscountPrice}}" 
-            deleted 
-            value="{{p.slashedPrice(item.Price,item.DiscountPrice).price}}"></l-price>
+          <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{p.mainPrice(item.Price,item.DiscountPrice).price}}"></l-price>
+          <l-price l-class="discount-price" color="#999999" size="26" wx:if="{{item.DiscountPrice}}" deleted value="{{p.slashedPrice(item.Price,item.DiscountPrice).price}}"></l-price>
         </view>
-    </view>
-  </l-list>
-</content-card>
+      </view>
+    </l-list>
+  </content-card>
 </scroll-view>
 
 <view class="tabbar">
-  <l-list  is-link="{{false}}">
+  <l-list is-link="{{false}}">
     <view slot="right-section" class="l-right-class">
-    <text class="subtitle">共{{ProductModel.ProductCount}}件</text>合计：
-        <view class="price-row">
-          <l-price color="#157658" 
-            value-size="28" 
-            unit-size="20" 
-            autofix 
-            value="{{ProductModel.ProductPrice}}"></l-price>
+      <text class="subtitle">共{{ProductModel.ProductCount}}件</text>合计：
+      <view class="price-row">
+        <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{ProductModel.ProductPrice}}"></l-price>
 
-        </view>
-        <l-button bg-color="orange" class="button" bind:lintap="onNextTap">提交订单</l-button>
+      </view>
+      <l-button bg-color="orange" class="button" bind:lintap="onNextTap">提交订单</l-button>
     </view>
-    
+
   </l-list>
 </view>
