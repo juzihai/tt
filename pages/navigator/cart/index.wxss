@@ -1,14 +1,32 @@
 /* pages/navigator/cart/index.wxss */
 /* 商品卡片 */
-.p-container{
+/* .p-container{
   background-color: white;
   display: flex;
   flex-direction: row;
-    /* justify-content: space-between; */
   padding:  20rpx;
   border-bottom: 1px solid #f1f1f1;
+} */
+.left {
+  background-color: white;
+  width: 750rpx;
+  display: flex;
+  flex-direction: row;
+  padding:  20rpx; 
+  box-sizing: border-box;
 }
-
+.right {
+  height: 200rpx;
+  display: flex;
+  direction: row;
+  text-align: center;
+  vertical-align: middle;
+  justify-content: space-around;
+  line-height: 200rpx;
+  background: rgba(54, 131, 214, 1);
+  color: #fff;
+  font-size: 28rpx;
+}
 .round{
   display: flex;
   flex-direction: column;
@@ -57,6 +75,11 @@
 }
 .button{
   margin: 0px 10rpx;
+}
+.row {
+  height: 1px;
+  width: 750rpx;
+  background: rgba(243, 243, 243, 1);
 }
 
 /* tabbar */

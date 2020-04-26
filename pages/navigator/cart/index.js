@@ -12,7 +12,9 @@ Page({
     selectAllStatus: false,
     
   },
-
+  onPullDownRefresh() {
+    this.initAllData();
+  },
   onLoad: async function (options) {
 
   
@@ -96,8 +98,8 @@ sum: function () {
   let count =0;
   items.forEach(item => {
     if (item.checked) {
-      total += item.ProductPrice * item.StockAmount,
-        count += item.StockAmount
+      total += item.ProductPrice * item.ProductNum,
+        count += item.ProductNum
     }
   })
   // 写回经点击修改后的数据
@@ -106,6 +108,21 @@ sum: function () {
     count
   });
 },
+//删除
+  async onDelete(e){
+    let cell = e.currentTarget.dataset.cell
+    wx.lin.showToast({
+      title: '处理中～',
+    })
+    let Ids=[]
+    Ids.push(cell.ID)
+    let obj = {
+      Ids
+    }
+    const add = await ShoppingCart.RemoveProduct(obj)
+    this.initAllData()
+    wx.lin.hideToast()
+  },
 //全选
 onSelectedAllTap(e){
   let selectAllStatus = !this.data.selectAllStatus

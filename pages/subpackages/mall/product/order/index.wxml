@@ -18,7 +18,7 @@
       <l-icon color="#157658" name="right"></l-icon>
     </view>
   </view>
-  <view class="gogo-container" bindtap="onGetAdd">
+  <view class="gogo-container" bindtap="onMyGo">
     <l-list title="门店自提"  is-link="{{false}}">
       <view slot="right-section">
         <switch />

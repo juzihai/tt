@@ -9,7 +9,7 @@
     "pages/navigator/statisticsTest/index"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "",
     "navigationBarTextStyle": "black"
@@ -73,6 +73,7 @@
     "l-checkbox-group": "/components/lin-ui/checkbox-group/index",
     "l-checkbox": "/components/lin-ui/checkbox/index",
     "l-countdown": "/components/lin-ui/countdown/index",
+    "l-slide-view": "/components/lin-ui/slide-view/index",
     "s-spu-preview": "components/spu-preview/index",
     "s-product-preview": "components/product-preview/index",
     "content-card": "/components/content-card/index",
