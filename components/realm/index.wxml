@@ -1,7 +1,7 @@
 <!--components/realm/index.wxml-->
 <wxs src="../../wxs/price.wxs" module="p"></wxs>
 
-<scroll-view class="container" scrool-y>
+<scroll-view class="container" scroll-y>
     <view class="inner-container">
         <view class="sku-preview">
             <image class="sku-img" src="{{previewImg}}"></image>
@@ -51,46 +51,7 @@
             <s-counter bind:lintap="onSelectCount"
             ></s-counter>
         </view>
-        <view class="counter-container">
-            <text>购买数量</text>
-            <s-counter bind:lintap="onSelectCount"
-            ></s-counter>
-        </view>
-                <view class="counter-container">
-            <text>购买数量</text>
-            <s-counter bind:lintap="onSelectCount"
-            ></s-counter>
-        </view>
-                <view class="counter-container">
-            <text>购买数量</text>
-            <s-counter bind:lintap="onSelectCount"
-            ></s-counter>
-        </view>
-                <view class="counter-container">
-            <text>购买数量</text>
-            <s-counter bind:lintap="onSelectCount"
-            ></s-counter>
-        </view>
-                <view class="counter-container">
-            <text>购买数量</text>
-            <s-counter bind:lintap="onSelectCount"
-            ></s-counter>
-        </view>
-                <view class="counter-container">
-            <text>购买数量</text>
-            <s-counter bind:lintap="onSelectCount"
-            ></s-counter>
-        </view>
-                <view class="counter-container">
-            <text>购买数量</text>
-            <s-counter bind:lintap="onSelectCount"
-            ></s-counter>
-        </view>
-                <view class="counter-container">
-            <text>购买数量</text>
-            <s-counter bind:lintap="onSelectCount"
-            ></s-counter>
-        </view>
+
     </view>
 
 

@@ -95,5 +95,5 @@
 </view>
 
 <l-popup content-align="bottom" show="{{showRealm}}" z-index="999" bind:lintap="onPopupBack">
-    <s-order-realm bind:specadd="onSpecAdd" bind:specchange="onSpecChange" order-way="{{orderWay}}" spu="{{spu}}"></s-order-realm>
+    <s-order-realm bind:specadd="onSpecAdd" bind:specchange="onSpecChange" order-way="{{orderWay}}" couponData="{{getAllUseCouponByProduct.Data}}"></s-order-realm>
 </l-popup>

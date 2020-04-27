@@ -102,12 +102,19 @@ Page({
   },
   /**处理新增和减少 */
   async onSelectCount(e){
-
+    console.log(e)
+    let index=e.currentTarget.dataset.index
     let cell = e.currentTarget.dataset.cell
     let type=e.detail.type
-    wx.lin.showToast({
-      title: '处理中～',
+
+    let usableCartListModel = this.data.usableCartListModel;
+    usableCartListModel[index].ProductNum = e.detail.count;
+    usableCartListModel[index].ProductCountPrice = e.detail.count * usableCartListModel[index].ProductPrice;
+    this.setData({
+      usableCartListModel
     })
+    this.sum();
+
     let obj = {
       OpenId: wx.getStorageSync("OpenID"),
       EnterpriseId:app.config.EnterpriseID,
@@ -115,10 +122,10 @@ Page({
       ProductNum: type === "reduce" ? -1 : 1 ,
       ProductType:1,
     }
+
+
     const add=await ShoppingCart.Add(obj)
-    this.initAllData()
-    console.log(add)
-    wx.lin.hideToast()
+
   },
 /**  计算总金额 及商品数量*/
 sum: function () {

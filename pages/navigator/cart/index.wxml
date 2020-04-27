@@ -1,35 +1,5 @@
 <scroll-view scroll-y style="height:{{h}}rpx;">
 
-  <!-- <content-card class="content" name="{{item[0].ClassName}}" wx:for="{{usableCartListModel}}" wx:item="item1">
-    <block wx:for="{{item}}">
-    <l-slide-view height="200" width="750" slide-width="340" auto-close="true">
-      <view slot="left" class="left">
-        <view class="round">
-          <l-checkbox-group bind:linchange="onChangeTap">
-            <l-checkbox checked="{{item.checked}}" key="{{item.ID}}" cell="{{item}}"></l-checkbox>
-          </l-checkbox-group>
-        </view>
-
-        <image class="img" src="{{item.baseUrl+item.ProductImage}}"></image>
-        <view class="right-container">
-          <text>{{item.ProductName}}</text>
-          <l-tag type="reading" bg-color="#DCEBE6" font-color="#157658" size="super-mini" l-class="l-tag">
-            {{item.ClassName}}
-          </l-tag>
-          <view class="counter-container">
-            <text>¥{{item.ProductPrice}}</text>
-            <s-counter bind:lintap="onSelectCount" count="{{item.ProductNum}}" max="{{item.SalesStock}}" key="{{item.ID}}" data-cell="{{item}}"></s-counter>
-          </view>
-        </view>
-      </view>
-      <view slot="right" class="right" bindtap="onDelete" data-cell="{{item}}">
-        <text>删除</text>
-      </view>
-    </l-slide-view>
-    <view class='row'></view>
-  </block>
-  </content-card> -->
-
   <view class='row'></view>
   <block wx:for="{{usableCartListModel}}">
     <l-slide-view height="200" width="750" slide-width="340" auto-close="true">
@@ -48,7 +18,7 @@
           </l-tag>
           <view class="counter-container">
             <text>¥{{item.ProductPrice}}</text>
-            <s-counter bind:lintap="onSelectCount" count="{{item.ProductNum}}" max="{{item.SalesStock}}" key="{{item.ID}}" data-cell="{{item}}"></s-counter>
+            <s-counter bind:lintap="onSelectCount" count="{{item.ProductNum}}" max="{{item.SalesStock}}" key="{{item.ID}}" data-cell="{{item}}" data-index="{{index}}"></s-counter>
           </view>
         </view>
       </view>
@@ -63,7 +33,6 @@
     <block wx:for="{{loseCartListModel}}">
       <l-slide-view height="200" width="750" slide-width="340" auto-close="true">
         <view slot="left" class="left">
-          <!-- <image class="img" src="{{item.baseUrl+item.ProductImage}}"></image> -->
           <image class="img" src="/imgs/lose1.jpeg"></image>
           <view class="right-container">
             <text>{{item.ProductName}}</text>
@@ -83,25 +52,7 @@
     </block>
   </content-card>
 
-  <!-- <view class="p-container" wx:for="{{shoppingCart.accumulator}}">
-    <view class="round">
-      <l-checkbox-group bind:linchange="onChangeTap">
-        <l-checkbox checked="{{item.checked}}" key="{{item.ID}}" cell="{{item}}"></l-checkbox>
-      </l-checkbox-group>
-    </view>
 
-    <image class="img" src="{{item.baseUrl+item.ProductImage}}"></image>
-    <view class="right-container">
-      <text>{{item.ProductName}}</text>
-    <l-tag type="reading" bg-color="#DCEBE6" font-color="#157658" size="super-mini" l-class="l-tag">
-        {{item.ClassName}}
-        </l-tag>
-      <view class="counter-container">
-        <text>¥{{item.ProductPrice}}</text>
-        <s-counter bind:lintap="onSelectCount" count="{{item.ProductNum}}"  max="{{item.SalesStock}}" key="{{item.ID}}" data-cell="{{item}}"></s-counter>
-      </view>
-    </view>
-  </view> -->
 </scroll-view>
 
 
@@ -111,9 +62,6 @@
       <l-checkbox-group bind:linchange="onSelectedAllTap">
         <l-checkbox checked="{{selectAllStatus}}">全选</l-checkbox>
       </l-checkbox-group>
-      <!-- <checkbox-group>
-        <checkbox></checkbox>全选
-      </checkbox-group> -->
     </view>
     <view>
       合计¥{{total}}
@@ -127,25 +75,3 @@
 
 <l-toast />
 
-<!-- <view class="tapbar">
-  <l-list  is-link="{{false}}">
-    <view slot="right-section" class="l-right-class">
-    <text class="subtitle">共2件</text>小计：
-        <view class="price-row">
-          <l-price color="#157658" 
-            value-size="28"
-            unit-size="20"
-            autofix 
-            value="{{p.mainPrice(item.Price,item.DiscountPrice).price}}"></l-price>
-          <l-price l-class="discount-price" 
-            color="#999999" 
-            size="26" 
-            wx:if="{{item.DiscountPrice}}" 
-            deleted 
-            value="{{p.slashedPrice(item.Price,item.DiscountPrice).price}}"></l-price>
-        </view>
-        <l-button bg-color="orange" class="button">提交订单</l-button>
-    </view>
-    
-  </l-list>
-</view> -->
