@@ -1,0 +1,27 @@
+<!--components/order-realm/index.wxml-->
+<scroll-view class="container"  scroll-y >
+  <block wx:for="{{couponData}}" wx:for-item="classItem">
+    <content-card class="content" name="{{classItem.ClassName}}" cardPadding >
+      <view class='buttun-wrapper'>
+        <l-radio-group l-class="l-radio-group" >
+          <l-radio
+            l-class="l-radio l-title-class-border"
+            wx:for="{{classItem.list}}"
+            wx:key="{{item.CouponId}}"
+            key="{{item.CouponId}}" 
+            placement="{{position}}">
+            {{item.CouponName}}
+          </l-radio>
+        </l-radio-group>
+      </view>
+    </content-card>
+  </block>
+
+
+
+
+</scroll-view>
+
+<view class="bottom-btn" bindtap="onSpecAdd">
+  <text>完成</text>
+</view>

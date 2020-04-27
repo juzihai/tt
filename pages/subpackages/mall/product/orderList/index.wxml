@@ -8,7 +8,7 @@
 </l-segment>
 
 
-<view class="card-container" wx:for="{{order.accumulator}}">
+<view class="card-container" wx:for="{{order.accumulator}}" bindtap="onGoDetail" data-id="{{item.ID}}">
   <view class="top">
     <text class="subTitle">订单编号:{{item.OrderNo}}</text>
     <text class="red" wx:if="{{item.Status==0}}">待支付</text>
@@ -33,20 +33,20 @@
       <text class="title">剩余支付时间</text>
       <l-countdown l-class="countdown-text" l-time-class="countdown-blue" time-type="second" time="10" format="{%m}:{%s}" bind:linend="onTime" />
     </view>
-    <l-button size="mini" style='margin-left:10rpx' bind:lintap="onCancelOrder">取消订单</l-button>
-    <l-button size="mini" style='margin-left:10rpx' bind:lintap="onPay">支付</l-button>
+    <l-button size="mini" style='margin-left:10rpx' catchtap="onCancelOrder" data-cell="{{item}}">取消订单</l-button>
+    <l-button size="mini" style='margin-left:10rpx' catchtap="onPay">支付</l-button>
   </view>
 
   <view class="sub-container" wx:if="{{item.Status==1}}">
     <view class="left">
     </view>
-    <l-button size="mini" style='margin-left:10rpx' bind:lintap="onUrged">催促发货</l-button>
+    <l-button size="mini" style='margin-left:10rpx' catchtap="onUrged" data-cell="{{item}}">催促发货</l-button>
   </view>
     <view class="sub-container" wx:if="{{item.Status==3}}">
     <view class="left">
     </view>
      <!-- <l-button size="mini" style='margin-left:10rpx'>查看物流</l-button> -->
-    <l-button size="mini" style='margin-left:10rpx'bind:lintap="onReceipt">确认收货</l-button>
+    <l-button size="mini" style='margin-left:10rpx'catchtap="onReceipt" data-cell="{{item}}">确认收货</l-button>
   </view>
 </view>
 

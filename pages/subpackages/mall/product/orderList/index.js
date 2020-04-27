@@ -42,70 +42,72 @@ Page({
     console.log(e)
   },
   onCancelOrder(e){
+    let item = e.currentTarget.dataset.cell
     let obj = {
-      EnterpriseId: app.config.EnterpriseID,
-      OpenId: wx.getStorageSync("OpenID"),
-      Status: this.data.Status
+      ID: item.ID,
+      OederNumber: item.OrderNo
     }
-
-    const orderModel = Order.QueryForWx(obj)
+    const orderModel = Order.CancelOrder(obj)
+    this.initAllData()
   },
   onPay(e){
+  //TODO 待支付
 
   },
   onUrged(e){
-
+    wx.showModal({
+      title: '提示',
+      content: '已经快马加鞭的为小主送去通知～',
+    })
   },
   onReceipt(e){
-
+    let item = e.currentTarget.dataset.cell
+    let obj = {
+      OrderNo: item.OrderNo,
+    }
+    const orderModel = Order.Receipt(obj)
+    this.initAllData()
+  },
+  onGoDetail(e){
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/subpackages/mall/product/orderDetail/index?id='+id,
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.initAllData()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: async function () {
+    const data = await this.data.orderModel.getMoreData();
+    console.log(data)
+    if (!data) {
+      this.setData({
+        loadingType: 'end'
+      })
+      return
+    } else {
+      this.setData({
+        loadingType: 'loading'
+      })
+    }
+    this.setData({
+      order: data
+    })
+    if (!data.moreData) {
+      this.setData({
+        loadingType: 'end'
+      })
 
+    }
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

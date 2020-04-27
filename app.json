@@ -78,7 +78,8 @@
     "s-product-preview": "components/product-preview/index",
     "content-card": "/components/content-card/index",
     "region-picker": "/components/region-picker/index",
-    "s-counter": "components/counter/index"
+    "s-counter": "components/counter/index",
+    "s-order-realm": "components/order-realm/index"
   },
   "subPackages": [
     {
@@ -93,6 +94,7 @@
         "product/classiFication/index",
         "product/order/index",
         "product/orderList/index",
+        "product/orderDetail/index",
         "product/addressList/index",
         "product/addressAdd/index",
         "product/search/index",

@@ -139,8 +139,15 @@ Page({
       }
      
     } else if (event.detail.orderWay === ShoppingWay.BUY){
+      let ProductlList=[];
+      ProductlList.push(this.data.spu)
+      let ProductModel = {
+        ProductCount: this.data.count,
+        ProductPrice: this.data.total,
+        ProductlListModel: ProductlList
+      }
       wx.navigateTo({
-        url: '/pages/subpackages/mall/product/order/index',
+        url: '/pages/subpackages/mall/product/order/index?ProductModel=' + JSON.stringify(ProductModel),
       })
     }
 

@@ -1,34 +1,87 @@
 <scroll-view scroll-y style="height:{{h}}rpx;">
-<view class='row'></view>
-<block wx:for="{{shoppingCart.accumulator}}">
-  <l-slide-view height="200" width="750" slide-width="340" auto-close="true">
-    <view slot="left" class="left">
-      <view class="round">
-        <l-checkbox-group bind:linchange="onChangeTap">
-          <l-checkbox checked="{{item.checked}}" key="{{item.ID}}" cell="{{item}}"></l-checkbox>
-        </l-checkbox-group>
-      </view>
 
-      <image class="img" src="{{item.baseUrl+item.ProductImage}}"></image>
-      <view class="right-container">
-        <text>{{item.ProductName}}</text>
-        <l-tag type="reading" bg-color="#DCEBE6" font-color="#157658" size="super-mini" l-class="l-tag">
-          {{item.ClassName}}
-        </l-tag>
-        <view class="counter-container">
-          <text>¥{{item.ProductPrice}}</text>
-          <s-counter bind:lintap="onSelectCount" count="{{item.ProductNum}}" max="{{item.SalesStock}}" key="{{item.ID}}" data-cell="{{item}}"></s-counter>
+  <!-- <content-card class="content" name="{{item[0].ClassName}}" wx:for="{{usableCartListModel}}" wx:item="item1">
+    <block wx:for="{{item}}">
+    <l-slide-view height="200" width="750" slide-width="340" auto-close="true">
+      <view slot="left" class="left">
+        <view class="round">
+          <l-checkbox-group bind:linchange="onChangeTap">
+            <l-checkbox checked="{{item.checked}}" key="{{item.ID}}" cell="{{item}}"></l-checkbox>
+          </l-checkbox-group>
+        </view>
+
+        <image class="img" src="{{item.baseUrl+item.ProductImage}}"></image>
+        <view class="right-container">
+          <text>{{item.ProductName}}</text>
+          <l-tag type="reading" bg-color="#DCEBE6" font-color="#157658" size="super-mini" l-class="l-tag">
+            {{item.ClassName}}
+          </l-tag>
+          <view class="counter-container">
+            <text>¥{{item.ProductPrice}}</text>
+            <s-counter bind:lintap="onSelectCount" count="{{item.ProductNum}}" max="{{item.SalesStock}}" key="{{item.ID}}" data-cell="{{item}}"></s-counter>
+          </view>
         </view>
       </view>
-    </view>
-    <view slot="right" class="right" bindtap="onDelete"data-cell="{{item}}">
-      <text>删除</text>
-    </view>
-  </l-slide-view>
-<view class='row'></view>
-</block>
+      <view slot="right" class="right" bindtap="onDelete" data-cell="{{item}}">
+        <text>删除</text>
+      </view>
+    </l-slide-view>
+    <view class='row'></view>
+  </block>
+  </content-card> -->
 
+  <view class='row'></view>
+  <block wx:for="{{usableCartListModel}}">
+    <l-slide-view height="200" width="750" slide-width="340" auto-close="true">
+      <view slot="left" class="left">
+        <view class="round">
+          <l-checkbox-group bind:linchange="onChangeTap">
+            <l-checkbox checked="{{item.checked}}" key="{{item.ID}}" cell="{{item}}"></l-checkbox>
+          </l-checkbox-group>
+        </view>
 
+        <image class="img" src="{{item.baseUrl+item.ProductImage}}"></image>
+        <view class="right-container">
+          <text>{{item.ProductName}}</text>
+          <l-tag type="reading" bg-color="#DCEBE6" font-color="#157658" size="super-mini" l-class="l-tag">
+            {{item.ClassName}}
+          </l-tag>
+          <view class="counter-container">
+            <text>¥{{item.ProductPrice}}</text>
+            <s-counter bind:lintap="onSelectCount" count="{{item.ProductNum}}" max="{{item.SalesStock}}" key="{{item.ID}}" data-cell="{{item}}"></s-counter>
+          </view>
+        </view>
+      </view>
+      <view slot="right" class="right" bindtap="onDelete" data-cell="{{item}}">
+        <text>删除</text>
+      </view>
+    </l-slide-view>
+    <view class='row'></view>
+  </block>
+
+  <content-card class="content" name="失效商品">
+    <block wx:for="{{loseCartListModel}}">
+      <l-slide-view height="200" width="750" slide-width="340" auto-close="true">
+        <view slot="left" class="left">
+          <!-- <image class="img" src="{{item.baseUrl+item.ProductImage}}"></image> -->
+          <image class="img" src="/imgs/lose1.jpeg"></image>
+          <view class="right-container">
+            <text>{{item.ProductName}}</text>
+            <l-tag type="reading" bg-color="#DCEBE6" font-color="#157658" size="super-mini" l-class="l-tag">
+              {{item.ClassName}}
+            </l-tag>
+            <view class="counter-container">
+              <text>¥{{item.ProductPrice}}</text>
+            </view>
+          </view>
+        </view>
+        <view slot="right" class="right" bindtap="onDelete" data-cell="{{item}}">
+          <text>删除</text>
+        </view>
+      </l-slide-view>
+      <view class='row'></view>
+    </block>
+  </content-card>
 
   <!-- <view class="p-container" wx:for="{{shoppingCart.accumulator}}">
     <view class="round">

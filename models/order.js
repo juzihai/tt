@@ -86,11 +86,12 @@ class Order extends Http {
     })
   }
   //取消订单(小程序)
-  static CancelOrder({ ID }) {
+  static CancelOrder({ ID, OederNumber }) {
     return Http.request({
       url: "api/V1/Order/CancelOrder",
       data: {
-        ID
+        ID,
+        OederNumber
       }
     })
   }

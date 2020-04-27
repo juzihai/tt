@@ -51,7 +51,46 @@
             <s-counter bind:lintap="onSelectCount"
             ></s-counter>
         </view>
-
+        <view class="counter-container">
+            <text>购买数量</text>
+            <s-counter bind:lintap="onSelectCount"
+            ></s-counter>
+        </view>
+                <view class="counter-container">
+            <text>购买数量</text>
+            <s-counter bind:lintap="onSelectCount"
+            ></s-counter>
+        </view>
+                <view class="counter-container">
+            <text>购买数量</text>
+            <s-counter bind:lintap="onSelectCount"
+            ></s-counter>
+        </view>
+                <view class="counter-container">
+            <text>购买数量</text>
+            <s-counter bind:lintap="onSelectCount"
+            ></s-counter>
+        </view>
+                <view class="counter-container">
+            <text>购买数量</text>
+            <s-counter bind:lintap="onSelectCount"
+            ></s-counter>
+        </view>
+                <view class="counter-container">
+            <text>购买数量</text>
+            <s-counter bind:lintap="onSelectCount"
+            ></s-counter>
+        </view>
+                <view class="counter-container">
+            <text>购买数量</text>
+            <s-counter bind:lintap="onSelectCount"
+            ></s-counter>
+        </view>
+                <view class="counter-container">
+            <text>购买数量</text>
+            <s-counter bind:lintap="onSelectCount"
+            ></s-counter>
+        </view>
     </view>
 
 

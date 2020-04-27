@@ -27,3 +27,5 @@
 </view>
 
   <l-toast />
+
+      <l-status-show show="{{coupon.empty}}" type="data"></l-status-show>

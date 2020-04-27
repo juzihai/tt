@@ -1,6 +1,6 @@
 const app=getApp()
-import { Area } from "../../../models/area.js";
 import { ShoppingCart } from "../../../models/shoppingCart.js";
+import { OrderAndPayLogic } from "../../../models/orderAndPayLogic.js";
 import {
   getWindowHeightRpx
 } from "../../../utils/system";
@@ -10,7 +10,8 @@ Page({
     total: '0.00',
     count:0,
     selectAllStatus: false,
-    
+    usableCartListModel:[],//可用购物车数据源
+    loseCartListModel:[],//失效购物车数据源
   },
   onPullDownRefresh() {
     this.initAllData();
@@ -33,26 +34,54 @@ Page({
       EnterpriseId: app.config.EnterpriseID,
       OpenId: wx.getStorageSync('OpenID')
     }
+    const payState = await OrderAndPayLogic.GetPayAndLogisticsState({ EnterpriseID: app.config.EnterpriseID,})
     const shoppingCartModel = await ShoppingCart.Query(obj)
     this.data.shoppingCartModel = shoppingCartModel;
     const shoppingCart = await shoppingCartModel.getMoreData()
-    this.change(shoppingCart.accumulator)
+
+    this.group(shoppingCart.accumulator)
     this.setData({
+      payState,
       shoppingCart,
       total: '0.00',
       count: 0,
       selectAllStatus: false
     })
   },
-  change(items){
-    console.log(items)
-    let array=[]
-    items.forEach(item=>{
-
+  group(array){
+    let usableList=[];
+    let loseList=[];
+    array.forEach(item=>{
+      if (item.IsBuy==1){
+        usableList.push(item)
+      } else if (item.IsBuy == 0){
+        loseList.push(item)
+      }
+    })
+    // const sorted = this.groupBy(usableList,function(item){
+    //   return [item.ClassID];
+    // })
+    // console.log(sorted);
+    this.setData({
+      usableCartListModel: usableList,//可用购物车数据源
+      loseCartListModel:loseList,//失效购物车数据源
     })
   },
+  groupBy(array, f) {
+
+    const groups={};
+    array.forEach(o=>{
+      const group =JSON.stringify(f(o));
+      groups[group] =groups[group] ||[];
+      groups[group].push(o);
+    })
+    return Object.keys(groups).map(function(group){
+      return groups[group];
+    })
+  },
+
   onChangeTap(e){
-    let items = this.data.shoppingCart.accumulator;
+    let items = this.data.usableCartListModel;
     
     items.forEach(item=>{
       if(item.ID == e.detail.key){
@@ -61,7 +90,7 @@ Page({
     })
     //这里由于checked 本身就是布尔值，可以直接返回isSelect ，所以可以简写成
     let selectAllStatus = items.every(item => item.checked)
-    let key = `shoppingCart.accumulator`
+    let key = `usableCartListModel`
     this.setData({
       [key]: items,
       selectAllStatus
@@ -93,7 +122,7 @@ Page({
   },
 /**  计算总金额 及商品数量*/
 sum: function () {
-  let items = this.data.shoppingCart.accumulator;
+  let items = this.data.usableCartListModel;
   let total = 0.00;
   let count =0;
   items.forEach(item => {
@@ -126,16 +155,16 @@ sum: function () {
 //全选
 onSelectedAllTap(e){
   let selectAllStatus = !this.data.selectAllStatus
-  let shoppingCart = this.data.shoppingCart
-  if (!shoppingCart) {
-    return
-  }
-  let items = shoppingCart.accumulator;
+  // let shoppingCart = this.data.shoppingCart
+  // if (!shoppingCart) {
+  //   return
+  // }
+  let items = this.data.usableCartListModel;
 
   items.forEach(item => {
     item.checked = selectAllStatus;
   })
-  let key = `shoppingCart.accumulator`
+  let key = `usableCartListModel`
   this.setData({
     [key]: items,
     selectAllStatus
@@ -143,10 +172,29 @@ onSelectedAllTap(e){
   this.sum();
 },
 onNextTap(){
+  let payState = this.data.payState;
+  if (!payState.Pay){
+    wx.showModal({
+      title: '提示',
+      content: '暂未开通支付，请联系店铺管理员',
+    })
+    return
+  }
+  let usableCartListModel = this.data.usableCartListModel
+  let ProductlList=[];
+  usableCartListModel.forEach(item=>{
+    if (item.checked) {
+      ProductlList.push(item)
+    }
+  })
+  // const sorted = this.groupBy(ProductlList,function(item){
+  //     return [item.ClassID];
+  //   })
+  //   console.log(sorted);
   let ProductModel={
     ProductCount:this.data.count,
     ProductPrice:this.data.total,
-    ProductlListModel: this.data.shoppingCart.accumulator
+    ProductlListModel: ProductlList
   }
   wx.navigateTo({
     url: '/pages/subpackages/mall/product/order/index?ProductModel='+JSON.stringify(ProductModel),
