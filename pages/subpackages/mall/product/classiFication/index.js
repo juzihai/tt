@@ -1,11 +1,9 @@
 // pages/subpackages/mall/product/classiFication/index.js
+import { getSystemSize } from "../../../../../utils/system.js";
+import { px2rpx } from "../../../../../components/lin-ui/utils/util";
 const app = getApp()
-import {
-  Product
-} from '../../../../../models/product.js'
-import {
-  ProductClass
-} from '../../../../../models/productClass.js'
+import { Product } from '../../../../../models/product.js'
+import { ProductClass } from '../../../../../models/productClass.js'
 
 Page({
 
@@ -22,6 +20,7 @@ Page({
   onLoad: function(options) {
 
     this.initAllData()
+    this.setDynamicSegmentHeight()
   },
   //加载所有数据
   async initAllData() {
@@ -40,6 +39,17 @@ Page({
       grid
     })
   },
+  /** */
+  async setDynamicSegmentHeight() {
+    const res = await getSystemSize()
+    const windowHeightRpx = px2rpx(res.windowHeight)
+    const h = windowHeightRpx - 60 - 20 - 2
+    this.setData({
+      segHeight: h
+    })
+  },
+
+
 
   /**点击切换 */
   changeTabs(e) {
@@ -60,6 +70,30 @@ Page({
       product
     })
   },
+  async scrolltolower() {
+    const data = await this.data.productModel.getMoreData();
+    console.log(data)
+    if (!data) {
+      this.setData({
+        loadingType: 'end'
+      })
+      return
+    } else {
+      this.setData({
+        loadingType: 'loading'
+      })
+    }
+    this.setData({
+      product: data
+    })
+
+    if (!data.moreData) {
+      this.setData({
+        loadingType: 'end'
+      })
+
+    }
+  },
   onSpuItem(event) {
     const pid = event.currentTarget.dataset.pid
     const pcode = event.currentTarget.dataset.pcode
@@ -68,5 +102,9 @@ Page({
       url: `/pages/subpackages/mall/product/productDetail1/index?pid=${pid}&pcode=${pcode}`
     })
   },
-
+  onGotoSearch() {
+    wx.navigateTo({
+      url: `/pages/subpackages/mall/product/search/index`
+    })
+  },
 })

@@ -102,17 +102,26 @@ Page({
   },
   /**banner点击 */
   onBanner(e) {
-    console.log(e)
-    let id = e.currentTarget.dataset.id;
+    let cell = e.currentTarget.dataset.cell;
+    const pid = cell.ProductID
+    const pcode = cell.ProductCode
+    if(pid==0){
+      return
+    }
 
     wx.navigateTo({
-      url: `/pages/subpackages/mall/activity/activityDetail/index?id=${id}&pagePath=ProductRotationchart`,
+      url: `/pages/subpackages/mall/product/productDetail1/index?pid=${pid}&pcode=${pid}`
     })
+
+    // let id = e.currentTarget.dataset.id;
+
+    // wx.navigateTo({
+    //   url: `/pages/subpackages/mall/activity/activityDetail/index?id=${id}&pagePath=ProductRotationchart`,
+    // })
   },
   /**功能块 */
   onNaviCard(e) {
-    const a = e.currentTarget
-    console.log(a)
+
     const classid = e.currentTarget.dataset.classid;
     if (classid){
       wx.navigateTo({
@@ -121,6 +130,11 @@ Page({
     }
 
 
+  },
+  onNaviCard1(){
+    wx.navigateTo({
+      url: `/pages/subpackages/mall/product/classiFication/index`
+    })
   },
   onGotoSearch() {
     wx.navigateTo({

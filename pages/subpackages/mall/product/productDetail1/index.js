@@ -43,7 +43,7 @@ Page({
     }
 
     const spu = pagePath == "HotProduct" ? await HotProduct.SearchModelDetails(pid) : await Product.SearchModelDetails(pid);
-    const banner = pagePath == "HotProduct" ? await HotProduct.SearchRotationChart(pcode) : await Product.SearchRotationChart(pcode);
+    const banner = pagePath == "HotProduct" ? await HotProduct.SearchRotationChart(pid) : await Product.SearchRotationChart(pid);
     const windowHeight = await getWindowHeightRpx();
     const h = windowHeight - 100; // 100 是底部tabbar的高度  自定义的tabbar高度是不包含在 windowHeight里的
     this.setData({
@@ -122,7 +122,7 @@ Page({
       let obj={
         OpenId: wx.getStorageSync('OpenID'),
         EnterpriseId: app.config.EnterpriseID,
-        ProductId: event.detail.spu.ID,
+        ProductID: event.detail.spu.ID,
         ProductNum: event.detail.currentSkuCount,
         ProductType: this.data.pagePath == "HotProduct" ? 2 : 1
       }

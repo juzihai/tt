@@ -14,16 +14,16 @@
     <view wx:else>
       选择地址～
     </view>
-    <view class="action">    
+    <view class="action">
       <l-icon color="#157658" name="right"></l-icon>
     </view>
   </view>
-<!-- TODO自提需要修改状态 -->
-  <view class="gogo-container"  wx:if="{{!payState.PickUp}}">
-    <l-list title="门店自提"  is-link="{{false}}">
+  <!-- TODO cs自提需要修改状态 -->
+  <view class="gogo-container" wx:if="{{payState.PickUp}}">
+    <l-list title="门店自提" is-link="{{false}}">
       <view slot="right-section">
-        <switch bindchange="onMyGo"/>
-      </view>
+        <switch bindchange="onMyGo" />
+      </view> 
     </l-list>
   </view>
   <content-card class="content" name="{{item.ClassName}}" wx:for="{{sorted}}">
@@ -47,34 +47,57 @@
     </view>
   </content-card>
 
-  <content-card class="content" name="订单信息" cardPadding>
-    <l-list title="配送方式" right-desc="快递 免邮" bind:lintap="onDistribution">
-      <view slot="left-section">
-        <text class="subtitle"> 普通配送</text>
-      </view>
-    </l-list>
-    <l-list title="店铺优惠" is-link="{{false}}">
-      <view slot="left-section">
-        <text class="subtitle"> 普通配送</text>
-      </view>
-      <view slot="right-section" class="l-right-class">
-        <view class="price-row">
-          <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{p.mainPrice(item.Price,item.DiscountPrice).price}}"></l-price>
-          <l-price l-class="discount-price" color="#999999" size="26" wx:if="{{item.DiscountPrice}}" deleted value="{{p.slashedPrice(item.Price,item.DiscountPrice).price}}"></l-price>
-        </view>
-        <l-radio-group>
-          <l-radio key="1"></l-radio>
-        </l-radio-group>
-      </view>
-    </l-list>
-    <l-textarea placeholder="订单备注：选填，请先和商家协商一致"   wx:if="{{!showRealm}}"/>
+  <content-card class="content" name="订单信息" cardPadding wx:if="{{ShippingAddress}}">
+    <l-list title="配送方式" desc="普通配送" right-desc="{{DeliveryModel==1? '快递¥'+LogisticsFee:'门店自提'}}" ></l-list>
+
+    <l-textarea value="{{Remark}}" bind:lininput="inputRemark" placeholder="订单备注：选填，请先和商家协商一致" wx:if="{{!showRealm}}" />
     <l-list is-link="{{false}}">
       <view slot="right-section" class="l-right-class">
-        <text class="subtitle">共2件</text>小计：
+        <text class="subtitle">共{{ProductModel.ProductCount}}件</text>小计：
         <view class="price-row">
-          <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{p.mainPrice(item.Price,item.DiscountPrice).price}}"></l-price>
-          <l-price l-class="discount-price" color="#999999" size="26" wx:if="{{item.DiscountPrice}}" deleted value="{{p.slashedPrice(item.Price,item.DiscountPrice).price}}"></l-price>
+          <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{OrderPrice}}"></l-price>
+ 
         </view>
+      </view>
+    </l-list>
+  </content-card>
+
+  <content-card class="content" name="其他信息" cardPadding>
+    <l-list bind:lintap="onCoupon">
+      <view slot="left-section">
+        <view>店铺优惠</view>
+        <block wx:if="{{OrderCouponListModel}}">
+          <view wx:for="{{OrderCouponListModel}}">
+            <text class="subtitle">{{item.CouponName}}</text>
+          </view>
+        </block>
+
+        <view wx:else>
+          <text class="subtitle">不使用</text>
+        </view>
+
+
+      </view>
+      <view slot="right-section" class="l-right-class">
+        <view class="price-row">
+          <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{CouponPrice}}"></l-price>
+
+        </view>
+
+      </view>
+    </l-list>
+    <l-list title="积分抵扣" is-link="{{false}}" wx:if="{{payState.Integral}}">
+      <view slot="left-section">
+        <text class="subtitle"> 可抵扣</text>
+      </view>
+      <view slot="right-section" class="l-right-class">
+        <view class="price-row">
+          <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{IntegraPrice}}"></l-price>
+
+        </view>
+        <l-radio-group bind:linchange="onIntegral">
+          <l-radio key="1"></l-radio>
+        </l-radio-group>
       </view>
     </l-list>
   </content-card>
@@ -85,7 +108,7 @@
     <view slot="right-section" class="l-right-class">
       <text class="subtitle">共{{ProductModel.ProductCount}}件</text>合计：
       <view class="price-row">
-        <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{ProductModel.ProductPrice}}"></l-price>
+        <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{PayPrice}}"></l-price>
 
       </view>
       <l-button bg-color="orange" class="button" bind:lintap="onNextTap">提交订单</l-button>
@@ -94,6 +117,11 @@
   </l-list>
 </view>
 
-<l-popup content-align="bottom" show="{{showRealm}}" z-index="999" bind:lintap="onPopupBack">
-    <s-order-realm bind:specadd="onSpecAdd" bind:specchange="onSpecChange" order-way="{{orderWay}}" couponData="{{getAllUseCouponByProduct.Data}}"></s-order-realm>
+
+<l-popup content-align="bottom" show="{{showCoupon}}" z-index="999" bind:lintap="onPopupBack">
+  <s-coupon-realm bind:specadd="onCouponAdd" couponData="{{getAllUseCouponByProduct.Data}}"></s-coupon-realm>
 </l-popup>
+
+<!-- <l-popup content-align="bottom" show="{{showRealm}}" z-index="999" bind:lintap="onPopupBack">
+  <s-order-realm bind:specadd="onSpecAdd" bind:specchange="onSpecChange" order-way="{{orderWay}}" couponData="{{getAllUseCouponByProduct.Data}}"></s-order-realm>
+</l-popup> -->

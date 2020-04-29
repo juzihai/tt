@@ -79,7 +79,8 @@
     "content-card": "/components/content-card/index",
     "region-picker": "/components/region-picker/index",
     "s-counter": "components/counter/index",
-    "s-order-realm": "components/order-realm/index"
+    "s-order-realm": "components/order-realm/index",
+    "s-coupon-realm": "components/coupon-realm/index"
   },
   "subPackages": [
     {

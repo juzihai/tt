@@ -2,12 +2,24 @@
 
 <view class="container">
   <view class="search-container">
-  
+          <l-button
+                width="710"
+                height="60"
+                icon="research"
+                icon-size="24"
+                icon-color="#C4C9D2"
+                l-class="search-btn"
+                bind:lintap="onGotoSearch"
+                shape="square">
+            搜索商品
+        </l-button>
   </view>
   <view class="main">
-      <l-segment item-jeight="90"
+      <l-segment active-key="{{defaultRootId}}"
+                 height="{{segHeight}}"
+                 item-height="90"
                  even="{{false}}"
-                 width="160"
+                 width="180"
                  l-class="segment-view"
                  l-active-class="segment-item-active"
                  l-inactive-class="segment-item"
@@ -18,8 +30,9 @@
 
       </l-segment>
 
-      <view class="p-container">
-        <l-card  type="primary" wx:for='{{product.items}}' bindtap="onSpuItem" data-pid="{{item.ID}}" data-pcode="{{item.ProductCode}}"
+      <view class="p-container" >
+        <scroll-view style="height:{{segHeight}}rpx;" scroll-y bindscrolltolower="scrolltolower">
+                <l-card  type="primary" wx:for='{{product.accumulator}}' bindtap="onSpuItem" data-pid="{{item.ID}}" data-pcode="{{item.ProductCode}}"
                 l-img-class="right-card" 
                 position="left" 
                 image="{{item.baseUrl}}{{item.ProductImage}}">
@@ -27,7 +40,7 @@
             <text class="title">{{item.ProductName}}</text>
             <view class="price-row">
               <!-- <text class="my-class price-value">¥ {{data.Price}}</text> -->
-              <l-price color="#157658"
+              <l-price color="red"
                       value-size="28"
                       unit-size="20"
                       autofix
@@ -38,8 +51,12 @@
                         wx:if="{{item.DiscountPrice}}"                                                       
                         deleted value="{{p.slashedPrice(item.Price,item.DiscountPrice).price}}"></l-price>
             </view>
+            <text class="subtitle">{{item.ProductContent}}~</text>
           </view>
         </l-card>
+        <l-loadmore show type="{{loadingType}}" end-text="已到底部啦!"></l-loadmore>
+        </scroll-view>
+
       </view>
       
   </view>

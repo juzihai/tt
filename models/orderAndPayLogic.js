@@ -1,4 +1,4 @@
-import { Http } from "../utils/http-a";
+import { Http } from "../utils/http";
 import { Paging } from "../utils/paging";
 
 class OrderAndPayLogic extends Http {
@@ -107,7 +107,18 @@ class OrderAndPayLogic extends Http {
       }
     })
   }
-
+  //10.获取运费总价
+  static CheckLogisticsMatchProduct({ EnterpriseID, OpenId, sorted, Code}) {
+    return Http.request({
+      url: "api/V1/OrderAndPayLogic/CheckLogisticsMatchProduct",
+      data: {
+        EnterpriseID,
+        OpenId,
+        sorted,
+        Code
+      }
+    })
+  }
 }
 
 export {

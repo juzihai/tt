@@ -41,7 +41,7 @@ Page({
 
     this.group(shoppingCart.accumulator)
     this.setData({
-      payState,
+      payState: payState.ResultValue,
       shoppingCart,
       total: '0.00',
       count: 0,
@@ -118,7 +118,7 @@ Page({
     let obj = {
       OpenId: wx.getStorageSync("OpenID"),
       EnterpriseId:app.config.EnterpriseID,
-      ProductId: cell.ProductId,
+      ProductID: cell.ProductID,
       ProductNum: type === "reduce" ? -1 : 1 ,
       ProductType:1,
     }

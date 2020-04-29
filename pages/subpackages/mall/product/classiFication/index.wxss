@@ -12,6 +12,16 @@ page{
     flex-direction: column;
     align-items: center;
 }
+.search-btn{
+    background-color: #f1f1f1 !important;
+    color: #C4C9D2 !important;
+    font-size: 24rpx !important;
+    font-weight: 400 !important;
+    border-radius: 40rpx !important;
+    justify-content: start !important;
+    padding-left: 20px !important;
+}
+
 .main {
     margin-top: 20rpx;
     display: flex;
@@ -43,4 +53,18 @@ page{
 
 .p-container{
   width: 590rpx
+}
+
+/**/
+
+.right-card{
+  width: 150rpx !important;
+  height: 150rpx !important;
+}
+.subtitle{
+    font-size: 24rpx;
+    font-weight: 300;
+    margin-top: 6rpx;
+    color: #888;
+    word-break:break-all;/* 小程序view英文数字不换行的问题 */
 }

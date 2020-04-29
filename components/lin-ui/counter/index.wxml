@@ -7,7 +7,7 @@
   </view>
   <input  wx:if="{{focus}}"
           class="l-count-class count" 
-          disabled="{{disabled}}" 
+          disabled="{{true}}" 
           type="number"
           focus="{{focus}}" 
           value="{{result}}"
