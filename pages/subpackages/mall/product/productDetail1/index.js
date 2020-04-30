@@ -14,6 +14,10 @@ import {
 import {
   ShoppingCart
 } from "../../../../../models/shoppingCart.js";
+import {
+  OrderAndPayLogic
+} from "../../../../../models/orderAndPayLogic.js";
+
 var WxParse = require('../../../../../wxParse/wxParse.js');
 Page({
 
@@ -42,8 +46,15 @@ Page({
       pcode = options.pcode;
     }
 
-    const spu = pagePath == "HotProduct" ? await HotProduct.SearchModelDetails(pid) : await Product.SearchModelDetails(pid);
-    const banner = pagePath == "HotProduct" ? await HotProduct.SearchRotationChart(pid) : await Product.SearchRotationChart(pid);
+    // const spu = pagePath == "HotProduct" ? await HotProduct.SearchModelDetails(pid) : await Product.SearchModelDetails(pid);
+    // const banner = pagePath == "HotProduct" ? await HotProduct.SearchRotationChart(pid) : await Product.SearchRotationChart(pid);
+    let obj = {
+      EnterpriseID: app.config.EnterpriseID,
+      ProductID: pid
+    }
+    const spu = await Product.RewritePageSearchWX(obj)
+    const banner = await Product.SearchRotationChart(pid)
+    const payState = await OrderAndPayLogic.GetPayAndLogisticsState(obj)
     const windowHeight = await getWindowHeightRpx();
     const h = windowHeight - 100; // 100 是底部tabbar的高度  自定义的tabbar高度是不包含在 windowHeight里的
     this.setData({
@@ -52,7 +63,8 @@ Page({
       banner,
       pid,
       pcode,
-      pagePath
+      pagePath,
+      payState: payState.ResultValue
     })
     /**
      * WxParse.wxParse(bindName , type, data, target,imagePadding)
@@ -116,34 +128,65 @@ Page({
     })
   },
   async onSpecAdd(event) {
-    console.log(event)
-
-    if (event.detail.orderWay === ShoppingWay.CART){
-      let obj={
+    let payState = this.data.payState;
+    if (!payState.Pay) {
+      wx.showModal({
+        title: '提示',
+        content: '暂未开通支付，请联系店铺管理员',
+      })
+      return
+    }
+    let spu = event.detail.spu;
+    if (spu.SalesStock==0){
+      wx.showModal({
+        title: '提示',
+        content: '暂无库存，请联系店铺管理员',
+      })
+      return
+    }
+    if (event.detail.orderWay === ShoppingWay.CART) {
+      let obj = {
         OpenId: wx.getStorageSync('OpenID'),
         EnterpriseId: app.config.EnterpriseID,
-        ProductID: event.detail.spu.ID,
+        ProductId: spu.ProductID,
         ProductNum: event.detail.currentSkuCount,
         ProductType: this.data.pagePath == "HotProduct" ? 2 : 1
       }
-      const cart=await ShoppingCart.Add(obj)
-      if (cart.Success){
+      const cart = await ShoppingCart.Add(obj)
+      if (cart.Success) {
         console.log("加入购物车")
 
         wx.lin.showToast({
           title: '添加成功~',
           icon: 'success'
         })
-      }else{
-      console.log('添加err')
+      } else {
+        console.log('添加err')
       }
-     
-    } else if (event.detail.orderWay === ShoppingWay.BUY){
-      let ProductlList=[];
-      ProductlList.push(this.data.spu)
+
+    } else if (event.detail.orderWay === ShoppingWay.BUY) {
+      let ProductlList = [];
+      let ProductPrice = this.mainPrice(spu.Price, spu.DiscountPrice).price
+      let ProductNum= event.detail.currentSkuCount;
+      let ProductCountPrice = ProductPrice * ProductNum
+      let item = {
+        ClassID: spu.ClassID,
+        ClassName: spu.ClassName,
+        ID: spu.ID,
+        IsBuy: 1.,
+        ProductCountPrice: ProductCountPrice.toFixed(2),
+        ProductID: spu.ProductID,
+        ProductImage: spu.ProductImage,
+        ProductName: spu.ProductName,
+        ProductNum,
+        ProductPrice:ProductPrice.toFixed(2),
+        SalesStock: spu.SalesStock,
+        baseUrl: ''
+      }
+      ProductlList.push(item)
       let ProductModel = {
-        ProductCount: this.data.count,
-        ProductPrice: this.data.total,
+        ProductCount: ProductNum,
+        ProductPrice: ProductCountPrice,
         ProductlListModel: ProductlList
       }
       wx.navigateTo({
@@ -155,5 +198,18 @@ Page({
       showRealm: false
     })
 
+  },
+   mainPrice(price, discountPrice) {
+    if(!discountPrice) {
+      return {
+        price: price,
+        display: true
+      };
+    } else {
+      return {
+        price: discountPrice,
+        display: true
+      }
+    }
   }
 })

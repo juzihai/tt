@@ -65,7 +65,21 @@ class Customers {
       }
     })
   }
-
+  // 3.5. 授权保存用户信息
+  static AuthorizationCustomers({
+    EnterpriseID,
+    OpenID,
+    Phone 
+  }) {
+    return Http.request({
+      url: "api/V1/Customers/AuthorizationCustomers",
+      data: {
+        EnterpriseID,
+        OpenID,
+        Phone 
+      }
+    })
+  }
   // 4. 客户分享
   static MyCustomersSave({
     EnterpriseID,

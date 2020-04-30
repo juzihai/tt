@@ -18,7 +18,7 @@ Page({
       { name: '联系我们', url: '/pages/subpackages/mall/company/staffList/index?pagePath=mine' },
       { name: '全部订单', url: '/pages/subpackages/mall/product/orderList/index' }, //
       { name: '我的收藏', url: '' },//
-      { name: '我的订单', url: '' },
+      // { name: '我的订单', url: '' },
       { name: '我的优惠券', url: '/pages/subpackages/mall/cards/couponList/index' },
       // { name: '收藏', url: '' },
     ],
@@ -62,9 +62,9 @@ Page({
         const OpenID = wx.getStorageSync('OpenID');
         const loginInfo = await Customers.GetWeChatUserInfo({ SessionKey, EncryptedData, IV })
         let launch = wx.getStorageSync('launch')
-        const register = await Customers.RegisterCustomers({
+        const register = await Customers.AuthorizationCustomers({
           Phone: loginInfo.phoneNumber, OpenID, EnterpriseID:app.config.EnterpriseID,
-          AuthorizationType: 1, QrType: launch.scene})
+          })
         wx.setStorageSync("phoneNumber", loginInfo.phoneNumber);
         let SharOpenID = wx.getStorageSync('SharOpenID')
         if (SharOpenID) {

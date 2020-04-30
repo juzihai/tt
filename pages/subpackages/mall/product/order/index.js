@@ -65,6 +65,30 @@ Page({
       }
     }
     // 2、产品价格和库存校验 并返回总价
+
+
+
+    this.setData({
+      h,
+      ProductModel, //原商品数据
+
+      payState: payState.ResultValue, //可支付状态
+      DeliveryModel, //取货方式
+      getAllUseCouponByProduct: getAllUseCouponByProduct.ResultValue //优惠券
+
+    })
+    let jiage = await this.checkProductPriceAndStockModel()
+    let wuliu = await this.initAllData()
+  },
+  onShow: function() {
+    let ShippingAddress = wx.getStorageSync("ShippingAddress")
+    this.setData({
+      ShippingAddress
+    })
+    this.initAllData()
+  },
+  async checkProductPriceAndStockModel() {
+    let ProductModel = this.data.ProductModel
     let Date = []
     ProductModel.ProductlListModel.forEach(item => {
       let i = {
@@ -75,31 +99,36 @@ Page({
       }
       Date.push(i)
     })
-    const checkProductPriceAndStockModel = await OrderAndPayLogic.CheckProductPriceAndStockModel({
-      Date
-    })
-    let price = Number(checkProductPriceAndStockModel.ResultValue.toFixed(2))
-    ProductModel.ProductPrice = price;
-    this.setData({
-      h,
-      ProductModel, //原商品数据
+    try {
+      const checkProductPriceAndStockModel = await OrderAndPayLogic.CheckProductPriceAndStockModel({
+        Date
+      })
+      let price = Number(checkProductPriceAndStockModel.ResultValue.toFixed(2))
+      ProductModel.ProductPrice = price;
+      this.setData({
+        ProductModel
+      })
+      this.sum()
+    } catch (e) {
+      wx.showModal({
+        title: '提示',
+        content: e.data.ResultValue,
+        cancelText: '重选商品',
+        confirmText: '确定',
+        success: (res) => {
+          if (res.confirm) {
 
-      payState: payState.ResultValue, //可支付状态
-      DeliveryModel, //取货方式
-      getAllUseCouponByProduct: getAllUseCouponByProduct.ResultValue //优惠券
+          } else if (res.cancel) {
+            wx.navigateBack()
+          }
 
-    })
-    this.initAllData()
-
+        }
+      })
+      this.sum()
+      return false
+    }
+    return true
   },
-  onShow: function() {
-    let ShippingAddress = wx.getStorageSync("ShippingAddress")
-    this.setData({
-      ShippingAddress
-    })
-    this.initAllData()
-  },
-
   async initAllData() {
 
     let DeliveryModel = this.data.DeliveryModel
@@ -112,30 +141,39 @@ Page({
         sorted: this.data.sorted,
         Code: this.data.ShippingAddress.Code
       }
-      try {
-        const CheckLogisticsMatchProduct = await OrderAndPayLogic.CheckLogisticsMatchProduct(obj1)
-        if (DeliveryModel == 1) { //快递
+      if (DeliveryModel == 1) { //快递
+        try {
+          const CheckLogisticsMatchProduct = await OrderAndPayLogic.CheckLogisticsMatchProduct(obj1)
           this.setData({
             LogisticsFee: CheckLogisticsMatchProduct.ResultValue
           })
-        } else { //自提
-          this.setData({
-            LogisticsFee: 0
+          this.sum()
+        } catch (e) {
+          console.log(e)
+          wx.showModal({
+            title: '提示',
+            content: e.data.ResultValue,
+            cancelText: '重选商品',
+            confirmText: '切换地址',
+            success: (res) => {
+              if (res.confirm) {
+
+              } else if (res.cancel) {
+                wx.navigateBack()
+              }
+
+            }
           })
+          this.sum()
+          return false
         }
-        this.sum()
-      } catch (e) {
-        console.log(e)
-        wx.showModal({
-          title: '提示',
-          content: e.data.ResultValue,
-          showCancel:false,
-          success:(res)=>{
-            wx.navigateBack()
-          }
+      } else { //自提
+        this.setData({
+          LogisticsFee: 0
         })
       }
 
+    return true
 
     }
 
@@ -148,8 +186,8 @@ Page({
     let LogisticsFee = this.data.LogisticsFee; //运费金额
     let IntegralPrice = this.data.IntegralPrice; //积分
     let CouponPrice = this.data.CouponPrice; //优惠券
-    let OrderPrice = ProductPrice + LogisticsFee;
-    let PayPrice = ProductPrice + LogisticsFee - IntegralPrice - CouponPrice;
+    let OrderPrice = Number(ProductPrice) + Number(LogisticsFee);
+    let PayPrice = Number(ProductPrice) + Number(LogisticsFee) - Number(IntegralPrice) - Number(CouponPrice);
     this.setData({
       OrderPrice: OrderPrice.toFixed(2), //保留小数点后两位 //订单价格
       PayPrice: PayPrice.toFixed(2), //实付
@@ -264,6 +302,19 @@ Page({
       })
       return
     }
+    let jiage=await this.checkProductPriceAndStockModel()
+    if (!jiage) {
+      return
+    }
+    let wuliu=await this.initAllData()
+    if (!wuliu){
+      return
+    }
+    wx.lin.showToast({
+      title: '处理中～',
+      mask: true
+    })
+
     let ProductModel = this.data.ProductModel
     let ProductlListModel = ProductModel.ProductlListModel;
     let OrderDetailListModel = [];
@@ -312,11 +363,15 @@ Page({
     }
     console.log(obj)
     const order = await Order.Add(obj)
-    if (order && order.Success){
+    if (order && order.Success) {
       wx.redirectTo({
         url: '/pages/subpackages/mall/product/orderList/index',
       })
     }
+    setTimeout(function () {
+
+      wx.lin.hideToast()
+    }, 500);
     console.log(order)
 
   }

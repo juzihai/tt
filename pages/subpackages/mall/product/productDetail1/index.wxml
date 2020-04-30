@@ -13,8 +13,11 @@
 
   <view class="sku-pending">
     <view class="specs">
-      <text>发货地址：</text>
-      <text>TODO 暂无</text>
+      <text>发货方式：</text>
+      <text wx:if="{{payState.Logistics}}">物流</text>
+      <text>/</text>
+      <text wx:if="{{payState.PickUp}}">自提</text>
+      <text wx:if="{{!payState.PickUp &&!payState.Logistics}}">暂无</text>
     </view>
     <view class="arrow-right">
       <l-icon name="right" color="#157658" size="24"></l-icon>

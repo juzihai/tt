@@ -41,13 +41,35 @@ Page({
   onTime(e){
     console.log(e)
   },
-  onCancelOrder(e){
+  async onCancelOrder(e){
     let item = e.currentTarget.dataset.cell
     let obj = {
       ID: item.ID,
       OederNumber: item.OrderNo
     }
-    const orderModel = Order.CancelOrder(obj)
+    wx.lin.showToast({
+      title: '处理中～',
+      mask:true
+    })
+    const orderModel =await Order.CancelOrder(obj)
+    setTimeout(function(){
+      wx.lin.hideToast()
+    },100)
+    this.initAllData()
+  },
+  async onDelete(e) {
+    let item = e.currentTarget.dataset.cell
+    let obj = {
+      OrderNo: item.OrderNo
+    }
+    wx.lin.showToast({
+      title: '处理中～',
+      mask: true
+    })
+    const orderModel = await Order.Delete(obj)
+    setTimeout(function () {
+      wx.lin.hideToast()
+    }, 100)
     this.initAllData()
   },
   onPay(e){
@@ -60,12 +82,19 @@ Page({
       content: '已经快马加鞭的为小主送去通知～',
     })
   },
-  onReceipt(e){
+  async onReceipt(e){
     let item = e.currentTarget.dataset.cell
     let obj = {
       OrderNo: item.OrderNo,
     }
-    const orderModel = Order.Receipt(obj)
+    wx.lin.showToast({
+      title: '处理中～',
+      mask: true
+    })
+    const orderModel =await Order.Receipt(obj)
+    setTimeout(function () {
+      wx.lin.hideToast()
+    }, 100)
     this.initAllData()
   },
   onGoDetail(e){

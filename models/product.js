@@ -27,12 +27,23 @@ class Product extends Http {
       }
     })
   }
+  //查询产品详情 202051新接口
+  static RewritePageSearchWX({ EnterpriseID, ProductID}) {
+    return Http.request({
+      url: "api/V1/Product/RewritePageSearchWX",
+      data: {
+        EnterpriseID,
+        ProductID
+      }
+    })
+  }
+
   // 查询产品轮播图列表
-  static SearchRotationChart(ProductCode) {
+  static SearchRotationChart(ProductID) {
     return Http.request({
       url: "api/V1/Product/SearchRotationChartWX",
       data: {
-        ProductCode
+        ProductID
       }
     })
   }

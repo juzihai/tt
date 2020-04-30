@@ -1,105 +1,131 @@
 <wxs src="../../../../../utils/util.wxs" module="util"></wxs>
 <scroll-view scroll-y style="height:{{h}}rpx;">
-<view class="address-container" bindtap="onGetAdd">
-  <view class="action">
-    <l-icon color="#157658" name="address"></l-icon>
-  </view>
-  <view class="center">
-    <view>
-      <text class="title">{{order.RealName}}</text>
-      <text class="subtitle"> {{order.TelPhone}}</text>
+  <view class="address-container" bindtap="onGetAdd">
+    <view class="action">
+      <l-icon color="#157658" name="address"></l-icon>
     </view>
-    <text class="subtitle">{{order.Address}}</text>
-  </view>
+    <view class="center">
+      <view>
+        <text class="title">{{order.RealName}}</text>
+        <text class="subtitle"> {{order.TelPhone}}</text>
+      </view>
+      <text class="subtitle">{{order.Address}}</text>
+    </view>
 
-  <!-- <view class="action">    
+    <!-- <view class="action">    
       <l-icon color="#157658" name="right"></l-icon>
     </view> -->
-</view>
-
-<view class="card-container">
-  <view class="top">
-    <text class="subTitle">订单编号:{{item.OrderNo}}</text>
-    <text class="red" wx:if="{{item.Status==0}}">待支付</text>
-    <text class="red" wx:if="{{item.Status==1}}">待发货</text>
-    <text class="red" wx:if="{{item.Status==2}}">待收货</text>
-    <text class="red" wx:if="{{item.Status==3}}">已完成</text>
-
   </view>
-  <view class="content" wx:for="{{order.Data}}">
-    <image src="{{item.baseUrl+item.ProductListWx[0].ProductImage}}"></image>
-    <view class="right-container">
-      <text class="title">{{item.ProductListWx[0].ProductName}}</text>
-      <text class="subTitle">等{{item.TotalCount}}件商品</text>
+
+  <view class="card-container">
+    <view class="top">
+      <text class="subTitle">订单编号:{{order.OrderNo}}</text>
+      <text class="red" wx:if="{{order.Status==0}}">待支付</text>
+      <text class="red" wx:if="{{order.Status==1}}">待发货</text>
+      <text class="red" wx:if="{{order.Status==2}}">待收货</text>
+      <text class="red" wx:if="{{order.Status==3}}">已签收</text>
+      <text class="red" wx:if="{{order.Status==4}}">退货申请</text>
+      <text class="red" wx:if="{{order.Status==5}}">退货中</text>
+      <text class="red" wx:if="{{order.Status==6}}">已退货</text>
+      <text class="red" wx:if="{{order.Status==7}}">后台关闭</text>
+      <text class="red" wx:if="{{order.Status==8}}">用户取消</text>
+
     </view>
-  </view>
-  <!-- <view class="bottom">
+    <view class="content" wx:for="{{order.Data}}">
+      <image src="{{order.ShowResourcesUrl+item.ProductImage}}"></image>
+      <view class="right-container">
+        <text class="title">{{item.ProductName}}</text>
+        <l-price color="red" value-size="28" unit-size="20" autofix value="{{item.ProductMoney}}"></l-price>
+        <text class="subTitle">x {{item.ProductNum}}</text>
+      </view>
+    </view>
+    <!-- <view class="bottom">
     <text>共计{{order.TotalCount}}件商品，实际支付</text>
     <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{item.PayPrice}}"></l-price>
   </view> -->
-  <view class="sub-container" wx:if="{{item.Status==0}}">
-    <view class="left">
-      <text class="title">剩余支付时间</text>
-      <l-countdown l-class="countdown-text" l-time-class="countdown-blue" time-type="second" time="10" format="{%m}:{%s}" bind:linend="onTime" />
-    </view>
-    <l-button size="mini" style='margin-left:10rpx' catchtap="onCancelOrder" data-cell="{{item}}">取消订单</l-button>
-    <l-button size="mini" style='margin-left:10rpx' catchtap="onPay">支付</l-button>
-  </view>
-
-  <view class="sub-container" wx:if="{{item.Status==1}}">
-    <view class="left">
-    </view>
-    <l-button size="mini" style='margin-left:10rpx' catchtap="onUrged" data-cell="{{item}}">催促发货</l-button>
-  </view>
-  <view class="sub-container" wx:if="{{item.Status==3}}">
-    <view class="left">
-    </view>
-    <!-- <l-button size="mini" style='margin-left:10rpx'>查看物流</l-button> -->
-    <l-button size="mini" style='margin-left:10rpx' catchtap="onReceipt" data-cell="{{item}}">确认收货</l-button>
-  </view>
-</view>
-
-<content-card class="content" name="订单信息" cardPadding>
-  <view class="orderInfo-container">
-    <view class="item">
-      <text>订单创建时间</text>
-      <text>{{util.formatTime(order.CreationTime,"Y/M/D")}}</text>
-    </view>
-    <view class="item">
-      <text>商品总金额</text>
-      <text>¥{{order.OrderPrice}}</text>
-    </view>
-    <view class="item">
-      <text>优惠总金额</text>
-      <text>暂无</text>
-    </view>
-    <view class="item">
-      <text>共计{{order.TotalCount}}件商品，实际支付</text>
-      <text>¥ {{order.PayPrice}}</text>
-    </view>
-    <view class="item">
-      <text>积分生成</text>
-      <text>{{order.Integra}}</text>
-    </view>
-    <view>二维码</view>
-    <button>联系商家</button>
-  </view>
-</content-card>
-
-<content-card class="content" name="物流信息" cardPadding>
-  <view class="orderInfo-container">
-    <view class="item">
-      <text>物流编号</text>
-      <text>XXXXX</text>
-    </view>
-    <view class="item">
-      <text>物流创建时间</text>
-      <text>{{order.CreationTime1}}XXXXXX</text>
+    <view class="sub-container" wx:if="{{item.Status==0}}">
+      <view class="left">
+        <text class="title">剩余支付时间</text>
+        <l-countdown l-class="countdown-text" l-time-class="countdown-blue" time-type="second" time="3600" format="{%m}:{%s}" bind:linend="onTime" />
+      </view>
+      <l-button size="mini" style='margin-left:10rpx' catchtap="onCancelOrder" data-cell="{{item}}">取消订单</l-button>
+      <l-button size="mini" style='margin-left:10rpx' catchtap="onPay">支付</l-button>
     </view>
 
-    <button>物流查询</button>
+    <view class="sub-container" wx:if="{{item.Status==1}}">
+      <view class="left">
+      </view>
+      <l-button size="mini" style='margin-left:10rpx' catchtap="onUrged" data-cell="{{item}}">催促发货</l-button>
+    </view>
+    <view class="sub-container" wx:if="{{item.Status==3}}">
+      <view class="left">
+      </view>
+      <!-- <l-button size="mini" style='margin-left:10rpx'>查看物流</l-button> -->
+      <l-button size="mini" style='margin-left:10rpx' catchtap="onReceipt" data-cell="{{item}}">确认收货</l-button>
+    </view>
   </view>
-</content-card>
+
+  <content-card class="content" name="订单信息" cardPadding>
+    <view class="orderInfo-container">
+      <view class="item">
+        <text>订单创建时间</text>
+        <text>{{util.formatTime(order.CreationTime,"Y/M/D")}}</text>
+      </view>
+      <view class="item">
+        <text>邮费</text>
+        <text>¥{{order.LogisticsFee}}</text>
+      </view>
+      <view class="item">
+        <text>订单总金额</text>
+        <text>¥{{order.OrderPrice}}</text>
+      </view>
+
+      <view class="item">
+        <text>优惠总金额</text>
+        <text>¥{{order.OrderPrice-order.PayPrice}}</text>
+      </view>
+      <view class="item">
+        <text>共计{{order.TotalCount}}件商品，实际支付</text>
+        <text>¥ {{order.PayPrice}}</text>
+      </view>
+      <view class="item">
+        <text>积分生成</text>
+        <text>{{order.Integra}}</text>
+      </view>
+      <view>二维码</view>
+      <button>联系商家</button>
+    </view>
+  </content-card>
+
+  <content-card class="content" name="物流信息" cardPadding>
+    <view class="orderInfo-container">
+      <view class="item">
+        <text>物流编号</text>
+        <text>{{order.ShipNumber}}</text>
+      </view>
+      <view class="item">
+        <text>物流创建时间</text>
+        <text>{{util.formatTime(order.ShipTime,"Y/M/D")}}</text>
+      </view>
+
+      <button>物流查询</button>
+    </view>
+  </content-card>
+  <content-card class="content" name="自提信息" cardPadding>
+    <view class="orderInfo-container">
+      <view class="item">
+        <text>店铺名称</text>
+        <text>{{order.CompanyName}}</text>
+      </view>
+      <view class="item">
+        <text>店铺地址</text>
+        <text>{{order.PickUpAddress}}</text>
+      </view>
+
+      <button>去导航</button>
+    </view>
+  </content-card>
+
 </scroll-view>
 
 <view class="tapbar">

@@ -107,13 +107,6 @@ Page({
     let cell = e.currentTarget.dataset.cell
     let type=e.detail.type
 
-    let usableCartListModel = this.data.usableCartListModel;
-    usableCartListModel[index].ProductNum = e.detail.count;
-    usableCartListModel[index].ProductCountPrice = e.detail.count * usableCartListModel[index].ProductPrice;
-    this.setData({
-      usableCartListModel
-    })
-    this.sum();
 
     let obj = {
       OpenId: wx.getStorageSync("OpenID"),
@@ -123,8 +116,22 @@ Page({
       ProductType:1,
     }
 
-
+    wx.lin.showToast({
+      title: '处理中～',
+      mask:true
+    })
     const add=await ShoppingCart.Add(obj)
+    setTimeout(function () {
+      
+      wx.lin.hideToast()
+    }, 100);
+    let usableCartListModel = this.data.usableCartListModel;
+    usableCartListModel[index].ProductNum = e.detail.count;
+    usableCartListModel[index].ProductCountPrice = e.detail.count * usableCartListModel[index].ProductPrice;
+    this.setData({
+      usableCartListModel
+    })
+    this.sum();
 
   },
 /**  计算总金额 及商品数量*/
@@ -149,6 +156,7 @@ sum: function () {
     let cell = e.currentTarget.dataset.cell
     wx.lin.showToast({
       title: '处理中～',
+      mask:true
     })
     let Ids=[]
     Ids.push(cell.ID)
@@ -157,7 +165,10 @@ sum: function () {
     }
     const add = await ShoppingCart.RemoveProduct(obj)
     this.initAllData()
-    wx.lin.hideToast()
+    setTimeout(function () {
+
+      wx.lin.hideToast()
+    }, 100);
   },
 //全选
 onSelectedAllTap(e){
@@ -187,6 +198,10 @@ onNextTap(){
     })
     return
   }
+  wx.lin.showToast({
+    title: '处理中～',
+    mask: true
+  })
   let usableCartListModel = this.data.usableCartListModel
   let ProductlList=[];
   usableCartListModel.forEach(item=>{
@@ -206,6 +221,10 @@ onNextTap(){
   wx.navigateTo({
     url: '/pages/subpackages/mall/product/order/index?ProductModel='+JSON.stringify(ProductModel),
   })
+  setTimeout(function () {
+
+    wx.lin.hideToast()
+  }, 500);
 
 }
 

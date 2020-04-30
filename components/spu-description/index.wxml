@@ -14,7 +14,7 @@
         <view class="price-row">
             <l-price wx:if="{{p.mainPrice(spu.Price, spu.DiscountPrice).display}}"
                      value="{{p.mainPrice(spu.Price, spu.DiscountPrice).price}}"
-                     color="#157658"
+                     color="red"
                      unit-size="24"
                      autofix
                      count-size="30"

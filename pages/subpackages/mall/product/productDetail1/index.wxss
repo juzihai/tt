@@ -27,8 +27,12 @@
     color: #999999;
     font-size:24rpx;
 }
+/* .specs > text:nth-child(3){
+    font-size: 24rpx;
+    color: #157658;
+} */
 
-.specs > text:nth-child(2){
+.specs > text{
     font-size: 24rpx;
     color: #157658;
 }

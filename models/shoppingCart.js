@@ -5,13 +5,13 @@ import { Paging } from "../utils/paging";
 class ShoppingCart extends Http {
 
   // 1. 购物车添加接口
-  static Add({ OpenId, EnterpriseId, ProductID, ProductNum, ProductType }) {
+  static Add({ OpenId, EnterpriseId, ProductId, ProductNum, ProductType }) {
     return Http.request({
       url: "api/V1/ShoppingCart/Add",
       data: {
         OpenId,
         EnterpriseId,
-        ProductID,
+        ProductId,
         ProductNum,
         ProductType
       }
