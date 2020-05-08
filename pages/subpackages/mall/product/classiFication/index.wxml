@@ -52,6 +52,14 @@
                         deleted value="{{p.slashedPrice(item.Price,item.DiscountPrice).price}}"></l-price>
             </view>
             <text class="subtitle">{{item.ProductContent}}~</text>
+            <view class="cart-container" catchtap="onCartAdd" data-cell="{{item}}">
+              <l-button special="true" >
+                <view class="share-box">
+                  <l-icon size="40" name="cart" color="#3963bc" />
+                </view>
+              </l-button>
+            </view>
+
           </view>
         </l-card>
         <l-loadmore show type="{{loadingType}}" end-text="已到底部啦!"></l-loadmore>
@@ -62,5 +70,5 @@
   </view>
 </view>
 
-
+<l-toast />
   <l-status-show show="{{grid.Data.length==0}}" type="data"></l-status-show>

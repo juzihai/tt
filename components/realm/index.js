@@ -18,6 +18,7 @@ Component({
     judger: Object,// TODO 预留
     previewImg: String,
     currentSkuCount: Cart.SKU_MIN_COUNT,//当前选择的商品数量
+    stock:0
   },
   observers: {
     'spu':function(spu){
@@ -91,7 +92,7 @@ Component({
     bindSpuData() {
       const spu = this.properties.spu
       this.setData({
-        previewImg: spu.ProductImage,
+        previewImg: sku.ShowResourcesUrl +spu.ProductImage,
         title: spu.ProductName,
         price: spu.Price,
         discountPrice: spu.DiscountPrice,
@@ -99,7 +100,7 @@ Component({
     },
     bindSkuData(sku) {
       this.setData({
-        previewImg: sku.ProductImage,
+        previewImg: sku.ShowResourcesUrl+ sku.ProductImage,
         title: sku.ProductName,
         price: sku.Price,
         discountPrice: sku.DiscountPrice,
@@ -115,7 +116,7 @@ Component({
       // TODO 如含有规格用规格下的数据判断
       // if (this.data.judger.isSkuIntact()) {
       //   const sku = this.data.judger.getDeterminateSku();
-      this.setStockStatus(10, currentCount);
+      this.setStockStatus(this.properties.stock, currentCount);
       // }
     },
 

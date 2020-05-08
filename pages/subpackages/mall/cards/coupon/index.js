@@ -64,16 +64,22 @@ Page({
       CustomerID: userInfo.ID,
       ID: item.ID
     }
-    const coupon=await Coupon.ReceiveCoupon(obj)
-    if(coupon){
-      wx.showToast({
-        title: '您已领取了该优惠券，在"我的优惠券中"可查看',
-        icon: "none"
-      })
+    try{
+      const coupon = await Coupon.ReceiveCoupon(obj)
+      if (coupon.ResultBool) {
+        wx.showToast({
+          title: '您已领取了该优惠券，在"我的优惠券中"可查看',
+          icon: "none"
+        })
+      } else {
+        wx.showToast({
+          title: '领取失败，请重试',
+          icon: "none"
+        })
+      }
+    }catch(e){
+
     }
 
-    // wx.lin.showToast({
-    //   title: '您已领取了该优惠券，在"我的优惠券中"可查看',
-    // })
   }
 })

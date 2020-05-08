@@ -14,7 +14,7 @@
     <view wx:else>
       选择地址～
     </view>
-    <view class="action">
+    <view class="action" >
       <l-icon color="#157658" name="right"></l-icon>
     </view>
   </view>
@@ -23,8 +23,9 @@
     <l-list title="门店自提" is-link="{{false}}">
       <view slot="right-section">
         <switch bindchange="onMyGo" />
-      </view> 
+      </view>
     </l-list>
+    <l-list title="姓名 13027603342" desc="天津市天津市" icon="address" bind:lintap="onMyGoAdd" />
   </view>
   <content-card class="content" name="{{item.ClassName}}" wx:for="{{sorted}}">
 
@@ -48,7 +49,7 @@
   </content-card>
 
   <content-card class="content" name="订单信息" cardPadding wx:if="{{ShippingAddress}}">
-    <l-list title="配送方式" desc="普通配送" right-desc="{{DeliveryModel==1? '快递¥'+LogisticsFee:'门店自提'}}" ></l-list>
+    <l-list title="配送方式" desc="普通配送" right-desc="{{DeliveryModel==1? '快递¥'+LogisticsFee:'门店自提'}}"></l-list>
 
     <l-textarea value="{{Remark}}" bind:lininput="inputRemark" placeholder="订单备注：选填，请先和商家协商一致" wx:if="{{!showRealm}}" />
     <l-list is-link="{{false}}">
@@ -56,7 +57,7 @@
         <text class="subtitle">共{{ProductModel.ProductCount}}件</text>小计：
         <view class="price-row">
           <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{OrderPrice}}"></l-price>
- 
+
         </view>
       </view>
     </l-list>
@@ -86,13 +87,25 @@
 
       </view>
     </l-list>
-    <l-list title="积分抵扣" is-link="{{false}}" wx:if="{{payState.Integral}}">
+    <l-list is-link="{{false}}" wx:if="{{payState.Integral}}">
       <view slot="left-section">
-        <text class="subtitle"> 可抵扣</text>
+        <view>积分抵扣</view>
+        <block wx:if="{{Integralchecked}}">
+          <view>
+            <text class="subtitle">使用积分：{{Integral}}</text>
+          </view>
+          <view>
+            <text class="subtitle">本次生成积分：{{GetIntegral}}</text>
+          </view>
+        </block>
+
+        <view wx:else>
+          <text class="subtitle">未使用积分</text>
+        </view>
       </view>
       <view slot="right-section" class="l-right-class">
         <view class="price-row">
-          <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{IntegraPrice}}"></l-price>
+          <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{IntegralPrice}}"></l-price>
 
         </view>
         <l-radio-group bind:linchange="onIntegral">

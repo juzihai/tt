@@ -4,6 +4,9 @@ import { px2rpx } from "../../../../../components/lin-ui/utils/util";
 const app = getApp()
 import { Product } from '../../../../../models/product.js'
 import { ProductClass } from '../../../../../models/productClass.js'
+import {
+  ShoppingCart
+} from "../../../../../models/shoppingCart.js";
 
 Page({
 
@@ -101,6 +104,47 @@ Page({
     wx.navigateTo({
       url: `/pages/subpackages/mall/product/productDetail1/index?pid=${pid}&pcode=${pcode}`
     })
+  },
+  async onCartAdd(e){
+    console.log(e)
+    let spu=e.currentTarget.dataset.cell;
+    if (spu.SalesStock == 0) {
+      wx.showModal({
+        title: '提示',
+        content: '暂无库存，请联系店铺管理员',
+      })
+      return
+    }
+    let obj = {
+      OpenId: wx.getStorageSync('OpenID'),
+      EnterpriseId: app.config.EnterpriseID,
+      ProductID: spu.ID,
+      ProductNum: 1,
+      ProductType: this.data.pagePath == "HotProduct" ? 2 : 1
+    }
+    wx.lin.showToast({
+      title: '处理中～',
+      mask: true
+    })
+    const cart = await ShoppingCart.Add(obj)
+    if (cart.Success) {
+      console.log("加入购物车")
+
+      wx.lin.showToast({
+        title: '添加成功~',
+        icon: 'success'
+      })
+    } else {
+      wx.lin.showToast({
+        title: '添加失败~',
+        icon: 'success'
+      })
+      console.log('添加err')
+    }
+
+    setTimeout(function () {
+      wx.lin.hideToast()
+    }, 500)
   },
   onGotoSearch() {
     wx.navigateTo({

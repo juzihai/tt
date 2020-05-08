@@ -78,7 +78,6 @@ Page({
       }
 
     }
-
     this.setData({
       bannerB,
       basicsGrid,
@@ -86,7 +85,8 @@ Page({
       nav,
       notice,
       noticeArr,
-      loading:false
+      loading:false,
+      shopInfo: wx.getStorageSync('shopInfo')
     })
     wx.stopPullDownRefresh();
     this.tabSelectGetData()

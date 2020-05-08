@@ -90,6 +90,6 @@
 <l-loadmore show custom>
   <view slot="loading" class="custom-container" bindtap="onToMini">
     <!-- <image src="/images/static/loadmor.gif" class="custom-img"></image> -->
-    <text class="custom-txt">–– 金朵科技提供技术支持 ––</text>
+    <text class="custom-txt">–– 果资科技提供技术支持 ––</text>
   </view>
 </l-loadmore>

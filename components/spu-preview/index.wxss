@@ -42,3 +42,10 @@
     font-size: 26rpx !important;/*加!important ，是因为优先级具有不确定性*/
     color: red !important;
 }
+
+.cart-container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}

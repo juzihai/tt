@@ -1,25 +1,30 @@
 const app = getApp();
-import { Order } from "../../../../../models/order.js";
+import {
+  Order
+} from "../../../../../models/order.js";
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    Status:-1
+    Status: -1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
 
-      this.initAllData()
+    
   },
-  changeTabs(e){
+  onShow(){
+    this.initAllData()
+  },
+  changeTabs(e) {
     let activeKey = e.detail.activeKey
     this.setData({
-      Status:activeKey
+      Status: activeKey
     })
     this.initAllData()
   },
@@ -27,21 +32,21 @@ Page({
     let obj = {
       EnterpriseId: app.config.EnterpriseID,
       OpenId: wx.getStorageSync("OpenID"),
-      Status:this.data.Status
+      Status: this.data.Status
     }
-    
+
     const orderModel = Order.QueryForWx(obj)
     this.data.orderModel = orderModel //类属性
-    const order = await orderModel.getMoreData();//todo
+    const order = await orderModel.getMoreData(); //todo
     this.setData({
       order
     })
-
+    wx.stopPullDownRefresh();
   },
-  onTime(e){
+  onTime(e) {
     console.log(e)
   },
-  async onCancelOrder(e){
+  async onCancelOrder(e) {
     let item = e.currentTarget.dataset.cell
     let obj = {
       ID: item.ID,
@@ -49,12 +54,12 @@ Page({
     }
     wx.lin.showToast({
       title: '处理中～',
-      mask:true
+      mask: true
     })
-    const orderModel =await Order.CancelOrder(obj)
-    setTimeout(function(){
+    const orderModel = await Order.CancelOrder(obj)
+    setTimeout(function() {
       wx.lin.hideToast()
-    },100)
+    }, 100)
     this.initAllData()
   },
   async onDelete(e) {
@@ -67,22 +72,57 @@ Page({
       mask: true
     })
     const orderModel = await Order.Delete(obj)
-    setTimeout(function () {
+    setTimeout(function() {
       wx.lin.hideToast()
     }, 100)
     this.initAllData()
   },
-  onPay(e){
-  //TODO 待支付
+  async onPay(e) {
+    let item = e.currentTarget.dataset.cell
+    //TODO 待支付
+    let obj = {
+      EnterpriseID: app.config.EnterpriseID,
+      OpenID: wx.getStorageSync("OpenID"),
+      OrderNo: item.OrderNo,
+      OrderPrice: item.OrderPrice,
+      PayPrice: item.PayPrice
+    }
+    let messageJson = await Order.WXPay(obj)
+    wx.requestPayment({
+      'timeStamp': messageJson.timeStamp,
+      'nonceStr': messageJson.nonceStr,
+      'package': messageJson.package,
+      'signType': messageJson.signType,
+      'paySign': messageJson.paySign,
+      'success': function (res) {
+        wx.showModal({
+          title: '提示',
+          content: '付款成功',
+          showCancel: false,
+          success() {
+            this.initAllData()
+          }
+        })
+      },
+      'fail': function (res) {
 
+        var errMsg = res.errMsg;
+        if (errMsg == "requestPayment:fail cancel")
+          wx.showToast({
+            title: '已取消支付',
+            icon: 'none',
+            duration: 2000
+          })
+      }
+    });
   },
-  onUrged(e){
+  onUrged(e) {
     wx.showModal({
       title: '提示',
       content: '已经快马加鞭的为小主送去通知～',
     })
   },
-  async onReceipt(e){
+  async onReceipt(e) {
     let item = e.currentTarget.dataset.cell
     let obj = {
       OrderNo: item.OrderNo,
@@ -91,16 +131,16 @@ Page({
       title: '处理中～',
       mask: true
     })
-    const orderModel =await Order.Receipt(obj)
-    setTimeout(function () {
+    const orderModel = await Order.Receipt(obj)
+    setTimeout(function() {
       wx.lin.hideToast()
     }, 100)
     this.initAllData()
   },
-  onGoDetail(e){
+  onGoDetail(e) {
     let id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: '/pages/subpackages/mall/product/orderDetail/index?id='+id,
+      url: '/pages/subpackages/mall/product/orderDetail/index?id=' + id,
     })
   },
 
@@ -108,14 +148,14 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     this.initAllData()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: async function () {
+  onReachBottom: async function() {
     const data = await this.data.orderModel.getMoreData();
     console.log(data)
     if (!data) {

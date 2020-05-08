@@ -5,7 +5,6 @@ import {
 
 const app = getApp()
 const EnterpriseId = config.EnterpriseID
-const AuthCode = wx.getStorageSync('OpenID')
 let _that;
 
 class Http {
@@ -29,7 +28,7 @@ class Http {
           SystemIP: "", //ip
           TerminalType,
           EnterpriseId,
-          AuthCode
+          AuthCode: SystemUserID
 
         },
         success: (res) => {

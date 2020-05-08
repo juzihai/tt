@@ -25,12 +25,15 @@ Page({
     OrderPrice: 0, //订单价格
     PayPrice: 0, //实际付款价格
     Integral: 0, //使用积分
+    GetIntegral: 0,//生成的积分数量
     IntegralPrice: 0, //积分抵扣价格
     CouponPrice: 0, //优惠券抵扣价格
     LogisticsFee: 0, //运费金额
     Remark: null, //备注
     DeliveryModel: 1, //配送方式
     OrderCouponListModel: null,
+    Integralchecked:false,//使用积分
+    SubCompanyID:null,//自提时传递的参数
 
   },
 
@@ -108,7 +111,7 @@ Page({
       this.setData({
         ProductModel
       })
-      this.sum()
+      this.integralSum()
     } catch (e) {
       wx.showModal({
         title: '提示',
@@ -124,7 +127,7 @@ Page({
 
         }
       })
-      this.sum()
+      this.integralSum()
       return false
     }
     return true
@@ -147,7 +150,7 @@ Page({
           this.setData({
             LogisticsFee: CheckLogisticsMatchProduct.ResultValue
           })
-          this.sum()
+          this.integralSum()
         } catch (e) {
           console.log(e)
           wx.showModal({
@@ -164,13 +167,14 @@ Page({
 
             }
           })
-          this.sum()
+          this.integralSum()
           return false
         }
       } else { //自提
         this.setData({
           LogisticsFee: 0
         })
+        this.integralSum()
       }
 
     return true
@@ -225,6 +229,12 @@ Page({
     })
     this.initAllData()
   },
+   // 选择自提地址
+  onMyGoAdd(e){
+    wx.navigateTo({
+      url: '/pages/subpackages/mall/product/subCompanyList/index',
+    })
+  },
   inputRemark(e) {
     let value = e.detail.value;
     this.setData({
@@ -262,11 +272,19 @@ Page({
       CouponPrice,
       showCoupon: false
     })
-    this.sum()
+    this.integralSum()
   },
+  //选中使用积分
   async onIntegral(e) {
-    console.log(e)
     let checked = e.detail.checked;
+    this.setData({
+      Integralchecked:checked
+    })
+    this.integralSum()
+  },
+  //积分及其他计算
+  async integralSum(e){
+    let checked=this.data.Integralchecked;　
     let OrderPrice = this.data.OrderPrice;
     let CouponPrice = this.data.CouponPrice;
     let money = OrderPrice - CouponPrice
@@ -290,7 +308,6 @@ Page({
       })
     }
     this.sum()
-
   },
   // 提交订单
   async onNextTap() {
@@ -354,6 +371,8 @@ Page({
       OrderPrice: this.data.OrderPrice,
       PayPrice: this.data.PayPrice,
       Integra: this.data.Integral,
+      GetIntegra:this.data.GetIntegral,
+      SubCompanyID: this.data.SubCompanyID,
       IntegraPrice: this.data.IntegralPrice,
       LogisticsFee: this.data.LogisticsFee,
       Remark: this.data.Remark,
@@ -363,6 +382,7 @@ Page({
     }
     console.log(obj)
     const order = await Order.Add(obj)
+    console.log(order)
     if (order && order.Success) {
       wx.redirectTo({
         url: '/pages/subpackages/mall/product/orderList/index',

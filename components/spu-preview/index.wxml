@@ -20,6 +20,14 @@
     </view>
 
     <text class="subtitle">{{data.ProductContent}}~</text>
+        <view class="cart-container" catchtap="onCartAdd" data-cell="{{item}}">
+          <l-button special="true" >
+            <view class="share-box">
+              <l-icon size="40" name="cart" color="#3963bc" />
+            </view>
+          </l-button>
+        </view>
   </view>
 
 </view>
+<l-toast />

@@ -1,6 +1,6 @@
 <wxs src="../../../../../utils/util.wxs" module="util"></wxs>
 <scroll-view scroll-y style="height:{{h}}rpx;">
-  <view class="address-container" bindtap="onGetAdd">
+  <view class="address-container" bindtap="onGetAdd" wx:if="{{order.DeliveryModel==1}}">
     <view class="action">
       <l-icon color="#157658" name="address"></l-icon>
     </view>
@@ -79,39 +79,42 @@
         <text>订单总金额</text>
         <text>¥{{order.OrderPrice}}</text>
       </view>
-
+      <view class="item">
+        <text>消耗积分</text>
+        <text>{{order.Integra}}</text>
+      </view>
       <view class="item">
         <text>优惠总金额</text>
         <text>¥{{order.OrderPrice-order.PayPrice}}</text>
       </view>
       <view class="item">
-        <text>共计{{order.TotalCount}}件商品，实际支付</text>
+        <text>共计{{order.ProductCount}}件商品，实际支付</text>
         <text>¥ {{order.PayPrice}}</text>
       </view>
       <view class="item">
         <text>积分生成</text>
-        <text>{{order.Integra}}</text>
+        <text>{{order.GetIntegra}}</text>
       </view>
       <view>二维码</view>
-      <button>联系商家</button>
+      <button bindtap="onShopPhone">联系商家</button>
     </view>
   </content-card>
 
-  <content-card class="content" name="物流信息" cardPadding>
+  <content-card class="content" name="物流信息" cardPadding wx:if="{{order.DeliveryModel==1}}">
     <view class="orderInfo-container">
       <view class="item">
         <text>物流编号</text>
-        <text>{{order.ShipNumber}}</text>
+        <text>{{order.ShipNumber ?order.ShipNumber:'暂无'}}</text>
       </view>
       <view class="item">
         <text>物流创建时间</text>
-        <text>{{util.formatTime(order.ShipTime,"Y/M/D")}}</text>
+        <text>{{order.ShipTime?util.formatTime(order.ShipTime,"Y/M/D" ) :'暂无'}}</text>
       </view>
 
-      <button>物流查询</button>
+      <button bindtap="onGoToShip">物流查询</button>
     </view>
   </content-card>
-  <content-card class="content" name="自提信息" cardPadding>
+  <content-card class="content" name="自提信息" cardPadding wx:if="{{order.DeliveryModel==2}}">
     <view class="orderInfo-container">
       <view class="item">
         <text>店铺名称</text>
@@ -129,18 +132,34 @@
 </scroll-view>
 
 <view class="tapbar">
-  <!-- <l-list is-link="{{false}}">
-    <view slot="right-section" class="l-right-class">
-      <text class="subtitle">共{{ProductModel.ProductCount}}件</text>合计：
-      <view class="price-row">
-        <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{ProductModel.ProductPrice}}"></l-price>
 
-      </view>
-      <l-button bg-color="orange" class="button" bind:lintap="onNextTap">提交订单</l-button>
+  <view class="sub-container" wx:if="{{order.Status==0}}">
+    <view class="left">
+      <text class="title">剩余支付时间</text>
+      <l-countdown l-class="countdown-text" l-time-class="countdown-blue" time-type="second" time="900" format="{%m}:{%s}" bind:linend="onTime" />
     </view>
+    <l-button size="mini" style='margin-left:10rpx' catchtap="onCancelOrder" data-cell="{{order}}">取消订单</l-button>
+    <l-button size="mini" style='margin-left:10rpx' catchtap="onPay">支付</l-button>
+  </view>
 
-  </l-list> -->
-  <l-button bg-color="orange" class="button" bind:lintap="onNextTap">修改地址</l-button>
-  <l-button bg-color="orange" class="button" bind:lintap="onNextTap">取消订单</l-button>
-  <l-button bg-color="orange" class="button" bind:lintap="onNextTap">提交订单</l-button>
+  <view class="sub-container" wx:if="{{order.Status==1}}">
+    <view class="left">
+    </view>
+    <l-button size="mini" style='margin-left:10rpx' catchtap="onUrged" data-cell="{{order}}">催促发货</l-button>
+  </view>
+  <view class="sub-container" wx:if="{{order.Status==2}}">
+    <view class="left">
+    </view>
+    <!-- <l-button size="mini" style='margin-left:10rpx'>查看物流</l-button> -->
+    <l-button size="mini" style='margin-left:10rpx' catchtap="onReceipt" data-cell="{{order}}">确认收货</l-button>
+  </view>
+    <view class="sub-container" wx:if="{{order.Status==3||order.Status==7||order.Status==8}}">
+    <view class="left">
+    </view>
+    <l-button size="mini" style='margin-left:10rpx' catchtap="onDelete" data-cell="{{order}}">删除订单</l-button>
+  </view>
+
+
 </view>
+
+<l-action-sheet l-class-title="action-title" />

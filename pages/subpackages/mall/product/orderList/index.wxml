@@ -38,7 +38,7 @@
       <l-countdown l-class="countdown-text" l-time-class="countdown-blue" time-type="second" time="900" format="{%m}:{%s}" bind:linend="onTime" />
     </view>
     <l-button size="mini" style='margin-left:10rpx' catchtap="onCancelOrder" data-cell="{{item}}">取消订单</l-button>
-    <l-button size="mini" style='margin-left:10rpx' catchtap="onPay">支付</l-button>
+    <l-button size="mini" style='margin-left:10rpx' catchtap="onPay" data-cell="{{item}}">支付</l-button>
   </view>
 
   <view class="sub-container" wx:if="{{item.Status==1}}">

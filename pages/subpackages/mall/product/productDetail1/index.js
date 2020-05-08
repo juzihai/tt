@@ -148,7 +148,7 @@ Page({
       let obj = {
         OpenId: wx.getStorageSync('OpenID'),
         EnterpriseId: app.config.EnterpriseID,
-        ProductId: spu.ProductID,
+        ProductID: spu.ProductID,
         ProductNum: event.detail.currentSkuCount,
         ProductType: this.data.pagePath == "HotProduct" ? 2 : 1
       }
@@ -181,7 +181,7 @@ Page({
         ProductNum,
         ProductPrice:ProductPrice.toFixed(2),
         SalesStock: spu.SalesStock,
-        baseUrl: ''
+        baseUrl: spu.ShowResourcesUrl
       }
       ProductlList.push(item)
       let ProductModel = {

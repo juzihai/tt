@@ -46,9 +46,9 @@
             <s-fence x="{{index}}" bind:celltap="onCellTab" fence="{{item}}"></s-fence>
         </block> -->
 
-        <view class="counter-container" wx:if="{{spu.SalesStock>0}}">
+        <view class="counter-container" >
             <text>购买数量</text>
-            <s-counter bind:lintap="onSelectCount" max="{{spu.SalesStock}}"
+            <s-counter bind:lintap="onSelectCount" 
             ></s-counter>
         </view>
 

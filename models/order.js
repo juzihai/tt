@@ -19,12 +19,16 @@ class Order extends Http {
     OrderPrice,
     PayPrice,
     Integra,
+    GetIntegra,
     IntegraPrice,
     LogisticsFee,
     Remark,
     DeliveryModel,
     OrderDetailListModel,
     OrderCouponListModel,
+    SubCompanyID,
+    Phone,
+    PickUpAddress
   }) {
     return Http.request({
       url: "api/V1/Order/Add",
@@ -38,12 +42,16 @@ class Order extends Http {
         OrderPrice,
         PayPrice,
         Integra,
+        GetIntegra,
         IntegraPrice,
         LogisticsFee,
         Remark,
         DeliveryModel,
         OrderDetailListModel,
         OrderCouponListModel,
+        SubCompanyID,
+        Phone,
+        PickUpAddress
       }
     })
   }
@@ -132,6 +140,20 @@ class Order extends Http {
         OrderNo,
         OperatPerson,
         OperatPersonName
+      }
+    })
+  }
+
+  //微信支付（小程序）
+  static WXPay({ EnterpriseID, OpenID, OrderNo, OrderPrice, PayPrice }) {
+    return Http.request({
+      url: "api/V1/AllPay/WXPay",
+      data: {
+        EnterpriseID,
+        OpenID,
+        OrderNo,
+        OrderPrice,
+        PayPrice
       }
     })
   }

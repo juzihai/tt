@@ -68,3 +68,9 @@ page{
     color: #888;
     word-break:break-all;/* 小程序view英文数字不换行的问题 */
 }
+.cart-container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}

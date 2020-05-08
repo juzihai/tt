@@ -96,6 +96,7 @@
         "product/order/index",
         "product/orderList/index",
         "product/orderDetail/index",
+        "product/subCompanyList/index",
         "product/addressList/index",
         "product/addressAdd/index",
         "product/search/index",
