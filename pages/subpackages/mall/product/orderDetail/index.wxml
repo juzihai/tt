@@ -95,7 +95,12 @@
         <text>积分生成</text>
         <text>{{order.GetIntegra}}</text>
       </view>
-      <view>二维码</view>
+      
+      <view class='canvas'>
+        <canvas  canvas-id='canvas' style="width:{{code_w}}px; height:{{code_w}}px;" bindlongtap='save'></canvas>
+      
+      </view>
+
       <button bindtap="onShopPhone">联系商家</button>
     </view>
   </content-card>

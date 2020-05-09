@@ -34,7 +34,8 @@ Page({
     OrderCouponListModel: null,
     Integralchecked:false,//使用积分
     SubCompanyID:null,//自提时传递的参数
-
+    ContactName:null,//联系人姓名
+    ContactNumber:null,//联系人手机号
   },
 
   onLoad: async function(options) {

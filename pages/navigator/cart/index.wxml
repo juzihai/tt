@@ -18,7 +18,7 @@
           </l-tag>
           <view class="counter-container">
               <l-price color="red" value-size="28" unit-size="20" autofix value="{{item.ProductPrice}}"></l-price>
-            <s-counter bind:lintap="onSelectCount" count="{{item.ProductNum}}" max="{{item.SalesStock}}" key="{{item.ID}}" data-cell="{{item}}" data-index="{{index}}"></s-counter>
+            <s-counter bind:lintap="onSelectCount" count="{{item.ProductNum}}"  key="{{item.ID}}" data-cell="{{item}}" data-index="{{index}}"></s-counter>
           </view>
         </view>
       </view>

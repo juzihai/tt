@@ -36,7 +36,7 @@
           <view class="price-row">
             <l-price color="red" value-size="28" unit-size="20" autofix value="{{item.ProductPrice}}"></l-price>
           </view>
-          <!-- <text class="subtitle">{{item.ProductContent}~</text> -->
+          <!-- <text class="subtitle">{{item.ProductContent}~</text> -->·
           <view class="avter-share-container">
             <view class="like-container">
               <l-icon name="close" color="#666" size="16" />

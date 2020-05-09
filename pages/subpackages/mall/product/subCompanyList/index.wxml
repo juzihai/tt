@@ -4,8 +4,8 @@
 
     <content-card class="content" name="联系人管理" cardPadding>
       <view>
-        <l-input label="姓名" placeholder="请输入联系人姓名" required="{{true}}" label-width="170" clear="{{true}}" name="name" />
-        <l-input label="手机号码" placeholder="请输入联系人手机号码" required="{{true}}" label-width="170" clear="{{true}}" name="phone" />
+        <l-input label="姓名" value="{{ContactNumbr}}" placeholder="请输入联系人姓名" required="{{true}}" label-width="170" clear="{{true}}" name="name" />
+        <l-input label="手机号码" value="{{ContactNumbr}}" placeholder="请输入联系人手机号码" required="{{true}}" label-width="170" clear="{{true}}" name="phone" />
       </view>
 
     </content-card>

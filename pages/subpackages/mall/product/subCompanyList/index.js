@@ -8,7 +8,8 @@ import {
 
 Page({
   data: {
-
+    ContactName:null,
+    ContactNumbr:null,
   },
   onLoad: async function(options) {
     this.WxValidate = app.WxValidate({
@@ -27,10 +28,14 @@ Page({
         required: '请输入手机号',
       }
     })
+    let ContactName = options.ContactName;
+    let ContactNumbr = options.ContactNumbr;
     const windowHeight = await getWindowHeightRpx();
     const h = windowHeight - 100; // 100 是底部tabbar的高度  自定义的tabbar高度是不包含在 windowHeight里的
     this.setData({
-      h
+      h,
+      ContactName,
+      ContactNumbr
     })
   },
 

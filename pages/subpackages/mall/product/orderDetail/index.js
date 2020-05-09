@@ -6,13 +6,19 @@ import {
 import {
   getWindowHeightRpx
 } from "../../../../../utils/system";
+var QRCode = require('../../../../../utils/weapp-qrcode.js')
+var qrcode;
+const W = wx.getSystemInfoSync().windowWidth;
+const rate = 750.0 / W;
+// 300rpx 在6s上为 150px
+const code_w = 300 / rate;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    code_w: code_w,
   },
 
   /**
@@ -37,6 +43,21 @@ Page({
       ID: this.data.id
     }
     const order = await Order.DetailByOrderIdForWx(obj)
+
+    qrcode = new QRCode('canvas', {
+      // usingIn: this,
+      text: order.OrderNo,
+      image: '',
+      width: code_w,
+      height: code_w,
+      colorDark: "#000000",
+      colorLight: "white",
+      correctLevel: QRCode.CorrectLevel.H,
+      callback: (res) => {
+        // 生成二维码的临时文件
+        console.log(res.path)
+      }
+    });
     this.setData({
       order
     })
