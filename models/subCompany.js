@@ -15,7 +15,7 @@ class SubCompany extends Http {
 
 
   //查询店铺详情
-  static SearchModelDetails(ID) {
+  static SearchModelDetails({ID}) {
     return Http.request({
       url: "api/V1/SubCompany/SearchModelDetailsWX",
       data: {

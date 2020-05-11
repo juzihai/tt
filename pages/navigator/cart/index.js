@@ -219,7 +219,7 @@ onNextTap(){
     ProductlListModel: ProductlList
   }
   wx.navigateTo({
-    url: '/pages/subpackages/mall/product/order/index?ProductModel='+JSON.stringify(ProductModel),
+    url: `/pages/subpackages/mall/product/order/index?ProductModel= ${JSON.stringify(ProductModel)}&pagePath=cart`,
   })
   setTimeout(function () {
 

@@ -55,6 +55,7 @@ Page({
     //TODO:真实数据
      let obj = {
        "EnterpriseID": app.config.EnterpriseID,
+       "Limit": 11
      }
      const bannerB = await ProductRotationchart.Search(obj)
      const grid = await ProductClass.Search(obj);

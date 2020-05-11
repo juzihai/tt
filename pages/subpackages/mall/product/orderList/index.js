@@ -87,34 +87,47 @@ Page({
       OrderPrice: item.OrderPrice,
       PayPrice: item.PayPrice
     }
-    let messageJson = await Order.WXPay(obj)
-    wx.requestPayment({
-      'timeStamp': messageJson.timeStamp,
-      'nonceStr': messageJson.nonceStr,
-      'package': messageJson.package,
-      'signType': messageJson.signType,
-      'paySign': messageJson.paySign,
-      'success': function (res) {
-        wx.showModal({
-          title: '提示',
-          content: '付款成功',
-          showCancel: false,
-          success() {
-            this.initAllData()
-          }
-        })
-      },
-      'fail': function (res) {
-
-        var errMsg = res.errMsg;
-        if (errMsg == "requestPayment:fail cancel")
-          wx.showToast({
-            title: '已取消支付',
-            icon: 'none',
-            duration: 2000
+    if (item.PayPrice==0){
+      let order = await Order.DeductiblePay(obj)
+      wx.showModal({
+        title: '提示',
+        content: order.ResultBool ? '提交成功' :'提交失败',
+        showCancel: false,
+        success() {
+          this.initAllData()
+        }
+      })
+    }else{
+      let messageJson = await Order.WXPay(obj)
+      wx.requestPayment({
+        'timeStamp': messageJson.timeStamp,
+        'nonceStr': messageJson.nonceStr,
+        'package': messageJson.package,
+        'signType': messageJson.signType,
+        'paySign': messageJson.paySign,
+        'success': function (res) {
+          wx.showModal({
+            title: '提示',
+            content: '付款成功',
+            showCancel: false,
+            success() {
+              this.initAllData()
+            }
           })
-      }
-    });
+        },
+        'fail': function (res) {
+
+          var errMsg = res.errMsg;
+          if (errMsg == "requestPayment:fail cancel")
+            wx.showToast({
+              title: '已取消支付',
+              icon: 'none',
+              duration: 2000
+            })
+        }
+      });
+    }
+
   },
   onUrged(e) {
     wx.showModal({

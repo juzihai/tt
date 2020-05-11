@@ -4,6 +4,10 @@ import {
   Order
 } from "../../../../../models/order.js";
 import {
+  SubCompany
+} from "../../../../../models/subCompany.js";
+
+import {
   getWindowHeightRpx
 } from "../../../../../utils/system";
 var QRCode = require('../../../../../utils/weapp-qrcode.js')
@@ -120,34 +124,46 @@ Page({
       OrderPrice: item.OrderPrice,
       PayPrice: item.PayPrice
     }
-    let messageJson = await Order.WXPay(obj)
-    wx.requestPayment({
-      'timeStamp': messageJson.timeStamp,
-      'nonceStr': messageJson.nonceStr,
-      'package': messageJson.package,
-      'signType': messageJson.signType,
-      'paySign': messageJson.paySign,
-      'success': function(res) {
-        wx.showModal({
-          title: '提示',
-          content: '付款成功',
-          showCancel: false,
-          success() {
-            this.initAllData()
-          }
-        })
-      },
-      'fail': function(res) {
-
-        var errMsg = res.errMsg;
-        if (errMsg == "requestPayment:fail cancel")
-          wx.showToast({
-            title: '已取消支付',
-            icon: 'none',
-            duration: 2000
+    if (item.PayPrice == 0) {
+      let order = await Order.DeductiblePay(obj)
+      wx.showModal({
+        title: '提示',
+        content: order.ResultBool ? '提交成功' : '提交失败',
+        showCancel: false,
+        success() {
+          this.initAllData()
+        }
+      })
+    } else {
+      let messageJson = await Order.WXPay(obj)
+      wx.requestPayment({
+        'timeStamp': messageJson.timeStamp,
+        'nonceStr': messageJson.nonceStr,
+        'package': messageJson.package,
+        'signType': messageJson.signType,
+        'paySign': messageJson.paySign,
+        'success': function(res) {
+          wx.showModal({
+            title: '提示',
+            content: '付款成功',
+            showCancel: false,
+            success() {
+              this.initAllData()
+            }
           })
-      }
-    });
+        },
+        'fail': function(res) {
+
+          var errMsg = res.errMsg;
+          if (errMsg == "requestPayment:fail cancel")
+            wx.showToast({
+              title: '已取消支付',
+              icon: 'none',
+              duration: 2000
+            })
+        }
+      });
+    }
   },
   onUrged(e) {
     wx.showModal({
@@ -180,25 +196,25 @@ Page({
     }]
     wx.lin.showActionSheet({
       itemList,
-      showCancel:true,
-      success:(res)=>{
-        let name=res.item.name
+      showCancel: true,
+      success: (res) => {
+        let name = res.item.name
         let shopInfo = wx.getStorageSync('shopInfo')
         switch (name) {
           case '拨打电话':
             let phoneNumber = shopInfo.Phone
-          wx.makePhoneCall({
-            phoneNumber,
-          })
+            wx.makePhoneCall({
+              phoneNumber,
+            })
             break;
           case '地图导航':
-          wx.openLocation({
-            latitude: shopInfo.Latitude,
-            longitude: shopInfo.Longitude,
-            scale: '16',
-            name: shopInfo.CompanyName,
-            address: shopInfo.Address,
-          })
+            wx.openLocation({
+              latitude: shopInfo.Latitude,
+              longitude: shopInfo.Longitude,
+              scale: '16',
+              name: shopInfo.CompanyName,
+              address: shopInfo.Address,
+            })
             break;
         }
       }
@@ -226,5 +242,19 @@ Page({
         })
       }
     })
-  }
+  },
+  async onGoToSubCompany(e){
+    let obj={
+      ID: this.data.order.SubCompanyID
+    }
+    let subCompany = await SubCompany.SearchModelDetails(obj)
+
+    wx.openLocation({
+      latitude: subCompany.Latitude,
+      longitude: subCompany.Longitude,
+      scale: '16',
+      name: subCompany.CompanyName,
+      address: subCompany.Address,
+    })
+  },
 })

@@ -14,7 +14,7 @@
     <view wx:else>
       选择地址～
     </view>
-    <view class="action" >
+    <view class="action">
       <l-icon color="#157658" name="right"></l-icon>
     </view>
   </view>
@@ -25,7 +25,11 @@
         <switch bindchange="onMyGo" />
       </view>
     </l-list>
-    <l-list title="姓名 13027603342" desc="天津市天津市" icon="address" bind:lintap="onMyGoAdd" />
+    <block wx:if="{{DeliveryModel==2}}">
+      <l-list wx:if="{{!subCompanyItem}}" title="前往选择"  icon="address" bind:lintap="onMyGoAdd" />
+      <l-list wx:else title="{{ContactName+ContactNumber}}" desc="{{subCompanyItem.CompanyName}}（{{subCompanyItem.Address+subCompanyItem.Phone}}）" icon="address" bind:lintap="onMyGoAdd" />
+    </block>
+
   </view>
   <content-card class="content" name="{{item.ClassName}}" wx:for="{{sorted}}">
 

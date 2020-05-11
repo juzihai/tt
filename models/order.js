@@ -28,7 +28,8 @@ class Order extends Http {
     OrderCouponListModel,
     SubCompanyID,
     Phone,
-    PickUpAddress
+    PickUpAddress,
+    ShoppingCarDetailList
   }) {
     return Http.request({
       url: "api/V1/Order/Add",
@@ -51,7 +52,8 @@ class Order extends Http {
         OrderCouponListModel,
         SubCompanyID,
         Phone,
-        PickUpAddress
+        PickUpAddress,
+        ShoppingCarDetailList
       }
     })
   }
@@ -148,6 +150,20 @@ class Order extends Http {
   static WXPay({ EnterpriseID, OpenID, OrderNo, OrderPrice, PayPrice }) {
     return Http.request({
       url: "api/V1/AllPay/WXPay",
+      data: {
+        EnterpriseID,
+        OpenID,
+        OrderNo,
+        OrderPrice,
+        PayPrice
+      }
+    })
+  }
+
+  //0元支付
+  static DeductiblePay({ EnterpriseID, OpenID, OrderNo, OrderPrice, PayPrice }) {
+    return Http.request({
+      url: "api/V1/AllPay/DeductiblePay",
       data: {
         EnterpriseID,
         OpenID,

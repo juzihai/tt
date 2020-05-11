@@ -48,6 +48,26 @@ Page({
 
     // const spu = pagePath == "HotProduct" ? await HotProduct.SearchModelDetails(pid) : await Product.SearchModelDetails(pid);
     // const banner = pagePath == "HotProduct" ? await HotProduct.SearchRotationChart(pid) : await Product.SearchRotationChart(pid);
+
+    const windowHeight = await getWindowHeightRpx();
+    const h = windowHeight - 100; // 100 是底部tabbar的高度  自定义的tabbar高度是不包含在 windowHeight里的
+    this.setData({
+      h,
+      pid,
+      pcode,
+    })
+
+    this.initAllData()
+
+  },
+  onShow() {
+    this.initAllData()
+  },
+  async initAllData() {
+    let pid = this.data.pid
+    if(!pid){
+      return
+    }
     let obj = {
       EnterpriseID: app.config.EnterpriseID,
       ProductID: pid
@@ -55,15 +75,9 @@ Page({
     const spu = await Product.RewritePageSearchWX(obj)
     const banner = await Product.SearchRotationChart(pid)
     const payState = await OrderAndPayLogic.GetPayAndLogisticsState(obj)
-    const windowHeight = await getWindowHeightRpx();
-    const h = windowHeight - 100; // 100 是底部tabbar的高度  自定义的tabbar高度是不包含在 windowHeight里的
     this.setData({
-      h,
       spu,
       banner,
-      pid,
-      pcode,
-      pagePath,
       payState: payState.ResultValue
     })
     /**
@@ -77,10 +91,7 @@ Page({
     if (spu.ProductDetail) {
       WxParse.wxParse('articleModel', 'html', spu.ProductDetail, this, 5);
     }
-
-
   },
-
   /**
    * 用户点击右上角分享
    */
@@ -137,7 +148,7 @@ Page({
       return
     }
     let spu = event.detail.spu;
-    if (spu.SalesStock==0){
+    if (spu.SalesStock == 0) {
       wx.showModal({
         title: '提示',
         content: '暂无库存，请联系店铺管理员',
@@ -167,7 +178,7 @@ Page({
     } else if (event.detail.orderWay === ShoppingWay.BUY) {
       let ProductlList = [];
       let ProductPrice = this.mainPrice(spu.Price, spu.DiscountPrice).price
-      let ProductNum= event.detail.currentSkuCount;
+      let ProductNum = event.detail.currentSkuCount;
       let ProductCountPrice = ProductPrice * ProductNum
       let item = {
         ClassID: spu.ClassID,
@@ -179,7 +190,7 @@ Page({
         ProductImage: spu.ProductImage,
         ProductName: spu.ProductName,
         ProductNum,
-        ProductPrice:ProductPrice.toFixed(2),
+        ProductPrice: ProductPrice.toFixed(2),
         SalesStock: spu.SalesStock,
         baseUrl: spu.ShowResourcesUrl
       }
@@ -190,7 +201,7 @@ Page({
         ProductlListModel: ProductlList
       }
       wx.navigateTo({
-        url: '/pages/subpackages/mall/product/order/index?ProductModel=' + JSON.stringify(ProductModel),
+        url: `/pages/subpackages/mall/product/order/index?ProductModel= ${JSON.stringify(ProductModel)} & pagePath=productDetail`,
       })
     }
 
@@ -199,8 +210,8 @@ Page({
     })
 
   },
-   mainPrice(price, discountPrice) {
-    if(!discountPrice) {
+  mainPrice(price, discountPrice) {
+    if (!discountPrice) {
       return {
         price: price,
         display: true

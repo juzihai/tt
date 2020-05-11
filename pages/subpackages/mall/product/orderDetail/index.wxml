@@ -130,7 +130,7 @@
         <text>{{order.PickUpAddress}}</text>
       </view>
 
-      <button>去导航</button>
+      <button bindtap="onGoToSubCompany">去导航</button>
     </view>
   </content-card>
 

@@ -8,8 +8,8 @@ import {
 
 Page({
   data: {
-    ContactName:null,
-    ContactNumbr:null,
+    ContactName: null,
+    ContactNumbr: null,
   },
   onLoad: async function(options) {
     this.WxValidate = app.WxValidate({
@@ -59,7 +59,7 @@ Page({
     items.forEach(item => {
       if (item.ID == e.detail.key) {
         item.checked = true;
-      }else{
+      } else {
         item.checked = false
       }
     })
@@ -118,25 +118,34 @@ Page({
       mask: true
     })
     let subCompanyModel = this.data.subCompany.accumulator
-    let subCompanyItem ;
+    let subCompanyItem;
     subCompanyModel.forEach(item => {
       if (item.checked) {
-        subCompanyItem=item
+        subCompanyItem = item
       }
     })
-    let name=params.name;
-    let phone=params.phone;
+    if (!subCompanyItem){
+      wx.lin.showToast({
+        title: '请选择取货地址',
+        mask: true
+      })
+      return
+    }
+    let name = params.name;
+    let phone = params.phone;
 
-    let pages = getCurrentPages();  // 获取当前页面栈
+    let pages = getCurrentPages(); // 获取当前页面栈
     let prevPage = pages[pages.length - 2]; // -2 就是你上一页的数据 你上上页的数据就是-3 了以此类推！
     // 直接操作上一个页面的 index数据 之后返回 
     prevPage.setData({
-      subCompanyItem: subCompanyItem
-    }, function () {
+      subCompanyItem: subCompanyItem,
+      ContactName: name, //联系人姓名
+      ContactNumber: phone, //联系人手机号
+    }, function() {
       wx.navigateBack()
     })
 
-   
+
   }
 
 
