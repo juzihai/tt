@@ -38,6 +38,17 @@ Page({
       url: `/pages/subpackages/propaganda/article/articleDetail/index?id=${id}`,
     })
   },
+  // onShareAppMessage: function () {
+  //   let id = this.data.id;
+  //   let OpenID = wx.getStorageSync('OpenID')
+  //   let url = encodeURIComponent('/pages/subpackages/propaganda/article/articleList/index');
+
+  //   return {
+  //     title: "详情",
+  //     path: `/pages/navigator/index/index?url=${url}&SharOpenID=${OpenID}&SharType=mall`
+  //   }
+  // },
+
   /**
   *
   * 页面上拉触底事件的处理函数

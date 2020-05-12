@@ -42,6 +42,20 @@ class Staff extends Http {
       }
     }, Page, Limit)
   }
+  //4. 普通文章中的员工列表
+  static PageSearchStaff({ EnterpriseID, StaffCode, StaffName, IsService, IsModule, ClassID,Page, Limit }) {
+    return new Paging({
+      url: "api/V1/ArticleType//PageSearchStaff",
+      data: {
+        EnterpriseID,
+        StaffCode,
+        StaffName,
+        IsService,
+        IsModule,
+        ClassID
+      }
+    }, Page, Limit)
+  }
 
   //7. 查询详情
   static SearchModelDetails(ID) {

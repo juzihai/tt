@@ -4,12 +4,15 @@ const config = {
   // "apiBaseUrl": 'https://qy.gzchinaunion.com/',
   // "EnterpriseID": "2645",//金朵正式 wxadb9c5292f70762a
   // "EnterpriseID": "4981",//益清正式 wxdc90f597804fb320
-  // "EnterpriseID": "8343",//蕾特恩专业祛痘连锁 wxf857e7c332c7ed04
+  // "EnterpriseID": "3063",//融汇正式 wx9b9444c94ae8a071
+  // "EnterpriseID": "8343",//婚庆公司 wxf857e7c332c7ed04
   // "EnterpriseID": "9446",//天津乖乖宠物医院 wx98e3d124373d212f
   // "EnterpriseID": "3532",//汽车美容  wx9c425df6d5ecb7ac
   // "EnterpriseID": "3478",//雅儿口腔医疗 wxf1bdc7db5abe5aea
   // "EnterpriseID": "7720",//伊美尔连锁整形美容 wx2e8e4434a39d3508
   // "EnterpriseID": "6236",//天津明朗广告传媒有限公司 wx999fb45b6c67c707
+  // "EnterpriseID": "2016",//果资律师 wxbf16fb811554d7c4
+  // "EnterpriseID": "1824",//杜尚美术 wxd761439fbf570705
   // "EnterpriseID": "",//杨秸秆 wx163a906af5fc7211
 
   /** 测试地址*/
@@ -17,6 +20,7 @@ const config = {
   "EnterpriseID": "3373", //wxa93d39f1484ac31a
   // "EnterpriseID": "6075", //wxbf16fb811554d7c4大帅
   // "EnterpriseID": "1276", //wx999fb45b6c67c707小孟
+
 }
 const tips = {
   //基础Http请求码 

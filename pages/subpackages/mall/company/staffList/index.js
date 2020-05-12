@@ -1,6 +1,8 @@
 // pages/subpackages/mall/company/staffList/index.js
 const app = getApp();
 import { Staff } from '../../../../../models/staff.js'
+const MAX_LINE_COUNT = 2;
+
 Page({
 
   /**
@@ -8,6 +10,9 @@ Page({
    */
   data: {
     staffModel: null,
+    extend: false,
+    isOverHeight: false,
+
   },
 
   /**
@@ -24,6 +29,13 @@ Page({
         // IsService: 1
       }
       staffModel = await Staff.StaffServicePageSearch(obj)
+    } else if (pagePath === "article") {
+      obj = {
+        "EnterpriseID": app.config.EnterpriseID,
+        ClassID: options.ClassID
+        // IsService: 1
+      }
+      staffModel = await Staff.PageSearchStaff(obj)
     }else{
       obj = {
         "EnterpriseID": app.config.EnterpriseID,
@@ -36,12 +48,48 @@ Page({
 
     this.data.staffModel = staffModel 
     const staff = await staffModel.getMoreData();//todo
+
+    const companyModel = wx.getStorageSync('shopInfo')
     this.setData({
       staff,
-      pagePath
+      pagePath,
+      companyModel
     })
-  },
 
+    this.queryMultipleNodes();
+
+  },
+  extend() {
+    this.setData({
+      extend: !this.data.extend,
+    }, () => {
+      this.triggerEvent('extendText', {
+        extend: this.data.extend
+      })
+    });
+
+  },
+  queryMultipleNodes() {
+    let $this = this;
+    const query = wx.createSelectorQuery().in($this)
+    console.log(query)
+    query.select('.content').fields({
+      computedStyle: ['lineHeight'],
+      size: true,
+    }, function (res) {
+      if (res) {
+        console.log(res)
+        const lineHeight = parseInt(res.lineHeight);
+        console.log(lineHeight)
+        if (lineHeight && res.height) {
+          $this.setData({
+            isOverHeight: (res.height / lineHeight) > MAX_LINE_COUNT,
+          })
+        }
+
+      }
+    }).exec();
+  },
   /**
    * 页面上拉触底事件的处理函数
    */
@@ -83,6 +131,6 @@ Page({
       urls: imageList,
       current: currentImage
     })
-  },
+  }, 
 
 })

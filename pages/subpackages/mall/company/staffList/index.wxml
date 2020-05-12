@@ -1,3 +1,34 @@
+<wxs src='../../../../../components/lin-ui/filter/classnames.wxs' module='classnames' />
+<!-- <s-shop-card data="{{companyModel}}" /> -->
+<view class="shop-card-container" wx:if="{{companyModel}}">
+  <view class="left">
+    <view class="title-container">
+      <text class="title">{{companyModel.CompanyName}}</text>
+      <!-- <l-button special open-type="share">
+        <view class="inner">
+          <l-icon color="#157658" name="share" size="32"></l-icon>
+        </view>
+      </l-button> -->
+    </view>
+
+    <text class="subtitle {{classnames('content',{unextend:isOverHeight && !extend})}}">店铺简介：{{companyModel.introduction?companyModel.introduction:'暂无'}}</text>
+      <view wx:if="{{isOverHeight}}">
+        <view bindtap="extend" class="show" hidden="{{extend}}">全部</view>
+        <view bindtap="extend" class="show" hidden="{{!extend}}">收起</view>
+      </view>
+  </view>
+
+  <view class="right">
+    <view class="inner">
+      <image src="{{companyModel.Logo}}"></image>
+    </view>
+
+  </view>
+</view>
+
+
+
+
 
 <view class="cu-card article no-card}}">
 

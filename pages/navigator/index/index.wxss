@@ -3,7 +3,17 @@
 /* .container{
 
 } */
+.spu-text {
+  /* font-size: 20rpx; */
+  color: #666;
+  /* margin-top: 20rpx; */
 
+     /* !*让文本在行内省略*! */
+    width: 300rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
 .top-theme {
     width: 100%;

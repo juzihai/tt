@@ -33,6 +33,7 @@ Page({
       let SharOpenID = decodeURIComponent(options.SharOpenID);
       if (SharOpenID){
         app.globalData.SharOpenID = SharOpenID
+        app.globalData.SharType = SharType
         wx.setStorageSync('SharOpenID', SharOpenID)
       }
       wx.navigateTo({
@@ -54,6 +55,17 @@ Page({
     //   withShareTicket: true
     // })
   },
+  onShareAppMessage: function () {
+    let id = this.data.id;
+    let OpenID = wx.getStorageSync('OpenID')
+    let url = encodeURIComponent('/pages/navigator/index/index');
+
+    return {
+      title: "详情",
+      path: `/pages/navigator/index/index?url=${url}&SharOpenID=${OpenID}&SharType=index`
+    }
+  },
+
   onShow(){
     this.initAllData();
   },

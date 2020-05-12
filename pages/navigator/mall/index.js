@@ -44,7 +44,18 @@ Page({
     this.initAllData();
     this.initBottomSpuList();
   },
-  onPullDownRefresh() {
+
+  onShareAppMessage: function () {
+    let id = this.data.id;
+    let OpenID = wx.getStorageSync('OpenID')
+    let url = encodeURIComponent('/pages/navigator/mall/index');
+
+    return {
+      title: "详情",
+      path: `/pages/navigator/index/index?url=${url}&SharOpenID=${OpenID}&SharType=mall`
+    }
+  },
+  onPullDownRefresh(){
     this.initAllData();
     this.initBottomSpuList();
   },

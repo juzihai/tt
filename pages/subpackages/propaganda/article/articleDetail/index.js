@@ -90,7 +90,7 @@ Page({
   },
   onBuy(e){
     wx.navigateTo({
-      url: `/pages/subpackages/mall/company/staffList/index`,
+      url: `/pages/subpackages/mall/company/staffList/index?pagePath=article&ClassID=${this.data.article.ArticleType}`,
     })
   }
 

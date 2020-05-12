@@ -42,7 +42,6 @@ class Http {
         TerminalType,
         EnterpriseId,
         AuthCode: SystemUserID
-
       },
     });
     console.log('接口=', url, '参数=', data, '返回参数', res);

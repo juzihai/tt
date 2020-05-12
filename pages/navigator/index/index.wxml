@@ -4,12 +4,18 @@
 <view class="cu-bar bg-white">
   <view class="action">
     <text class="cuIcon-title text-green"></text>
-    <text>{{shopInfo.CompanyName}}</text>
+    <text class="spu-text">{{shopInfo.CompanyName}}</text>
   </view>
-  <view class="action" bindtap="onOpenLocation">
+
+
+  <view class="action" catchtap="onOpenLocation">
     <text class="cuIcon-location "></text>
     <text>到这里</text>
   </view>
+  <view class="action" >
+    <l-button icon="share" size="medium" open-type="share" icon-color="#ffffff" icon-size="32">立即分享</l-button>
+  </view>
+
 </view>
 
 <view class="container">
