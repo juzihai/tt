@@ -32,7 +32,8 @@ Page({
   async initAllData(){
     let obj = {
       EnterpriseId: app.config.EnterpriseID,
-      OpenId: wx.getStorageSync('OpenID')
+      OpenId: wx.getStorageSync('OpenID'),
+      Limit:999
     }
     const payState = await OrderAndPayLogic.GetPayAndLogisticsState({ EnterpriseID: app.config.EnterpriseID,})
     const shoppingCartModel = await ShoppingCart.Query(obj)

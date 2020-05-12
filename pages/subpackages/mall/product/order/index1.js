@@ -1,38 +1,56 @@
-const app = getApp()
+const app = getApp();
 import {
   Order
 } from "../../../../../models/order.js";
 import {
   OrderAndPayLogic
 } from "../../../../../models/orderAndPayLogic.js";
+
 import {
   getWindowHeightRpx
 } from "../../../../../utils/system";
-import {
-  PreOrder
-} from "../../../../../utils/preOrder.js"　                                               　
-var preOrder = new PreOrder()
+
+
 Page({
-
-
   data: {
+    showRealm: false,
     showCoupon: false,
+    // 原始价格
+    ProductModel: {
+      ProductCount: 0, //商品总数
+      ProductPrice: 0, //原订单价格
+      ProductlListModel: null,
+    },
+    //处理后的价格
+    OrderPrice: 0, //订单价格
+    PayPrice: 0, //实际付款价格
+    Integral: 0, //使用积分
+    GetIntegral: 0, //生成的积分数量
+    IntegralPrice: 0, //积分抵扣价格
+    CouponPrice: 0, //优惠券抵扣价格
+    LogisticsFee: 0, //运费金额
+    Remark: null, //备注
     DeliveryModel: 1, //配送方式
+    OrderCouponListModel: null,
+    Integralchecked: false, //使用积分
+    SubCompanyID: null, //自提时传递的参数
+    ContactName: null, //联系人姓名
+    ContactNumber: null, //联系人手机号
+    subCompanyItem: null //店铺信息
   },
 
   onLoad: async function(options) {
-    console.log('我是class',preOrder)
-
     const windowHeight = await getWindowHeightRpx();
     const h = windowHeight - 100; // 100 是底部tabbar的高度  自定义的tabbar高度是不包含在 windowHeight里的
     let pagePath = options.pagePath;
-    wx.lin.showToast({
-      title: '处理中～',
-      mask: true
-    })
+    console.log(options)
     let ProductModel = JSON.parse(options.ProductModel)
     const sorted = this.groupBy(ProductModel.ProductlListModel, function(item) {
       return [item.ClassID];
+    })
+    this.setData({
+      pagePath,
+      sorted, //展示商品
     })
     //获取所有优惠券
     let obj = {
@@ -53,28 +71,21 @@ Page({
         DeliveryModel = 2
       }
     }
+    // 2、产品价格和库存校验 并返回总价
 
-    let orderParam = {
-      ProductCount: ProductModel.ProductCount, //商品总数 
-      ProductPrice: ProductModel.ProductPrice, //原订单价格 
-    }
-    this.orderParam(orderParam)
+
+
     this.setData({
       h,
-      pagePath,
-      ProductModel,
-      sorted, //展示商品
+      ProductModel, //原商品数据
+
       payState: payState.ResultValue, //可支付状态
       DeliveryModel, //取货方式
       getAllUseCouponByProduct: getAllUseCouponByProduct.ResultValue //优惠券
-    })
-    setTimeout(function() {
 
-      wx.lin.hideToast()
-    }, 500);
+    })
     let jiage = await this.checkProductPriceAndStockModel()
     let wuliu = await this.initAllData()
-
   },
   onShow: function() {
     let ShippingAddress = wx.getStorageSync("ShippingAddress")
@@ -83,11 +94,111 @@ Page({
     })
     this.initAllData()
   },
-  //更新订单价格等信息
-  orderParam(obj) {
-    preOrder.orderParam = obj
+  async checkProductPriceAndStockModel() {
+    let ProductModel = this.data.ProductModel
+    let Date = []
+    ProductModel.ProductlListModel.forEach(item => {
+      let i = {
+        ProductID: item.ProductID,
+        CountPrice: item.ProductCountPrice,
+        Price: item.ProductPrice,
+        Count: item.ProductNum
+      }
+      Date.push(i)
+    })
+    try {
+      const checkProductPriceAndStockModel = await OrderAndPayLogic.CheckProductPriceAndStockModel({
+        Date
+      })
+      let price = Number(checkProductPriceAndStockModel.ResultValue.toFixed(2))
+      ProductModel.ProductPrice = price;
+      this.setData({
+        ProductModel
+      })
+      this.integralSum()
+    } catch (e) {
+      wx.showModal({
+        title: '提示',
+        content: e.data.ResultValue,
+        cancelText: '重选商品',
+        confirmText: '确定',
+        success: (res) => {
+          if (res.confirm) {
+
+          } else if (res.cancel) {
+            wx.navigateBack()
+          }
+
+        }
+      })
+      this.integralSum()
+      return false
+    }
+    return true
+  },
+  async initAllData() {
+
+    let DeliveryModel = this.data.DeliveryModel
+
+    //查询邮费信息
+    if (this.data.ShippingAddress && this.data.sorted) {
+      let obj1 = {
+        EnterpriseID: app.config.EnterpriseID,
+        OpenId: wx.getStorageSync("OpenID"),
+        sorted: this.data.sorted,
+        Code: this.data.ShippingAddress.Code
+      }
+      if (DeliveryModel == 1) { //快递
+        try {
+          const CheckLogisticsMatchProduct = await OrderAndPayLogic.CheckLogisticsMatchProduct(obj1)
+          this.setData({
+            LogisticsFee: CheckLogisticsMatchProduct.ResultValue
+          })
+          this.integralSum()
+        } catch (e) {
+          console.log(e)
+          wx.showModal({
+            title: '提示',
+            content: e.data.ResultValue,
+            cancelText: '重选商品',
+            confirmText: '切换地址',
+            success: (res) => {
+              if (res.confirm) {
+
+              } else if (res.cancel) {
+                wx.navigateBack()
+              }
+
+            }
+          })
+          this.integralSum()
+          return false
+        }
+      } else { //自提
+        this.setData({
+          LogisticsFee: 0
+        })
+        this.integralSum()
+      }
+
+      return true
+
+    }
+
+
+
+  },
+  /**  计算总金额 及商品数量*/
+  sum: function() {
+    let ProductPrice = this.data.ProductModel.ProductPrice; //原订单价格
+    let LogisticsFee = this.data.LogisticsFee; //运费金额
+    let IntegralPrice = this.data.IntegralPrice; //积分
+    let CouponPrice = this.data.CouponPrice; //优惠券
+    let OrderPrice = Number(ProductPrice) + Number(LogisticsFee);
+    let PayPrice = Number(ProductPrice) + Number(LogisticsFee) - Number(IntegralPrice) - Number(CouponPrice);
     this.setData({
-      preOrder
+      OrderPrice: OrderPrice.toFixed(2), //保留小数点后两位 //订单价格
+      PayPrice: PayPrice.toFixed(2), //实付
     })
   },
   groupBy(array, f) {
@@ -106,100 +217,8 @@ Page({
       }
     })
   },
-  //4、for循环拼接产品list校验商品库存及价格是否正确（商品有变动会提示商品问题、重选商品或者返回上一页）
-  async checkProductPriceAndStockModel() {
-    let ProductModel = this.data.ProductModel
-    let Date = []
-    ProductModel.ProductlListModel.forEach(item => {
-      let i = {
-        ProductID: item.ProductID,
-        CountPrice: item.ProductCountPrice,
-        Price: item.ProductPrice,
-        Count: item.ProductNum
-      }
-      Date.push(i)
-    })
-    try {
-      const checkProductPriceAndStockModel = await OrderAndPayLogic.CheckProductPriceAndStockModel({
-        Date
-      })
-      let price = Number(checkProductPriceAndStockModel.ResultValue.toFixed(2))
 
 
-    } catch (e) {
-      wx.showModal({
-        title: '提示',
-        content: e.data.ResultValue,
-        cancelText: '重选商品',
-        confirmText: '确定',
-        success: (res) => {
-          if (res.confirm) {
-
-          } else if (res.cancel) {
-            wx.navigateBack()
-          }
-
-        }
-      })
-
-      return false
-    }
-    return true
-  },
-  //5、通过店铺id及groupby后的产品查询物流价格(如果所选地址不支持物流提示切换地址或重选商品返回上一页)
-  async initAllData() {
-
-    let DeliveryModel = this.data.DeliveryModel
-
-    //查询邮费信息
-    if (this.data.ShippingAddress && this.data.sorted) {
-      let obj1 = {
-        EnterpriseID: app.config.EnterpriseID,
-        OpenId: wx.getStorageSync("OpenID"),
-        sorted: this.data.sorted,
-        Code: this.data.ShippingAddress.Code
-      }
-      if (DeliveryModel == 1) { //快递
-        try {
-          const CheckLogisticsMatchProduct = await OrderAndPayLogic.CheckLogisticsMatchProduct(obj1)
-          let orderParam = {
-            LogisticsFee: CheckLogisticsMatchProduct.ResultValue
-          }
-          this.orderParam(orderParam)
-
-        } catch (e) {
-          console.log(e)
-          wx.showModal({
-            title: '提示',
-            content: e.data.ResultValue,
-            cancelText: '重选商品',
-            confirmText: '切换地址',
-            success: (res) => {
-              if (res.confirm) {
-
-              } else if (res.cancel) {
-                wx.navigateBack()
-              }
-
-            }
-          })
-
-          return false
-        }
-      } else { //自提
-        this.setData({
-          LogisticsFee: 0
-        })
-
-      }
-      this.integralSum()
-      return true
-
-    }
-
-
-
-  },
   // 选择收货地址
   onGetAdd() {
     wx.navigateTo({
@@ -209,15 +228,10 @@ Page({
   //自提
   onMyGo(e) {
     let value = e.detail.value
-    let orderCheck = preOrder.orderCostParam.orderCheck
-    orderCheck.pickUp = value
-
-    let orderParam = {
-      orderCheck: orderCheck
-    }
-    this.orderParam(orderParam)
+    this.setData({
+      DeliveryModel: value ? 2 : 1
+    })
     this.initAllData()
-
   },
   // 选择自提地址
   onMyGoAdd(e) {
@@ -232,7 +246,12 @@ Page({
     })
 
   },
-  // 选择优惠券
+  // 选择配送方式
+  onDistribution(e) {
+    this.setData({
+      showRealm: true
+    })
+  },
   onCoupon(e) {
     this.setData({
       showCoupon: true
@@ -241,6 +260,7 @@ Page({
   //取消弹框
   onPopupBack() {
     this.setData({
+      showRealm: false,
       showCoupon: false
     })
   },
@@ -251,54 +271,47 @@ Page({
     couponData.forEach(i => {
       CouponPrice += i.ReductionAmount
     })
-
     this.setData({
       OrderCouponListModel: couponData,
+      CouponPrice,
       showCoupon: false
     })
-    let orderParam = {
-      CouponPrice
-    }
-    this.orderParam(orderParam)
     this.integralSum()
-
   },
   //选中使用积分
   async onIntegral(e) {
     let checked = e.detail.checked;
-    let orderCheck = preOrder.orderCostParam.orderCheck
-    orderCheck.integral = checked
-
-    let orderParam = {
-      orderCheck
-    }
-    this.orderParam(orderParam)
-
+    this.setData({
+      Integralchecked: checked
+    })
+    this.integralSum()
   },
   //积分及其他计算
   async integralSum(e) {
-
-    let money = this.data.preOrder.orderFee.OrderPrice - this.data.preOrder.orderCostParam.CouponPrice
-    let obj = {
-      EnterpriseID: app.config.EnterpriseID,
-      OpenId: wx.getStorageSync("OpenID"),
-      money: money.toFixed(2)
+    let checked = this.data.Integralchecked;　
+    let OrderPrice = this.data.OrderPrice;
+    let CouponPrice = this.data.CouponPrice;
+    let money = OrderPrice - CouponPrice
+    if (checked) {
+      let obj = {
+        EnterpriseID: app.config.EnterpriseID,
+        OpenId: wx.getStorageSync("OpenID"),
+        money: money.toFixed(2)
+      }
+      const GeneratePayablePrice = await OrderAndPayLogic.GeneratePayablePrice(obj)
+      this.setData({
+        "Integral": GeneratePayablePrice.ResultValue.Integral,
+        "IntegralPrice": GeneratePayablePrice.ResultValue.IntegraPrice,
+        "GetIntegral": GeneratePayablePrice.ResultValue.GetIntegral,
+      })
+    } else {
+      this.setData({
+        "Integral": 0,
+        "IntegralPrice": 0,
+        "GetIntegral": 0,
+      })
     }
-    wx.lin.showToast({
-      title: '处理中～',
-      mask: true
-    })
-    const GeneratePayablePrice = await OrderAndPayLogic.GeneratePayablePrice(obj)
-    let orderParam = {
-      "Integral": GeneratePayablePrice.ResultValue.Integral,
-      "IntegralPrice": GeneratePayablePrice.ResultValue.IntegraPrice,
-      "GetIntegral": GeneratePayablePrice.ResultValue.GetIntegral,
-    }
-    setTimeout(function() {
-
-      wx.lin.hideToast()
-    }, 500);
-    this.orderParam(orderParam)
+    this.sum()
   },
   // 提交订单
   async onNextTap() {
@@ -361,7 +374,7 @@ Page({
     let TelPhone;
     let SubCompanyID;
     let PickUpAddress;
-    if (!preOrder.orderCostParam.orderCheck.pickUp) {
+    if (this.data.DeliveryModel == 1) {
       RealName = ShippingAddress.RealName
       TelPhone = ShippingAddress.TelPhone
       SubCompanyID = 0
@@ -381,7 +394,7 @@ Page({
       PickUpAddress = subCompanyItem.Address
     }
 
-    let pickUp = this.data.preOrder.orderCostParam.orderCheck.pickUp
+
     let obj = {
       EnterpriseID: app.config.EnterpriseID,
       OpenId: wx.getStorageSync("OpenID"),
@@ -389,17 +402,17 @@ Page({
       RealName,
       TelPhone,
       Address: ShippingAddress.Province + ShippingAddress.City + ShippingAddress.Area + ShippingAddress.Street,
-      OrderPrice: preOrder.OrderPrice,
-      PayPrice: preOrder.PayPrice,
-      Integra: pickUp ? 0 : this.data.preOrder.orderCostParam.Integral,
-      GetIntegra: pickUp ? 0 : this.data.preOrder.orderCostParam.GetIntegral,
+      OrderPrice: this.data.OrderPrice,
+      PayPrice: this.data.PayPrice,
+      Integra: this.data.Integral,
+      GetIntegra: this.data.GetIntegral,
       SubCompanyID,
       PickUpAddress,
-      IntegraPrice: preOrder.IntegralPrice,
-      LogisticsFee: preOrder.LogisticsFee,
+      IntegraPrice: this.data.IntegralPrice,
+      LogisticsFee: this.data.LogisticsFee,
       Remark: this.data.Remark,
       Phone: wx.getStorageSync('phoneNumber'),
-      DeliveryModel: pickUp ? 2 : 1, //配送方式（1：物流；2：自提；）
+      DeliveryModel: this.data.DeliveryModel, //配送方式（1：物流；2：自提；）
       OrderDetailListModel,
       OrderCouponListModel,
       ShoppingCarDetailList,
@@ -420,4 +433,5 @@ Page({
 
 
   }
+
 })

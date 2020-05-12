@@ -87,6 +87,7 @@ Page({
       OrderPrice: item.OrderPrice,
       PayPrice: item.PayPrice
     }
+    let that=this;
     if (item.PayPrice==0){
       let order = await Order.DeductiblePay(obj)
       wx.showModal({
@@ -94,7 +95,7 @@ Page({
         content: order.ResultBool ? '提交成功' :'提交失败',
         showCancel: false,
         success() {
-          this.initAllData()
+          that.initAllData()
         }
       })
     }else{

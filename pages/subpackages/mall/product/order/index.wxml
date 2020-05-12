@@ -25,8 +25,8 @@
         <switch bindchange="onMyGo" />
       </view>
     </l-list>
-    <block wx:if="{{DeliveryModel==2}}">
-      <l-list wx:if="{{!subCompanyItem}}" title="前往选择"  icon="address" bind:lintap="onMyGoAdd" />
+    <block wx:if="{{preOrder.orderCostParam.orderCheck.pickUp}}">
+      <l-list wx:if="{{!subCompanyItem}}" title="前往选择" icon="address" bind:lintap="onMyGoAdd" />
       <l-list wx:else title="{{ContactName+ContactNumber}}" desc="{{subCompanyItem.CompanyName}}（{{subCompanyItem.Address+subCompanyItem.Phone}}）" icon="address" bind:lintap="onMyGoAdd" />
     </block>
 
@@ -53,14 +53,14 @@
   </content-card>
 
   <content-card class="content" name="订单信息" cardPadding wx:if="{{ShippingAddress}}">
-    <l-list title="配送方式" desc="普通配送" right-desc="{{DeliveryModel==1? '快递¥'+LogisticsFee:'门店自提'}}"></l-list>
+    <l-list title="配送方式" desc="普通配送" right-desc="{{preOrder.orderCostParam.orderCheck.pickUp==false? '快递¥'+preOrder.orderCostParam.LogisticsFee:'门店自提'}}"></l-list>
 
     <l-textarea value="{{Remark}}" bind:lininput="inputRemark" placeholder="订单备注：选填，请先和商家协商一致" wx:if="{{!showRealm}}" />
     <l-list is-link="{{false}}">
       <view slot="right-section" class="l-right-class">
-        <text class="subtitle">共{{ProductModel.ProductCount}}件</text>小计：
+        <text class="subtitle">共{{preOrder.orderCostParam.ProductCount}}件</text>小计：
         <view class="price-row">
-          <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{OrderPrice}}"></l-price>
+          <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{preOrder.orderFee.OrderPrice}}"></l-price>
 
         </view>
       </view>
@@ -85,7 +85,7 @@
       </view>
       <view slot="right-section" class="l-right-class">
         <view class="price-row">
-          <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{CouponPrice}}"></l-price>
+          <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{preOrder.orderCostParam.CouponPrice}}"></l-price>
 
         </view>
 
@@ -94,22 +94,19 @@
     <l-list is-link="{{false}}" wx:if="{{payState.Integral}}">
       <view slot="left-section">
         <view>积分抵扣</view>
-        <block wx:if="{{Integralchecked}}">
+        <block>
           <view>
-            <text class="subtitle">使用积分：{{Integral}}</text>
+            <text class="subtitle">可消耗积分：{{preOrder.orderCostParam.Integral}}抵扣{{preOrder.orderCostParam.IntegralPrice}}元</text>
           </view>
           <view>
-            <text class="subtitle">本次生成积分：{{GetIntegral}}</text>
+            <text class="subtitle">本次生成积分：{{preOrder.orderCostParam.Integral}}</text>
           </view>
         </block>
 
-        <view wx:else>
-          <text class="subtitle">未使用积分</text>
-        </view>
       </view>
       <view slot="right-section" class="l-right-class">
         <view class="price-row">
-          <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{IntegralPrice}}"></l-price>
+          <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{preOrder.orderCostParam.orderCheck.integral?preOrder.orderCostParam.IntegralPrice:0}}"></l-price>
 
         </view>
         <l-radio-group bind:linchange="onIntegral">
@@ -123,9 +120,9 @@
 <view class="tapbar">
   <l-list is-link="{{false}}">
     <view slot="right-section" class="l-right-class">
-      <text class="subtitle">共{{ProductModel.ProductCount}}件</text>合计：
+      <text class="subtitle">共{{preOrder.orderCostParam.ProductCount}}件</text>合计：
       <view class="price-row">
-        <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{PayPrice}}"></l-price>
+        <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{preOrder.orderFee.PayPrice}}"></l-price>
 
       </view>
       <l-button bg-color="orange" class="button" bind:lintap="onNextTap">提交订单</l-button>
