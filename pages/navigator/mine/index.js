@@ -70,7 +70,7 @@ Page({
         if (SharOpenID) {
           let obj = {
             EnterpriseID: app.config.EnterpriseID,
-            OpenIDOne: 'SharOpenID',
+            OpenIDOne: SharOpenID,
             OpenIDTwo: OpenID
           }
           Customers.MyCustomersSave(obj)

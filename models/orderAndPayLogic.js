@@ -5,18 +5,19 @@ class OrderAndPayLogic extends Http {
 
   /**订单和支付相关 */
   //1.校验积分抵扣
-  static CheckIntegralDeduction({ OrderNumber, OpenID, DeductionIntegral, DeductionPrice, CreationTime}) {
-    return Http.request({
-      url: "api/V1/OrderAndPayLogic/CheckIntegralDeduction",
-      data: {
-        OrderNumber,
-        OpenID,
-        DeductionIntegral,
-        DeductionPrice,
-        CreationTime
-      }
-    })
-  }
+  // static CheckIntegralDeduction({ OrderNumber, OpenID, DeductionIntegral, DeductionPrice, CreationTime, UseIntegral}) {
+  //   return Http.request({
+  //     url: "api/V1/OrderAndPayLogic/CheckIntegralDeduction",
+  //     data: {
+  //       OrderNumber,
+  //       OpenID,
+  //       DeductionIntegral,
+  //       DeductionPrice,
+  //       CreationTime,
+  //       UseIntegral
+  //     }
+  //   })
+  // }
   //2.校验优惠券抵扣
   static CheckCouponDeduction({ OrderNumber, CustomerCouponID, CouponID, CreationTime}) {
     return Http.request({
@@ -77,13 +78,14 @@ class OrderAndPayLogic extends Http {
     })
   }
   //7.校验积分抵扣
-  static GeneratePayablePrice({ EnterpriseID, OpenId, money}) {
+  static GeneratePayablePrice({ EnterpriseID, OpenId, money, UseIntegral}) {
     return Http.request({
       url: "api/V1/OrderAndPayLogic/GeneratePayablePrice",
       data: {
         EnterpriseID,
         OpenId,
-        money
+        money,
+        UseIntegral
       }
     })
   }

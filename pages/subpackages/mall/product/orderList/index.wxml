@@ -1,4 +1,5 @@
 <!--pages/subpackages/mall/product/orderList/index.wxml-->
+    <wxs src="../../../../../utils/util.wxs" module="util"></wxs>
 <l-segment bind:linchange="changeTabs" l-class="aaa" item-width="30">
   <l-segment-item tab="全部" key="-1" />
   <l-segment-item tab="待付款" key="0" />
@@ -20,6 +21,7 @@
     <text class="red" wx:if="{{item.Status==6}}">已退货</text>
     <text class="red" wx:if="{{item.Status==7}}">后台关闭</text>
     <text class="red" wx:if="{{item.Status==8}}">用户取消</text>
+    <text class="red" wx:if="{{item.Status==9}}">订单超时</text>
   </view>
   <view class="content">
     <image src="{{item.baseUrl+item.ProductListWx[0].ProductImage}}"></image>
@@ -35,7 +37,7 @@
   <view class="sub-container" wx:if="{{item.Status==0}}">
     <view class="left">
       <text class="title">剩余支付时间</text>
-      <l-countdown l-class="countdown-text" l-time-class="countdown-blue" time-type="second" time="900" format="{%m}:{%s}" bind:linend="onTime" />
+      <l-countdown l-class="countdown-text" l-time-class="countdown-blue" time-type="second" time="{{util.dt(item.CreationTime)}}" format="{%m}:{%s}" bind:linend="onTime" />
     </view>
     <l-button size="mini" style='margin-left:10rpx' catchtap="onCancelOrder" data-cell="{{item}}">取消订单</l-button>
     <l-button size="mini" style='margin-left:10rpx' catchtap="onPay" data-cell="{{item}}">支付</l-button>
@@ -52,7 +54,7 @@
     <!-- <l-button size="mini" style='margin-left:10rpx'>查看物流</l-button> -->
     <l-button size="mini" style='margin-left:10rpx' catchtap="onReceipt" data-cell="{{item}}">确认收货</l-button>
   </view>
-    <view class="sub-container" wx:if="{{item.Status==3||item.Status==7||item.Status==8}}">
+    <view class="sub-container" wx:if="{{item.Status==3||item.Status==7||item.Status==8||item.Status==9}}">
     <view class="left">
     </view>
     <l-button size="mini" style='margin-left:10rpx' catchtap="onDelete" data-cell="{{item}}">删除订单</l-button>

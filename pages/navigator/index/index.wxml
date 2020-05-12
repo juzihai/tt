@@ -1,4 +1,5 @@
 <wxs src="../../../utils/util.wxs" module="util"></wxs>
+<wxs src="../../../components/lin-ui/filter/string.wxs" module="string"/>
 <!--pages/navigator/mall/index.wxml-->
 <view class="cu-bar bg-white">
   <view class="action">
@@ -34,7 +35,7 @@
       <view class='{{item.icon}} {{item.color}} text-shadow '>
         <image class="img" src="{{item.img}}"></image>
       </view>
-      <text class="margin">{{item.title}}</text>
+      <text class="margin">{{string.substring(item.title,0,6)}}</text>
     </view>
     <view class='cu-item ' style="height: 140rpx;" wx:for="{{grid.Data}}" wx:key="index" data-name="文章" data-id="{{item.ArticleTypeID}}" bindtap='onNaviCard'>
       <view class='{{item.icon}} {{item.color}} text-shadow '>

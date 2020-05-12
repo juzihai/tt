@@ -34,7 +34,7 @@
 
 .specs > text{
     font-size: 24rpx;
-    color: #157658;
+    color: black;
 }
 
 .explain{

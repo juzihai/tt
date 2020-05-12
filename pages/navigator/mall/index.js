@@ -1,11 +1,21 @@
 // pages/navigator/index/index.js
 const app = getApp();
 import naviConfigs from './navi.js'
-import { Product } from "../../../models/product";
-import { ProductClass } from "../../../models/productClass.js";
-import { HotProduct } from "../../../models/hotProduct.js";
-import { HotActivity } from "../../../models/hotActivity.js";
-import { ProductRotationchart } from "../../../models/productRotationchart.js";
+import {
+  Product
+} from "../../../models/product";
+import {
+  ProductClass
+} from "../../../models/productClass.js";
+import {
+  HotProduct
+} from "../../../models/hotProduct.js";
+import {
+  HotActivity
+} from "../../../models/hotActivity.js";
+import {
+  ProductRotationchart
+} from "../../../models/productRotationchart.js";
 
 Page({
 
@@ -34,15 +44,15 @@ Page({
     this.initAllData();
     this.initBottomSpuList();
   },
-  onPullDownRefresh(){
+  onPullDownRefresh() {
     this.initAllData();
     this.initBottomSpuList();
   },
-  onShow(){
+  onShow() {
 
   },
 
-   async initAllData() {
+  async initAllData() {
 
     const themeA = this.json1;
     // const bannerB = this.json2;
@@ -53,16 +63,16 @@ Page({
 
 
     //TODO:真实数据
-     let obj = {
-       "EnterpriseID": app.config.EnterpriseID,
-       "Limit": 11
-     }
-     const bannerB = await ProductRotationchart.Search(obj)
-     const grid = await ProductClass.Search(obj);
-     const themeE = await HotProduct.Search(obj);
-     const bannerG = await HotActivity.Search(obj);
+    let obj = {
+      "EnterpriseID": app.config.EnterpriseID,
+      "Limit": 11
+    }
+    const bannerB = await ProductRotationchart.Search(obj)
+    const grid = await ProductClass.Search(obj);
+    const themeE = await HotProduct.Search(obj);
+    const bannerG = await HotActivity.Search(obj);
 
-     let themeESpu = themeE.Data
+    let themeESpu = themeE.Data
 
 
     this.setData({
@@ -82,9 +92,9 @@ Page({
 
   },
   /**
- * 初始化首页的底部瀑布流图片
- * @returns {Promise<void>}
- */
+   * 初始化首页的底部瀑布流图片
+   * @returns {Promise<void>}
+   */
   async initBottomSpuList() {
     let obj = {
       "EnterpriseID": app.config.EnterpriseID,
@@ -94,19 +104,24 @@ Page({
     }
     const paging = Product.PageSearch(obj);
     this.data.spuPaging = paging //类属性
-    const data = await paging.getMoreData();//todo
+    const data = await paging.getMoreData(); //todo
     if (!data) {
       return;
     }
-   // data 数组, refresh 清空元素, success 返回成功
-    wx.lin.renderWaterFlow(data.items,true);
+    // data 数组, refresh 清空元素, success 返回成功
+    wx.lin.renderWaterFlow(data.items, true);
   },
   /**banner点击 */
   onBanner(e) {
     let cell = e.currentTarget.dataset.cell;
     const pid = cell.ProductID
     const pcode = cell.ProductCode
-    if(pid==0){
+    if (pid == 0) {
+      let id = e.currentTarget.dataset.id;
+
+      wx.navigateTo({
+        url: `/pages/subpackages/mall/activity/activityDetail/index?id=${id}&pagePath=ProductRotationchart`,
+      })
       return
     }
 
@@ -114,17 +129,13 @@ Page({
       url: `/pages/subpackages/mall/product/productDetail1/index?pid=${pid}&pcode=${pid}`
     })
 
-    // let id = e.currentTarget.dataset.id;
 
-    // wx.navigateTo({
-    //   url: `/pages/subpackages/mall/activity/activityDetail/index?id=${id}&pagePath=ProductRotationchart`,
-    // })
   },
   /**功能块 */
   onNaviCard(e) {
 
     const classid = e.currentTarget.dataset.classid;
-    if (classid){
+    if (classid) {
       wx.navigateTo({
         url: `/pages/subpackages/mall/product/productList/index?classid=${classid}`,
       })
@@ -132,7 +143,7 @@ Page({
 
 
   },
-  onNaviCard1(){
+  onNaviCard1() {
     wx.navigateTo({
       url: `/pages/subpackages/mall/product/classiFication/index`
     })
@@ -142,32 +153,32 @@ Page({
       url: `/pages/subpackages/mall/product/search/index`
     })
   },
-  onActicity(){
+  onActicity() {
     wx.navigateTo({
       url: '/pages/subpackages/mall/cards/coupon/index',
     })
   },
-  onMore(){
+  onMore() {
     wx.navigateTo({
       url: '/pages/subpackages/mall/product/hotProductList/index',
     })
   },
-  onSpuItem(e){
+  onSpuItem(e) {
     let item = e.detail
-    let pid=item.ID
+    let pid = item.ID
     let pcode = item.ProductCode
 
     wx.navigateTo({
       url: `/pages/subpackages/mall/product/productDetail1/index?pid=${pid}&pcode=${pcode}&pagePath=HotProduct`
     })
-    
+
   },
 
   /**
    *
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: async function () {
+  onReachBottom: async function() {
 
     const data = await this.data.spuPaging.getMoreData();
     console.log(data)
@@ -176,7 +187,7 @@ Page({
         loadingType: 'end'
       })
       return
-    }else{
+    } else {
       this.setData({
         loadingType: 'loading'
       })

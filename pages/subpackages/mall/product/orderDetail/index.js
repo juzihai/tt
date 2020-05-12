@@ -66,6 +66,9 @@ Page({
       order
     })
   },
+  onTime(e) {
+    this.initAllData()
+  },
   groupBy(array, f) {
 
     const groups = {};
@@ -82,7 +85,18 @@ Page({
       }
     })
   },
-  async onCancelOrder(e) {
+  onCancelOrder(e) {
+    wx.showModal({
+      title: '提示',
+      content: '是否取消订单',
+      success: res => {
+        if (res.confirm) {
+          this.CancelOrder(e)
+        }
+      }
+    })
+  },
+  async CancelOrder(e) {
     let item = this.data.order
     let obj = {
       ID: item.ID,
@@ -98,7 +112,19 @@ Page({
     }, 100)
     this.initAllData()
   },
-  async onDelete(e) {
+  onDelete(e) {
+    wx.showModal({
+      title: '提示',
+      content: '是否删除订单',
+      success: res => {
+        if (res.confirm) {
+          this.Delete(e)
+        }
+      }
+    })
+  },
+  async Delete(e) {
+
     let item = this.data.order
     let obj = {
       OrderNo: item.OrderNo
@@ -128,7 +154,7 @@ Page({
       let order = await Order.DeductiblePay(obj)
       wx.showModal({
         title: '提示',
-        content: order.ResultBool ? '提交成功' : '提交失败',
+        content: order ? '提交成功' : '提交失败',
         showCancel: false,
         success() {
           this.initAllData()
@@ -171,7 +197,20 @@ Page({
       content: '已经快马加鞭的为小主送去通知～',
     })
   },
-  async onReceipt(e) {
+  onReceipt() {
+    wx.showModal({
+      title: '提示',
+      content: '是否确认收货',
+      success: res => {
+        if (res.confirm) {
+          this.Receipt(e)
+        }
+      }
+    })
+  },
+  async Receipt(e) {
+
+
     let item = this.data.order
     let obj = {
       OrderNo: item.OrderNo,

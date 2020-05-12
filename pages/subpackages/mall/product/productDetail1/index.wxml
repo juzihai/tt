@@ -7,7 +7,7 @@
       <image class="top" mode="aspectFill" src="{{banner.ShowResourcesUrl}}{{item.ImageUrl}}"></image>
     </swiper-item>
   </swiper>
- <image wx:else class="top" mode="aspectFill" src="{{spu.ProductImage}}"></image>
+ <image wx:else class="top" mode="aspectFill" src="{{spu.ShowResourcesUrl+spu.ProductImage}}"></image>
 <!-- 商品描述 -->
   <s-spu-description spu="{{spu}}"></s-spu-description>
 

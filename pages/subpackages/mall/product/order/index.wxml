@@ -99,7 +99,7 @@
             <text class="subtitle">可消耗积分：{{preOrder.orderCostParam.Integral}}抵扣{{preOrder.orderCostParam.IntegralPrice}}元</text>
           </view>
           <view>
-            <text class="subtitle">本次生成积分：{{preOrder.orderCostParam.Integral}}</text>
+            <text class="subtitle">预计生成积分：{{preOrder.orderCostParam.GetIntegral}}</text>
           </view>
         </block>
 

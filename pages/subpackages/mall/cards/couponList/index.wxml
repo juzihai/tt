@@ -1,10 +1,10 @@
 <!--pages/subpackages/mall/cards/couponList/index.wxml-->
-    <wxs src="../../../../../utils/util.wxs" module="util"></wxs>
-   <l-segment bind:linchange="changeTabs" l-class="aaa" item-width="30">
-        <l-segment-item tab="未使用" key="0" />
-        <l-segment-item tab="已使用" key="1" />
-        <l-segment-item tab="已过期" key="2" />
-    </l-segment>  
+<wxs src="../../../../../utils/util.wxs" module="util"></wxs>
+<l-segment bind:linchange="changeTabs" l-class="aaa" item-width="30">
+  <l-segment-item tab="未使用" key="0" />
+  <l-segment-item tab="已使用" key="1" />
+  <l-segment-item tab="已过期" key="2" />
+</l-segment>
 
 
 
@@ -23,18 +23,19 @@
       </view>
       <view class="after-part">
         <view class="take">
-          <!-- <text style="color:white;font-size:20px;">立即</text> -->
-          <text style="color:white;font-size:20px;" wx:if="{{activeKey==0}}">去使用</text>
-          <text style="color:white;font-size:20px;" wx:if="{{activeKey==1}}">已使用</text>
-          <text style="color:white;font-size:20px;" wx:if="{{activeKey==2}}">已过期</text>
+          <text style="color:white;font-size:20px;" wx:if="{{item.IsUse==0}}">去使用</text>
+          <block wx:else>
+            <text style="color:white;font-size:20px;" wx:if="{{item.IsUse==1}}">已使用</text>
+            <text style="color:white;font-size:20px;" wx:else>已过期</text>
+          </block>
+
         </view>
         <view class="time" style="color:rgba(255, 255, 255, 1); font-size:10px;font-weight: lighter">
-          <!-- {{util.formatTime(item.BeginValidity*1000,"Y/M/D")}}- -->
-          {{util.formatTime(item.EndValidity*1000,"Y/M/D")}}
+          {{util.formatTime(item.StartValidity*1000,"Y/M/D")}}- {{util.formatTime(item.EndValidity*1000,"Y/M/D")}}
         </view>
       </view>
     </view>
   </block>
 </view>
 
-  <l-toast />
+<l-toast />

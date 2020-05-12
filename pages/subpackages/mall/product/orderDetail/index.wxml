@@ -29,7 +29,7 @@
       <text class="red" wx:if="{{order.Status==6}}">已退货</text>
       <text class="red" wx:if="{{order.Status==7}}">后台关闭</text>
       <text class="red" wx:if="{{order.Status==8}}">用户取消</text>
-
+      <text class="red" wx:if="{{order.Status==9}}">订单超时</text>
     </view>
     <view class="content" wx:for="{{order.Data}}">
       <image src="{{order.ShowResourcesUrl+item.ProductImage}}"></image>
@@ -71,6 +71,10 @@
         <text>订单创建时间</text>
         <text>{{util.formatTime(order.CreationTime,"Y/M/D")}}</text>
       </view>
+      <view class="item" wx:if="{{order.PayTime}}">
+        <text>订单支付时间</text>
+        <text>{{util.formatTime(order.PayTime,"Y/M/D")}}</text>
+      </view>
       <view class="item">
         <text>邮费</text>
         <text>¥{{order.LogisticsFee}}</text>
@@ -95,10 +99,10 @@
         <text>积分生成</text>
         <text>{{order.GetIntegra}}</text>
       </view>
-      
+
       <view class='canvas'>
-        <canvas  canvas-id='canvas' style="width:{{code_w}}px; height:{{code_w}}px;" bindlongtap='save'></canvas>
-      
+        <canvas canvas-id='canvas' style="width:{{code_w}}px; height:{{code_w}}px;" bindlongtap='save'></canvas>
+
       </view>
 
       <button bindtap="onShopPhone">联系商家</button>
@@ -141,7 +145,7 @@
   <view class="sub-container" wx:if="{{order.Status==0}}">
     <view class="left">
       <text class="title">剩余支付时间</text>
-      <l-countdown l-class="countdown-text" l-time-class="countdown-blue" time-type="second" time="900" format="{%m}:{%s}" bind:linend="onTime" />
+      <l-countdown l-class="countdown-text" l-time-class="countdown-blue" time-type="second" time="{{util.dt(order.CreationTime)}}" format="{%m}:{%s}" bind:linend="onTime" />
     </view>
     <l-button size="mini" style='margin-left:10rpx' catchtap="onCancelOrder" data-cell="{{order}}">取消订单</l-button>
     <l-button size="mini" style='margin-left:10rpx' catchtap="onPay">支付</l-button>
@@ -158,7 +162,7 @@
     <!-- <l-button size="mini" style='margin-left:10rpx'>查看物流</l-button> -->
     <l-button size="mini" style='margin-left:10rpx' catchtap="onReceipt" data-cell="{{order}}">确认收货</l-button>
   </view>
-    <view class="sub-container" wx:if="{{order.Status==3||order.Status==7||order.Status==8}}">
+  <view class="sub-container" wx:if="{{order.Status==3||order.Status==7||order.Status==8||order.Status==9}}">
     <view class="left">
     </view>
     <l-button size="mini" style='margin-left:10rpx' catchtap="onDelete" data-cell="{{order}}">删除订单</l-button>

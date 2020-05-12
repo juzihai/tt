@@ -1,3 +1,4 @@
+<wxs src="../../../components/lin-ui/filter/string.wxs" module="string"/>
 <view class="container">
   <view class="search-container">
     <l-button width="710" height="60" icon="research" icon-size="24" icon-color="#C4C9D2" l-class="search-btn" bind:lintap="onGotoSearch" shape="square">
@@ -23,7 +24,7 @@
       <view class='{{item.icon}} {{item.color}} text-shadow'>
         <image class="img" src="{{grid.ShowResourcesUrl}}{{item.ImageUrl}}"></image>
       </view>
-      <text>{{item.ClassName}}</text>
+      <text>{{string.substring(item.ClassName,0,6)}}</text>
     </view>
     <view class='cu-item ' style="height: 120rpx;" bindtap='onNaviCard1'>
       <view class='text-shadow'>

@@ -11,7 +11,7 @@ import {
 import {
   PreOrder
 } from "../../../../../utils/preOrder.js"　                                               　
-var preOrder = new PreOrder()
+let preOrder;
 Page({
 
 
@@ -21,7 +21,8 @@ Page({
   },
 
   onLoad: async function(options) {
-    console.log('我是class',preOrder)
+     preOrder = new PreOrder()
+
 
     const windowHeight = await getWindowHeightRpx();
     const h = windowHeight - 100; // 100 是底部tabbar的高度  自定义的tabbar高度是不包含在 windowHeight里的
@@ -273,7 +274,7 @@ Page({
       orderCheck
     }
     this.orderParam(orderParam)
-
+    this.integralSum()
   },
   //积分及其他计算
   async integralSum(e) {
@@ -282,7 +283,8 @@ Page({
     let obj = {
       EnterpriseID: app.config.EnterpriseID,
       OpenId: wx.getStorageSync("OpenID"),
-      money: money.toFixed(2)
+      money: money.toFixed(2),
+      UseIntegral: preOrder.orderCostParam.orderCheck.integral
     }
     wx.lin.showToast({
       title: '处理中～',
@@ -382,6 +384,7 @@ Page({
     }
 
     let pickUp = this.data.preOrder.orderCostParam.orderCheck.pickUp
+    let integral = this.data.preOrder.orderCostParam.orderCheck.integral
     let obj = {
       EnterpriseID: app.config.EnterpriseID,
       OpenId: wx.getStorageSync("OpenID"),
@@ -391,11 +394,11 @@ Page({
       Address: ShippingAddress.Province + ShippingAddress.City + ShippingAddress.Area + ShippingAddress.Street,
       OrderPrice: preOrder.OrderPrice,
       PayPrice: preOrder.PayPrice,
-      Integra: pickUp ? 0 : this.data.preOrder.orderCostParam.Integral,
-      GetIntegra: pickUp ? 0 : this.data.preOrder.orderCostParam.GetIntegral,
+      Integra: integral ?  this.data.preOrder.orderCostParam.Integral:0,
+      GetIntegra: integral ?  this.data.preOrder.orderCostParam.GetIntegral:0,
       SubCompanyID,
       PickUpAddress,
-      IntegraPrice: preOrder.IntegralPrice,
+      IntegraPrice: integral ?preOrder.IntegralPrice:0,
       LogisticsFee: preOrder.LogisticsFee,
       Remark: this.data.Remark,
       Phone: wx.getStorageSync('phoneNumber'),

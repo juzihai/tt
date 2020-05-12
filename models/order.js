@@ -173,6 +173,15 @@ class Order extends Http {
       }
     })
   }
+  //查询订单失效时间
+  static ScheduledSearchDetails() {
+    return Http.request({
+      url: "api/V1/Scheduled/SearchDetails",
+      data: {
+
+      }
+    })
+  }
 
 }
 

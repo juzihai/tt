@@ -34,19 +34,31 @@ Page({
       OpenId: wx.getStorageSync("OpenID"),
       Status: this.data.Status
     }
-
+    const scheduled =await Order.ScheduledSearchDetails()
     const orderModel = Order.QueryForWx(obj)
     this.data.orderModel = orderModel //类属性
     const order = await orderModel.getMoreData(); //todo
     this.setData({
+      scheduled,
       order
     })
     wx.stopPullDownRefresh();
   },
   onTime(e) {
-    console.log(e)
+    this.initAllData()
   },
-  async onCancelOrder(e) {
+  onCancelOrder(e){
+    wx.showModal({
+      title: '提示',
+      content: '是否取消订单',
+      success:res=> {
+        if (res.confirm) {
+          this.CancelOrder(e)
+        }
+      }
+    })
+  },
+  async CancelOrder(e) {
     let item = e.currentTarget.dataset.cell
     let obj = {
       ID: item.ID,
@@ -62,7 +74,18 @@ Page({
     }, 100)
     this.initAllData()
   },
-  async onDelete(e) {
+  onDelete(e){
+    wx.showModal({
+      title: '提示',
+      content: '是否删除订单',
+      success: res => {
+        if (res.confirm) {
+          this.Delete(e)
+        }
+      }
+    })
+  },
+  async Delete(e) {
     let item = e.currentTarget.dataset.cell
     let obj = {
       OrderNo: item.OrderNo
@@ -92,7 +115,7 @@ Page({
       let order = await Order.DeductiblePay(obj)
       wx.showModal({
         title: '提示',
-        content: order.ResultBool ? '提交成功' :'提交失败',
+        content: order ? '提交成功' :'提交失败',
         showCancel: false,
         success() {
           that.initAllData()
@@ -130,13 +153,25 @@ Page({
     }
 
   },
+
   onUrged(e) {
     wx.showModal({
       title: '提示',
       content: '已经快马加鞭的为小主送去通知～',
     })
   },
-  async onReceipt(e) {
+  onReceipt(e) {
+    wx.showModal({
+      title: '提示',
+      content: '是否确认收货',
+      success: res => {
+        if (res.confirm) {
+          this.Receipt(e)
+        }
+      }
+    })
+  },
+  async Receipt(e) {
     let item = e.currentTarget.dataset.cell
     let obj = {
       OrderNo: item.OrderNo,
