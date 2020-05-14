@@ -46,14 +46,14 @@ Page({
     const payState = await OrderAndPayLogic.GetPayAndLogisticsState({
       EnterpriseID: app.config.EnterpriseID,
     })
-    let DeliveryModel = 1;
-    if (payState) {
-      if (payState.Logistics) {
-        DeliveryModel = 1
-      } else if (payState.PickUp) {
-        DeliveryModel = 2
-      }
-    }
+    // let DeliveryModel = 1;
+    // if (payState) {
+    //   if (payState.Logistics) {
+    //     DeliveryModel = 1
+    //   } else if (payState.PickUp) {
+    //     DeliveryModel = 2
+    //   }
+    // }
 
     let orderParam = {
       ProductCount: ProductModel.ProductCount, //商品总数 
@@ -66,7 +66,7 @@ Page({
       ProductModel,
       sorted, //展示商品
       payState: payState.ResultValue, //可支付状态
-      DeliveryModel, //取货方式
+      // DeliveryModel, //取货方式
       getAllUseCouponByProduct: getAllUseCouponByProduct.ResultValue //优惠券
     })
     setTimeout(function() {
@@ -120,6 +120,10 @@ Page({
       }
       Date.push(i)
     })
+    wx.lin.showToast({
+      title: '处理中～',
+      mask: true
+    })
     try {
       const checkProductPriceAndStockModel = await OrderAndPayLogic.CheckProductPriceAndStockModel({
         Date
@@ -142,15 +146,22 @@ Page({
 
         }
       })
+      setTimeout(function () {
 
+        wx.lin.hideToast()
+      }, 500);
       return false
     }
+    setTimeout(function () {
+
+      wx.lin.hideToast()
+    }, 500);
     return true
   },
   //5、通过店铺id及groupby后的产品查询物流价格(如果所选地址不支持物流提示切换地址或重选商品返回上一页)
   async initAllData() {
 
-    let DeliveryModel = this.data.DeliveryModel
+    // let DeliveryModel = this.data.DeliveryModel
 
     //查询邮费信息
     if (this.data.ShippingAddress && this.data.sorted) {
@@ -160,7 +171,7 @@ Page({
         sorted: this.data.sorted,
         Code: this.data.ShippingAddress.Code
       }
-      if (DeliveryModel == 1) { //快递
+      if (preOrder.orderCostParam.orderCheck.pickUp == false) { //快递
         try {
           const CheckLogisticsMatchProduct = await OrderAndPayLogic.CheckLogisticsMatchProduct(obj1)
           let orderParam = {
@@ -235,9 +246,20 @@ Page({
   },
   // 选择优惠券
   onCoupon(e) {
-    this.setData({
-      showCoupon: true
-    })
+    let data = this.data.getAllUseCouponByProduct
+    if (data.Data.length>0){
+      this.setData({
+        showCoupon: true
+      })
+
+    }else{
+      wx.showModal({
+        title: '提示',
+        content: '暂无优惠券',
+        showCancel: false
+      })
+    }
+
   },
   //取消弹框
   onPopupBack() {
@@ -372,7 +394,7 @@ Page({
       let subCompanyItem = this.data.subCompanyItem
       if (!subCompanyItem) {
         wx.lin.showToast({
-          title: '请选择取货地址',
+          title: '请选择自提地址',
           mask: true
         })
         return

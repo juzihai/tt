@@ -69,11 +69,11 @@
     <view class="orderInfo-container">
       <view class="item">
         <text>订单创建时间</text>
-        <text>{{util.formatTime(order.CreationTime,"Y/M/D")}}</text>
+        <text>{{util.formatTime(order.CreationTime,"Y/M/D h/m/s")}}</text>
       </view>
       <view class="item" wx:if="{{order.PayTime}}">
         <text>订单支付时间</text>
-        <text>{{util.formatTime(order.PayTime,"Y/M/D")}}</text>
+        <text>{{util.formatTime(order.PayTime,"Y/M/D h/m/s")}}</text>
       </view>
       <view class="item">
         <text>邮费</text>
@@ -89,7 +89,7 @@
       </view>
       <view class="item">
         <text>优惠总金额</text>
-        <text>¥{{order.OrderPrice-order.PayPrice}}</text>
+        <text>¥{{discountAmount}}</text>
       </view>
       <view class="item">
         <text>共计{{order.ProductCount}}件商品，实际支付</text>
@@ -144,8 +144,8 @@
 
   <view class="sub-container" wx:if="{{order.Status==0}}">
     <view class="left">
-      <text class="title">剩余支付时间</text>
-      <l-countdown l-class="countdown-text" l-time-class="countdown-blue" time-type="second" time="{{util.dt(order.CreationTime)}}" format="{%m}:{%s}" bind:linend="onTime" />
+      <!-- <text class="title">剩余支付时间</text>
+      <l-countdown l-class="countdown-text" l-time-class="countdown-blue" time-type="second" time="{{util.dt(order.CreationTime)}}" format="{%m}:{%s}" bind:linend="onTime" /> -->
     </view>
     <l-button size="mini" style='margin-left:10rpx' catchtap="onCancelOrder" data-cell="{{order}}">取消订单</l-button>
     <l-button size="mini" style='margin-left:10rpx' catchtap="onPay">支付</l-button>

@@ -1,6 +1,7 @@
 // pages/navigator/mine/index.js
 const app = getApp();
 import { Customers } from "../../../models/customers.js";
+import { IntegralRule } from "../../../models/integralRule.js";
 
 Page({
 
@@ -9,22 +10,22 @@ Page({
    */
   data: {
     modulecArr: [
-      { img: '/imgs/mine/bar1.png', name: '我的积分', url: '' },//pages/subpackages/integral/pages/integral/index
-      { img: '/imgs/mine/bar2.png', name: '我的浏览', url: '' },
-      { img: '/imgs/mine/bar3.png', name: '我的历史', url: '' },//
-      { img: '/imgs/mine/bar4.png', name: '我的活动', url: '' },//pages/subpackages/activity/pages/luckyDraw/index
+      { img: '/imgs/mine/bar1.png', name: '全部订单', url: '/pages/subpackages/mall/product/orderList/index' },
+      { img: '/imgs/mine/bar2.png', name: '我的优惠券', url: '/pages/subpackages/mall/cards/couponList/index' },
+      { img: '/imgs/mine/bar3.png', name: '联系我们', url: '/pages/subpackages/mall/company/staffList/index?pagePath=mine' },
+      { img: '/imgs/mine/bar4.png', name: '我的积分', url: '' },
     ],
     listArr: [
-      { name: '联系我们', url: '/pages/subpackages/mall/company/staffList/index?pagePath=mine' },
-      { name: '全部订单', url: '/pages/subpackages/mall/product/orderList/index' }, //
+      { name: '我的历史', url: '' }, //
+      { name: '我的活动', url: '' },
+
       { name: '我的收藏', url: '' },//
-      // { name: '我的订单', url: '' },
-      { name: '我的优惠券', url: '/pages/subpackages/mall/cards/couponList/index' },
-      // { name: '收藏', url: '' },
+      { name: '我的浏览', url: '' },
     ],
     phoneNumber: null,
     signIn: '点击签到',
     login:true, 
+    integralRuleDetail: '暂无',
   },
 
   /**
@@ -38,13 +39,34 @@ Page({
     })
 
   },
-  onShow(){
+  async onShow(){
     //自动登陆设置
     app.util.promisic(wx.checkSession)().then(res => {
       console.log('session 生效', res)
     }, err => {
       console.log('session 失效', err)
       app._login();
+    })
+
+  this.initAllData()
+    
+  },
+
+  async initAllData(){
+    let obj = {
+      EnterpriseID: app.config.EnterpriseID,
+      OpenID: wx.getStorageSync("OpenID")
+    }
+    const integralRuleModel = await IntegralRule.SearchModelDetails(obj)
+    const customersModel = await Customers.GetCustomersInfo(obj)
+    if (integralRuleModel) {
+      let integralRuleDetail = `每消费${integralRuleModel.GeneratedPrice}元生成${integralRuleModel.GeneratingIntegral}积分,每花费${integralRuleModel.consumptionIntegral}点积分减免${integralRuleModel.consumptionPrice}元`
+      this.setData({
+        integralRuleDetail
+      })
+    }
+    this.setData({
+      customersModel,
     })
   },
 
@@ -80,6 +102,7 @@ Page({
           login: true,
           phoneNumber: loginInfo.phoneNumber
         })
+        this.initAllData()
         app._addLocation(2)
       }catch(e){
         wx.hideLoading()
@@ -87,7 +110,6 @@ Page({
 
     }
   },
-
     // 点击列表
   click_list(e) {
 

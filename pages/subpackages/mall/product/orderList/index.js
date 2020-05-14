@@ -44,9 +44,9 @@ Page({
     })
     wx.stopPullDownRefresh();
   },
-  onTime(e) {
-    this.initAllData()
-  },
+  // onTime(e) {
+  //   this.initAllData()
+  // },
   onCancelOrder(e){
     wx.showModal({
       title: '提示',
@@ -92,7 +92,8 @@ Page({
     }
     wx.lin.showToast({
       title: '处理中～',
-      mask: true
+      mask: true,
+      duration:15000
     })
     const orderModel = await Order.Delete(obj)
     setTimeout(function() {
@@ -135,7 +136,7 @@ Page({
             content: '付款成功',
             showCancel: false,
             success() {
-              this.initAllData()
+              that.initAllData()
             }
           })
         },

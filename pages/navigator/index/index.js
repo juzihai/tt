@@ -5,7 +5,7 @@ import { ArticleType } from "../../../models/articleType.js";
 import { Article } from "../../../models/article.js";
 import { CompanyRotationchart } from "../../../models/companyRotationchart.js";
 import { AppModel} from '../../../models/app.js';
-
+import { Company } from "../../../models/company.js";
 
 Page({
 
@@ -33,7 +33,6 @@ Page({
       let SharOpenID = decodeURIComponent(options.SharOpenID);
       if (SharOpenID){
         app.globalData.SharOpenID = SharOpenID
-        app.globalData.SharType = SharType
         wx.setStorageSync('SharOpenID', SharOpenID)
       }
       wx.navigateTo({
@@ -104,21 +103,30 @@ Page({
     this.tabSelectGetData()
   },
 /** */
-  onOpenLocation(){
+  async onOpenLocation(){
+    wx.showToast({
+      title: '加载中～',
+      mask: true,
+      icon: "none"
+    })
+
+    const company =await Company.SearchModelDetails(app.config.EnterpriseID)
+    wx.setStorageSync('shopInfo', company)
     let shopInfo = this.data.shopInfo
+    setTimeout(function () {
+      wx.hideToast()
+    }, 100)
     // 用户授权
     AppModel.getSetting().then(res => {
       // 用户定位
       return AppModel.getUserLocation()
     }).then(res => {
       wx.openLocation({
-        latitude: shopInfo.Latitude,
-        longitude: shopInfo.Longitude,
-        // longitude:117.20,
-        // latitude:39.12,
+        latitude: company.Latitude,
+        longitude: company.Longitude,
         scale: '16',
-        name: shopInfo.CompanyName,
-        address: shopInfo.Address,
+        name: company.CompanyName,
+        address: company.Address,
         success: function (res) { },
         fail: function (res) { },
         complete: function (res) { },

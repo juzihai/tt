@@ -155,6 +155,24 @@ Page({
       })
       return
     }
+    let phone = wx.getStorageSync('phoneNumber')
+    if (!phone) {
+      wx.showModal({
+        title: '提示',
+        content: '您还未登录是否现在登录',
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            wx.switchTab({
+              url: '/pages/navigator/mine/index',
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+      return
+    }
     if (event.detail.orderWay === ShoppingWay.CART) {
       let obj = {
         OpenId: wx.getStorageSync('OpenID'),
@@ -180,6 +198,14 @@ Page({
       let ProductPrice = this.mainPrice(spu.Price, spu.DiscountPrice).price
       let ProductNum = event.detail.currentSkuCount;
       let ProductCountPrice = ProductPrice * ProductNum
+      if (!ProductPrice || ProductPrice==0){
+        wx.showModal({
+          title: '提示',
+          content: '暂不能购买',
+          showCancel:false
+        })
+        return
+      }
       let item = {
         ClassID: spu.ClassID,
         ClassName: spu.ClassName,

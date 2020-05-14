@@ -5,7 +5,7 @@ import { Paging } from "../utils/paging";
 class Coupon extends Http {
 
   //查询所有优惠券
-  static PageSearch({ EnterpriseID, ProductClassID, CouponType, Name, Page, Limit }) {
+  static PageSearch({ EnterpriseID, ProductClassID, CouponType, Name, OpenID,Page, Limit }) {
     return new Paging({
       url: "api/V1/Coupon/PageSearchWX",
       data: {
@@ -13,6 +13,7 @@ class Coupon extends Http {
         ProductClassID,
         CouponType,
         Name,
+        OpenID
       }
     }, Page, Limit)
   }

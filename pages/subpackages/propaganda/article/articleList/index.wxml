@@ -21,6 +21,7 @@
     </l-card>
   </block>
 
+<l-toast />
   <l-status-show show="{{article.empty}}" type="data"></l-status-show>
 
   <l-loadmore show type="{{loadingType}}" end-text="已到底部啦!"></l-loadmore>

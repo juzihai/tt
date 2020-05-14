@@ -1,4 +1,4 @@
-<wxs src="../../../components/lin-ui/filter/string.wxs" module="string"/>
+<wxs src="../../../components/lin-ui/filter/string.wxs" module="string" />
 <view class="container">
   <view class="search-container">
     <l-button width="710" height="60" icon="research" icon-size="24" icon-color="#C4C9D2" l-class="search-btn" bind:lintap="onGotoSearch" shape="square">
@@ -20,7 +20,7 @@
 
   <!-- 分类六宫格 -->
   <view class='cu-list grid col-4 no-border inner-container'>
-    <view class='cu-item ' style="height: 120rpx;" wx:if="{{index<11}}" wx:for="{{grid.Data}}" wx:key="index" data-classid="{{item.ID}}" bindtap='onNaviCard'>
+    <view class='cu-item ' style="height: 130rpx;" wx:if="{{index<11}}" wx:for="{{grid.Data}}" wx:key="index" data-classid="{{item.ID}}" bindtap='onNaviCard'>
       <view class='{{item.icon}} {{item.color}} text-shadow'>
         <image class="img" src="{{grid.ShowResourcesUrl}}{{item.ImageUrl}}"></image>
       </view>
@@ -48,17 +48,36 @@
     <s-hot-scroll banner="{{bannerG}}"></s-hot-scroll>
   </content-card>
 
+
+  <content-card l-content="content" name="为你推荐" cardPadding>
+      <l-segment even="{{false}}" 
+                scrollable 
+                animated-for-line="{{true}}" 
+                l-class="segment-view"
+                l-active-class="segment-item-active"
+                l-inactive-class="segment-item"
+                l-line-class="l-seg-line"
+                bind:linchange="tabSelect">
+
+      <block wx:for="{{nav.Data}}">
+        <l-segment-item tab="{{item.ClassName}}" key="{{item.ProductClassID}}" />
+      </block>
+    </l-segment>
+    <l-water-flow generic:l-water-flow-item="s-spu-preview"> </l-water-flow>
+
+  </content-card>
+
   <!--推荐-->
-  <view class="spu-bottom">
+  <!-- <view class="spu-bottom">
     <image class="title-spu-bottom" src="/imgs/home/title@interest.png"></image>
     <l-water-flow generic:l-water-flow-item="s-spu-preview"> </l-water-flow>
-    <!--lin-ui瀑布流组件的属性中值为自定义组件-->
-  </view>
+    lin-ui瀑布流组件的属性中值为自定义组件
+  </view> -->
 
 
 
 
 </view>
 
-
+<l-toast />
 <l-loadmore show type="{{loadingType}}" end-text="已到底部啦!"></l-loadmore>

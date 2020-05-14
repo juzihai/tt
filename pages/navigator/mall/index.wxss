@@ -43,6 +43,26 @@ page{
     margin-bottom: 20rpx;
 
 }
+.segment-view{
+  margin-bottom: 10px;
+}
+.segment-item-active {
+    color:red !important;
+    font-size: 30rpx !important;
+    font-weight: bold;
+}
+.segment-item {
+
+    /* background-color: #f3f3f3 !important; */
+    font-size: 30rpx !important;
+    font-weight: bold;
+}
+
+.l-seg-line{
+    background-color: red !important;
+
+}
+
 
 /*设置图片的大小*/
 .img{

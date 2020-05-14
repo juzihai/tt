@@ -19,7 +19,7 @@
     <!-- 4个功能块 -->
     <view class='function'>
       <block wx:for="{{modulecArr}}" wx:key='item.name'>
-        <view class="moudView" data-bean="{{item}}" bindtap='click_functiona'>
+        <view class="moudView" data-bean="{{item}}" bindtap='click_list'>
           <image class='moudImg' src="{{item.img}}"></image>
           <text class='moudName'>{{item.name}}</text>
         </view>
@@ -30,12 +30,12 @@
   <view class='signIn'>
     <!-- <image class='sign_pic' src='/images/static/tx1.jpg'></image> -->
     <view class='signIn_text'>
-      <text>签到有礼</text>
-      <text>每日签到赢积分，兑换优惠券</text>
+      <text>现有积分：{{customersModel.ResidualIntegral}}</text>
+      <text> 积分规则：{{integralRuleDetail?integralRuleDetail:'暂无'}}</text>
     </view>
-    <view class='sign_btn'>
+    <!-- <view class='sign_btn'>
       <button size='mini' class='signBtn' bindtap='click_SignBtn'>{{signIn}}</button>
-    </view>
+    </view> -->
   </view>
   <!-- 列表 -->
   <view class='list'>

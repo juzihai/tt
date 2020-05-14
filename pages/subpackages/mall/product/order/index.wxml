@@ -78,7 +78,8 @@
         </block>
 
         <view wx:else>
-          <text class="subtitle">不使用</text>
+          <text class="subtitle" wx:if="{{getAllUseCouponByProduct.Data.length>0}}">未使用</text>
+          <text class="subtitle" wx:else>暂无可使用优惠券</text>
         </view>
 
 

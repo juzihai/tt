@@ -32,5 +32,5 @@
 
 
 </view>
-
+<l-toast />
 <l-loadmore show type="{{loadingType}}" end-text="已到底部啦!"></l-loadmore>

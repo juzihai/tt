@@ -18,10 +18,17 @@ Page({
       EnterpriseID: app.config.EnterpriseID,
       OpenID: wx.getStorageSync("OpenID")
     }
+    wx.lin.showToast({
+      title: '加载中～',
+      mask: true
+    })
     const customers = await Customers.GetCustomersInfo(obj)
     const addressModel = await DeliveryAddress.PageSearch({ CustomerId: customers.ID })
     this.data.addressModel = addressModel //类属性
     const address = await addressModel.getMoreData();//todo
+    setTimeout(function () {
+      wx.lin.hideToast()
+    }, 100)
     this.setData({
       address,
       customers

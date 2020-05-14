@@ -28,6 +28,21 @@ class ProductClass {
   }
 
 
+  /**产品种类查询所有接口 */
+  static ProductClassModuleRelationSearch({ EnterpriseID, ClassName = '', Limit = 999, Page = 1 }) {
+    return Http.request({
+      url: "api/V1/ProductClassModuleRelation/PageSearchWX",
+      data: {
+        EnterpriseID,
+        ClassName,
+        Limit,
+        Page
+      }
+    })
+  }
+
+
+
 }
 export {
   ProductClass

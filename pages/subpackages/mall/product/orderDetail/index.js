@@ -23,6 +23,7 @@ Page({
    */
   data: {
     code_w: code_w,
+    discountAmount:0
   },
 
   /**
@@ -47,7 +48,7 @@ Page({
       ID: this.data.id
     }
     const order = await Order.DetailByOrderIdForWx(obj)
-
+    let discountAmount = order.OrderPrice - order.PayPrice
     qrcode = new QRCode('canvas', {
       // usingIn: this,
       text: order.OrderNo,
@@ -63,12 +64,13 @@ Page({
       }
     });
     this.setData({
-      order
+      order,
+      discountAmount: discountAmount.toFixed(2)
     })
   },
-  onTime(e) {
-    this.initAllData()
-  },
+  // onTime(e) {
+  //   this.initAllData()
+  // },
   groupBy(array, f) {
 
     const groups = {};
@@ -197,7 +199,7 @@ Page({
       content: '已经快马加鞭的为小主送去通知～',
     })
   },
-  onReceipt() {
+  onReceipt(e) {
     wx.showModal({
       title: '提示',
       content: '是否确认收货',

@@ -24,9 +24,16 @@ Page({
       "EnterpriseID": app.config.EnterpriseID,
       ArticleType
     }
+    wx.lin.showToast({
+      title: '加载中～',
+      mask: true
+    })
     const articleModel = Article.PageSearch(obj)
     this.data.articleModel = articleModel //类属性
     const article = await articleModel.getMoreData();//todo
+    setTimeout(function () {
+      wx.lin.hideToast()
+    }, 500)
     this.setData({
       article: article
     })

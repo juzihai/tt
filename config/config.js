@@ -17,10 +17,12 @@ const config = {
 
   /** 测试地址*/
   "apiBaseUrl": 'https://company.gzchinaunion.com/',
-  "EnterpriseID": "3373", //wxa93d39f1484ac31a
+  "EnterpriseID": "9646", //wxa93d39f1484ac31a
   // "EnterpriseID": "6075", //wxbf16fb811554d7c4大帅
   // "EnterpriseID": "1276", //wx999fb45b6c67c707小孟
-
+  /** test测试地址*/
+  // "apiBaseUrl": 'https://test.gzchinaunion.com/',
+  // "EnterpriseID": "4981", //wx2e8e4434a39d3508
 }
 const tips = {
   //基础Http请求码 

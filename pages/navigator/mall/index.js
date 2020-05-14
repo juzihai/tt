@@ -42,10 +42,9 @@ Page({
    */
   onLoad: async function(options) {
     this.initAllData();
-    this.initBottomSpuList();
   },
 
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     let id = this.data.id;
     let OpenID = wx.getStorageSync('OpenID')
     let url = encodeURIComponent('/pages/navigator/mall/index');
@@ -55,9 +54,8 @@ Page({
       path: `/pages/navigator/index/index?url=${url}&SharOpenID=${OpenID}&SharType=mall`
     }
   },
-  onPullDownRefresh(){
+  onPullDownRefresh() {
     this.initAllData();
-    this.initBottomSpuList();
   },
   onShow() {
 
@@ -76,15 +74,20 @@ Page({
     //TODO:真实数据
     let obj = {
       "EnterpriseID": app.config.EnterpriseID,
-      "Limit": 11
+      "Limit": 999
     }
     const bannerB = await ProductRotationchart.Search(obj)
-    const grid = await ProductClass.Search(obj);
+    const grid = await ProductClass.Search({
+      "EnterpriseID": app.config.EnterpriseID,
+      "Limit": 11
+    });
     const themeE = await HotProduct.Search(obj);
     const bannerG = await HotActivity.Search(obj);
-
     let themeESpu = themeE.Data
-
+    const nav = await ProductClass.ProductClassModuleRelationSearch(obj)
+    if (nav.Data.length > 0) {
+      this.tabSelectGetData(nav.Data[0].ProductClassID)
+    }
 
     this.setData({
       themeA: themeA[index],
@@ -98,30 +101,40 @@ Page({
       grid,
       themeE,
       themeESpu,
+      nav
     })
     wx.stopPullDownRefresh();
-
   },
-  /**
-   * 初始化首页的底部瀑布流图片
-   * @returns {Promise<void>}
-   */
-  async initBottomSpuList() {
+  /**切换点击 */
+  tabSelect(e) {
+    console.log()
+    let ClassID = e.detail.activeKey
+    this.tabSelectGetData(ClassID)
+  },
+  async tabSelectGetData(ClassID) {
+    wx.showToast({
+      title: '加载中～',
+      mask: true,
+      icon:"none"
+    })
     let obj = {
       "EnterpriseID": app.config.EnterpriseID,
-      "ProductCode": "",
-      "ProductName": "",
-      "Limit": 5
+      ClassID
     }
     const paging = Product.PageSearch(obj);
     this.data.spuPaging = paging //类属性
     const data = await paging.getMoreData(); //todo
+    setTimeout(function() {
+      wx.hideToast()
+    }, 500)
     if (!data) {
       return;
     }
     // data 数组, refresh 清空元素, success 返回成功
     wx.lin.renderWaterFlow(data.items, true);
+
   },
+
   /**banner点击 */
   onBanner(e) {
     let cell = e.currentTarget.dataset.cell;
@@ -133,6 +146,10 @@ Page({
       wx.navigateTo({
         url: `/pages/subpackages/mall/activity/activityDetail/index?id=${id}&pagePath=ProductRotationchart`,
       })
+      return
+    }
+    if (!cell.IsJump){
+      
       return
     }
 

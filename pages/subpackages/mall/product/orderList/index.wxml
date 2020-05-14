@@ -35,10 +35,10 @@
     <l-price color="red" value-size="28" unit-size="20" autofix value="{{item.PayPrice}}"></l-price>
   </view>
   <view class="sub-container" wx:if="{{item.Status==0}}">
-    <view class="left">
+    <!-- <view class="left">
       <text class="title">剩余支付时间</text>
       <l-countdown l-class="countdown-text" l-time-class="countdown-blue" time-type="second" time="{{util.dt(item.CreationTime)}}" format="{%m}:{%s}" bind:linend="onTime" />
-    </view>
+    </view> -->
     <l-button size="mini" style='margin-left:10rpx' catchtap="onCancelOrder" data-cell="{{item}}">取消订单</l-button>
     <l-button size="mini" style='margin-left:10rpx' catchtap="onPay" data-cell="{{item}}">支付</l-button>
   </view>

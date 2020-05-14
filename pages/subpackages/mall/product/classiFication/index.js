@@ -66,9 +66,16 @@ Page({
       "EnterpriseID": app.config.EnterpriseID,
       ClassID
     }
+    wx.lin.showToast({
+      title: '加载中～',
+      mask: true
+    })
     const productModel = Product.PageSearch(obj)
     this.data.productModel = productModel //类属性
     const product = await productModel.getMoreData(); //todo
+    setTimeout(function () {
+      wx.lin.hideToast()
+    }, 500)
     this.setData({
       product
     })

@@ -45,10 +45,18 @@ Page({
       EnterpriseID: app.config.EnterpriseID,
       ProductClassID:0,
       CouponType:0,
+      OpenID: wx.getStorageSync("OpenID"),
     }
+    wx.lin.showToast({
+      title: '加载中～',
+      mask: true
+    })
     const couponModel = await Coupon.PageSearch(obj)
     this.data.couponModel = couponModel //类属性
     const coupon = await couponModel.getMoreData();//todo
+    setTimeout(function () {
+      wx.lin.hideToast()
+    }, 100)
     this.setData({
       coupon
     })
@@ -80,6 +88,6 @@ Page({
     }catch(e){
 
     }
-
+  this.initAllData()
   }
 })

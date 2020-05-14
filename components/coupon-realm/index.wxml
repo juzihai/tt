@@ -12,7 +12,7 @@
             placement="{{position}}"
             cell="{{item}}"
             >
-            {{item.CouponName}}
+            满{{item.Denomination}}元减{{item.ReductionAmount}}元
           </l-radio>
         </l-radio-group>
       </view>

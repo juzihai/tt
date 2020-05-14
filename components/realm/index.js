@@ -48,7 +48,7 @@ Component({
       })
       this.bindSkuData(spu);
       // TODO 可购买总数 当前选择数量
-      this.setStockStatus(spu.SalesStock,this.datacurrentSkuCount)
+      this.setStockStatus(spu.SalesStock, this.data.currentSkuCount)
     },
      // TODO 有规格的情况
     processHasSpec(spu) {

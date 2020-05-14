@@ -46,9 +46,16 @@ Page({
     let obj = {
       EnterpriseID: app.config.EnterpriseID,
     }
+    wx.lin.showToast({
+      title: '加载中～',
+      mask: true
+    })
     const subCompanyModel = await SubCompany.PageSearch(obj)
     this.data.subCompanyModel = subCompanyModel //类属性
     const subCompany = await subCompanyModel.getMoreData(); //todo
+    setTimeout(function () {
+      wx.lin.hideToast()
+    }, 100)
     this.setData({
       subCompany
     })
@@ -74,7 +81,7 @@ Page({
    *
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: async function() {
+  scrolltolower: async function() {
 
     const data = await this.data.subCompanyModel.getMoreData();
     console.log(data)

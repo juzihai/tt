@@ -23,11 +23,10 @@
       </view>
       <view class="after-part">
         <view class="take">
-          <text style="color:white;font-size:20px;" wx:if="{{item.IsUse==0}}">去使用</text>
-          <block wx:else>
-            <text style="color:white;font-size:20px;" wx:if="{{item.IsUse==1}}">已使用</text>
-            <text style="color:white;font-size:20px;" wx:else>已过期</text>
-          </block>
+          <text style="color:white;font-size:20px;" wx:if="{{item.IsUse==0}}" bindtap="onGoto">去使用</text>
+          <text style="color:white;font-size:20px;" wx:if="{{item.IsUse==1}}">已使用</text>
+          <text style="color:white;font-size:20px;" wx:if="{{item.IsUse==2}}">已过期</text>
+
 
         </view>
         <view class="time" style="color:rgba(255, 255, 255, 1); font-size:10px;font-weight: lighter">
@@ -39,3 +38,5 @@
 </view>
 
 <l-toast />
+<l-status-show show="{{coupon.empty}}" type="data" full-screen="{{false}}" l-class="l-class"></l-status-show>
+<l-loadmore show type="{{loadingType}}" end-text="已到底部啦!"></l-loadmore>
