@@ -104,7 +104,7 @@ Page({
 
     return {
       title: "详情",
-      path: `/pages/navigator/index/index?url=${url}&SharOpenID=${OpenID}`
+      path: `/pages/navigator/mall/index?url=${url}&SharOpenID=${OpenID}`
     }
   },
 

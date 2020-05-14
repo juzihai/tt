@@ -36,11 +36,11 @@ page{
 }
 
 .activity {
-    margin-top: 20rpx;
+    margin-top: 0rpx;
     width: 100%;
     height: auto;
     display: flex;
-    margin-bottom: 20rpx;
+    margin-bottom: 10rpx;
 
 }
 .segment-view{

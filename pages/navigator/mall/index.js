@@ -41,6 +41,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function(options) {
+    // 分享后的页面打开先进入首页再跳转到分享的页面,首页的js要做如下设置
+    if (options.url) {
+      let url = decodeURIComponent(options.url);
+
+      let SharOpenID = decodeURIComponent(options.SharOpenID);
+      if (SharOpenID) {
+        app.globalData.SharOpenID = SharOpenID
+        wx.setStorageSync('SharOpenID', SharOpenID)
+      }
+      wx.navigateTo({
+        url: url,
+      })
+
+    }
     this.initAllData();
   },
 
@@ -51,7 +65,7 @@ Page({
 
     return {
       title: "详情",
-      path: `/pages/navigator/index/index?url=${url}&SharOpenID=${OpenID}&SharType=mall`
+      path: `/pages/navigator/mall/index?url=${url}&SharOpenID=${OpenID}&SharType=mall`
     }
   },
   onPullDownRefresh() {

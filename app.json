@@ -1,12 +1,12 @@
 {
   "pages": [
-    "pages/navigator/index/index",
-    "pages/navigator/indexTest/index",
     "pages/navigator/mall/index",
     "pages/navigator/cart/index",
     "pages/navigator/mine/index",
     "pages/navigator/statistics/index",
-    "pages/navigator/statisticsTest/index"
+    "pages/navigator/statisticsTest/index",
+    "pages/navigator/index/index",
+    "pages/navigator/indexTest/index"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -20,12 +20,6 @@
     "backgroundColor": "#fff",
     "borderStyle": "black",
     "list": [
-      {
-        "pagePath": "pages/navigator/index/index",
-        "text": "首页",
-        "iconPath": "/imgs/tabbar/base.png",
-        "selectedIconPath": "/imgs/tabbar/base-select.png"
-      },
       {
         "pagePath": "pages/navigator/mall/index",
         "text": "产品",

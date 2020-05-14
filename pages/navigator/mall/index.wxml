@@ -34,7 +34,7 @@
     </view>
   </view>
   <!--活动展示-->
-  <image class="activity" src="{{activityD.entrance_img}}" mode="widthFix" bindtap="onActicity"></image>
+  <image class="activity" src="/imgs/entrance_img.png" mode="widthFix" bindtap="onActicity"></image>
   <!--每周上新-->
   <!-- <content-card class="content" name="活动产品" more="{{true}}" bind:tapping="onMore">
     <s-spu-scroll wx:if="{{themeESpu.length>0}}" theme="{{themeE}}" my-class="text-price" spu-list="{{themeESpu}}" bind:tapping="onSpuItem">

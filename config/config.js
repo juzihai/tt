@@ -13,11 +13,12 @@ const config = {
   // "EnterpriseID": "6236",//天津明朗广告传媒有限公司 wx999fb45b6c67c707
   // "EnterpriseID": "2016",//果资律师 wxbf16fb811554d7c4
   // "EnterpriseID": "1824",//杜尚美术 wxd761439fbf570705
-  // "EnterpriseID": "",//杨秸秆 wx163a906af5fc7211
 
-  /** 测试地址*/
+
+  /** 正式地址*/
   "apiBaseUrl": 'https://company.gzchinaunion.com/',
-  "EnterpriseID": "9646", //wxa93d39f1484ac31a
+  "EnterpriseID": "7103",//杨秸秆 wx163a906af5fc7211
+  // "EnterpriseID": "9646", //wxa93d39f1484ac31a
   // "EnterpriseID": "6075", //wxbf16fb811554d7c4大帅
   // "EnterpriseID": "1276", //wx999fb45b6c67c707小孟
   /** test测试地址*/
