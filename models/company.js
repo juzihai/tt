@@ -13,6 +13,17 @@ class Company extends Http {
     })
   }
 
+  //小程序用户使用协议
+  static SearchModelAgreement({ EnterpriseID }) {
+    return Http.request({
+      url: "api/V1/Company/SearchModelAgreementWX",
+      data: {
+        EnterpriseID
+      }
+    })
+  }
+
+
 }
 export {
   Company

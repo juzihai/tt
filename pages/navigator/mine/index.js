@@ -2,7 +2,8 @@
 const app = getApp();
 import { Customers } from "../../../models/customers.js";
 import { IntegralRule } from "../../../models/integralRule.js";
-
+import { Company } from "../../../models/company.js";
+var WxParse = require('../../../wxParse/wxParse.js');
 Page({
 
   /**
@@ -26,6 +27,7 @@ Page({
     signIn: '点击签到',
     login:true, 
     integralRuleDetail: '暂无',
+    flag: false,
   },
 
   /**
@@ -152,6 +154,68 @@ Page({
 
       }
     })
+  },
+  checkAgreement(e) {
+    var flag = e.detail.value[0];
+
+    if (flag === undefined) {
+      flag = false;
+
+    } else {
+      flag = true;
+    }
+    this.setData({
+      flag: flag
+    })
+  },
+  // 跳转协议
+  terms() {
+    // var modalName = this.data.modalName
+    this.setData({
+      modalName: agree
+    })
+  },
+  async showModal(e) {
+    const company = await Company.SearchModelAgreement({ EnterpriseID: app.config.EnterpriseID})
+
+    var key = e.currentTarget.dataset.target;
+    console.log(key)
+
+    const article = company[key];
+
+    // article = article.replace('?',' ')
+    console.log(article)
+    /**
+     * WxParse.wxParse(bindName , type, data, target,imagePadding)
+     * 1.bindName绑定的数据名(必填)
+     * 2.type可以为html或者md(必填)
+     * 3.data为传入的具体数据(必填)
+     * 4.target为Page对象,一般为this(必填)
+     * 5.imagePadding为当图片自适应是左右的单一padding(默认为0,可选)
+     */
+    var that = this;
+    WxParse.wxParse('article', 'html', article, this, 5);
+
+    this.setData({
+      scrolltop: 0,
+      modalName: "agree"
+    })
+  },
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
+
+  noagree() {
+    var flag = this.data.flag
+    if (flag == false) {
+      wx.showModal({
+        title: '提示',
+        content: '请先同意协议',
+      })
+
+    }
   },
 
 })

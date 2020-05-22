@@ -1,4 +1,5 @@
 /* pages/navigator/mine/index.wxss */
+@import "/wxParse/wxParse.wxss";
 page{
   background-color: white;
 }

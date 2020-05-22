@@ -1,4 +1,4 @@
-//app.js
+////app.js
 import {
   Customers
 } from "/models/customers";
@@ -104,7 +104,7 @@ App({
       const customers = await Customers.GetCustomersInfo(obj)
       wx.setStorageSync('userInfo', customers)
       if (customers.Phone){
-        wx.setStorageSync('phoneNumber', customers.Phone)
+        // wx.setStorageSync('phoneNumber', customers.Phone)
       }
       // console.log('启动参数1', register)
       if (this.globalData.SharOpenID) {

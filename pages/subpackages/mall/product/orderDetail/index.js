@@ -49,9 +49,14 @@ Page({
     }
     const order = await Order.DetailByOrderIdForWx(obj)
     let discountAmount = order.OrderPrice - order.PayPrice
+    let text={
+      OrderNo: order.OrderNo,
+      ID: order.ID,
+      Key:'guozi'
+    }
     qrcode = new QRCode('canvas', {
       // usingIn: this,
-      text: order.OrderNo,
+      text: JSON.stringify(text),
       image: '',
       width: code_w,
       height: code_w,

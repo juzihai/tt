@@ -1,12 +1,12 @@
 {
   "pages": [
+    "pages/navigator/index/index",
+    "pages/navigator/indexTest/index",
     "pages/navigator/mall/index",
     "pages/navigator/cart/index",
     "pages/navigator/mine/index",
     "pages/navigator/statistics/index",
-    "pages/navigator/statisticsTest/index",
-    "pages/navigator/index/index",
-    "pages/navigator/indexTest/index"
+    "pages/navigator/statisticsTest/index"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -21,16 +21,22 @@
     "borderStyle": "black",
     "list": [
       {
-        "pagePath": "pages/navigator/mall/index",
-        "text": "产品",
+        "pagePath": "pages/navigator/index/index",
+        "text": "首页",
         "iconPath": "/imgs/tabbar/base.png",
         "selectedIconPath": "/imgs/tabbar/base-select.png"
       },
       {
+        "pagePath": "pages/navigator/mall/index",
+        "text": "产品",
+        "iconPath": "/imgs/tabbar/filter.png",
+        "selectedIconPath": "/imgs/tabbar/filter-select.png"
+      },
+      {
         "pagePath": "pages/navigator/cart/index",
         "text": "购物车",
-        "iconPath": "/imgs/tabbar/base.png",
-        "selectedIconPath": "/imgs/tabbar/base-select.png"
+        "iconPath": "/imgs/tabbar/about.png",
+        "selectedIconPath": "/imgs/tabbar/about-select.png"
       },
       {
         "pagePath": "pages/navigator/mine/index",

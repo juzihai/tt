@@ -1,10 +1,10 @@
-<!--pages/navigator/center/index.wxml-->
+<import src='../../wxParse/wxParse.wxml' />
 <!--  个人中心 -->
 <view class='content'>
   <!-- 个人信息 -->
   <view class='topimg'>
     <image class='top-bg' src='/imgs/mine/centerBg.jpg'></image>
-    <view class='person' bindtap="showModal" data-target="DialogModal1">
+    <view class='person' bindtap="show" data-target="DialogModal1">
       <view class='avatar' catchtap="ChooseImage">
         <!-- <image class='avatar' src='{{avatarUrl}}'></image> -->
         <open-data type="userAvatarUrl"></open-data>
@@ -80,10 +80,25 @@
 <l-status-show show="{{!login}}" custom="{{true}}">
   <block>
     <image class="top-img" src="/components/lin-ui/status-show/image/error.png"></image>
-    <text class="status-text">您还未登陆，请登陆</text>
-    <button class="bg-green button_margin_top" bindgetphonenumber="onGetPhoneNumber" open-type="getPhoneNumber">授权登陆</button>
+    <!-- <text class="status-text">您还未登陆，请登陆</text> -->
+    <view class='margin'>
+      <checkbox-group bindchange="checkAgreement">
+        <checkbox value='{{if_rem_user}}'></checkbox>
+        我已阅读并同意
+        <text class='text-red' bindtap="showModal" data-target="PrivacyPolicy">《小程序服务条款》</text>
+        <text class='text-red' bindtap="showModal" data-target="TermsService">《小程序隐私政策》</text>
+      </checkbox-group>
+    </view>
+    <view wx:if="{{flag == false}}" class='button'>
+      <button class="bg-green button_margin_top" bindtap='noagree'>授权登陆</button>
+    </view>
+    <view wx:else class='button'>
+      <button class="bg-green button_margin_top" bindgetphonenumber="onGetPhoneNumber" open-type="getPhoneNumber">授权登陆</button>
+    </view>
+
+
   </block>
-  
+
 </l-status-show>
 
 
@@ -93,3 +108,21 @@
     <text class="custom-txt">–– 果资科技提供技术支持 ––</text>
   </view>
 </l-loadmore>
+
+<view class="cu-modal {{modalName == 'agree' ? 'show' : ''}}">
+  <view class="cu-dialog" style="width:750rpx">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">小程序协议</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding">
+      <scroll-view scroll-y class="text-left " style='max-height:900rpx; width:100%;' scroll-top='0'>
+        <template is='wxParse' data="{{wxParseData:article.nodes}}" />
+
+      </scroll-view>
+    </view>
+
+  </view>
+</view>
