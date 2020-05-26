@@ -1,6 +1,6 @@
 <!--pages/subpackages/mall/product/order/index.wxml-->
 <scroll-view scroll-y style="height:{{h}}rpx;">
-  <view class="address-container" bindtap="onGetAdd">
+  <view class="address-container" bindtap="onGetAdd" wx:if="{{!preOrder.orderCostParam.orderCheck.pickUp}}">
     <view class="action">
       <l-icon color="#157658" name="address"></l-icon>
     </view>

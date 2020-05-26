@@ -4,5 +4,7 @@
   <l-water-flow generic:l-water-flow-item="s-spu-preview"> </l-water-flow>
 </view>
 
+ <l-icon name="cart"  class="doc-container" bindtap="onCart"/>
+ 
   <l-status-show show="{{product.empty}}" type="data"></l-status-show>
 <l-loadmore show type="{{loadingType}}" end-text="已到底部啦!"></l-loadmore>

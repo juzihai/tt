@@ -1,4 +1,4 @@
-<import src='../../wxParse/wxParse.wxml' />
+<import src='../../../wxParse/wxParse.wxml' />
 <!--  个人中心 -->
 <view class='content'>
   <!-- 个人信息 -->
@@ -39,6 +39,10 @@
   </view>
   <!-- 列表 -->
   <view class='list'>
+    <view class="list_item" bindtap='onMyQRCode' wx:if="{{checkedUserIsStaff}}">
+      <view class='item_name'>二维码名片</view>
+      <image class='arrow ' src='/imgs/mine/arrow.png '></image>
+    </view>
     <block wx:for="{{listArr}}" wx:key="item.name">
       <view class='list_item ' bindtap='click_list' data-bean='{{item}}' data-index='{{index}}'>
         <view class='item_name'>{{item.name}}</view>

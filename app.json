@@ -85,6 +85,7 @@
     {
       "root": "pages/subpackages/mall",
       "pages": [
+        "company/staffQRCode/index",
         "company/staffList/index",
         "company/staffRelationList/index",
         "product/hotProductList/index",

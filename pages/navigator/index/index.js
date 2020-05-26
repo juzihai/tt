@@ -25,6 +25,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    const scene = decodeURIComponent(options.scene)
+    if(scene){
+      console.log('我是二维', options)
+      console.log('我是二维码的值', scene)
+    }
     
     // 分享后的页面打开先进入首页再跳转到分享的页面,首页的js要做如下设置
     if (options.url) {

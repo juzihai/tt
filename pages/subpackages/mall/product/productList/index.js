@@ -23,6 +23,12 @@ Page({
   onPullDownRefresh() {
     this.initAllData();
   },
+  onCart(e) {
+    console.log(e)
+    wx.switchTab({
+      url: '/pages/navigator/cart/index',
+    })
+  },
   async initAllData() {
     let obj = {
       "EnterpriseID": app.config.EnterpriseID,

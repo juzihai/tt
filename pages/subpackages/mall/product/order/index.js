@@ -10,7 +10,7 @@ import {
 } from "../../../../../utils/system";
 import {
   PreOrder
-} from "../../../../../utils/preOrder.js"　                                               　
+} from "../../../../../utils/preOrder.js"　　
 let preOrder;
 Page({
 
@@ -21,7 +21,7 @@ Page({
   },
 
   onLoad: async function(options) {
-     preOrder = new PreOrder()
+    preOrder = new PreOrder()
 
 
     const windowHeight = await getWindowHeightRpx();
@@ -46,14 +46,7 @@ Page({
     const payState = await OrderAndPayLogic.GetPayAndLogisticsState({
       EnterpriseID: app.config.EnterpriseID,
     })
-    // let DeliveryModel = 1;
-    // if (payState) {
-    //   if (payState.Logistics) {
-    //     DeliveryModel = 1
-    //   } else if (payState.PickUp) {
-    //     DeliveryModel = 2
-    //   }
-    // }
+
 
     let orderParam = {
       ProductCount: ProductModel.ProductCount, //商品总数 
@@ -146,13 +139,13 @@ Page({
 
         }
       })
-      setTimeout(function () {
+      setTimeout(function() {
 
         wx.lin.hideToast()
       }, 500);
       return false
     }
-    setTimeout(function () {
+    setTimeout(function() {
 
       wx.lin.hideToast()
     }, 500);
@@ -160,18 +153,18 @@ Page({
   },
   //5、通过店铺id及groupby后的产品查询物流价格(如果所选地址不支持物流提示切换地址或重选商品返回上一页)
   async initAllData() {
-
-    // let DeliveryModel = this.data.DeliveryModel
-
     //查询邮费信息
-    if (this.data.ShippingAddress && this.data.sorted) {
-      let obj1 = {
-        EnterpriseID: app.config.EnterpriseID,
-        OpenId: wx.getStorageSync("OpenID"),
-        sorted: this.data.sorted,
-        Code: this.data.ShippingAddress.Code
-      }
-      if (preOrder.orderCostParam.orderCheck.pickUp == false) { //快递
+
+
+    if (preOrder.orderCostParam.orderCheck.pickUp == false) { //快递
+      if (this.data.ShippingAddress && this.data.sorted) {
+        let obj1 = {
+          EnterpriseID: app.config.EnterpriseID,
+          OpenId: wx.getStorageSync("OpenID"),
+          sorted: this.data.sorted,
+          Code: this.data.ShippingAddress.Code
+        }
+
         try {
           const CheckLogisticsMatchProduct = await OrderAndPayLogic.CheckLogisticsMatchProduct(obj1)
           let orderParam = {
@@ -198,16 +191,17 @@ Page({
 
           return false
         }
-      } else { //自提
-        this.setData({
-          LogisticsFee: 0
-        })
-
       }
-      this.integralSum()
-      return true
+    } else { //自提
+      this.setData({
+        LogisticsFee: 0
+      })
 
     }
+    this.integralSum()
+    return true
+
+
 
 
 
@@ -247,12 +241,12 @@ Page({
   // 选择优惠券
   onCoupon(e) {
     let data = this.data.getAllUseCouponByProduct
-    if (data.Data.length>0){
+    if (data.Data.length > 0) {
       this.setData({
         showCoupon: true
       })
 
-    }else{
+    } else {
       wx.showModal({
         title: '提示',
         content: '暂无优惠券',
@@ -301,14 +295,14 @@ Page({
   //积分及其他计算
   async integralSum(e) {
 
-    let money = this.data.preOrder.orderFee.OrderPrice - this.data.preOrder.orderCostParam.CouponPrice
+    let money = preOrder.orderFee.OrderPrice - preOrder.orderCostParam.CouponPrice
     let obj = {
       EnterpriseID: app.config.EnterpriseID,
       OpenId: wx.getStorageSync("OpenID"),
       money: money.toFixed(2),
       UseIntegral: preOrder.orderCostParam.orderCheck.integral
     }
-    wx.lin.showToast({
+    wx.showLoading({
       title: '处理中～',
       mask: true
     })
@@ -318,31 +312,65 @@ Page({
       "IntegralPrice": GeneratePayablePrice.ResultValue.IntegraPrice,
       "GetIntegral": GeneratePayablePrice.ResultValue.GetIntegral,
     }
-    setTimeout(function() {
 
-      wx.lin.hideToast()
-    }, 500);
     this.orderParam(orderParam)
   },
   // 提交订单
   async onNextTap() {
-    let ShippingAddress = this.data.ShippingAddress
-    if (!ShippingAddress) {
-      wx.showToast({
-        title: '请选择联系人地址',
-        icon: "none"
-      })
-      return
-    }
+
     let jiage = await this.checkProductPriceAndStockModel()
     if (!jiage) {
       return
     }
     let wuliu = await this.initAllData()
+    console.log('物流验证',wuliu)
     if (!wuliu) {
+      wx.showModal({
+        title: '提示',
+        content: '请选择联系人信息',
+      })
       return
     }
-    wx.lin.showToast({
+    let ShippingAddress = this.data.ShippingAddress
+
+    let RealName;
+    let TelPhone;
+    let SubCompanyID;
+    let PickUpAddress;
+    let Address;
+    if (!preOrder.orderCostParam.orderCheck.pickUp) {
+
+      if (!ShippingAddress) {
+        wx.showModal({
+          title: '提示',
+          content: '请选择联系人信息',
+        })
+        return
+      }
+      RealName = ShippingAddress.RealName
+      TelPhone = ShippingAddress.TelPhone
+      SubCompanyID = 0
+      PickUpAddress = null
+      Address = ShippingAddress.Province + ShippingAddress.City + ShippingAddress.Area + ShippingAddress.Street
+    } else {
+      let subCompanyItem = this.data.subCompanyItem
+      if (!subCompanyItem) {
+        wx.showModal({
+          title: '提示',
+          content: '请选择联系人信息',
+        })
+        return
+      }
+      RealName = this.data.ContactName
+      TelPhone = this.data.ContactNumber
+      SubCompanyID = subCompanyItem.ID
+      PickUpAddress = subCompanyItem.Address
+      Address = subCompanyItem.Address
+    }
+
+    let pickUp = preOrder.orderCostParam.orderCheck.pickUp
+    let integral = preOrder.orderCostParam.orderCheck.integral
+    wx.showLoading({
       title: '处理中～',
       mask: true
     })
@@ -381,46 +409,22 @@ Page({
         ShoppingCarDetailList.push(i.ID)
       })
     }
-    let RealName;
-    let TelPhone;
-    let SubCompanyID;
-    let PickUpAddress;
-    if (!preOrder.orderCostParam.orderCheck.pickUp) {
-      RealName = ShippingAddress.RealName
-      TelPhone = ShippingAddress.TelPhone
-      SubCompanyID = 0
-      PickUpAddress = null
-    } else {
-      let subCompanyItem = this.data.subCompanyItem
-      if (!subCompanyItem) {
-        wx.lin.showToast({
-          title: '请选择自提地址',
-          mask: true
-        })
-        return
-      }
-      RealName = this.data.ContactName
-      TelPhone = this.data.ContactNumber
-      SubCompanyID = subCompanyItem.ID
-      PickUpAddress = subCompanyItem.Address
-    }
 
-    let pickUp = this.data.preOrder.orderCostParam.orderCheck.pickUp
-    let integral = this.data.preOrder.orderCostParam.orderCheck.integral
+
     let obj = {
       EnterpriseID: app.config.EnterpriseID,
       OpenId: wx.getStorageSync("OpenID"),
       ProductCount: ProductModel.ProductCount, //商品数量
       RealName,
       TelPhone,
-      Address: ShippingAddress.Province + ShippingAddress.City + ShippingAddress.Area + ShippingAddress.Street,
+      Address,
       OrderPrice: preOrder.OrderPrice,
       PayPrice: preOrder.PayPrice,
-      Integra: integral ?  this.data.preOrder.orderCostParam.Integral:0,
-      GetIntegra: integral ?  this.data.preOrder.orderCostParam.GetIntegral:0,
+      Integra: integral ? preOrder.orderCostParam.Integral : 0,
+      GetIntegra: integral ? preOrder.orderCostParam.GetIntegral : 0,
       SubCompanyID,
       PickUpAddress,
-      IntegraPrice: integral ?preOrder.IntegralPrice:0,
+      IntegraPrice: integral ? preOrder.IntegralPrice : 0,
       LogisticsFee: preOrder.LogisticsFee,
       Remark: this.data.Remark,
       Phone: wx.getStorageSync('phoneNumber'),
@@ -438,10 +442,6 @@ Page({
         url: '/pages/subpackages/mall/product/orderList/index',
       })
     }
-    setTimeout(function() {
-
-      wx.lin.hideToast()
-    }, 500);
 
 
   }

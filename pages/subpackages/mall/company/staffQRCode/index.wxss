@@ -1,0 +1,19 @@
+/* pages/subpackages/mall/company/staffQRCode/index.wxss */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.qrcode {
+  width: 400rpx;
+  height: 400rpx;
+}
+
+.title {
+  font-size: 24rpx;
+  color: #aaa;
+  margin-top: 20rpx;
+}

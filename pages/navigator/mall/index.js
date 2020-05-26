@@ -215,7 +215,12 @@ Page({
     })
 
   },
-
+  onCart(e){
+    console.log(e)
+    wx.switchTab({
+      url: '/pages/navigator/cart/index',
+    })
+  },
   /**
    *
    * 页面上拉触底事件的处理函数

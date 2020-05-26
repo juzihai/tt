@@ -32,9 +32,6 @@ class Http {
 
         },
         success: (res) => {
-          setTimeout(function () {
-            wx.hideLoading();
-          }, 100);
            //这里可以根据自己项目服务端定义的正确的返回码来进行，接口请求成功后的处理，当然也可以在这里进行报文加解密的统一处理
 
           const statusCode = res.statusCode.toString()
@@ -52,13 +49,11 @@ class Http {
           }
         },
         fail: (error) => {
-          setTimeout(function () {
-            wx.hideLoading();
-          }, 100);
           _that._show_error(1)
           reject(error);
         },
         complete:(res)=>{
+          wx.hideLoading();
           console.log('接口=', url, '参数=', data, '返回参数', res);
         }
       })

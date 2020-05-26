@@ -26,7 +26,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.10.0",
-	"appid": "wx163a906af5fc7211",
+	"appid": "wxadb9c5292f70762a",
 	"projectname": "Propaganda",
 	"cloudfunctionTemplateRoot": "",
 	"debugOptions": {
@@ -217,6 +217,13 @@
 					"id": -1,
 					"name": "店铺列表",
 					"pathName": "pages/subpackages/mall/product/subCompanyList/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "员工二维码",
+					"pathName": "pages/subpackages/mall/company/staffQRCode/index",
 					"scene": null
 				}
 			]

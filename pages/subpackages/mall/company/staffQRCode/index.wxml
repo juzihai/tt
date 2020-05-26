@@ -1,0 +1,7 @@
+<!--pages/subpackages/mall/company/staffQRCode/index.wxml-->
+<content-card l-content="content" name="我的二维码" cardPadding>
+
+  <image src='{{file}}' class='qrcode' bindtap='onTap'></image>
+
+  <text class="title">扫一扫上面的二维码图案，查看小程序详情</text>
+</content-card>

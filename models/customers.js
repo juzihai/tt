@@ -168,6 +168,20 @@ class Customers {
       }
     })
   }
+
+
+  // 校验用户是否是员工
+  static CheckedUserIsStaff({ EnterpriseID, OpenID, Phone }) {
+    return Http.request({
+      url: "api/V1/Customers/CheckedUserIsStaff",
+      data: {
+        EnterpriseID,
+        OpenID,
+        Phone
+      }
+    })
+  }
+
 }
 export {
   Customers

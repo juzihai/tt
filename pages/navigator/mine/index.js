@@ -28,6 +28,7 @@ Page({
     login:true, 
     integralRuleDetail: '暂无',
     flag: false,
+    checkedUserIsStaff:false
   },
 
   /**
@@ -57,9 +58,10 @@ Page({
   async initAllData(){
     let obj = {
       EnterpriseID: app.config.EnterpriseID,
-      OpenID: wx.getStorageSync("OpenID")
+      OpenID: wx.getStorageSync("OpenID"),
     }
     const integralRuleModel = await IntegralRule.SearchModelDetails(obj)
+
     const customersModel = await Customers.GetCustomersInfo(obj)
     if (integralRuleModel) {
       let integralRuleDetail = `每消费${integralRuleModel.GeneratedPrice}元生成${integralRuleModel.GeneratingIntegral}积分,每花费${integralRuleModel.consumptionIntegral}点积分减免${integralRuleModel.consumptionPrice}元`
@@ -70,6 +72,19 @@ Page({
     this.setData({
       customersModel,
     })
+    let Phone= wx.getStorageSync('phoneNumber')
+    if (Phone){
+      let obj = {
+        EnterpriseID: app.config.EnterpriseID,
+        OpenID: wx.getStorageSync("OpenID"),
+        Phone
+      }
+      const checkedUserIsStaff = await Customers.CheckedUserIsStaff(obj)
+      this.setData({
+        checkedUserIsStaff: checkedUserIsStaff.ResultBool,
+      })
+    }
+
   },
 
   async onGetPhoneNumber(res){
@@ -117,6 +132,7 @@ Page({
 
     var bean = e.currentTarget.dataset.bean;
     var index = e.currentTarget.dataset.index;
+    console.log(bean)
     console.log(index)
     if (bean.url == '') {
       wx.showModal({
@@ -142,6 +158,11 @@ Page({
 
     }
 
+  },
+  onMyQRCode(){
+    wx.navigateTo({
+      url: '/pages/subpackages/mall/company/staffQRCode/index',
+    })
   },
   onToMini(){
     console.log(111)
