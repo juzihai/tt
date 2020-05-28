@@ -6,7 +6,7 @@ import { Article } from "../../../models/article.js";
 import { CompanyRotationchart } from "../../../models/companyRotationchart.js";
 import { AppModel} from '../../../models/app.js';
 import { Company } from "../../../models/company.js";
-
+import { File } from "../../../models/file.js";
 Page({
 
   /**
@@ -24,15 +24,43 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: async function(options) {
     const scene = decodeURIComponent(options.scene)
-    if(scene){
-      console.log('我是二维', options)
-      console.log('我是二维码的值', scene)
-    }
-    
-    // 分享后的页面打开先进入首页再跳转到分享的页面,首页的js要做如下设置
-    if (options.url) {
+    console.log('???',scene)
+    if ( scene != 'undefined'){
+      const data = await File.SearchModelDetails({ ChannleCode:scene})
+      let ChannleCode;
+      let ChannleName;
+      app.openIDCallback = OpenID=>{
+        console.log('openid回调',OpenID)
+        switch (data.type) {
+          case 0:
+            ChannleCode = 'ABCDEFGH'
+            ChannleName = '员工二维码'
+            let JsonCode = JSON.parse(data.JsonCode)
+            let SharOpenID = JsonCode.SharOpenID
+            if (SharOpenID) {
+              app.globalData.SharOpenID = SharOpenID
+              wx.setStorageSync('SharOpenID', SharOpenID)
+            }
+            break;
+          case 1:
+            ChannleCode = data.GUID
+            ChannleName = data.JsonCode
+            break;
+
+          default:
+        }
+        let obj = {
+          "EnterpriseID": app.config.EnterpriseID,
+          "OpenID": OpenID,
+          "ChannleCode": ChannleCode,
+          "ChannleName": ChannleName,
+        }
+        const save =  File.SaveChannleByPCQRCode(obj)
+      }
+
+    }else if (options.url) {
       let url = decodeURIComponent(options.url);
       
       let SharOpenID = decodeURIComponent(options.SharOpenID);
@@ -55,9 +83,6 @@ Page({
       })
     }
 
-    // wx.showShareMenu({
-    //   withShareTicket: true
-    // })
   },
   onShareAppMessage: function () {
     let id = this.data.id;

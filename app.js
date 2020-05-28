@@ -16,13 +16,14 @@ import {
 } from "./config/config";
 const util = require('utils/util.js');
 import WxValidate from "utils/WxValidate.js";
+let _that
 
 App({
   WxValidate: (rules, messages) => new WxValidate(rules, messages),
   config: config,
   util: util,
   onLaunch: function(options) {
-
+    _that = this;//如果使用次数较多使用全局this
     wx.getSystemInfo({
       success: function(res) {
         console.log(res)
@@ -85,10 +86,10 @@ App({
       const code = await Customers.Login()
       const openIDAndKey = await Customers.GetWeChatOpenIDAndKey(config.EnterpriseID, code)
       let OpenID = openIDAndKey.OpenID
-      // this.globalData.OpenID = OpenID;
-      // this.globalData.SessionKey = openIDAndKey.Session_key;
       wx.setStorageSync("OpenID", OpenID);
       wx.setStorageSync("SessionKey", openIDAndKey.Session_key);
+
+
       let launch = wx.getStorageSync('launch')
       // console.log('启动参数',launch)
       const register = await Customers.RegisterCustomers({
@@ -97,6 +98,9 @@ App({
         AuthorizationType: 0,
         QrType: launch.scene
       })
+      if (this.openIDCallback) {
+        this.openIDCallback(OpenID)
+      }
       let obj = {
         EnterpriseID: this.config.EnterpriseID,
         OpenID: wx.getStorageSync("OpenID")

@@ -16,7 +16,7 @@ class File extends Http {
   //1.用户扫描二维码后提交数据（若发正式版无需接收返回值）
   static SaveChannleByPCQRCode({ EnterpriseID, OpenID, ChannleCode, ChannleName }) {
     return Http.request({
-      url: "api/V1/Sustomers/SaveChannleByPCQRCode",
+      url: "api/V1/Customers/SaveChannleByPCQRCode",
       data: {
         EnterpriseID,
         OpenID,

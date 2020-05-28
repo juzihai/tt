@@ -13,16 +13,18 @@ Page({
     let url = encodeURIComponent('/pages/navigator/index/index');
 
     let dic={
-      OpenID,
-      url
+      SharOpenID:OpenID
     }
     
     let obj={
       "EnterpriseID": app.config.EnterpriseID,
-      ChannelCode: app.util.random(8),
+      ChannelCode: app.util.random(32),
       ChannelName:JSON.stringify(dic),
       type:0//员工二维码为0
     }
+    wx.showLoading({
+      title: '加载中～',
+    })
     const file= await File.getQRcode(obj)
     this.setData({
       file

@@ -93,7 +93,7 @@ Page({
     let EncryptedData = detail.encryptedData;
     let IV = detail.iv;
     if (detail.errMsg == 'getPhoneNumber:ok') { //获取到用户信息成功
-      try{
+      // try{
         wx.showLoading({
           title: '加载中请稍后',
         })
@@ -121,9 +121,9 @@ Page({
         })
         this.initAllData()
         app._addLocation(2)
-      }catch(e){
-        wx.hideLoading()
-      }
+      // }catch(e){
+      //   wx.hideLoading()
+      // }
 
     }
   },
