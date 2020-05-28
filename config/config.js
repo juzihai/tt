@@ -2,8 +2,8 @@
 const config = {
   /** 正式地址*/
   "apiBaseUrl": 'https://company.gzchinaunion.com/',
-  "EnterpriseID": "1512", //wx588f0a9983b3d27b 田禹正式版测试用
-  // "EnterpriseID": "9646", //果资正式 wxadb9c5292f70762a
+  // "EnterpriseID": "1512", //wx588f0a9983b3d27b 田禹正式版测试用
+  "EnterpriseID": "9646", //果资正式 wxadb9c5292f70762a
   // "EnterpriseID": "2645",//金朵正式 wxadb9c5292f70762a
   // "EnterpriseID": "4981",//益清正式 wxdc90f597804fb320
   // "EnterpriseID": "3063",//融汇正式 wx9b9444c94ae8a071
