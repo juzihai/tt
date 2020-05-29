@@ -99,8 +99,10 @@ Page({
     const bannerG = await HotActivity.Search(obj);
     let themeESpu = themeE.Data
     const nav = await ProductClass.ProductClassModuleRelationSearch(obj)
+    let activekey=0
     if (nav.Data.length > 0) {
-      this.tabSelectGetData(nav.Data[0].ProductClassID)
+      activekey = nav.Data[0].ProductClassID
+      this.tabSelectGetData(activekey)
     }
 
     this.setData({
@@ -115,7 +117,8 @@ Page({
       grid,
       themeE,
       themeESpu,
-      nav
+      nav,
+      activekey
     })
     wx.stopPullDownRefresh();
   },

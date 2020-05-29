@@ -47,6 +47,7 @@
     ]
   },
   "usingComponents": {
+    "towxml": "/towxml/towxml",
     "l-input": "/components/lin-ui/input/index",
     "l-list": "/components/lin-ui/list/index",
     "l-counter": "/components/lin-ui/counter/index",

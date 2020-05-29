@@ -1,9 +1,9 @@
 // 配置项
 const config = {
   /** 正式地址*/
-  "apiBaseUrl": 'https://company.gzchinaunion.com/',
+  // "apiBaseUrl": 'https://company.gzchinaunion.com/',
   // "EnterpriseID": "1512", //wx588f0a9983b3d27b 田禹正式版测试用
-  "EnterpriseID": "9646", //果资正式 wxadb9c5292f70762a
+  // "EnterpriseID": "9646", //果资正式 wxadb9c5292f70762a
   // "EnterpriseID": "2645",//金朵正式 wxadb9c5292f70762a
   // "EnterpriseID": "4981",//益清正式 wxdc90f597804fb320
   // "EnterpriseID": "3063",//融汇正式 wx9b9444c94ae8a071
@@ -24,10 +24,10 @@ const config = {
   // "EnterpriseID": "6075", //wxbf16fb811554d7c4大帅
   
   /** test测试地址*/
-  // "apiBaseUrl": 'https://test.gzchinaunion.com/',
+  "apiBaseUrl": 'https://test.gzchinaunion.com/',
   // "EnterpriseID": "1276", //wxd4a6cbbab77c70ff 小孟测试
   // "EnterpriseID": "4981", //wx2e8e4434a39d3508 益清测试
-  // "EnterpriseID": "3373", //wxa93d39f1484ac31a 天津金朵科技测试
+  "EnterpriseID": "3373", //wxa93d39f1484ac31a 天津金朵科技测试
 }
 const tips = {
   //基础Http请求码 

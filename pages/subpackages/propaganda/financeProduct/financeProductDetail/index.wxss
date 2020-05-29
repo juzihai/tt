@@ -1,5 +1,4 @@
 /* pages/subpackages/propaganda/article/articleDetail/index.wxss */
-@import "/wxParse/wxParse.wxss";
 .tapbar{
     position:fixed;
     bottom:0;

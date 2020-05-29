@@ -1,4 +1,4 @@
-<import src='../../../../../wxParse/wxParse.wxml' />
+
 
 <scroll-view scroll-y style="height:{{h}}rpx;">
 <!-- 轮播 -->
@@ -60,7 +60,7 @@
         </block>
     </view> -->
     <view class="detail-img-container" >
-        <template  is='wxParse' data="{{wxParseData:articleModel.nodes}}" />
+        <towxml nodes="{{article}}"/>
     </view>
 
 </scroll-view>

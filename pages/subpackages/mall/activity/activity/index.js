@@ -1,7 +1,5 @@
 // pages/subpackages/mall/activity/activity/index.js
 import { HotActivity } from '../../../../../models/hotActivity.js'
-
-var WxParse = require('../../../../../wxParse/wxParse.js');
 Page({
 
   /**

@@ -1,4 +1,4 @@
-<import src='../../../wxParse/wxParse.wxml' />
+
 <!--  个人中心 -->
 <view class='content'>
   <!-- 个人信息 -->
@@ -99,8 +99,6 @@
     <view wx:else class='button'>
       <button class="bg-green button_margin_top" bindgetphonenumber="onGetPhoneNumber" open-type="getPhoneNumber">授权登陆</button>
     </view>
-
-
   </block>
 
 </l-status-show>
@@ -122,9 +120,8 @@
       </view>
     </view>
     <view class="padding">
-      <scroll-view scroll-y class="text-left " style='max-height:900rpx; width:100%;' scroll-top='0'>
-        <template is='wxParse' data="{{wxParseData:article.nodes}}" />
-
+      <scroll-view scroll-y class="text-left " style='max-height:900rpx; width:100%;' scroll-top='{{scrolltop}}'>
+        <towxml nodes="{{article}}" />
       </scroll-view>
     </view>
 

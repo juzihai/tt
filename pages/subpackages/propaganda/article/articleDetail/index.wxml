@@ -1,27 +1,20 @@
-<import src='../../../../../wxParse/wxParse.wxml' />
 <view class="cu-bar bg-white">
   <view class="action ">
-    发表人：{{article.StaffName}}
+    发表人：{{articleModel.StaffName}}
   </view>
 
   <view class="action">
-    <text class="cuIcon-attention text-gray"></text> 阅读量：{{article.ReadAmount}}
+    <text class="cuIcon-attention text-gray"></text> 阅读量：{{articleModel.ReadAmount}}
   </view>
 
 </view>
 <scroll-view scroll-y>
-
-
-<template  is='wxParse' data="{{wxParseData:articleModel.nodes}}" />
-
+  <towxml nodes="{{article}}" />
 </scroll-view>
 
+<view class="loading" wx:if="{{isLoading}}">
+  <image class="loading__icon" src="/imgs/loading.svg"></image>
+</view>
 
 
-
-<l-article-bar class="tapbar"
-           bind:gotohome="onGotoHome"
-           bind:gotocart="onGotoCart"
-           bind:addtocart="onAddToCart"
-           bind:buy="onBuy"
-></l-article-bar>
+<l-article-bar class="tapbar" bind:gotohome="onGotoHome" bind:gotocart="onGotoCart" bind:addtocart="onAddToCart" bind:buy="onBuy"></l-article-bar>

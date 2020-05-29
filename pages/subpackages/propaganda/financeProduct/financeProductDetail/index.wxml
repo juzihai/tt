@@ -1,50 +1,41 @@
-<import src='../../../../../wxParse/wxParse.wxml' />
-  <block wx:if='{{staffModel}}' >
-    <l-card type="primary" l-class="card" l-img-class="right-card" l-title-class="title-card" position="right" full="{{true}}" image="{{staffModel.HeadImage}}" title="推荐人：{{staffModel.StaffName}}" bindtap="onCardItem" data-id="{{item.ID}}">
-      <view class="content">
-       <!-- {{staffModel.PersonalProfile}} -->
+<block wx:if='{{staffModel}}'>
+  <l-card type="primary" l-class="card" l-img-class="right-card" l-title-class="title-card" position="right" full="{{true}}" image="{{staffModel.HeadImage}}" title="推荐人：{{staffModel.StaffName}}" bindtap="onCardItem" data-id="{{item.ID}}">
+    <view class="content">
+      <!-- {{staffModel.PersonalProfile}} -->
+    </view>
+    <view class="avter-share-container">
+      <view class="like-container">
+        <l-icon name="phone" color="#666" size="28" />
+        <view class="number">{{staffModel.Phone}}</view>
       </view>
-      <view class="avter-share-container">
-        <view class="like-container">
-          <l-icon name="phone" color="#666" size="28" />
-          <view class="number">{{staffModel.Phone}}</view>
-        </view>
-        <view class="like-container">
-         <view class="number">/</view>
-        </view>
-        <view class="like-container">
-          <l-icon name="default" color="#666" size="28" />
-          <!-- <view class="number">{{item.CreationTime}}</view> -->
-          <view class="number">{{staffModel.Position}}</view>
-        </view>
+      <view class="like-container">
+        <view class="number">/</view>
       </view>
-    </l-card>
-  </block>
+      <view class="like-container">
+        <l-icon name="default" color="#666" size="28" />
+        <!-- <view class="number">{{item.CreationTime}}</view> -->
+        <view class="number">{{staffModel.Position}}</view>
+      </view>
+    </view>
+  </l-card>
+</block>
 <view wx:else class="cu-bar bg-white">
   <view class="action ">
-    发表人：{{article.StaffName}}
+    发表人：{{articleModel.StaffName}}
   </view>
 
   <view class="action">
-    <text class="cuIcon-attention text-gray"></text> 阅读量：{{article.ReadAmount}}
+    <text class="cuIcon-attention text-gray"></text> 阅读量：{{articleModel.ReadAmount}}
   </view>
 
 </view>
 <scroll-view scroll-y>
-
-
-<template  is='wxParse' data="{{wxParseData:articleModel.nodes}}" />
-
+  <towxml nodes="{{article}}" />
 </scroll-view>
 
 
 
 
-<l-article-bar class="tapbar"
-           bind:gotohome="onGotoHome"
-           bind:gotocart="onGotoCart"
-           bind:addtocart="onAddToCart"
-           bind:buy="onBuy"
-></l-article-bar>
+<l-article-bar class="tapbar" bind:gotohome="onGotoHome" bind:gotocart="onGotoCart" bind:addtocart="onAddToCart" bind:buy="onBuy"></l-article-bar>
 
 <l-action-sheet l-class-title="action-title" />

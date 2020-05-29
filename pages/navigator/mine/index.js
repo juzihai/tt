@@ -3,7 +3,7 @@ const app = getApp();
 import { Customers } from "../../../models/customers.js";
 import { IntegralRule } from "../../../models/integralRule.js";
 import { Company } from "../../../models/company.js";
-var WxParse = require('../../../wxParse/wxParse.js');
+
 Page({
 
   /**
@@ -200,27 +200,26 @@ Page({
     const company = await Company.SearchModelAgreement({ EnterpriseID: app.config.EnterpriseID})
 
     var key = e.currentTarget.dataset.target;
-    console.log(key)
-
     const article = company[key];
 
-    // article = article.replace('?',' ')
-    console.log(article)
-    /**
-     * WxParse.wxParse(bindName , type, data, target,imagePadding)
-     * 1.bindName绑定的数据名(必填)
-     * 2.type可以为html或者md(必填)
-     * 3.data为传入的具体数据(必填)
-     * 4.target为Page对象,一般为this(必填)
-     * 5.imagePadding为当图片自适应是左右的单一padding(默认为0,可选)
-     */
-    var that = this;
-    WxParse.wxParse('article', 'html', article, this, 5);
-
+    let result = app.towxml(article, 'markdown', {
+      // base: 'https://xxx.com',             // 相对资源的base路径
+      // theme: 'dark',                   // 主题，默认`light`
+      events: {                    // 为元素绑定的事件方法
+        tap: (e) => {
+          console.log('tap', e);
+        }
+      }
+    })
+    // 更新解析数据
     this.setData({
+      article: result,
+      isLoading: false,
       scrolltop: 0,
       modalName: "agree"
-    })
+    });
+
+
   },
   hideModal(e) {
     this.setData({
