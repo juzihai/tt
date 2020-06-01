@@ -85,6 +85,17 @@ Page({
       events: {                    // 为元素绑定的事件方法
         tap: (e) => {
           console.log('tap', e);
+          let data = e.currentTarget.dataset.data
+          if (data.tag == 'img') {
+            var currentImage = data.attr.src
+            var imageList = []
+            imageList.push(currentImage)
+
+            wx.previewImage({
+              urls: imageList,
+              current: currentImage
+            })
+          }
         }
       }
     })

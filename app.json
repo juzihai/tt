@@ -119,11 +119,7 @@
       ]
     }
   ],
-  "navigateToMiniProgramAppIdList": [
-    "wx149a3a3b51b0e6a7",
-    "wxa93d39f1484ac31a",
-    "wx423a0b38229a4006"
-  ],
+
   "permission": {
     "scope.userLocation": {
       "desc": "授权您的位置为您提供地图导航及附近信息服务"

@@ -1,6 +1,8 @@
 // pages/subpackages/propaganda/article/articleDetail/index.js
 const app = getApp();
-import { Article } from '../../../../../models/article.js'
+import {
+  Article
+} from '../../../../../models/article.js'
 
 Page({
 
@@ -8,8 +10,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isLoading: true,                    // 判断是否尚在加载中
-    article: {}                     // 内容数据
+    isLoading: true, // 判断是否尚在加载中
+    article: {} // 内容数据
   },
 
   /**
@@ -17,13 +19,13 @@ Page({
    */
   onLoad: async function (options) {
     let scene = options.scene;
-    let id =0;
-    let GUID=null;
-    if (scene){
+    let id = 0;
+    let GUID = null;
+    if (scene) {
       scene = decodeURIComponent(scene);
       id = scene.id
       GUID = scene.GUID
-    }else{
+    } else {
       id = options.id
     }
     const OpenID = wx.getStorageSync('OpenID');
@@ -33,7 +35,7 @@ Page({
       "ID": id,
       FromPerson,
       ReadPerson: OpenID,
-      EnterpriseID:app.config.EnterpriseID,
+      EnterpriseID: app.config.EnterpriseID,
       GUID
     }
     Article.UpdateReadAmount(obj)
@@ -42,12 +44,25 @@ Page({
       articleModel: articleModel,
       id
     })
-    let result = app.towxml(articleModel.Content,'markdown',{
+    let result = app.towxml(articleModel.Content, 'markdown', {
       // base: 'https://xxx.com',             // 相对资源的base路径
       // theme: 'dark',                   // 主题，默认`light`
-      events: {                    // 为元素绑定的事件方法
+      events: { // 为元素绑定的事件方法
         tap: (e) => {
-          console.log('tap', e);
+          console.log('tap1', e);
+          let data = e.currentTarget.dataset.data
+          if (data.tag == 'img') {
+            var currentImage = data.attr.src
+            var imageList = []
+            imageList.push(currentImage)
+
+            wx.previewImage({
+              urls: imageList,
+              current: currentImage
+            })
+          }
+
+
         }
       }
     })
@@ -60,8 +75,8 @@ Page({
 
   },
   /**
- * 用户点击右上角分享
- */
+   * 用户点击右上角分享
+   */
   onShareAppMessage: function () {
     let id = this.data.id;
     let OpenID = wx.getStorageSync('OpenID')
@@ -82,15 +97,15 @@ Page({
     }
   },
 
-  onAddToCart(e){
+  onAddToCart(e) {
 
   },
-  onGotoHome(){
+  onGotoHome() {
     wx.switchTab({
       url: '/pages/navigator/index/index',
     })
   },
-  onBuy(e){
+  onBuy(e) {
     wx.navigateTo({
       url: `/pages/subpackages/mall/company/staffList/index?pagePath=article&ClassID=${this.data.articleModel.ArticleType}`,
     })
