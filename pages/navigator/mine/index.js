@@ -17,9 +17,9 @@ Page({
       { img: '/imgs/mine/bar4.png', name: '我的积分', url: '' },
     ],
     listArr: [
+      { name: '我的海报', url: '/pages/subpackages/propaganda/poster/posterDetail/index' },
       { name: '我的历史', url: '' }, //
       { name: '我的活动', url: '' },
-
       { name: '我的收藏', url: '' },//
       { name: '我的浏览', url: '' },
     ],

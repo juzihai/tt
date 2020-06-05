@@ -114,7 +114,7 @@ Page({
     if (notice){
       if (notice.Data){
         for (let key of notice.Data) {
-          noticeArr.push(key.Title)
+          noticeArr.push(key.Title) 
         }
       }
 

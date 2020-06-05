@@ -48,6 +48,7 @@
   },
   "usingComponents": {
     "towxml": "/towxml/towxml",
+    "canvas-drag": "/components/canvas-drag/index",
     "l-input": "/components/lin-ui/input/index",
     "l-list": "/components/lin-ui/list/index",
     "l-counter": "/components/lin-ui/counter/index",
@@ -112,6 +113,8 @@
     {
       "root": "pages/subpackages/propaganda",
       "pages": [
+        "poster/posterList/index",
+        "poster/posterDetail/index",
         "article/articleList/index",
         "article/articleDetail/index",
         "financeProduct/financeProductList/index",
