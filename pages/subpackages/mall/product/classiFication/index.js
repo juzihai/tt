@@ -153,6 +153,12 @@ Page({
       wx.lin.hideToast()
     }, 500)
   },
+  onCart(e){
+    console.log(e)
+    wx.switchTab({
+      url: '/pages/navigator/cart/index',
+    })
+  },
   onGotoSearch() {
     wx.navigateTo({
       url: `/pages/subpackages/mall/product/search/index`

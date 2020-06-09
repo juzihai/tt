@@ -37,7 +37,7 @@
 
   <!-- 分类六宫格 -->
   <view class='cu-list grid col-3 no-border inner-container '>
-    <view class='cu-item ' style="height: 140rpx;" wx:for="{{basicsGrid}}" wx:key="index" data-name="{{item.title}}" bindtap='onNaviCard'>
+    <view class='cu-item ' style="height: 150rpx;" wx:for="{{basicsGrid}}" wx:key="index" data-name="{{item.title}}" bindtap='onNaviCard'>
       <view class='{{item.icon}} {{item.color}} text-shadow '>
         <image class="img" src="{{item.img}}"></image>
       </view>

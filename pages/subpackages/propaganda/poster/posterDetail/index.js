@@ -1,131 +1,157 @@
 // pages/subpackages/propaganda/poster/posterDetail/index.js
+import {promisic} from "../../../../../components/lin-ui/utils/util";
+
+const app = getApp();
 import CanvasDrag from '../../../../../components/canvas-drag/canvas-drag';
+import {
+    File
+} from "../../../../../models/file.js";
+
 Page({
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-    graph: {},
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
-  },
- /**
-     * 添加测试图片
+    /**
+     * 页面的初始数据
      */
-    onAddTest() {
-      this.setData({
-          graph: {
-              w: 120,
-              h: 120,
-              type: 'image',
-              url: '../../assets/images/test.jpg',
-          }
-      });
-  },
+    data: {
+        graph: {},
+        imgHeight: 750
+    },
 
-  /**
-   * 添加图片
-   */
-  onAddImage() {
-      wx.chooseImage({
-          success: (res) => {
-              this.setData({
-                  graph: {
-                      w: 200,
-                      h: 200,
-                      type: 'image',
-                      url: res.tempFilePaths[0],
-                  }
-              });
-          }
-      })
-  },
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad: function (options) {
 
-  /**
-   * 添加文本
-   */
-  onAddText() {
-      this.setData({
-          graph: {
-              type: 'text',
-              text: 'helloworld',
-          }
-      });
-  },
+        let image = options.image;
+        this.data.avater = image
+        this.getAvaterInfo()
+        this.onAddImage()
 
-  /**
-   * 导出图片
-   */
-  onExport() {
-      CanvasDrag.export()
-          .then((filePath) => {
-              console.log(filePath);
-              wx.previewImage({
-                  urls: [filePath]
-              })
-          })
-          .catch((e) => {
-              console.error(e);
-          })
-  },
-
-  /**
-   * 改变文字颜色
-   */
-  onChangeColor() {
-      CanvasDrag.changFontColor('blue');
-  },
-
-  /**
-   * 改变背景颜色
-   */
-  onChangeBgColor() {
-      CanvasDrag.changeBgColor('yellow');
-  },
-
-  /**
-   * 改变背景照片
-   */
-  onChangeBgImage() {
-      CanvasDrag.changeBgImage('../../assets/images/test.jpg');
-  },
-
-  /**
-   * 导出当前画布为模板
-   */
-  onExportJSON(){
-      CanvasDrag.exportJson()
-        .then((imgArr) => {
-          console.log(JSON.stringify(imgArr));
-      })
-        .catch((e) => {
-            console.error(e);
+    },
+    getAvaterInfo: function (image) {
+        wx.showLoading({
+            title: '生成中...',
+            mask: true,
         });
-  },
+        var that = this;
+        that.setData({
+            showpost: true
+        })
+        var productImage = that.data.avater;
+        if (productImage) {
+            wx.downloadFile({
+                url: productImage,
+                success: function (res) {
+                    wx.hideLoading();
+                    if (res.statusCode === 200) {
+                        var productSrc = res.tempFilePath;
+                        that.calculateImg(productSrc, function (data) {
+                            CanvasDrag.changeBgImage(productSrc);
+                        })
 
-  onImport(){
-      // 有背景
-      // let temp_theme = [{"type":"bgColor","color":"yellow"},{"type":"image","url":"../../assets/images/test.jpg","y":98.78423143832424,"x":143.78423143832424,"w":104.43153712335152,"h":104.43153712335152,"rotate":-12.58027482265038,"sourceId":null},{"type":"text","text":"helloworld","color":"blue","fontSize":24.875030530031438,"y":242.56248473498428,"x":119.57012176513672,"w":116.73966979980469,"h":34.87503053003144,"rotate":8.873370699754087}];
-      // 无背景
-      let temp_theme = [{"type":"image","url":"../../assets/images/test.jpg","y":103,"x":91,"w":120,"h":120,"rotate":0,"sourceId":null},{"type":"text","text":"helloworld","color":"blue","fontSize":20,"y":243,"x":97,"rotate":0}];
 
-      CanvasDrag.initByArr(temp_theme);
-  },
+                    } else {
+                        wx.showToast({
+                            title: '产品图片下载失败！',
+                            icon: 'none',
+                            duration: 2000,
+                            success: function () {
 
-   onClearCanvas:function(event){
-      let _this = this;
-      _this.setData({canvasBg:null});
-      CanvasDrag.clearCanvas();
-  },
+                            }
+                        })
+                    }
+                },
+                fail: err => {
+                    wx.hideLoading();
+                    wx.showToast({
+                        title: '产品图片下载失败！',
+                        icon: 'none',
+                        duration: 2000,
+                    })
+                },
 
-  onUndo:function(event){
-      CanvasDrag.undo();
-  }
+            })
+        } else {
+            wx.hideLoading();
+            var productSrc = "";
+
+        }
+    },
+    //计算图片尺寸
+    calculateImg: function (src, cb) {
+        var that = this;
+        wx.getImageInfo({
+            src: src,
+            success(res) {
+                wx.getSystemInfo({
+                    success(res2) {
+                        var ratio = res.width / res.height;
+                        var imgHeight = (res2.windowWidth / ratio);
+                        that.setData({
+                            imgHeight: imgHeight
+                        })
+                        cb(imgHeight);
+                    }
+                })
+            }
+        })
+    },
+
+    /**
+     * 添加图片
+     */ async onAddImage() {
+        let OpenID = wx.getStorageSync('OpenID')
+        let dic = {
+            SharOpenID: OpenID
+        }
+
+        let obj = {
+            "EnterpriseID": app.config.EnterpriseID,
+            ChannelCode: app.util.random(32),
+            ChannelName: JSON.stringify(dic),
+            type: 0//员工二维码为0
+        }
+        wx.showLoading({
+            title: '加载中～',
+        })
+        const file = await File.getQRcode(obj)
+        const res=await promisic(wx.downloadFile)({
+            url: file
+        })
+        console.log(res)
+        if (res.statusCode === 200) {
+            var productSrc = res.tempFilePath;
+            this.setData({
+                graph: {
+                    w: 120,
+                    h: 120,
+                    type: 'image',
+                    url: productSrc,
+                }
+
+            })
+
+
+        }
+
+    },
+
+
+    /**
+     * 导出图片
+     */
+    onExport() {
+        CanvasDrag.export()
+            .then((filePath) => {
+                console.log(filePath);
+                wx.previewImage({
+                    urls: [filePath]
+                })
+            })
+            .catch((e) => {
+                console.error(e);
+            })
+    },
+
 
 })

@@ -1,4 +1,5 @@
 ////app.js
+require('./utils/page.js')
 import {
   Customers
 } from "/models/customers";

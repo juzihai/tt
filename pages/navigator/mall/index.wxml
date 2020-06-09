@@ -20,7 +20,7 @@
 
   <!-- 分类六宫格 -->
   <view class='cu-list grid col-4 no-border inner-container'>
-    <view class='cu-item ' style="height: 130rpx;" wx:if="{{index<11}}" wx:for="{{grid.Data}}" wx:key="index" data-classid="{{item.ID}}" bindtap='onNaviCard'>
+    <view class='cu-item ' style="height: 150rpx;" wx:if="{{index<11}}" wx:for="{{grid.Data}}" wx:key="index" data-classid="{{item.ID}}" bindtap='onNaviCard'>
       <view class='{{item.icon}} {{item.color}} text-shadow'>
         <image class="img" src="{{grid.ShowResourcesUrl}}{{item.ImageUrl}}"></image>
       </view>

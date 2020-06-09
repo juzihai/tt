@@ -70,5 +70,7 @@
   </view>
 </view>
 
+ <l-icon name="cart"  class="doc-container" bindtap="onCart"/>
+ 
 <l-toast />
   <l-status-show show="{{grid.Data.length==0}}" type="data"></l-status-show>

@@ -13,7 +13,6 @@ class Product extends Http {
         ProductCode,
         ProductName,
         ClassID,
-        ClassID
       }
     }, Page, Limit, )
   }

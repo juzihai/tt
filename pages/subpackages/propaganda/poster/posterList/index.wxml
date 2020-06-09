@@ -2,19 +2,19 @@
 <wxs src="../../../../../wxs/price.wxs" module="p"></wxs>
 
 <view class="container">
-  <view class="search-container">
-          <l-button
-                width="710"
-                height="60"
-                icon="research"
-                icon-size="24"
-                icon-color="#C4C9D2"
-                l-class="search-btn"
-                bind:lintap="onGotoSearch"
-                shape="square">
-            搜索商品
-        </l-button>
-  </view>
+<!--  <view class="search-container">-->
+<!--          <l-button-->
+<!--                width="710"-->
+<!--                height="60"-->
+<!--                icon="research"-->
+<!--                icon-size="24"-->
+<!--                icon-color="#C4C9D2"-->
+<!--                l-class="search-btn"-->
+<!--                bind:lintap="onGotoSearch"-->
+<!--                shape="square">-->
+<!--            搜索商品-->
+<!--        </l-button>-->
+<!--  </view>-->
   <view class="main">
       <l-segment active-key="{{defaultRootId}}"
                  height="{{segHeight}}"
@@ -27,36 +27,36 @@
                  l-line-class="l-seg-line"
                  placement="left"
                  bind:linchange="changeTabs">
-        <l-segment-item  wx:for="{{grid.Data}}" tab="{{item.ClassName}}" key="{{item.ID}}"/>
+        <l-segment-item  wx:for="{{grid.Data}}" tab="{{item.TypeName}}" key="{{item.ID}}"/>
 
       </l-segment>
 
       <view class="p-container" >
         <scroll-view style="height:{{segHeight}}rpx;" scroll-y bindscrolltolower="scrolltolower">
-                <l-card  type="primary" wx:for='{{product.accumulator}}' bindtap="onSpuItem" data-pid="{{item.ID}}" data-pcode="{{item.ProductCode}}"
+                <l-card  type="primary" wx:for='{{product.accumulator}}' bindtap="onSpuItem" data-cell="{{item}}" data-pid="{{item.ID}}"
                 l-img-class="right-card" 
                 position="left" 
-                image="{{item.baseUrl}}{{item.ProductImage}}">
+                image="{{item.baseUrl}}{{item.Image}}">
           <view class="content">
-            <text class="title">{{item.ProductName}}</text>
-            <view class="price-row">
-              <!-- <text class="my-class price-value">¥ {{data.Price}}</text> -->
-              <l-price color="red"
-                      value-size="28"
-                      unit-size="20"
-                      autofix
-                      value="{{p.mainPrice(item.Price,item.DiscountPrice).price}}"></l-price>
-              <l-price l-class="discount-price"
-                        color="#999999"
-                        size="26"
-                        wx:if="{{item.DiscountPrice}}"                                                       
-                        deleted value="{{p.slashedPrice(item.Price,item.DiscountPrice).price}}"></l-price>
-            </view>
-            <text class="subtitle">{{item.ProductContent}}~</text>
-            <view class="cart-container" catchtap="onCartAdd" data-cell="{{item}}">
+            <text class="title">标题：{{item.PosterName?item.PosterName:'暂无'}}</text>
+<!--            <view class="price-row">-->
+<!--              &lt;!&ndash; <text class="my-class price-value">¥ {{data.Price}}</text> &ndash;&gt;-->
+<!--              <l-price color="#FF0000"-->
+<!--                      value-size="28"-->
+<!--                      unit-size="20"-->
+<!--                      autofix-->
+<!--                      value="{{p.mainPrice(item.Price,item.DiscountPrice).price}}"></l-price>-->
+<!--              <l-price l-class="discount-price"-->
+<!--                        color="#999999"-->
+<!--                        size="26"-->
+<!--                        wx:if="{{item.DiscountPrice}}"                                                       -->
+<!--                        deleted value="{{p.slashedPrice(item.Price,item.DiscountPrice).price}}"></l-price>-->
+<!--            </view>-->
+<!--            <text class="subtitle">{{item.ProductContent}}~</text>-->
+            <view class="cart-container" catchtap="onSpuItem" data-cell="{{item}}">
               <l-button special="true" >
                 <view class="share-box">
-                  <l-icon size="40" name="cart" color="#3963bc" />
+                  <l-icon size="40" name="add" color="#3963bc" />
                 </view>
               </l-button>
             </view>

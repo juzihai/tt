@@ -7,3 +7,11 @@
   border:solid 1px #dfdfdf;
   border-radius: 10rpx;
 }
+.content {
+  margin-bottom: 20rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  /* line-height: 92rpx */
+}

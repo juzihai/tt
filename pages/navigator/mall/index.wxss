@@ -66,8 +66,8 @@ page{
 
 /*设置图片的大小*/
 .img{
-    width: 60rpx;
-    height: 60rpx;
+    width: 80rpx;
+    height: 80rpx;
 }
 .text{
     margin-top: 6rpx;
