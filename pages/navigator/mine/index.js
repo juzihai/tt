@@ -34,13 +34,15 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: async function (options) {
     let phoneNumber = wx.getStorageSync('phoneNumber')
+    const company = await Company.SearchModelAgreement({ EnterpriseID: app.config.EnterpriseID})
     this.setData({
+      company,
       phoneNumber,
       login: phoneNumber? true:false
     })
-
+    
   },
   async onShow(){
     //自动登陆设置
@@ -197,7 +199,7 @@ Page({
     })
   },
   async showModal(e) {
-    const company = await Company.SearchModelAgreement({ EnterpriseID: app.config.EnterpriseID})
+    
 
     var key = e.currentTarget.dataset.target;
     const article = company[key];

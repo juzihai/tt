@@ -20,12 +20,11 @@ const config = {
   // "EnterpriseID": "7645",//山东阅澜式文化创意有限公司wx9125ddcfb26323de
 
   // "EnterpriseID": "7103",//杨秸秆 wx163a906af5fc7211
-
   // "EnterpriseID": "6075", //wxbf16fb811554d7c4大帅
   
   /** test测试地址*/
-  // "apiBaseUrl": 'https://test.gzchinaunion.com/',
-  "apiBaseUrl": 'https://lskapi.gzchinaunion.com/',
+  "apiBaseUrl": 'https://test.gzchinaunion.com/',
+  // "apiBaseUrl": 'https://lskapi.gzchinaunion.com/',
   // "EnterpriseID": "1276", //wxd4a6cbbab77c70ff 小孟测试
   // "EnterpriseID": "4981", //wx2e8e4434a39d3508 益清测试
   "EnterpriseID": "3373", //wxa93d39f1484ac31a 天津金朵科技测试

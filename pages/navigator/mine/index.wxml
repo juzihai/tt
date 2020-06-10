@@ -1,129 +1,133 @@
-
 <!--  个人中心 -->
 <view class='content'>
-  <!-- 个人信息 -->
-  <view class='topimg'>
-    <image class='top-bg' src='/imgs/mine/centerBg.jpg'></image>
-    <view class='person' bindtap="show" data-target="DialogModal1">
-      <view class='avatar' catchtap="ChooseImage">
-        <!-- <image class='avatar' src='{{avatarUrl}}'></image> -->
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
-      <view class='userinfo'>
-        <view class="name text-xl">
-          <open-data type="userNickName"></open-data>
-        </view>
-        <text>{{phoneNumber?phoneNumber:"暂未登陆"}}</text>
-      </view>
-    </view>
-    <!-- 4个功能块 -->
-    <view class='function'>
-      <block wx:for="{{modulecArr}}" wx:key='item.name'>
-        <view class="moudView" data-bean="{{item}}" bindtap='click_list'>
-          <image class='moudImg' src="{{item.img}}"></image>
-          <text class='moudName'>{{item.name}}</text>
-        </view>
-      </block>
-    </view>
-  </view>
-  <!-- 签到有惊喜 -->
-  <view class='signIn'>
-    <!-- <image class='sign_pic' src='/images/static/tx1.jpg'></image> -->
-    <view class='signIn_text'>
-      <text>现有积分：{{customersModel.ResidualIntegral}}</text>
-      <text> 积分规则：{{integralRuleDetail?integralRuleDetail:'暂无'}}</text>
-    </view>
-    <!-- <view class='sign_btn'>
+	<!-- 个人信息 -->
+	<view class='topimg'>
+		<image class='top-bg' src='/imgs/mine/centerBg.jpg'></image>
+		<view class='person' bindtap="show" data-target="DialogModal1">
+			<view class='avatar' catchtap="ChooseImage">
+				<!-- <image class='avatar' src='{{avatarUrl}}'></image> -->
+				<open-data type="userAvatarUrl"></open-data>
+			</view>
+			<view class='userinfo'>
+				<view class="name text-xl">
+					<open-data type="userNickName"></open-data>
+				</view>
+				<text>{{phoneNumber?phoneNumber:"暂未登陆"}}</text>
+			</view>
+		</view>
+		<!-- 4个功能块 -->
+		<view class='function'>
+			<block wx:for="{{modulecArr}}" wx:key='item.name'>
+				<view class="moudView" data-bean="{{item}}" bindtap='click_list'>
+					<image class='moudImg' src="{{item.img}}"></image>
+					<text class='moudName'>{{item.name}}</text>
+				</view>
+			</block>
+		</view>
+	</view>
+	<!-- 签到有惊喜 -->
+	<view class='signIn'>
+		<!-- <image class='sign_pic' src='/images/static/tx1.jpg'></image> -->
+		<view class='signIn_text'>
+			<text>现有积分：{{customersModel.ResidualIntegral}}</text>
+			<text> 积分规则：{{integralRuleDetail?integralRuleDetail:'暂无'}}</text>
+		</view>
+		<!-- <view class='sign_btn'>
       <button size='mini' class='signBtn' bindtap='click_SignBtn'>{{signIn}}</button>
     </view> -->
-  </view>
-  <!-- 列表 -->
-  <view class='list'>
-    <view class="list_item" bindtap='onMyQRCode' wx:if="{{checkedUserIsStaff}}">
-      <view class='item_name'>二维码名片</view>
-      <image class='arrow ' src='/imgs/mine/arrow.png '></image>
-    </view>
-    <block wx:for="{{listArr}}" wx:key="item.name">
-      <view class='list_item ' bindtap='click_list' data-bean='{{item}}' data-index='{{index}}'>
-        <view class='item_name'>{{item.name}}</view>
-        <image class='arrow ' src='/imgs/mine/arrow.png '></image>
-      </view>
-    </block>
-  </view>
-  <!-- 切换登录 -->
-  <!-- <view class='changeBtn '>
+	</view>
+	<!-- 列表 -->
+	<view class='list'>
+		<view class="list_item" bindtap='onMyQRCode' wx:if="{{checkedUserIsStaff}}">
+			<view class='item_name'>二维码名片</view>
+			<image class='arrow ' src='/imgs/mine/arrow.png '></image>
+		</view>
+		<block wx:for="{{listArr}}" wx:key="item.name">
+			<view class='list_item ' bindtap='click_list' data-bean='{{item}}' data-index='{{index}}'>
+				<view class='item_name'>{{item.name}}</view>
+				<image class='arrow ' src='/imgs/mine/arrow.png '></image>
+			</view>
+		</block>
+	</view>
+	<!-- 切换登录 -->
+	<!-- <view class='changeBtn '>
     <button class='btnuser ' bindtap='adminLogin'>管理员登录</button>
   </view> -->
 </view>
 
 
 <view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
-  <view class="cu-dialog">
-    <view class="bg-img adImage" style="height:200px;">
-      <!-- <image src='/images/loading.gif'></image> -->
-    </view>
-    <view class="cu-bar bg-white">
-      <view class='content'>您还未登陆</view>
-    </view>
-    <view class="cu-bar bg-white">
-      <view class='action margin-0 flex-sub  solid-left'>
-        <button class='cu-btn  bg-blue margin-tb-sm lg' bindtap='hideModal'>
-          <text class=''></text> 暂不登陆</button>
-      </view>
-      <view class='action margin-0 flex-sub  solid-left'>
-        <button class='cu-btn  bg-blue margin-tb-sm lg' bindtap='bindLogin'>
-          <text class='icon-dianhua'></text> 立即登陆</button>
-      </view>
+	<view class="cu-dialog">
+		<view class="bg-img adImage" style="height:200px;">
+			<!-- <image src='/images/loading.gif'></image> -->
+		</view>
+		<view class="cu-bar bg-white">
+			<view class='content'>您还未登陆</view>
+		</view>
+		<view class="cu-bar bg-white">
+			<view class='action margin-0 flex-sub  solid-left'>
+				<button class='cu-btn  bg-blue margin-tb-sm lg' bindtap='hideModal'>
+					<text class=''></text> 暂不登陆</button>
+			</view>
+			<view class='action margin-0 flex-sub  solid-left'>
+				<button class='cu-btn  bg-blue margin-tb-sm lg' bindtap='bindLogin'>
+					<text class='icon-dianhua'></text> 立即登陆</button>
+			</view>
 
 
-    </view>
-  </view>
+		</view>
+	</view>
 </view>
 
 <!-- 登陆展示页面 -->
 <l-status-show show="{{!login}}" custom="{{true}}">
-  <block>
-    <image class="top-img" src="/components/lin-ui/status-show/image/error.png"></image>
-    <!-- <text class="status-text">您还未登陆，请登陆</text> -->
-    <view class='margin'>
-      <checkbox-group bindchange="checkAgreement">
-        <checkbox value='{{if_rem_user}}'></checkbox>
-        我已阅读并同意
-        <text class='text-red' bindtap="showModal" data-target="PrivacyPolicy">《小程序服务条款》</text>
-        <text class='text-red' bindtap="showModal" data-target="TermsService">《小程序隐私政策》</text>
-      </checkbox-group>
-    </view>
-    <view wx:if="{{flag == false}}" class='button'>
-      <button class="bg-green button_margin_top" bindtap='noagree'>授权登陆</button>
-    </view>
-    <view wx:else class='button'>
-      <button class="bg-green button_margin_top" bindgetphonenumber="onGetPhoneNumber" open-type="getPhoneNumber">授权登陆</button>
-    </view>
-  </block>
+
+	<image class="top-img" src="/components/lin-ui/status-show/image/error.png"></image>
+	<!-- <text class="status-text">您还未登陆，请登陆</text> -->
+	<block wx:if="{{company.PrivacyPolicy||company.TermsService}}">
+		<view class='margin'>
+			<checkbox-group bindchange="checkAgreement">
+				<checkbox value='{{if_rem_user}}'></checkbox>
+				我已阅读并同意
+				<text class='text-red' bindtap="showModal" wx:for="{{company.PrivacyPolicy}}" data-target="PrivacyPolicy">《小程序服务条款》</text>
+				<text class='text-red' bindtap="showModal" wx:for="{{company.TermsService}}"  data-target="TermsService">《小程序隐私政策》</text>
+			</checkbox-group>
+		</view>
+		<view wx:if="{{flag == false}}" class='button'>
+			<button class="bg-green button_margin_top" bindtap='noagree'>授权登陆</button>
+		</view>
+		<view wx:else class='button'>
+			<button class="bg-green button_margin_top" bindgetphonenumber="onGetPhoneNumber" open-type="getPhoneNumber">授权登陆</button>
+		</view>
+	</block>
+	<view wx:else class='button'>
+		<button class="bg-green button_margin_top" bindgetphonenumber="onGetPhoneNumber" open-type="getPhoneNumber">授权登陆</button>
+	</view>
+
 
 </l-status-show>
 
 
 <l-loadmore show custom>
-  <view slot="loading" class="custom-container" bindtap="onToMini">
-    <!-- <image src="/images/static/loadmor.gif" class="custom-img"></image> -->
-    <text class="custom-txt">–– 果资科技提供技术支持 ––</text>
-  </view>
+	<view slot="loading" class="custom-container" bindtap="onToMini">
+		<!-- <image src="/images/static/loadmor.gif" class="custom-img"></image> -->
+		<text class="custom-txt">–– 果资科技提供技术支持 ––</text>
+	</view>
 </l-loadmore>
 
 <view class="cu-modal {{modalName == 'agree' ? 'show' : ''}}">
-  <view class="cu-dialog" style="width:750rpx">
-    <view class="cu-bar bg-white justify-end">
-      <view class="content">小程序协议</view>
-      <view class="action" bindtap="hideModal">
-        <text class="cuIcon-close text-red"></text>
-      </view>
-    </view>
-    <view class="padding">
-      <scroll-view scroll-y class="text-left " style='max-height:900rpx; width:100%;' scroll-top='{{scrolltop}}'>
-        <towxml nodes="{{article}}" />
-      </scroll-view>
-    </view>
+	<view class="cu-dialog" style="width:750rpx">
+		<view class="cu-bar bg-white justify-end">
+			<view class="content">小程序协议</view>
+			<view class="action" bindtap="hideModal">
+				<text class="cuIcon-close text-red"></text>
+			</view>
+		</view>
+		<view class="padding">
+			<scroll-view scroll-y class="text-left " style='max-height:900rpx; width:100%;' scroll-top='{{scrolltop}}'>
+				<towxml wx:if="{{article}}" nodes="{{article}}" />
+			</scroll-view>
+		</view>
 
-  </view>
+	</view>
 </view>
