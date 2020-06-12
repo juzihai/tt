@@ -1,0 +1,17 @@
+<!--pages/subpackages/mall/product/productImages/index.wxml-->
+<view class="history-tags">
+	<!-- <block wx:for="{{historyTags}}" wx:key="{{index}}">
+          <l-tag bind:lintap="onSearch" l-class="tag" name="{{item}}">
+            {{item}}
+          </l-tag>
+        </block> -->
+	<l-tag l-class="tag-selected">钟点房：{{userInfo.Name?userInfo.Name:'暂无'}}</l-tag>
+	<l-tag l-class="tag-selected">外观：{{userInfo.Phone?userInfo.Phone:'暂无'}}</l-tag>
+	<l-tag l-class="tag-selected">客房：{{userInfo.Address?userInfo.Address:'暂无'}}</l-tag>
+	<l-tag l-class="tag-selected">大厅：{{userInfo.Describe?userInfo.Describe:'暂无'}}</l-tag>
+</view>
+<content-card name="外观（20）" cardPadding>
+	<view class="spu">
+		<l-water-flow generic:l-water-flow-item="s-spu-image" > </l-water-flow>
+	</view>
+</content-card>

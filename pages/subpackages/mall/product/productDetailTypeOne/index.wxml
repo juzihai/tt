@@ -1,0 +1,64 @@
+<!--pages/subpackages/mall/product/productDetailTypeOne/index.wxml-->
+<scroll-view scroll-y style="height:{{h}}rpx;">
+	<view>
+
+		<swiper class="swiper" indicator-dots indicator-active-color="#157658" autoplay circular>
+			<swiper-item wx:for="{{bannerB.items}}">
+				<image class="swiper" src="{{item.img}}"></image>
+			</swiper-item>
+		</swiper>
+		<view class="grid-container">
+			<l-grid l-class="inner-container">
+				<block wx:for="{{grid}}">
+					<l-grid-item key="{{index}}" slot="{{index}}">
+						<view class="grid-item">
+							<image class="img" src="/imgs/tabbar/base.png"></image>
+							<text class="text">2233</text>
+						</view>
+					</l-grid-item>
+				</block>
+			</l-grid>
+		</view>
+
+		<view class="list-container">
+			<view class="list-item-container">
+				<text class="left">费用政策</text>
+				<text class="right">加床：该房型不可加床加床：该房型不可加床加床：该房型不可加床加床： </text>
+			</view>
+			<view class="list-item-container">
+				<view class="left">费用政策</view>
+				<view class="right">加床：该房型不可加床加床：该房型不可加床加床：该房型不可加床加床：该房型不可加床加床：该房型不可加床 </view>
+			</view>
+		</view>
+
+		<content-card class="contai  ner " name="取消政策与服务" cardPadding="{{false}}" bind:tapping="onMore" wx:if='{{row}}'>
+			<view class="intro">
+				<s-table hasBorder='yes' tdWidth='200' s-class-header='my-class' s-class-row='my-class-row' headers='{{headers}}' list='{{row}}'></s-table>
+			</view>
+		</content-card>
+
+		<content-card name="预定及使用说明">
+			<view class="explain">
+				<s-sale-explain texts="{{explain}}"></s-sale-explain>
+			</view>
+		</content-card>
+
+	</view>
+</scroll-view>
+
+
+<view class="tapbar">
+	<view class="submit-container">
+		<view>
+			合计
+			<l-price color="red" value-size="28" unit-size="20" autofix value="{{total}}"></l-price>
+		</view>
+
+		<view>
+			<l-button bg-color="{{count==0? 'gray':'green'}}" disabled="{{count==0}}" bind:lintap="onNextTap" class="button">预订</l-button>
+		</view>
+
+
+	</view>
+
+</view>

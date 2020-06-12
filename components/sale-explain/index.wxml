@@ -1,10 +1,8 @@
-<!--components/sale-explain/index.wxml-->
-
 <view class="container">
-  <block wx:for="{{1}}" wx:key="index">
-    <view class="inner">
-      <text>属性：暂无</text>
-    </view>
-  </block>
-
+    <block wx:for="{{_texts}}" wx:key="{{index}}">
+        <view class="inner">
+            <text>{{item}}</text>
+        </view>
+    </block>
 </view>
+    

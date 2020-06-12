@@ -1,0 +1,7 @@
+<!--pages/navigator/indexTypeOne/index.wxml-->
+<swiper class="swiper" indicator-dots indicator-active-color="#157658" autoplay circular>
+    <swiper-item wx:for="{{bannerB.items}}">
+        <image class="swiper" src="{{item.img}}"></image>
+    </swiper-item>
+
+</swiper>

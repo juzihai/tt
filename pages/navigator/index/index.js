@@ -13,7 +13,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    loading: false,
+    loading: true,
     TabCur: 0,
     scrollLeft: 0,
     bannerB: null,
@@ -108,11 +108,14 @@ Page({
     wx.showLoading({
       title: '加载中～',
     })
+
     const notice = await Article.GetTopArticle(obj)
     const nav = await ArticleType.Search(obj)
     const bannerB = await CompanyRotationchart.Search(obj)
     const basicsGrid = this.json3;
     const grid = await ArticleModule.Search(obj)
+
+
     const noticeArr=[];
     if (notice){
       if (notice.Data){

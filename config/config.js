@@ -2,6 +2,7 @@
 const config = {
   /** 正式地址*/
   // "apiBaseUrl": 'https://company.gzchinaunion.com/',
+
   // "EnterpriseID": "1512", //wx588f0a9983b3d27b 田禹正式版测试用
   // "EnterpriseID": "9646", //果资正式 wxadb9c5292f70762a
   // "EnterpriseID": "2645",//金朵正式 wxadb9c5292f70762a
@@ -18,7 +19,6 @@ const config = {
   // "EnterpriseID": "5385",//成都焕颜坊美容院wxc55be904eb7097aa
   // "EnterpriseID": "6955",//瑞晟（天津）文化传媒有限公司wxa076c3926e2da7e2
   // "EnterpriseID": "7645",//山东阅澜式文化创意有限公司wx9125ddcfb26323de
-
   // "EnterpriseID": "7103",//杨秸秆 wx163a906af5fc7211
   // "EnterpriseID": "6075", //wxbf16fb811554d7c4大帅
   

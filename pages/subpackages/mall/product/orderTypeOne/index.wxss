@@ -1,0 +1,7 @@
+/* pages/subpackages/mall/product/orderTypeOne/index.wxss */
+
+.number {
+    color: #666;
+    font-size: 24rpx;
+    margin-left: 12rpx;
+}

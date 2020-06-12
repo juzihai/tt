@@ -224,8 +224,29 @@
 				},
 				{
 					"id": -1,
-					"name": "员工二维码",
-					"pathName": "pages/subpackages/mall/company/staffQRCode/index",
+					"name": "酒店页面",
+					"pathName": "pages/subpackages/mall/product/productDetailTypeOne/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "图片展示页面",
+					"pathName": "pages/subpackages/mall/product/productImages/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "酒店首页",
+					"pathName": "pages/navigator/indexTypeOne/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "酒店提交预定",
+					"pathName": "pages/subpackages/mall/product/orderTypeOne/index",
 					"scene": null
 				}
 			]

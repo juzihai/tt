@@ -1,0 +1,21 @@
+<!--pages/subpackages/mall/product/orderTypeOne/index.wxml-->
+<content-card class="content" name="商品信息" >
+
+    <view class="p-container">
+        <l-card type="primary"  bindtap="onSpuItem" data-pid="{{item.ID}}" data-pcode="{{item.ProductCode}}" l-img-class="left-card" position="left" image="{{item.baseUrl+item.ProductImage}}">
+            <view class="content">
+                <text class="title">{{item.ProductName}}</text>
+                <view class="price-row">
+                    <l-price color="red" value-size="28" unit-size="20" autofix value="{{item.ProductPrice}}"></l-price>
+                </view>
+                <!-- <text class="subtitle">{{item.ProductContent}~</text> -->·
+                <view class="avter-share-container">
+                    <view class="like-container">
+                        <l-icon name="close" color="#666" size="16" />
+                        <view class="number">{{item.ProductNum}}</view>
+                    </view>
+                </view>
+            </view>
+        </l-card>
+    </view>
+</content-card>

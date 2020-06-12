@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/navigator/index/index",
+    "pages/navigator/indexTypeOne/index",
     "pages/navigator/indexTest/index",
     "pages/navigator/mall/index",
     "pages/navigator/cart/index",
@@ -49,6 +50,8 @@
   "usingComponents": {
     "towxml": "/towxml/towxml",
     "canvas-drag": "/components/canvas-drag/index",
+    "l-grid": "/components/lin-ui/grid/index",
+    "l-grid-item": "/components/lin-ui/grid-item/index",
     "l-input": "/components/lin-ui/input/index",
     "l-list": "/components/lin-ui/list/index",
     "l-counter": "/components/lin-ui/counter/index",
@@ -81,11 +84,14 @@
     "region-picker": "/components/region-picker/index",
     "s-counter": "components/counter/index",
     "s-order-realm": "components/order-realm/index",
-    "s-coupon-realm": "components/coupon-realm/index"
+    "s-coupon-realm": "components/coupon-realm/index",
+    "s-table": "../components/table/index",
+    "s-sale-explain": "/components/sale-explain/index",
+    "s-spu-image": "/components/spu-image/index"
   },
   "subPackages": [
     {
-      "root": "pages/subpackages/mall",
+      "root": "pages/subpackages/mall"  ,
       "pages": [
         "company/staffQRCode/index",
         "company/staffList/index",
@@ -94,8 +100,11 @@
         "product/productList/index",
         "product/productDetail/index",
         "product/productDetail1/index",
+        "product/productDetailTypeOne/index",
+        "product/productImages/index",
         "product/classiFication/index",
         "product/order/index",
+        "product/orderTypeOne/index",
         "product/orderList/index",
         "product/orderDetail/index",
         "product/subCompanyList/index",

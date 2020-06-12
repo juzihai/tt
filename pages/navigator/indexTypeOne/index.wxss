@@ -1,0 +1,5 @@
+/* pages/navigator/indexTypeOne/index.wxss */
+.swiper{
+    width: 100%;
+    height: 360rpx;
+}
