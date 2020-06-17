@@ -36,8 +36,7 @@ App({
       console.log(res)
       let shopInfo = res
 
-      if (this.shopInfoReadyCallback) {
-        this.shopInfoReadyCallback(res)
+      if (this.shopInfoReadyCallback) {2
       }
       wx.setStorageSync('shopInfo', shopInfo)
 

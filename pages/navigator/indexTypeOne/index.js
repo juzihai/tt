@@ -14,6 +14,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       bannerB:this.json2,
+      grid:this.json3,
     })
   },
 
@@ -49,4 +50,54 @@ Page({
       }
     ]
   },
+  json3: [
+    {
+      "id": 1,
+      "title": "公司资质",
+      "img": "/imgs/home/guanli.png",
+      "name": null,
+      "category_id": null,
+      "root_category_id": 2
+    },
+    {
+      "id": 2,
+      "title": "公司招聘",
+      "img": "/imgs/home/fenxiang.png",
+      "name": null,
+      "category_id": null,
+      "root_category_id": 3
+    },
+    {
+      "id": 3,
+      "title": "员工列表",
+      "img": "/imgs/home/kefu.png",
+      "name": null,
+      "category_id": null,
+      "root_category_id": 1
+    },
+    {
+      "id": 4,
+      "title": "产品查看",
+      "img": "/imgs/home/chanpinfabu.png",
+      "name": null,
+      "category_id": null,
+      "root_category_id": 5
+    },
+    {
+      "id": 5,
+      "title": "案例展示",
+      "img": "/imgs/home/diannao.png",
+      "name": null,
+      "category_id": null,
+      "root_category_id": 4
+    },
+    {
+      "id": 6,
+      "title": "金融产品",
+      "img": "/imgs/home/shujufenxi.png",
+      "name": null,
+      "category_id": null,
+      "root_category_id": 24
+    }
+  ],
 })

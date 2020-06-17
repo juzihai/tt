@@ -3,5 +3,87 @@
     <swiper-item wx:for="{{bannerB.items}}">
         <image class="swiper" src="{{item.img}}"></image>
     </swiper-item>
-
 </swiper>
+
+<view class="address-container">
+    <view class="left">
+        <text class="title">xxxx名称</text>
+        <text class="subTitle">机会来了快快抢购机会来了快快抢购机会来了快快抢购机会来了快快抢购</text>
+    </view>
+    <view class="grid-container">
+        <l-grid l-class="inner-container" show-col-border="true" row-num="2">
+            <block wx:for="{{2}}">
+                <l-grid-item key="{{index}}" slot="{{index}}">
+                    <view class="grid-item">
+                        <image class="img" src="/imgs/tabbar/base.png"></image>
+                        <text class="text">地图/导航</text>
+                    </view>
+                </l-grid-item>
+            </block>
+        </l-grid>
+    </view>
+</view>
+
+<view class="activity-container">
+    <view class="activity-item">
+        <view class="left">
+            <text class="title">特价秒杀</text>
+            <text class="subTitle">机会来了快快抢购</text>
+        </view>
+        <view class="right">
+            <image class="img" src="/imgs/tabbar/base.png"></image>
+        </view>
+
+    </view>
+    <view class="activity-item">
+        <view class="left">
+            <text class="title">特价秒杀特价秒杀</text>
+            <text class="subTitle">机会来了快快抢购机会来了快快抢购机会来了快快抢购机会来了快快抢购</text>
+        </view>
+        <view class="right">
+            <image class="img" src="/imgs/tabbar/base.png"></image>
+        </view>
+
+    </view>
+    <view class="activity-item">
+        <view class="left">
+            <text class="title">特价秒杀特价秒杀特价秒杀特价秒杀</text>
+            <text class="subTitle">机会来了快快抢购机会来了快快抢购</text>
+        </view>
+        <view class="right">
+            <image class="img" src="/imgs/tabbar/base.png"></image>
+        </view>
+
+    </view>
+</view>
+
+<view class="room-container">
+    <l-list>
+        <view slot="left-section">
+            <text class="title">6月1日</text>
+            <text class="subTitle">今天入住</text>
+        </view>
+        <view slot="right-section">
+            <text class="title">6月2日</text>
+            <text class="subTitle">明天离店</text>
+        </view>
+    </l-list>
+    <view class="history-tags">
+        <!-- <block wx:for="{{historyTags}}" wx:key="{{index}}">
+              <l-tag bind:lintap="onSearch" l-class="tag" name="{{item}}">
+                {{item}}
+              </l-tag>
+            </block> -->
+        <l-tag l-class="tag-selected">钟点房</l-tag>
+        <l-tag l-class="tag-selected">双人房</l-tag>
+        <l-tag l-class="tag-selected">三人房</l-tag>
+        <l-tag l-class="tag-selected">家庭房</l-tag>
+    </view>
+    
+</view>
+
+<view class="priduct-container">
+    <view>
+        <image src="/imgs/tabbar/base.png"></image>
+    </view>
+</view>
