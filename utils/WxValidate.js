@@ -396,6 +396,7 @@ class WxValidate {
     /**
      * 返回验证是否通过
      */
+
     valid() {
         return this.size() === 0
     }
@@ -403,6 +404,7 @@ class WxValidate {
     /**
      * 返回错误信息的个数
      */
+    
     size() {
         return this.errorList.length
     }

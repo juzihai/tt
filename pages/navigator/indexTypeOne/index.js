@@ -5,7 +5,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    shopGrid:[{
+      "id": 1,
+      "title": "地图导航",
+      "img": "address",
+      "name": null,
+      "category_id": null,
+      "root_category_id": 2
+    },
+    {
+      "id": 2,
+      "title": "电话",
+      "img": "phone",
+      "name": null,
+      "category_id": null,
+      "root_category_id": 3
+    },]
   },
 
   /**
@@ -16,6 +31,25 @@ Page({
       bannerB:this.json2,
       grid:this.json3,
     })
+  },
+
+  onShopItem(e){
+    console.log(e)
+    let index=e.detail.index
+    if (index==0){
+      wx.openLocation({
+        latitude: 39.12,
+        longitude: 117.20,
+        scale: 18
+      })
+    }else {
+      wx.makePhoneCall({
+        phoneNumber: '13027603342',
+        complete: (res) => {},
+        fail: (res) => {},
+        success: (res) => {},
+      })
+    }
   },
 
   json2: {

@@ -27,7 +27,6 @@
           <text style="color:white;font-size:20px;" wx:if="{{item.IsUse==1}}">已使用</text>
           <text style="color:white;font-size:20px;" wx:if="{{item.IsUse==2}}">已过期</text>
 
-
         </view>
         <view class="time" style="color:rgba(255, 255, 255, 1); font-size:10px;font-weight: lighter">
           {{util.formatTime(item.StartValidity*1000,"Y/M/D")}}- {{util.formatTime(item.EndValidity*1000,"Y/M/D")}}

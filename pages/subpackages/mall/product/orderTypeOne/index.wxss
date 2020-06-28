@@ -1,5 +1,26 @@
 /* pages/subpackages/mall/product/orderTypeOne/index.wxss */
-
+/*房间信息*/
+.room-container{
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    /*background: rgba(255, 255, 255, 1);*/
+    box-shadow: 0px -4rpx 16rpx 0px rgba(148, 163, 178, 0.05);
+    border-radius: 20rpx 20rpx 0px 0px;
+    border-bottom: 20rpx solid #f7f7f7;
+    padding: 20rpx 10rpx 40rpx 10rpx;
+}
+.right-section{
+    margin-right: 20rpx;
+}
+.title{
+    font-size: 26rpx;
+}
+.subTitle{
+    font-size: 24rpx;
+    color: #aaaaaa;
+}
+/* */
 .number {
     color: #666;
     font-size: 24rpx;

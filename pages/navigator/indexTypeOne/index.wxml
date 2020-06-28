@@ -11,12 +11,12 @@
         <text class="subTitle">机会来了快快抢购机会来了快快抢购机会来了快快抢购机会来了快快抢购</text>
     </view>
     <view class="grid-container">
-        <l-grid l-class="inner-container" show-col-border="true" row-num="2">
-            <block wx:for="{{2}}">
-                <l-grid-item key="{{index}}" slot="{{index}}">
+        <l-grid l-class="inner-container" show-col-border="true" row-num="2" bind:linitemtap="onShopItem">
+            <block wx:for="{{shopGrid}}">
+                <l-grid-item key="{{index}}" slot="{{index}}" cell="{{item}}">
                     <view class="grid-item">
-                        <image class="img" src="/imgs/tabbar/base.png"></image>
-                        <text class="text">地图/导航</text>
+                        <l-icon class="img" name="{{item.img}}"/>
+                        <text class="text">{{item.title}}</text>
                     </view>
                 </l-grid-item>
             </block>
@@ -58,12 +58,13 @@
 </view>
 
 <view class="room-container">
-    <l-list>
+    <l-list  tag-position="right" tagShape="circle" tag-content="1晚" tag-plain tag-color="red">
         <view slot="left-section">
             <text class="title">6月1日</text>
             <text class="subTitle">今天入住</text>
         </view>
-        <view slot="right-section">
+
+        <view slot="right-section" class="right-section">
             <text class="title">6月2日</text>
             <text class="subTitle">明天离店</text>
         </view>
@@ -79,11 +80,8 @@
         <l-tag l-class="tag-selected">三人房</l-tag>
         <l-tag l-class="tag-selected">家庭房</l-tag>
     </view>
-    
+
+    <s-spu-typeOne/>
 </view>
 
-<view class="priduct-container">
-    <view>
-        <image src="/imgs/tabbar/base.png"></image>
-    </view>
-</view>
+
