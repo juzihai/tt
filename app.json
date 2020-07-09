@@ -88,7 +88,8 @@
     "s-table": "../components/table/index",
     "s-sale-explain": "/components/sale-explain/index",
     "s-spu-image": "/components/spu-image/index",
-    "s-spu-typeOne": "/components/spu-typeOne/index"
+    "s-spu-typeOne": "/components/spu-typeOne/index",
+    "calendar": "/components/calendar/index"
   },
   "subPackages": [
     {
