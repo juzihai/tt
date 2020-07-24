@@ -1,7 +1,5 @@
-// pages/subpackages/mall/product/productImages/index.js
+import {HotelMaterialType} from "../../../../../models/hotelMaterialType";
 const app = getApp()
-import {Product} from "../../../../../models/product";
-
 Page({
 
   /**
@@ -15,14 +13,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.initAllData()
+
+    this.initData()
   },
-  initAllData: async function () {
+  async initData() {
     let obj = {
       "EnterpriseID": app.config.EnterpriseID,
-      "ClassID": 8,
     }
-    const productModel = Product.PageSearch(obj);
+    const materialType = await HotelMaterialType.PageSearchWX(obj)
+    this.setData({
+      materialType
+    })
+    if(materialType){
+      let TypeID =materialType[0].ID
+      console.log(TypeID)
+      this.initAllData(TypeID)
+    }
+  },
+  initAllData: async function (TypeID) {
+    let obj = {
+      TypeID
+    }
+    this._itemselcet(TypeID)
+    const productModel = HotelMaterialType.SearchHotelMaterialWX(obj)
     this.data.productModel = productModel //类属性
     const product = await productModel.getMoreData();//todo
     setTimeout(function () {
@@ -37,6 +50,28 @@ Page({
     }
     // data 数组, refresh 清空元素, success 返回成功
     wx.lin.renderWaterFlow(product.items, true);
+  },
+
+  onSearch(e){
+    console.log(e)
+    let TypeID=e.detail.name
+    this.initAllData(TypeID)
+  },
+  _itemselcet(ID){
+
+    let materialType=this.data.materialType
+    for (let index in materialType){
+      console.log(index)
+      if (materialType[index].ID=ID){
+        materialType[index].selcet=true
+      }else {
+        materialType[index].selcet=false
+      }
+    }
+
+    this.setData({
+      materialType
+    })
   },
   onImg(e){
     console.log('111',e)

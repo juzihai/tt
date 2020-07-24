@@ -2,7 +2,7 @@
 
 
    <view class="container" bind:tap="onItemTap" data-pid="{{data.ID}}" data-pcode="{{data.ProductCode}}">
-   	<image bind:load="onImgLoad" style="width:{{w}}rpx; height: {{h}}rpx; " src="{{data.baseUrl + data.ProductImage}}"></image>
+   	<image bind:load="onImgLoad" style="width:{{w}}rpx; height: {{h}}rpx; " src="{{data.baseUrl + data.OriginalImage}}"></image>
    	<view class="content-container">
 
    		<text class="subtitle">{{data.ProductName}}~</text>

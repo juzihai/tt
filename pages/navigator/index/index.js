@@ -1,5 +1,6 @@
 // pages/navigator/mall/index.js
 const app = getApp();
+
 import { ArticleModule } from "../../../models/articleModule.js";
 import { ArticleType } from "../../../models/articleType.js";
 import { Article } from "../../../models/article.js";
@@ -7,6 +8,7 @@ import { CompanyRotationchart } from "../../../models/companyRotationchart.js";
 import { AppModel} from '../../../models/app.js';
 import { Company } from "../../../models/company.js";
 import { File } from "../../../models/file.js";
+ 
 Page({
 
   /**
@@ -25,6 +27,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function(options) {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline']
+    })
     const scene = decodeURIComponent(options.scene)
     console.log('???',scene)
     if ( scene != 'undefined'){
@@ -48,7 +54,6 @@ Page({
             ChannleCode = data.GUID
             ChannleName = data.JsonCode
             break;
-
           default:
         }
         let obj = {
@@ -84,6 +89,8 @@ Page({
     }
 
   },
+
+  
   onShareAppMessage: function () {
     let id = this.data.id;
     let OpenID = wx.getStorageSync('OpenID')
@@ -93,6 +100,9 @@ Page({
       title: "详情",
       path: `/pages/navigator/index/index?url=${url}&SharOpenID=${OpenID}&SharType=index`
     }
+  },
+  onShareTimeline(){
+    
   },
 
   onShow(){

@@ -1,14 +1,14 @@
 <!--pages/navigator/indexTypeOne/index.wxml-->
 <swiper class="swiper" indicator-dots indicator-active-color="#157658" autoplay circular>
-    <swiper-item wx:for="{{bannerB.items}}">
-        <image class="swiper" src="{{item.img}}"></image>
+    <swiper-item wx:for="{{bannerB.Data}}">
+        <image class="swiper" src="{{bannerB.ShowResourcesUrl}}{{item.Image}}"></image>
     </swiper-item>
 </swiper>
 
 <view class="address-container">
     <view class="left">
-        <text class="title">xxxx名称</text>
-        <text class="subTitle">机会来了快快抢购机会来了快快抢购机会来了快快抢购机会来了快快抢购</text>
+        <text class="title">{{shopInfo.CompanyName}}</text>
+        <text class="subTitle">{{shopInfo.Address}}</text>
     </view>
     <view class="grid-container">
         <l-grid l-class="inner-container" show-col-border="true" row-num="2" bind:linitemtap="onShopItem">
@@ -69,19 +69,21 @@
             <text class="subTitle">明天离店</text>
         </view>
     </l-list>
-    <view class="history-tags">
-        <!-- <block wx:for="{{historyTags}}" wx:key="{{index}}">
-              <l-tag bind:lintap="onSearch" l-class="tag" name="{{item}}">
-                {{item}}
-              </l-tag>
-            </block> -->
-        <l-tag l-class="tag-selected">钟点房</l-tag>
-        <l-tag l-class="tag-selected">双人房</l-tag>
-        <l-tag l-class="tag-selected">三人房</l-tag>
-        <l-tag l-class="tag-selected">家庭房</l-tag>
-    </view>
+<!--    <view class="history-tags">-->
+<!--        &lt;!&ndash; <block wx:for="{{historyTags}}" wx:key="{{index}}">-->
+<!--              <l-tag bind:lintap="onSearch" l-class="tag" name="{{item}}">-->
+<!--                {{item}}-->
+<!--              </l-tag>-->
+<!--            </block> &ndash;&gt;-->
+<!--        <l-tag l-class="tag-selected">钟点房</l-tag>-->
+<!--        <l-tag l-class="tag-selected">双人房</l-tag>-->
+<!--        <l-tag l-class="tag-selected">三人房</l-tag>-->
+<!--        <l-tag l-class="tag-selected">家庭房</l-tag>-->
+<!--    </view>-->
+    <block wx:for="{{hotelRoom.accumulator}}" wx:key="{{index}}">
+        <s-spu-typeOne spu="{{item}}"/>
+    </block>
 
-    <s-spu-typeOne/>
 </view>
 
 

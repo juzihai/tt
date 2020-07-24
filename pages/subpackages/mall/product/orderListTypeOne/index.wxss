@@ -1,0 +1,93 @@
+/* pages/subpackages/mall/product/orderListTypeOne/index.wxss */
+.aaa {
+    background-color: white;
+}
+
+.card-container {
+    background-color: white;
+    margin: 10rpx 20rpx;
+}
+
+.card-container .top {
+    padding: 20rpx;
+    height: 80rpx;
+    border-bottom: 1px solid #f1f1f1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-container .content {
+    padding: 20rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid#f1f1f1;
+}
+
+.content image {
+    width: 160rpx;
+    height: 160rpx;
+}
+.right-container{
+    margin: 0rpx 20rpx;
+    width: 440rpx;
+    height: 160rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.card-container .bottom {
+    padding: 20rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    border-bottom: 1rpx solid #f1f1f1;
+}
+.title{
+    font-size: 26rpx;
+}
+.subTitle{
+    font-size: 24rpx;
+    color: #aaaaaa;
+}
+
+.red{
+    color: #e54d42;
+}
+.sub-container{
+    padding: 20rpx;
+    height: 80rpx;
+    border-bottom: 1px solid#f1f1f1	;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.left{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.sub-container .countdown-blue {
+    width: 36rpx ;
+    height: 36rpx;
+    border: 2rpx solid #3683D6;
+    /* border-radius: 50%; */
+    background:transparent;
+    color: #3683D6;
+}
+
+.sub-container .countdown-text {
+    color: #3683D6;
+}
+.l-class{
+    width: 750rpx !important;
+    height: 1134rpx !important;
+    background-color: #f5f5f5 !important;
+}

@@ -39,7 +39,14 @@ Component({
     // },
     onItemTap(res){
       let item = this.data.data
-      // console.log(item)
+      let url=item.baseUrl+item.OriginalImage
+      let urls =[];
+      urls.push(url)
+      wx.previewImage({
+        current:url,
+        urls
+      })
+      console.log(item)
       this.triggerEvent('tapping', item, {})
     }
 

@@ -18,6 +18,21 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    onTap(event){
+      console.log(222333)
+      let spu = this.properties.spu
+      wx.navigateTo({
+        url: `/pages/subpackages/mall/product/productDetailTypeOne/index?id=${spu.ID}`,
+      })
+      // this.triggerEvent('celltap',item)
+    },
+    onRight(event){
+      let spu = this.properties.spu
+      wx.navigateTo({
+        url: `/pages/subpackages/mall/product/orderTypeOne/index?id=${spu.ID}`,
+      })
+      // this.triggerEvent('celltap',item)
+    }
 
   }
 })

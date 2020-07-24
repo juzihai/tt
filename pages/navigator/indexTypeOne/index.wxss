@@ -107,6 +107,7 @@
 }
 .title{
     font-size: 26rpx;
+
 }
 .subTitle{
     font-size: 24rpx;

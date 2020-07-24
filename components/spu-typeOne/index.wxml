@@ -1,20 +1,26 @@
 <!--components/spu-typeOne/index.wxml-->
 <wxs src="../../wxs/price.wxs" module="p"></wxs>
-<view class="container">
+<view class="container" bindtap="onTap">
     <view class="img-container">
-        <image class="img" src="/imgs/tabbar/base.png"></image>
+        <image class="img" src="{{spu.baseUrl}}{{spu.Image}}"></image>
     </view>
 
     <view class="left">
-        <text class="title">{{spu.ProductName}} 标准间</text>
+        <text class="title">{{spu.RoomTypeName}}</text>
         <view class="tags">
-            <block wx:for='{{3}}' wx:key="index">
-                <l-tag type="reading" bg-color="#DCEBE6" font-color="#157658" size="super-mini" l-class="l-tag">
-                    测试标签
-                </l-tag>
-            </block>
+
+            <l-tag type="reading" bg-color="#DCEBE6" font-color="#157658" size="super-mini" l-class="l-tag">
+                {{spu.Area}}m
+            </l-tag>
+            <l-tag type="reading" bg-color="#DCEBE6" font-color="#157658" size="super-mini" l-class="l-tag">
+                {{spu.Bed}}床
+            </l-tag>
+            <l-tag type="reading" bg-color="#DCEBE6" font-color="#157658" size="super-mini" l-class="l-tag">
+                {{spu.Residents}}人入住
+            </l-tag>
+
         </view>
-        <text class="subtitle">{{spu.ProductContent}} 今天18点前可以免费取消</text>
+        <text class="subtitle">今天{{spu.FreeCancelTime}} 前可以免费取消</text>
         <view class="price-row">
             <l-price wx:if="{{p.mainPrice(spu.Price, spu.DiscountPrice).display}}"
                      value="{{p.mainPrice(spu.Price, spu.DiscountPrice).price}}"
@@ -37,17 +43,22 @@
                    bg-color="#C95637"
                    wx:if="{{!spu.DiscountPrice}}"
                    size="super-mini">
-                已减7
+                已减{{spu.Price-spu.DiscountPrice}}
             </l-tag>
         </view>
     </view>
 
-    <view class="right">
-        <view class="tag-container radius">
-            <view class="top tag">预定</view>
+    <view class="right" catch:tap="onRight" wx:if="{{spu.IsSale}}">
+        <view class="tag-container radius" >
+            <view class="top tag topRed">预定</view>
+            <view class="bottom tag bottomRed">在线付</view>
+        </view>
+    </view>
+    <view class="right" catch:tap="onRightNO" wx:else>
+        <view class="tag-container radius" >
+            <view class="top tag">已满</view>
             <view class="bottom tag">在线付</view>
         </view>
-        <text class="text">仅剩3间</text>
     </view>
 
 <!--    <view class="right">-->

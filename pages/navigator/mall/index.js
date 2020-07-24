@@ -145,6 +145,9 @@ Page({
       wx.hideToast()
     }, 500)
     if (!data) {
+      this.setData({
+        loadingType: 'end'
+      })
       return;
     }
     // data 数组, refresh 清空元素, success 返回成功

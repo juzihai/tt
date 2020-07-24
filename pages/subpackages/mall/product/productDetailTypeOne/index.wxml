@@ -1,19 +1,22 @@
 <!--pages/subpackages/mall/product/productDetailTypeOne/index.wxml-->
+<wxs src="../../../../../wxs/price.wxs" module="p"></wxs>
 <scroll-view scroll-y style="height:{{h}}rpx;">
 	<view>
 
-		<swiper class="swiper" indicator-dots indicator-active-color="#157658" autoplay circular>
-			<swiper-item wx:for="{{bannerB.items}}">
+		<swiper wx:if="{{banner.length>0}}" class="swiper" indicator-dots indicator-active-color="#157658" autoplay circular>
+			<swiper-item wx:for="{{banner}}" >
 				<image class="swiper" src="{{item.img}}"></image>
 			</swiper-item>
 		</swiper>
+
+		<image wx:else src="{{roomData.ShowResourcesUrl}}{{roomData.Room.Image}}" class="swiper"/>
 		<view class="grid-container">
 			<l-grid l-class="inner-container">
-				<block wx:for="{{grid}}">
+				<block wx:for="{{roomData.Base}}">
 					<l-grid-item key="{{index}}" slot="{{index}}">
 						<view class="grid-item">
-							<image class="img" src="/imgs/tabbar/base.png"></image>
-							<text class="text">2233</text>
+							<image class="img" src="{{roomData.ShowResourcesUrl}}{{item.Image}}"></image>
+							<text class="text">{{item.Title}}</text>
 						</view>
 					</l-grid-item>
 				</block>
@@ -21,25 +24,24 @@
 		</view>
 
 		<view class="list-container">
-			<view class="list-item-container">
-				<text class="left">费用政策</text>
-				<text class="right">加床：该房型不可加床加床：该房型不可加床加床：该房型不可加床加床： </text>
-			</view>
-			<view class="list-item-container">
-				<view class="left">费用政策</view>
-				<view class="right">加床：该房型不可加床加床：该房型不可加床加床：该房型不可加床加床：该房型不可加床加床：该房型不可加床 </view>
-			</view>
+			<block wx:for="{{roomData.Custom}}">
+				<view class="list-item-container">
+					<text class="left">{{item.key}}</text>
+					<text class="right">{{item.Value}} </text>
+				</view>
+			</block>
+
 		</view>
 
-		<content-card class="contai  ner " name="取消政策与服务" cardPadding="{{false}}" bind:tapping="onMore" wx:if='{{row}}'>
+		<content-card class="container " name="取消政策与服务" cardPadding="{{false}}" bind:tapping="onMore" wx:if='{{row}}'>
 			<view class="intro">
 				<s-table hasBorder='yes' tdWidth='200' s-class-header='my-class' s-class-row='my-class-row' headers='{{headers}}' list='{{row}}'></s-table>
 			</view>
 		</content-card>
 
-		<content-card name="预定及使用说明">
+		<content-card name="预定及使用明说">
 			<view class="explain">
-				<s-sale-explain texts="{{explain}}"></s-sale-explain>
+				<s-sale-explain texts="{{roomData.Special}}"></s-sale-explain>
 			</view>
 		</content-card>
 
@@ -51,7 +53,16 @@
 	<view class="submit-container">
 		<view>
 			合计
-			<l-price color="red" value-size="28" unit-size="20" autofix value="{{total}}"></l-price>
+			<l-price color="red"
+					 value-size="28"
+					 unit-size="20"
+					 autofix
+					 value="{{p.mainPrice(roomData.Room.Price,roomData.Room.DiscountPrice).price}}"></l-price>
+			<l-price l-class="discount-price"
+					 color="#999999"
+					 size="26"
+					 wx:if="{{data.DiscountPrice}}"
+					 deleted value="{{p.slashedPrice(roomData.Room.Price,roomData.Room.DiscountPrice).price}}"></l-price>
 		</view>
 
 		<view>

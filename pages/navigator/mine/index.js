@@ -18,7 +18,7 @@ Page({
     ],
     listArr: [
       { name: '我的海报', url: '/pages/subpackages/propaganda/poster/posterList/index' },
-      { name: '我的历史', url: '' }, //
+      { name: '酒店订单', url: '/pages/subpackages/mall/product/orderListTypeOne/index' }, //
       { name: '我的活动', url: '' },
       { name: '我的收藏', url: '' },//
       { name: '我的浏览', url: '' },

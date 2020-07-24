@@ -1,4 +1,5 @@
 <!--pages/subpackages/mall/product/orderTypeOne/index.wxml-->
+<form bindsubmit="formSubmit">
 <scroll-view scroll-y style="height:{{h}}rpx;">
     <view class="room-container">
         <l-list tag-position="right" tagShape="circle" tag-content="1晚" tag-plain tag-color="red">
@@ -15,15 +16,24 @@
 
 
         <view class="p-container">
-            <l-card type="primary" bindtap="onSpuItem" data-pid="{{item.ID}}" data-pcode="{{item.ProductCode}}"
-                    l-img-class="left-card" position="left" image="{{item.baseUrl+item.ProductImage}}">
+            <l-card type="primary" 
+                    l-img-class="left-card" position="left" image="{{roomData.ShowResourcesUrl}}{{roomData.Room.Image}}">
                 <view class="content">
-                    <text class="title">xxx名称</text>
-                    <view>xxx 规格</view>
-                    <!-- <view class="price-row">
-                    <l-price color="red" value-size="28" unit-size="20" autofix value="{{item.ProductPrice}}"></l-price>
-                </view> -->
-                    <text class="subtitle">可住人数：2人~</text>
+                    <text class="title">{{roomData.Room.RoomTypeName}}</text>
+                    <view class="tags">
+
+                        <l-tag type="reading" bg-color="#DCEBE6" font-color="#157658" size="super-mini" l-class="l-tag">
+                            {{roomData.Room.Area}}m
+                        </l-tag>
+                        <l-tag type="reading" bg-color="#DCEBE6" font-color="#157658" size="super-mini" l-class="l-tag">
+                            {{roomData.Room.Bed}}床
+                        </l-tag>
+                        <l-tag type="reading" bg-color="#DCEBE6" font-color="#157658" size="super-mini" l-class="l-tag">
+                            {{roomData.Room.Residents}}人入住
+                        </l-tag>
+
+                    </view>
+                    <text class="subtitle">可住人数：{{roomData.Room.Residents}}人~</text>
                     <!-- <view class="avter-share-container">
                     <view class="like-container">
                         <l-icon name="close" color="#666" size="16" />
@@ -37,15 +47,19 @@
 
 
     <content-card class="content" name="购买信息" cardPadding>
-        <l-list title="房间数" rightDesc="2"/>
+        <l-list title="房间数">
+            <view slot="right-section">
+                <input placeholder="请输入房间数" name="number" type="number" value="{{TotalRoom}}" bindblur="onRoomNumber"></input>
+            </view>
+        </l-list>
         <l-list title="入住人">
             <view slot="right-section">
-                <input placeholder="请输入入住人姓名"></input>
+                <input placeholder="请输入入住人姓名" name="name"></input>
             </view>
         </l-list>
         <l-list title="手机号">
             <view slot="right-section">
-                <input placeholder="请输入入住人手机号"></input>
+                <input placeholder="请输入入住人手机号" name="phone"></input>
             </view>
         </l-list>
     </content-card>
@@ -60,16 +74,17 @@
     <view class="submit-container">
         <view>
             合计
-            <l-price color="red" value-size="28" unit-size="20" autofix value="{{total}}"></l-price>
+            <l-price color="red" value-size="28" unit-size="20" autofix value="{{OrderMoney}}"></l-price>
         </view>
 
         <view>
-            <l-button bg-color="{{count==0? 'gray':'red'}}" disabled="{{count==0}}" bind:lintap="onNextTap"
-                      class="button">立即购买
-            </l-button>
+            <button  disabled="{{count==0}}" formType="submit"
+                      class="button"  size="mini" type="primary">提交订单
+            </button>
         </view>
 
 
     </view>
 
 </view>
+</form>
