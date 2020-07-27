@@ -1,0 +1,12 @@
+<!--pages/subpackages/mall/product/orderRefundTypeOne/index.wxml-->
+<form bindsubmit="formSubmit">
+    <content-card class="content" name="售后管理" cardPadding>
+
+        <l-textarea placeholder="请输入退款申请原因" name="describe" indicator="{{true}}" maxlength="140"/>
+
+        <button form-type="submit" type="primary" class="subBtn">
+            提交申请
+        </button>
+    </content-card>
+
+</form>

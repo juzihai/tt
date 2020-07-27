@@ -80,14 +80,17 @@ Page({
       })
       return
     }
-    wx.showModal({
-      title: '提示',
-      content: '是否申请退款',
-      success:res=> {
-        if (res.confirm) {
-          this.CancelOrder(e)
-        }
-      }
+    // wx.showModal({
+    //   title: '提示',
+    //   content: '是否申请退款',
+    //   success:res=> {
+    //     if (res.confirm) {
+    //       this.CancelOrder(e)
+    //     }
+    //   }
+    // })
+    wx.navigateTo({
+      url: '/pages/subpackages/mall/product/orderRefundTypeOne/index?item='+JSON.stringify(item),
     })
   },
   async CancelOrder(e) {
@@ -113,7 +116,7 @@ Page({
     let item = e.currentTarget.dataset.cell
     // let id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: '/pages/subpackages/mall/product/orderDetailTypeOne/index?item=' + item,
+      url: '/pages/subpackages/mall/product/orderDetailTypeOne/index?item=' + JSON.stringify(item),
     })
   },
 })

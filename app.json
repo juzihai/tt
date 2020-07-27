@@ -89,6 +89,7 @@
     "s-sale-explain": "/components/sale-explain/index",
     "s-spu-image": "/components/spu-image/index",
     "s-spu-typeOne": "/components/spu-typeOne/index",
+    "l-dialog":"/components/lin-ui/dialog/index",
     "calendar": "/components/calendar/index"
   },
   "subPackages": [
@@ -105,6 +106,7 @@
         "product/productDetailTypeOne/index",
         "product/productImages/index",
         "product/classiFication/index",
+        "product/orderRefundTypeOne/index",
         "product/order/index",
         "product/orderTypeOne/index",
         "product/orderList/index",

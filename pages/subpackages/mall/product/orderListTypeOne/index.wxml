@@ -55,6 +55,10 @@
 
 </view>
 
+<!--<l-dialog show="{{true}}">-->
+<!--&lt;!&ndash;    <l-textarea placeholder="请输入申请原因" maxlength="140" indicator="{{true}}"></l-textarea>&ndash;&gt;-->
+<!--    <input value="" placeholder="请输入申请原因"></input>-->
+<!--</l-dialog>-->
 <l-toast/>
 <l-status-show show="{{order.empty}}" type="order" full-screen="{{false}}" l-class="l-class"></l-status-show>
 

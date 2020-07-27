@@ -12,55 +12,44 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let order=JSON.parse(options.item) 
+    this.setData({
+      order
+    })
 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  onShopPhone(e) {
+    let itemList = [{
+      name: '拨打电话',
+      icon: 'phone'
+    }, {
+      name: '地图导航',
+      icon: 'address'
+    }]
+    wx.lin.showActionSheet({
+      itemList,
+      showCancel: true,
+      success: (res) => {
+        let name = res.item.name
+        let shopInfo = wx.getStorageSync('shopInfo')
+        switch (name) {
+          case '拨打电话':
+            let phoneNumber = shopInfo.Phone
+            wx.makePhoneCall({
+              phoneNumber,
+            })
+            break;
+          case '地图导航':
+            wx.openLocation({
+              latitude: shopInfo.Latitude,
+              longitude: shopInfo.Longitude,
+              scale: '16',
+              name: shopInfo.CompanyName,
+              address: shopInfo.Address,
+            })
+            break;
+        }
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

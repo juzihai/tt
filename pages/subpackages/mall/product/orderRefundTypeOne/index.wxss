@@ -1,0 +1,4 @@
+/* pages/subpackages/mall/product/orderRefundTypeOne/index.wxss */
+.subBtn{
+    margin-top: 20rpx;
+}

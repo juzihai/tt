@@ -84,7 +84,7 @@ class HotelRoomType extends Http {
     //小程序退款接口
     static HotelRefundOrder({EnterpriseID,OpenID,OrderNo,RefundReason}) {
         return Http.request({
-            url: "api/V1/HotelRoomType/H otelRefundOrder",
+            url: "api/V1/HotelRoomType/HotelRefundOrder",
             data: {
                 EnterpriseID,
                 OpenID,
