@@ -1,5 +1,5 @@
 import { promisic } from "./util"
-import { px2rpx } from "../components/lin-ui/utils/util"
+import { px2rpx } from "../miniprogram_npm/lin-ui/utils/util"
 
 const getSystemSize = async function () {
   const res = await promisic(wx.getSystemInfo)()

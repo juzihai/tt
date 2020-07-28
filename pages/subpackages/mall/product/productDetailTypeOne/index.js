@@ -2,7 +2,7 @@
 import {getWindowHeightRpx} from "../../../../../utils/system";
 import {HotelMaterialType} from "../../../../../models/hotelMaterialType";
 import {HotelRoomType} from "../../../../../models/hotelRoomType";
-
+const app = getApp();
 Page({
 
   /**
@@ -16,9 +16,12 @@ Page({
   onLoad: async function (options) {
     const windowHeight = await getWindowHeightRpx();
     const h = windowHeight - 100; // 100 是底部tabbar的高度  自定义的tabbar高度是不包含在 windowHeight里的
-    let id = options.id
+    let obj=JSON.parse(options.obj)
+
     this.setData({
-      id,
+      obj,
+      IsSale:obj.IsSale,
+      id:obj.ID,
       h,
 
     })
@@ -40,12 +43,13 @@ Page({
       title: '不可取消',
       time: ''
     }]
-    items2[0].time = roomData.Room.StartValidityTime
-    items2[1].time = roomData.Room.EndValidityTime
+    items2[0].time = roomData.Room.FreeCancelTime
+    items2[1].time = roomData.Room.NoCancelTime
     this.changeData(items2)
 
   },
   changeData(tabData) {
+    let that=this
     let headers = [{
       text: 'time',
       display: '北京时间'
@@ -60,11 +64,10 @@ Page({
       for (let j = 0; j < headers.length; j++) {
         if (headers[j]['text'] === "Operation") {
           tempObj[headers[j]['text']] = '详情'
-        } else if (headers[j]['text'] === "LoginTime") {
-          let LoginTime = tabData[i][headers[j]['text']]
-          let a = app.util.utcToBj(LoginTime, 'M/D h:m:s')
-          console.log(LoginTime)
-          console.log(a)
+        } else if (headers[j]['text'] === "time") {
+          let StartValidityTime= app.util.tsFormatTime(that.data.obj.StartValidityTime,'M-D')
+          let Time = tabData[i][headers[j]['text']]
+          let a =StartValidityTime+" "+Time.slice(0,2)+":"+Time.slice(2)
           tempObj[headers[j]['text']] = a
         } else {
           tempObj[headers[j]['text']] = tabData[i][headers[j]['text']]
@@ -79,11 +82,12 @@ Page({
     })
   },
   onNextTap(e) {
-    let id = this.data.id
+    let obj = this.data.obj
     wx.navigateTo({
-      url: `/pages/subpackages/mall/product/orderTypeOne/index?id=${id}`,
+      url: `/pages/subpackages/mall/product/orderTypeOne/index?obj=${JSON.stringify(obj)}`,
     })
   },
+
   json2: {
     "id": 1,
     "name": "b-1",

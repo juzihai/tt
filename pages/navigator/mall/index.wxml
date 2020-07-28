@@ -1,4 +1,4 @@
-<wxs src="../../../components/lin-ui/filter/string.wxs" module="string" />
+<wxs src="../../../miniprogram_npm/lin-ui/filter/string.wxs" module="string" />
 <view class="container">
   <view class="search-container">
     <l-button width="710" height="60" icon="research" icon-size="24" icon-color="#C4C9D2" l-class="search-btn" bind:lintap="onGotoSearch" shape="square">

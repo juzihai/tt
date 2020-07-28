@@ -1,6 +1,6 @@
 // pages/subpackages/mall/product/orderRefundTypeOne/index.js
 import {HotelRoomType} from "../../../../../models/hotelRoomType";
-import {getCurrentPage} from "../../../../../components/calendar/func/utils";
+
 
 const app = getApp();
 Page({

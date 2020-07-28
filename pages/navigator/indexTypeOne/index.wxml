@@ -1,7 +1,8 @@
 <!--pages/navigator/indexTypeOne/index.wxml-->
+<wxs src="../../../utils/util.wxs" module="util"></wxs>
 <swiper class="swiper" indicator-dots indicator-active-color="#157658" autoplay circular>
-    <swiper-item wx:for="{{bannerB.Data}}">
-        <image class="swiper" src="{{bannerB.ShowResourcesUrl}}{{item.Image}}"></image>
+    <swiper-item wx:for="{{banner.Data}}" bindtap="onBanner">
+        <image class="swiper" src="{{banner.ShowResourcesUrl}}{{item.Image}}"></image>
     </swiper-item>
 </swiper>
 
@@ -58,15 +59,15 @@
 </view>
 
 <view class="room-container">
-    <l-list  tag-position="right" tagShape="circle" tag-content="1晚" tag-plain tag-color="red">
+    <l-list  tag-position="right" tagShape="circle" tag-content="{{selectDay}}晚" tag-plain tag-color="red" bind:lintap="onCalendar">
         <view slot="left-section">
-            <text class="title">6月1日</text>
-            <text class="subTitle">今天入住</text>
+            <text class="title">{{util.formatTime(StartValidityTime,"M月D日")}}</text>
+            <text class="subTitle">入住</text>
         </view>
 
         <view slot="right-section" class="right-section">
-            <text class="title">6月2日</text>
-            <text class="subTitle">明天离店</text>
+            <text class="title">{{util.formatTime(EndValidityTime,"M月D日")}}</text>
+            <text class="subTitle">离店</text>
         </view>
     </l-list>
 <!--    <view class="history-tags">-->
@@ -81,9 +82,9 @@
 <!--        <l-tag l-class="tag-selected">家庭房</l-tag>-->
 <!--    </view>-->
     <block wx:for="{{hotelRoom.accumulator}}" wx:key="{{index}}">
-        <s-spu-typeOne spu="{{item}}"/>
+        <s-spu-typeOne spu="{{item}}" bind:tapping="onTap" bind:tappingRight="onRight"/>
     </block>
 
 </view>
-
+<l-loadmore show type="{{loadingType}}" end-text="已到底部啦!"></l-loadmore>
 

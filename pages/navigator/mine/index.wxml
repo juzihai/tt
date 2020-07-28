@@ -82,7 +82,7 @@
 <!-- 登陆展示页面 -->
 <l-status-show show="{{!login}}" custom="{{true}}">
 
-	<image class="top-img" src="/components/lin-ui/status-show/image/error.png"></image>
+	<image class="top-img" src="/miniprogram_npm/lin-ui/status-show/image/error.png"></image>
 	<!-- <text class="status-text">您还未登陆，请登陆</text> -->
 	<block wx:if="{{company.PrivacyPolicy||company.TermsService}}">
 		<view class='margin'>

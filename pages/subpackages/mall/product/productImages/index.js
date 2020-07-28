@@ -62,7 +62,7 @@ Page({
     let materialType=this.data.materialType
     for (let index in materialType){
       console.log(index)
-      if (materialType[index].ID=ID){
+      if (materialType[index].ID==ID){
         materialType[index].selcet=true
       }else {
         materialType[index].selcet=false

@@ -4,8 +4,8 @@
 	<view>
 
 		<swiper wx:if="{{banner.length>0}}" class="swiper" indicator-dots indicator-active-color="#157658" autoplay circular>
-			<swiper-item wx:for="{{banner}}" >
-				<image class="swiper" src="{{item.img}}"></image>
+			<swiper-item wx:for="{{banner}}"  >
+				<image class="swiper" src="{{roomData.ShowResourcesUrl}}{{item.Image}}"></image>
 			</swiper-item>
 		</swiper>
 
@@ -66,7 +66,8 @@
 		</view>
 
 		<view>
-			<l-button bg-color="{{count==0? 'gray':'green'}}" disabled="{{count==0}}" bind:lintap="onNextTap" class="button">预订</l-button>
+			<l-button  disabled="{{!IsSale}}" bind:lintap="onNextTap" class="button" type="error" >{{IsSale?'预订':'客满'}}</l-button>
+
 		</view>
 
 

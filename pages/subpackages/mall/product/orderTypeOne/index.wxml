@@ -1,16 +1,17 @@
 <!--pages/subpackages/mall/product/orderTypeOne/index.wxml-->
+<wxs src="../../../../../utils/util.wxs" module="util"></wxs>
 <form bindsubmit="formSubmit">
 <scroll-view scroll-y style="height:{{h}}rpx;">
     <view class="room-container">
-        <l-list tag-position="right" tagShape="circle" tag-content="1晚" tag-plain tag-color="red">
+        <l-list tag-position="right" tagShape="circle" tag-content="{{selectDay}}晚" tag-plain tag-color="red">
             <view slot="left-section">
-                <text class="title">6月1日</text>
-                <text class="subTitle">今天入住</text>
+                <text class="title">{{util.formatTime(StartValidityTime,"M月D日")}}</text>
+                <text class="subTitle">入住</text>
             </view>
 
             <view slot="right-section" class="right-section">
-                <text class="title">6月2日</text>
-                <text class="subTitle">明天离店</text>
+                <text class="title">{{util.formatTime(EndValidityTime,"M月D日")}}</text>
+                <text class="subTitle">离店</text>
             </view>
         </l-list>
 
@@ -44,29 +45,16 @@
             </l-card>
         </view>
     </view>
-
-
     <content-card class="content" name="购买信息" cardPadding>
-        <l-list title="房间数">
-            <view slot="right-section">
-                <input placeholder="请输入房间数" name="number" type="number" value="{{TotalRoom}}" bindblur="onRoomNumber"></input>
-            </view>
-        </l-list>
-        <l-list title="入住人">
-            <view slot="right-section">
-                <input placeholder="请输入入住人姓名" name="name"></input>
-            </view>
-        </l-list>
-        <l-list title="手机号">
-            <view slot="right-section">
-                <input placeholder="请输入入住人手机号" name="phone"></input>
-            </view>
-        </l-list>
+        <l-input label="房间数" placeholder="请输入房间数" value="{{TotalRoom}}" required="{{true}}" label-width="170" clear="{{true}}" type="number" name="number" bind:linblur="onRoomNumber"/>
+        <l-input label="入住人" placeholder="请输入入住人姓名" required="{{true}}" label-width="170" clear="{{true}}" name="name"/>
+        <l-input label="手机号" placeholder="请输入入住人手机号" required="{{true}}" label-width="170" clear="{{true}}" name="phone"/>
     </content-card>
 
-    <content-card class="content" name="优惠券" cardPadding>
-        <l-list title="有1张优惠券可用"/>
-    </content-card>
+
+<!--    <content-card class="content" name="优惠券" cardPadding>-->
+<!--        <l-list title="有1张优惠券可用"/>-->
+<!--    </content-card>-->
 
 </scroll-view>
 

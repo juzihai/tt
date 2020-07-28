@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-        "l-radio-group": "/components/lin-ui/radio-group/index",
-        "l-radio": "/components/lin-ui/radio/index",
+        "l-radio-group": "/miniprogram_npm/lin-ui/radio-group/index",
+        "l-radio": "/miniprogram_npm/lin-ui/radio/index",
     "ff-canvas": "../../../f2-canvas/f2-canvas"
   },
   "navigationBarTitleText": "统计"

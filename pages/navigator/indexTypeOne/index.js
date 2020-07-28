@@ -1,4 +1,5 @@
 // pages/navigator/indexTypeOne/index.js
+var Moment = require("../../../utils/moment");
 import {
   HotelRoomType
 } from "../../../models/hotelRoomType";
@@ -7,6 +8,7 @@ const app = getApp();
 import {
   HotelRotationchart
 } from "../../../models/hotelRotationchart";
+import date from "../../../miniprogram_npm/lin-ui/common/async-validator/validator/date";
 
 Page({
 
@@ -14,6 +16,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+
     shopGrid: [{
         "id": 1,
         "title": "地图导航",
@@ -30,7 +33,10 @@ Page({
         "category_id": null,
         "root_category_id": 3
       },
-    ]
+    ],
+    StartValidityTime:null,
+    EndValidityTime:null,
+    selectDay:null,//选中的日期天数
   },
 
   /**
@@ -42,6 +48,26 @@ Page({
     this.setData({
       shopInfo
     })
+    //设缓存缓存起来的日期
+    wx.setStorage({
+      key: 'ROOM_SOURCE_DATE',
+      data: {
+        checkInDate: Moment(new Date()).format('YYYY-MM-DD'),
+        checkOutDate: Moment(new Date()).add(1, 'day').format('YYYY-MM-DD')
+      }
+    });
+  },
+  onShow(){
+    let getDate = wx.getStorageSync("ROOM_SOURCE_DATE");
+    this.setData({
+      StartValidityTime: getDate.checkInDate,
+      EndValidityTime: getDate.checkOutDate,
+      selectDay:Moment(getDate.checkOutDate).differ(getDate.checkInDate)
+    })
+    this.initDataAll()
+    this.initBottomList()
+  },
+  onPullDownRefresh() {
     this.initDataAll()
     this.initBottomList()
   },
@@ -52,16 +78,17 @@ Page({
     const banner = await HotelRotationchart.PageSearch(obj)
     this.setData({
       banner,
-      grid: this.json3,
     })
-
+    wx.stopPullDownRefresh();
   },
   async initBottomList() {
+    let StartValidityTime= app.util.tsFormatTime(this.data.StartValidityTime,'YMD')
+    let EndValidityTime= app.util.tsFormatTime(this.data.EndValidityTime,'YMD')
     let obj = {
       "EnterpriseID": "3373",
-      "StartValidityTime": 20200801,
-      "EndValidityTime": 20200805,
-      "Total": 4,
+      "StartValidityTime":StartValidityTime,
+      "EndValidityTime":EndValidityTime,
+      "Total": this.data.selectDay,
       "Page": 1,
       "Limit": 10
     }
@@ -98,6 +125,76 @@ Page({
       })
     }
   },
+  onCalendar(){
 
+    wx.navigateTo({
+      url: '/pages/subpackages/mall/product/calendar/index',
+    })
+    
+  },
 
+  onBanner(e){
+    wx.navigateTo({
+      url: `/pages/subpackages/mall/product/productImages/index`,
+    })
+  },
+  onTap(e){
+    console.log(e)
+    let spu=e.detail
+    let obj={
+       ID:spu.ID,
+       IsSale:spu.IsSale,
+       StartValidityTime:this.data.StartValidityTime,
+       EndValidityTime:this.data.EndValidityTime,
+       selectDay:this.data.selectDay,
+    }
+    wx.navigateTo({
+      url: `/pages/subpackages/mall/product/productDetailTypeOne/index?obj=${JSON.stringify(obj)}`,
+    })
+  },
+  onRight(e){
+    console.log(e)
+    let spu=e.detail
+    let obj={
+      ID:spu.ID,
+      IsSale:spu.IsSale,
+      StartValidityTime:this.data.StartValidityTime,
+      EndValidityTime:this.data.EndValidityTime,
+      selectDay:this.data.selectDay,
+    }
+    wx.navigateTo({
+      url: `/pages/subpackages/mall/product/orderTypeOne/index?obj=${JSON.stringify(obj)}`,
+    })
+
+  },
+  /**
+   *
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: async function () {
+
+    const data = await this.data.hotelRoomModel.getMoreData();
+    console.log(data)
+    if (!data) {
+      this.setData({
+        loadingType: 'end'
+      })
+      return
+    } else {
+      this.setData({
+        loadingType: 'loading'
+      })
+    }
+    this.setData({
+      hotelRoom: data
+    })
+
+    if (!data.moreData) {
+      this.setData({
+        loadingType: 'end'
+      })
+
+    }
+
+  },
 })

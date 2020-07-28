@@ -19,19 +19,18 @@ Component({
    */
   methods: {
     onTap(event){
-      console.log(222333)
       let spu = this.properties.spu
-      wx.navigateTo({
-        url: `/pages/subpackages/mall/product/productDetailTypeOne/index?id=${spu.ID}`,
-      })
-      // this.triggerEvent('celltap',item)
+      // wx.navigateTo({
+      //   url: `/pages/subpackages/mall/product/productDetailTypeOne/index?id=${spu.ID}`,
+      // })
+      this.triggerEvent('tapping',spu)
     },
     onRight(event){
       let spu = this.properties.spu
-      wx.navigateTo({
-        url: `/pages/subpackages/mall/product/orderTypeOne/index?id=${spu.ID}`,
-      })
-      // this.triggerEvent('celltap',item)
+      // wx.navigateTo({
+      //   url: `/pages/subpackages/mall/product/orderTypeOne/index?id=${spu.ID}`,
+      // })
+      this.triggerEvent('tappingRight',spu)
     }
 
   }

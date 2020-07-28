@@ -1,5 +1,6 @@
 <!--components/spu-typeOne/index.wxml-->
 <wxs src="../../wxs/price.wxs" module="p"></wxs>
+<wxs src="../../miniprogram_npm/lin-ui/filter/string.wxs" module="string"></wxs>
 <view class="container" bindtap="onTap">
     <view class="img-container">
         <image class="img" src="{{spu.baseUrl}}{{spu.Image}}"></image>
@@ -20,7 +21,7 @@
             </l-tag>
 
         </view>
-        <text class="subtitle">今天{{spu.FreeCancelTime}} 前可以免费取消</text>
+        <text class="subtitle">今天{{string.slice(spu.FreeCancelTime,0,2)}}:{{string.slice(spu.FreeCancelTime,2)}} 前可以免费取消</text>
         <view class="price-row">
             <l-price wx:if="{{p.mainPrice(spu.Price, spu.DiscountPrice).display}}"
                      value="{{p.mainPrice(spu.Price, spu.DiscountPrice).price}}"

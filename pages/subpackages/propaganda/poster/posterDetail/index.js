@@ -1,5 +1,5 @@
 // pages/subpackages/propaganda/poster/posterDetail/index.js
-import {promisic} from "../../../../../components/lin-ui/utils/util";
+import {promisic} from "../../../../../miniprogram_npm/lin-ui/utils/util";
 
 const app = getApp();
 import CanvasDrag from '../../../../../components/canvas-drag/canvas-drag';

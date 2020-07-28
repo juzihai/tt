@@ -1,4 +1,4 @@
-<wxs src='../../../../../components/lin-ui/filter/classnames.wxs' module='classnames' />
+<wxs src='../../../../../miniprogram_npm/lin-ui/filter/classnames.wxs' module='classnames' />
 <!-- <s-shop-card data="{{companyModel}}" /> -->
 <view class="shop-card-container" wx:if="{{companyModel}}">
   <view class="left">

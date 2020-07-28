@@ -1,6 +1,6 @@
 // pages/subpackages/mall/product/classiFication/index.js
 import { getSystemSize } from "../../../../../utils/system.js";
-import { px2rpx } from "../../../../../components/lin-ui/utils/util";
+import { px2rpx } from "../../../../../miniprogram_npm/lin-ui/utils/util";
 const app = getApp()
 import { Product } from '../../../../../models/product.js'
 import { ProductClass } from '../../../../../models/productClass.js'

@@ -1,0 +1,14 @@
+{
+  "name": "propaganda",
+  "version": "1.0.0",
+  "description": "├── app.js\r ├── app.json\r ├── app.wxss\r ├── packageA\r │   └── pages\r │       ├── cat\r │       └── dog\r ├── packageB\r │   └── pages\r │       ├── apple\r │       └── banana\r ├── pages\r │   ├── index\r │   └── logs\r └── utils\r 开发者通过在 app.json subpackages 字段声明项目分包结构：",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lin-ui": "^0.8.5"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-    "l-checkbox-group": "/components/lin-ui/checkbox-group/index",
-    "l-checkbox": "/components/lin-ui/checkbox/index",
+    "l-checkbox-group": "/miniprogram_npm/lin-ui/checkbox-group/index",
+    "l-checkbox": "/miniprogram_npm/lin-ui/checkbox/index",
 
         "ff-canvas": "../../../f2-canvas/f2-canvas"
   },
