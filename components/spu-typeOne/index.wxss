@@ -64,12 +64,11 @@
     margin-right: 20rpx;
     display: flex;
     flex-direction: column;
-    width: 80rpx;
-    height: 120rpx;
+
 }
 .img{
-    width: 80rpx;
-    height: 80rpx;
+    width: 120rpx;
+    height: 120rpx;
 }
 
 .right {
