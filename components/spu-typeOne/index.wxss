@@ -8,7 +8,7 @@
     width: 100%;
     box-sizing: border-box;
     background-color: #fff;
-    padding: 34rpx 30rpx 26rpx 30rpx;
+    padding: 20rpx;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -67,15 +67,15 @@
 
 }
 .img{
-    width: 120rpx;
-    height: 120rpx;
+    width: 180rpx;
+    height: 180rpx;
 }
 
 .right {
     margin-left: 20rpx;
     display: flex;
     flex-direction: column;
-    /*justify-content: center;*/
+    justify-content: center;
     align-items: center;
     /*width: 120rpx;*/
     /*height: 120rpx;*/
@@ -142,3 +142,7 @@
 /*    font-size: 20rpx;*/
 /*    color: #157658;*/
 /*}*/
+.price-text{
+    color:"#999";
+    font-size: 24rpx;
+}

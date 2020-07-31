@@ -2,7 +2,7 @@
 .container{
     box-sizing: border-box;
     width: 710rpx;
-    border: 2rpx dashed #dcebe6;
+    /*border: 2rpx dashed #dcebe6;*/
     display:flex;
     flex-direction:column;
     padding:5rpx 25rpx;

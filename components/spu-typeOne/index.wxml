@@ -21,21 +21,24 @@
             </l-tag>
 
         </view>
-        <text class="subtitle">今天{{string.slice(spu.FreeCancelTime,0,2)}}:{{string.slice(spu.FreeCancelTime,2)}} 前可以免费取消</text>
+        <text class="subtitle">{{startTime}}  {{string.slice(spu.FreeCancelTime,0,2)}}:{{string.slice(spu.FreeCancelTime,2)}} 前可以免费取消</text>
         <view class="price-row">
+
+            <text wx:if="{{selectDay>1}}" class="price-text">（均）</text>
             <l-price wx:if="{{p.mainPrice(spu.Price, spu.DiscountPrice).display}}"
                      value="{{p.mainPrice(spu.Price, spu.DiscountPrice).price}}"
                      color="red"
-                     unit-size="24"
+                     unit-size="28"
                      autofix
                      count-size="30"
                      l-unit-class="l-price-unit">
             </l-price>
             <l-price
-                    wx:if="{{!p.slashedPrice(spu.Price, spu.DiscountPrice).display}}"
+                    wx:if="{{p.slashedPrice(spu.Price, spu.DiscountPrice).display}}"
                     value="{{p.slashedPrice(spu.Price, spu.DiscountPrice).price}}"
                     l-class="discount-price"
-                    size="26"
+                    autofix
+                    size="24"
                     color="#999"
                     bold="400"
                     deleted>

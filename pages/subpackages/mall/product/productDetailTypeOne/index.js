@@ -20,6 +20,8 @@ Page({
 
     this.setData({
       obj,
+      spu:obj.spu,
+      selectDay:obj.selectDay,
       IsSale:obj.IsSale,
       id:obj.ID,
       h,
@@ -43,8 +45,8 @@ Page({
       title: '不可取消',
       time: ''
     }]
-    items2[0].time = roomData.Room.FreeCancelTime
-    items2[1].time = roomData.Room.NoCancelTime
+    items2[0].time = roomData.Room.FreeCancelTime +"  前"
+    items2[1].time = roomData.Room.NoCancelTime+"  后"
     this.changeData(items2)
 
   },

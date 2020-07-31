@@ -22,7 +22,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-    this.initAllData()
+    this.initDataAll()
   },
   /**
    * 页面上拉触底事件的处理函数
@@ -77,6 +77,7 @@ Page({
     if(!item.IsRefund){
       wx.showToast({
         title: '暂不支持退款',
+        icon:'none'
       })
       return
     }

@@ -26,7 +26,6 @@ Page({
     })
     if(materialType){
       let TypeID =materialType[0].ID
-      console.log(TypeID)
       this.initAllData(TypeID)
     }
   },
@@ -53,7 +52,6 @@ Page({
   },
 
   onSearch(e){
-    console.log(e)
     let TypeID=e.detail.name
     this.initAllData(TypeID)
   },
@@ -61,7 +59,6 @@ Page({
 
     let materialType=this.data.materialType
     for (let index in materialType){
-      console.log(index)
       if (materialType[index].ID==ID){
         materialType[index].selcet=true
       }else {
@@ -75,53 +72,47 @@ Page({
   },
   onImg(e){
     console.log('111',e)
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+    let product=this.data.product
+    let item = e.detail.item
+    let url=item.baseUrl+item.OriginalImage
+    let urls =[];
+    product.accumulator.forEach(i=>{
+      let url=i.baseUrl+i.OriginalImage
+      urls.push(url)
+    })
 
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+    wx.previewImage({
+      current:url,
+      urls
+    })
   },
 
   /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
+   *
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: async function () {
+    const data = await this.data.productModel.getMoreData();
+    console.log(data)
+    if (!data) {
+      this.setData({
+        loadingType: 'end'
+      })
+      return
+    } else {
+      this.setData({
+        loadingType: 'loading'
+      })
+    }
+    wx.lin.renderWaterFlow(data.items)
+
+    if (!data.moreData) {
+      this.setData({
+        loadingType: 'end'
+      })
+
+    }
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

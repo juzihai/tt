@@ -25,41 +25,41 @@
     </view>
 </view>
 
-<view class="activity-container">
-    <view class="activity-item">
-        <view class="left">
-            <text class="title">特价秒杀</text>
-            <text class="subTitle">机会来了快快抢购</text>
-        </view>
-        <view class="right">
-            <image class="img" src="/imgs/tabbar/base.png"></image>
-        </view>
+<!--<view class="activity-container">-->
+<!--    <view class="activity-item">-->
+<!--        <view class="left">-->
+<!--            <text class="title">特价秒杀</text>-->
+<!--            <text class="subTitle">机会来了快快抢购</text>-->
+<!--        </view>-->
+<!--        <view class="right">-->
+<!--            <image class="img" src="/imgs/tabbar/base.png"></image>-->
+<!--        </view>-->
 
-    </view>
-    <view class="activity-item">
-        <view class="left">
-            <text class="title">特价秒杀特价秒杀</text>
-            <text class="subTitle">机会来了快快抢购机会来了快快抢购机会来了快快抢购机会来了快快抢购</text>
-        </view>
-        <view class="right">
-            <image class="img" src="/imgs/tabbar/base.png"></image>
-        </view>
+<!--    </view>-->
+<!--    <view class="activity-item">-->
+<!--        <view class="left">-->
+<!--            <text class="title">特价秒杀特价秒杀</text>-->
+<!--            <text class="subTitle">机会来了快快抢购机会来了快快抢购机会来了快快抢购机会来了快快抢购</text>-->
+<!--        </view>-->
+<!--        <view class="right">-->
+<!--            <image class="img" src="/imgs/tabbar/base.png"></image>-->
+<!--        </view>-->
 
-    </view>
-    <view class="activity-item">
-        <view class="left">
-            <text class="title">特价秒杀特价秒杀特价秒杀特价秒杀</text>
-            <text class="subTitle">机会来了快快抢购机会来了快快抢购</text>
-        </view>
-        <view class="right">
-            <image class="img" src="/imgs/tabbar/base.png"></image>
-        </view>
+<!--    </view>-->
+<!--    <view class="activity-item">-->
+<!--        <view class="left">-->
+<!--            <text class="title">特价秒杀特价秒杀特价秒杀特价秒杀</text>-->
+<!--            <text class="subTitle">机会来了快快抢购机会来了快快抢购</text>-->
+<!--        </view>-->
+<!--        <view class="right">-->
+<!--            <image class="img" src="/imgs/tabbar/base.png"></image>-->
+<!--        </view>-->
 
-    </view>
-</view>
+<!--    </view>-->
+<!--</view>-->
 
 <view class="room-container">
-    <l-list  tag-position="right" tagShape="circle" tag-content="{{selectDay}}晚" tag-plain tag-color="red" bind:lintap="onCalendar">
+    <l-list  tag-position="right" tagShape="circle" tag-content="{{selectDay}}晚" tag-plain tag-color="red" url="/pages/subpackages/mall/product/calendar/index">
         <view slot="left-section">
             <text class="title">{{util.formatTime(StartValidityTime,"M月D日")}}</text>
             <text class="subTitle">入住</text>
@@ -82,7 +82,7 @@
 <!--        <l-tag l-class="tag-selected">家庭房</l-tag>-->
 <!--    </view>-->
     <block wx:for="{{hotelRoom.accumulator}}" wx:key="{{index}}">
-        <s-spu-typeOne spu="{{item}}" bind:tapping="onTap" bind:tappingRight="onRight"/>
+        <s-spu-typeOne spu="{{item}}" bind:tapping="onTap" bind:tappingRight="onRight" startTime="{{StartValidityTime}}" selectDay="{{selectDay}}"/>
     </block>
 
 </view>

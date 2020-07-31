@@ -29,7 +29,7 @@
       },
       {
         "pagePath": "pages/navigator/indexTypeOne/index",
-        "text": "酒店首页",
+        "text": "订房",
         "iconPath": "/imgs/tabbar/base.png",
         "selectedIconPath": "/imgs/tabbar/base-select.png"
       },
@@ -85,6 +85,8 @@
     "l-countdown": "/miniprogram_npm/lin-ui/countdown/index",
     "l-slide-view": "/miniprogram_npm/lin-ui/slide-view/index",
     "l-arc-popup":"/miniprogram_npm/lin-ui/arc-popup/index",
+    "l-collapse":"/miniprogram_npm/lin-ui/collapse/index",
+    "l-collapse-item":"/miniprogram_npm/lin-ui/collapse-item/index",
     "s-spu-preview": "components/spu-preview/index",
     "s-product-preview": "components/product-preview/index",
     "content-card": "/components/content-card/index",

@@ -1,10 +1,15 @@
 // components/spu-typeOne/index.js
+import string from "../../miniprogram_npm/lin-ui/common/async-validator/validator/string";
+
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    spu: Object
+    spu: Object,
+    startTime:String,
+    endTime:String,
+    selectDay:String,
   },
 
   /**

@@ -1,3 +1,5 @@
+import {getWindowHeightRpx} from "../../../../../utils/system";
+
 const app = getApp()
 import {HotelRoomType} from "../../../../../models/hotelRoomType";
 
@@ -18,13 +20,16 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    let obj=JSON.parse(options.obj)
+  onLoad: async function (options) {
+    const windowHeight = await getWindowHeightRpx();
+    const h = windowHeight - 100; // 100 是底部tabbar的高度  自定义的tabbar高度是不包含在 windowHeight里的
+    let obj = JSON.parse(options.obj)
     this.setData({
-      id:obj.ID,
-      StartValidityTime:obj.StartValidityTime,
+      h,
+      id: obj.ID,
+      StartValidityTime: obj.StartValidityTime,
       EndValidityTime: obj.EndValidityTime,
-      selectDay:obj.selectDay
+      selectDay: obj.selectDay
     })
     this.WxValidate = app.WxValidate({
       name: {

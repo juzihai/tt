@@ -1,19 +1,64 @@
 <!--pages/subpackages/mall/product/orderTypeOne/index.wxml-->
 <wxs src="../../../../../utils/util.wxs" module="util"></wxs>
+<wxs src="../../../../../wxs/price.wxs" module="p"></wxs>
 <form bindsubmit="formSubmit">
 <scroll-view scroll-y style="height:{{h}}rpx;">
     <view class="room-container">
-        <l-list tag-position="right" tagShape="circle" tag-content="{{selectDay}}晚" tag-plain tag-color="red">
-            <view slot="left-section">
-                <text class="title">{{util.formatTime(StartValidityTime,"M月D日")}}</text>
-                <text class="subTitle">入住</text>
-            </view>
+        <content-card name="入住详情">
+            <view class="ticket-container">
+                <view class="ticket-container-top">
+                    <view class="ticket-left">
+                        <view class="name">{{util.formatTime(StartValidityTime,"M月D日")}} 入住</view>
+                        <view class="date">{{util.formatTime(EndValidityTime,"M月D日")}} 离店</view>
+                    </view>
+                    <view class="ticket-right">
+                        <view class="number">{{selectDay}}</view>
+                        <view class="text">晚</view>
+                    </view>
+                </view>
+                <view class="ticket-container-bottom">
+                    <l-collapse>
+                        <l-collapse-item l-body-class="l-body-class" l-title-class="l-title-class" customTitle="{{true}}">
+                            <!--自定义标题-->
+                            <view class="title" slot="title">
+                                <view class="ticket-detail-container">价格详情
+                                    <l-icon name="down" size="16" color="#999"/>
+                                </view>
+<!--                                <l-button l-class height="50" size="mini" shape="semicircle" plain="{{true}}">立即使用</l-button>-->
+                            </view>
+                            <block wx:for="{{order.RoomPrice}}">
+                                <view>
+                                    <text>{{item.day}}  {{item.Week}}  </text>
+                                    <l-price color="red"
+                                             value-size="28"
+                                             unit-size="20"
+                                             autofix
+                                             value="{{p.mainPrice(item.Price,item.Money).price}}"></l-price>
+                                    <l-price l-class="discount-price"
+                                             color="#999999"
+                                             size="26"
+                                             wx:if="{{item.Money}}"
+                                             deleted value="{{p.slashedPrice(item.Price,item.Money).price}}"></l-price>
 
-            <view slot="right-section" class="right-section">
-                <text class="title">{{util.formatTime(EndValidityTime,"M月D日")}}</text>
-                <text class="subTitle">离店</text>
+                                </view>
+                            </block>
+                        </l-collapse-item>
+                    </l-collapse>
+                </view>
             </view>
-        </l-list>
+        </content-card>
+
+<!--        <l-list tag-position="right" tagShape="circle" tag-content="{{selectDay}}晚" tag-plain tag-color="red">-->
+<!--            <view slot="left-section">-->
+<!--                <text class="title">{{util.formatTime(StartValidityTime,"M月D日")}}</text>-->
+<!--                <text class="subTitle">入住</text>-->
+<!--            </view>-->
+
+<!--            <view slot="right-section" class="right-section">-->
+<!--                <text class="title">{{util.formatTime(EndValidityTime,"M月D日")}}</text>-->
+<!--                <text class="subTitle">离店</text>-->
+<!--            </view>-->
+<!--        </l-list>-->
 
 
         <view class="p-container">

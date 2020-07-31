@@ -65,24 +65,21 @@ Page({
     }
     wx.showModal({
       title: '提示',
-      content: '这是一个模态弹窗',
-      success (res) {
-      if (res.confirm) {
-      console.log('用户点击确定')
-      } else if (res.cancel) {
-      console.log('用户点击取消')
-      }
+      content: '申请成功',
+      showCancel:false,
+      success:res=>{
+        let pages = getCurrentPages();
+        if (pages.length > 1) {
+          //上一个页面实例对象
+          let prePage = pages[pages.length - 2];
+          //关键在这里
+          prePage.onLoad()
+        }
+        wx.navigateBack()
       }
       })
 
-    let pages = getCurrentPages();
-    if (pages.length > 1) {
-      //上一个页面实例对象
-      let prePage = pages[pages.length - 2];
-      //关键在这里
-      prePage.onLoad()
-    }
-    wx.navigateBack()
+
 
 }
 

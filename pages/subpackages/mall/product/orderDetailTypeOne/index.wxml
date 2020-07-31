@@ -11,7 +11,7 @@
             <text class="red" wx:if="{{order.Status==4}}">拒绝退款</text>
         </view>
         <view class="content" >
-            <image src="{{order.baseUrl+order.ProductImage}}"></image>
+            <image src="{{order.baseUrl+order.Image}}"></image>
             <view class="right-container">
                 <text class="title">{{order.RoomTypeName}}</text>
                 <text class="subTitle">{{order.TotalRoom}}间，</text>
@@ -47,15 +47,19 @@
         </view>
     </view>
 
+    <content-card name="退款原因" wx:if="{{order.RefundReason}}">
+        <view class="refundClass">{{order.RefundReason}}</view>
+    </content-card>
+
     <content-card class="content" name="订单信息" cardPadding>
         <view class="orderInfo-container">
             <view class="item">
                 <text>订单创建时间</text>
-                <text>{{util.formatTime(order.CreationTime,"Y/M/D h/m/s")}}</text>
+                <text>{{util.formatTime(order.CreationTime,"Y/M/D h:m:s")}}</text>
             </view>
             <view class="item" wx:if="{{order.PayTime}}">
                 <text>订单支付时间</text>
-                <text>{{util.formatTime(order.PayTime,"Y/M/D h/m/s")}}</text>
+                <text>{{util.formatTime(order.PayTime,"Y/M/D h:m:s")}}</text>
             </view>
             <view class="item">
                 <text>用户姓名</text>

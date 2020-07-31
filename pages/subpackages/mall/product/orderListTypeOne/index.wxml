@@ -16,7 +16,7 @@
         <text class="red" wx:if="{{item.Status==4}}">拒绝退款</text>
     </view>
     <view class="content">
-        <image src="{{item.baseUrl+item.ProductListWx[0].ProductImage}}"></image>
+        <image src="{{item.baseUrl+item.Image}}"></image>
         <view class="right-container">
             <text class="title">{{item.RoomTypeName}}</text>
             <text class="subTitle">{{item.TotalRoom}}间，</text>

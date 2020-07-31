@@ -218,11 +218,11 @@
     border: 2rpx solid #3683D6;
     /* border-radius: 50%; */
     background:transparent;
-    color: #3683D6;
+    color: #3683d6;
 }
 
 .sub-container .countdown-text {
-    color: #3683D6;
+    color: #3683d6;
 }
 .l-class{
     width: 750rpx !important;
@@ -235,4 +235,8 @@
     justify-content: center;
     align-items: center;
     padding: 10rpx;
+}
+
+.refundClass{
+    margin: 20rpx 20rpx 0rpx;
 }
