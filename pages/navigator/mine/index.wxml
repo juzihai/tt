@@ -89,8 +89,8 @@
 			<checkbox-group bindchange="checkAgreement">
 				<checkbox value='{{if_rem_user}}'></checkbox>
 				我已阅读并同意
-				<text class='text-red' bindtap="showModal" wx:for="{{company.PrivacyPolicy}}" data-target="PrivacyPolicy">《小程序服务条款》</text>
-				<text class='text-red' bindtap="showModal" wx:for="{{company.TermsService}}"  data-target="TermsService">《小程序隐私政策》</text>
+				<text class='text-red' bindtap="showModal" wx:if="{{company.PrivacyPolicy}}" data-target="PrivacyPolicy">《小程序服务条款》</text>
+				<text class='text-red' bindtap="showModal" wx:if="{{company.TermsService}}"  data-target="TermsService">《小程序隐私政策》</text>
 			</checkbox-group>
 		</view>
 		<view wx:if="{{flag == false}}" class='button'>

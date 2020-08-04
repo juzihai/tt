@@ -1,4 +1,6 @@
 // pages/navigator/mall/index.js
+import {ActivityCouponCustomerReceive} from "../../../models/activityCouponCustomerReceive";
+
 const app = getApp();
 
 import { ArticleModule } from "../../../models/articleModule.js";
@@ -8,7 +10,7 @@ import { CompanyRotationchart } from "../../../models/companyRotationchart.js";
 import { AppModel} from '../../../models/app.js';
 import { Company } from "../../../models/company.js";
 import { File } from "../../../models/file.js";
- 
+import {Product} from "../../../models/product";
 Page({
 
   /**
@@ -20,7 +22,8 @@ Page({
     scrollLeft: 0,
     bannerB: null,
     grid: [],
- 
+    activityCoupon:null,
+    showCoupon:false
   },
 
   /**
@@ -49,23 +52,32 @@ Page({
               app.globalData.SharOpenID = SharOpenID
               wx.setStorageSync('SharOpenID', SharOpenID)
             }
+            let obj = {
+              "EnterpriseID": app.config.EnterpriseID,
+              "OpenID": OpenID,
+              "ChannleCode": ChannleCode,
+              "ChannleName": ChannleName,
+            }
+              File.SaveChannleByPCQRCode(obj)
             break;
           case 1:
             ChannleCode = data.GUID
             ChannleName = data.JsonCode
+            const obj1 = {
+              "EnterpriseID": app.config.EnterpriseID,
+              "OpenID": OpenID,
+              "ChannleCode": ChannleCode,
+              "ChannleName": ChannleName,
+            }
+            File.SaveChannleByPCQRCode(obj1)
             break;
           default:
         }
-        let obj = {
-          "EnterpriseID": app.config.EnterpriseID,
-          "OpenID": OpenID,
-          "ChannleCode": ChannleCode,
-          "ChannleName": ChannleName,
-        }
-        const save =  File.SaveChannleByPCQRCode(obj)
+
       }
 
-    }else if (options.url) {
+    }else 
+    if (options.url) {
       let url = decodeURIComponent(options.url);
       
       let SharOpenID = decodeURIComponent(options.SharOpenID);
@@ -87,7 +99,39 @@ Page({
         title: res.CompanyName
       })
     }
+    let Phone = wx.getStorageSync("phoneNumber")
+    if(Phone){
+      let OpenID = wx.getStorageSync('OpenID')
+      let Address=wx.getStorageSync('address')
+      let obj2={
+        "EnterpriseID": app.config.EnterpriseID,
+        "OpenID": OpenID,
+        Phone:Phone,
+        Address:Address
+      }
+     const WXTips=await  ActivityCouponCustomerReceive.WXTips(obj2)
+      if(WXTips.ResultBool){
+        let obj={
+          "EnterpriseID": app.config.EnterpriseID,
+          "OpenID": OpenID,
+          Phone:Phone,
+          Status:0,
+          Limit:99
+        }
+        const activityCouponModel = ActivityCouponCustomerReceive.PageSearch(obj)
+        this.data.activityCouponModel = activityCouponModel //类属性
+        const activityCoupon = await activityCouponModel.getMoreData(); //todo
+        this.setData({
+          activityCoupon,
+          showCoupon:true
+        })
 
+      }
+
+    }
+
+
+    this.initAllData();
   },
 
   
@@ -106,7 +150,7 @@ Page({
   },
 
   onShow(){
-    this.initAllData();
+
   },
   onPullDownRefresh() {
     this.initAllData();
@@ -136,6 +180,7 @@ Page({
 
     }
     this.setData({
+      TabCur:0,
       bannerB,
       basicsGrid,
       grid,
@@ -146,6 +191,7 @@ Page({
       shopInfo: wx.getStorageSync('shopInfo')
     })
     wx.stopPullDownRefresh();
+    app._getShopInfo()
     this.tabSelectGetData()
   },
 /** */
@@ -358,6 +404,16 @@ Page({
     })
   },
 
+  onLeft(){
+    this.setData({
+      showCoupon:false
+    })
+  },
+  onRight(){
+    wx.navigateTo({
+      url: '/pages/subpackages/mall/cards/activityCouponList/index',
+    })
+  },
   json2: {
     "id": 1,
     "name": "b-1",

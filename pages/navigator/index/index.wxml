@@ -59,7 +59,6 @@
       </view>
     </block>
 
-
   </scroll-view>
 
   <!-- <view class="cu-card article {{isCard?'no-card':''}}" >
@@ -100,14 +99,29 @@
           <view class="number">{{util.utcToBj(item.CreationTime,"M/D h:m")}}</view>
         </view>
       </view>
+
     </l-card>
   </block>
 
-
-
-
 </view>
 
+<l-popup content-align="center" show="{{showCoupon}}">
+      <s-coupon couponData="{{activityCoupon.items}}" bind:onLeft="onLeft" bind:onRight="onRight"/>
+</l-popup>
+
 <l-toast />
+<!-- <l-loading
+  l-container-class="l-container"
+  bg-color="#02AEEF"
+  z-index="776"
+  opacity="1"
+  show="{{true}}"
+  full-screen="{{true}}"
+  custom="{{true}}"
+>
+  <image class="loading-img" src="/imgs/loading1.gif"></image>
+</l-loading> -->
 <l-loading show="{{loading}}" type="flash" full-screen="{{true}}"></l-loading>
+
 <l-loadmore show type="{{loadingType}}" end-text="已到底部啦!"></l-loadmore>
+

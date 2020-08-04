@@ -98,7 +98,9 @@
     "s-sale-explain": "/components/sale-explain/index",
     "s-spu-image": "/components/spu-image/index",
     "s-spu-typeOne": "/components/spu-typeOne/index",
-    "l-dialog":"/miniprogram_npm/lin-ui/dialog/index"
+    "l-dialog":"/miniprogram_npm/lin-ui/dialog/index",
+    "s-coupon": "components/coupon/index"
+
   },
   "subPackages": [
     {
@@ -131,7 +133,9 @@
         "activity/hotActivityDetail/index",
         "activity/web-view/index",
         "cards/coupon/index",
-        "cards/couponList/index"
+        "cards/couponList/index",
+        "cards/activityCouponList/index",
+        "cards/activityCouponDetail/index"
       ]
     },
     {

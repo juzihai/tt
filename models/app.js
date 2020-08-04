@@ -99,6 +99,31 @@ class AppModel extends Http {
 
   }
 
+  //获取请求时间
+  static  WXMonitorGet({WXRequestTime}){
+      return Http.request({
+        url:"api/V1/WXMonitor/Get",
+        data:{
+          WXRequestTime
+        }
+      })
+  }
+  //保存请求时间
+  static  WXMonitorAdd({GUID,EnterpriseID,WXRequestTime,APIGetTime,APIReponseTime,WXGetTime }){
+    return Http.request({
+      url:"api/V1/WXMonitor/Add",
+      data:{
+        GUID,
+        EnterpriseID,
+        WXRequestTime,
+        APIGetTime,
+        APIReponseTime,
+        WXGetTime
+      }
+    })
+  }
+
+
 }
 export {
   AppModel

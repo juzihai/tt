@@ -1,4 +1,6 @@
 ////app.js
+import date from "./components/lin-ui/common/async-validator/validator/date";
+
 require('./utils/page.js')
 import {
   Customers
@@ -17,7 +19,7 @@ import {
 } from "./config/config";
 const util = require('utils/util.js');
 import WxValidate from "utils/WxValidate.js";
-let _that
+
 
 App({
   // 引入`towxml3.0`解析方法
@@ -25,13 +27,33 @@ App({
   WxValidate: (rules, messages) => new WxValidate(rules, messages),
   config: config,
   util: util,
-  onLaunch: function(options) {
-    _that = this;//如果使用次数较多使用全局this
-    wx.getSystemInfo({
-      success: function(res) {
-        console.log(res)
-      },
-    })
+  onLaunch: async function(options) {
+
+    const get =await AppModel.WXMonitorGet({WXRequestTime:new Date().getTime()})
+    let GUID=  wx.getStorageSync('GUID')
+    if (!GUID){
+        wx.setStorageSync('GUID', get.GUID)
+    }
+    let obj= {
+      GUID:GUID,
+      EnterpriseID:config.EnterpriseID,
+      WXRequestTime:get.WXRequestTime,
+      APIGetTime:get.APIGetTime,
+      APIReponseTime:get.APIReponseTime,
+      WXGetTime:new Date().getTime()
+    }
+    AppModel.WXMonitorAdd(obj) 
+
+
+    this._getShopInfo()
+    this._login()
+    this._addLocation(1)
+
+  },
+  onShow(options) {
+    wx.setStorageSync('launch', options)
+  },
+  _getShopInfo(){
     Company.SearchModelDetails(config.EnterpriseID).then(res => {
       console.log(res)
       let shopInfo = res
@@ -41,13 +63,6 @@ App({
       wx.setStorageSync('shopInfo', shopInfo)
 
     })
-
-    this._login()
-    this._addLocation(1)
-
-  },
-  onShow(options) {
-    wx.setStorageSync('launch', options)
   },
   _addLocation(Type) {
     // 用户授权
@@ -86,6 +101,8 @@ App({
   async _login() {
     try {
       const code = await Customers.Login()
+      console.log(code)
+
       const openIDAndKey = await Customers.GetWeChatOpenIDAndKey(config.EnterpriseID, code)
       let OpenID = openIDAndKey.OpenID
       wx.setStorageSync("OpenID", OpenID);

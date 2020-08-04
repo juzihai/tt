@@ -75,14 +75,13 @@ Page({
     try{
       const coupon = await Coupon.ReceiveCoupon(obj)
       if (coupon.ResultBool) {
-        wx.showToast({
-          title: '您已领取了该优惠券，在"我的优惠券中"可查看',
-          icon: "none"
+        wx.showModal({
+          title:'您已领取了该优惠券，在"我的优惠券中"可查看'
         })
+
       } else {
-        wx.showToast({
-          title: '领取失败，请重试',
-          icon: "none"
+        wx.showModal({
+          title: '领取失败，请重试'
         })
       }
     }catch(e){

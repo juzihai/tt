@@ -16,6 +16,7 @@ const W = wx.getSystemInfoSync().windowWidth;
 const rate = 750.0 / W;
 // 300rpx 在6s上为 150px
 const code_w = 300 / rate;
+
 Page({
 
   /**

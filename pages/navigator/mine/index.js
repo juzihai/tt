@@ -9,6 +9,7 @@ Page({
   /**
    * 页面的初始数据
    */
+
   data: {
     modulecArr: [
       { img: '/imgs/mine/bar1.png', name: '全部订单', url: '/pages/subpackages/mall/product/orderList/index' },
@@ -19,6 +20,7 @@ Page({
     listArr: [
       { name: '我的海报', url: '/pages/subpackages/propaganda/poster/posterList/index' },
       { name: '酒店订单', url: '/pages/subpackages/mall/product/orderListTypeOne/index' }, //
+      { name: '活动优惠券', url: '/pages/subpackages/mall/cards/activityCouponList/index' }, //
       { name: '我的活动', url: '' },
       { name: '我的收藏', url: '' },//
       { name: '我的浏览', url: '' },
@@ -36,11 +38,13 @@ Page({
    */
   onLoad: async function (options) {
     let phoneNumber = wx.getStorageSync('phoneNumber')
-    const company = await Company.SearchModelAgreement({ EnterpriseID: app.config.EnterpriseID})
     this.setData({
-      company,
       phoneNumber,
       login: phoneNumber? true:false
+    })
+    const company = await Company.SearchModelAgreement({ EnterpriseID: app.config.EnterpriseID})
+    this.setData({
+      company
     })
     
   },
@@ -81,10 +85,10 @@ Page({
         OpenID: wx.getStorageSync("OpenID"),
         Phone
       }
-      const checkedUserIsStaff = await Customers.CheckedUserIsStaff(obj)
-      this.setData({
-        checkedUserIsStaff: checkedUserIsStaff.ResultBool,
-      })
+      // const checkedUserIsStaff = await Customers.CheckedUserIsStaff(obj)
+      // this.setData({
+      //   checkedUserIsStaff: checkedUserIsStaff.ResultBool,
+      // })
     }
 
   },

@@ -1,0 +1,42 @@
+<!--pages/subpackages/mall/cards/activityCouponDetail/index.wxml-->
+<wxs src="../../../../../utils/util.wxs" module="util"></wxs>
+<view class="inner-container">
+	<view class="wrapper" >
+		<view class="content">
+			<view class="money">
+				<text>¥</text>{{couponModel.Money}}
+			</view>
+			<view class='co'>
+				<view class='co_w'></view>
+				<view class="title">
+					优惠券({{couponModel.Title}})
+				</view>
+				<view class='co_l'></view>
+			</view>
+		</view>
+		<view class="split-line"></view>
+		<view class="tip">
+			<view class="conditions" wx:if="{{couponModel.LimitTime==0}}">
+				有效期：
+				<view>永久有效</view>
+			</view>
+			<view class="conditions" wx:else>
+				有效期：{{util.formatTime(couponModel.EndTime,"Y/M/D")}}
+			</view>
+			<!-- <l-button type="warning" wx:if="{{couponModel.Status==0}}">未使用</l-button>
+			<l-button type="warning" wx:if="{{couponModel.Status==1}}">已使用</l-button>
+			<l-button type="warning" wx:if="{{couponModel.Status==2}}">已过期</l-button> -->
+		</view>
+	</view>
+</view>
+
+<content-card class="content11" name="使用说明" cardPadding>
+	<text >{{couponModel.Remark ?couponModel.Remark:'暂无'}}</text>
+
+</content-card>
+
+<content-card class="content11" name="优惠券二维码" cardPadding>
+	<cover-view class="cover-view" wx:if="{{showCoupon}}">
+		<canvas canvas-id='canvas' style="width:{{code_w}}px; height:{{code_w}}px;" bindlongtap='save'></canvas>
+	</cover-view>
+</content-card>

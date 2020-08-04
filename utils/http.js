@@ -54,7 +54,8 @@ class Http {
         },
         complete:(res)=>{
           wx.hideLoading();
-          console.log('接口=', url, '参数=', data, '返回参数', res);
+          let a=JSON.stringify(data)
+          console.log('接口=', url, '参数=', data, '返回参数', res,'啊啊啊啊',a);
         }
       })
     });

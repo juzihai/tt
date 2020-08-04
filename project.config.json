@@ -14,6 +14,7 @@
 		"minified": true,
 		"autoAudits": false,
 		"newFeature": true,
+
 		"uglifyFileName": false,
 		"uploadWithSourceMap": true,
 		"useIsolateContext": true,
@@ -22,6 +23,7 @@
 		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false,
 		"showShadowRootInWxmlPanel": true,
+
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"babelSetting": {
@@ -33,6 +35,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.11.3",
 	"appid": "wx851b067e0eec4ca4",
+
 	"projectname": "Propaganda",
 	"cloudfunctionTemplateRoot": "",
 	"debugOptions": {
@@ -235,6 +238,7 @@
 				},
 				{
 					"id": -1,
+
 					"name": "图片展示页面",
 					"pathName": "pages/subpackages/mall/product/productImages/index",
 					"query": "",

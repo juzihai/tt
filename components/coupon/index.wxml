@@ -1,0 +1,45 @@
+<!--components/coupon/index.wxml-->
+<wxs src="../../utils/util.wxs" module="util"></wxs>
+<view class="container">
+		<image class="coupon" src="/imgs/coupon.png"></image>
+	<view class="bg-container">
+		<view class="inner">
+			<scroll-view class="scroll-container" scroll-y>
+				<view class="wrapper" wx:for="{{couponData}}">
+					<view class="left">
+						<view class="money">
+							<text>¥</text>{{item.Money}}
+						</view>
+						<view class='co'>
+							<view class='co_w'></view>
+							<view class="title">
+								{{item.DTitle}}
+							</view>
+							<view class='co_l'></view>
+						</view>
+					</view>
+					<view class="split-line"></view>
+					<view class="right">
+						<view class="conditions" wx:if="{{item.LimitTime==0}}">
+							有效期：
+							<view>永久有效</view>
+						</view>
+						<view class="conditions" wx:else>
+							有效期：{{util.formatTime(item.EndTime,"Y/M/D")}}
+						</view>
+					</view>
+				</view>
+
+			</scroll-view>
+		</view>
+		<l-button shape="error" class="btn" bind:lintap="onRight">前往查看</l-button>
+
+	</view>
+	<view class="line"></view>
+	<l-button special="{{true}}" bind:lintap="onLeft">
+		<view class="share-box">
+			<l-icon size="40" name="close" color="red" />
+		</view>
+	</l-button>
+
+</view>

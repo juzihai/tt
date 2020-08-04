@@ -120,3 +120,8 @@
   color: rgba(170, 139, 99, 1);
   font-weight: bold;
 }
+
+.loading-img{
+  width: 400rpx;
+  height: 400rpx;
+}

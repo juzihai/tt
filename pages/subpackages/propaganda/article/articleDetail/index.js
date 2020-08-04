@@ -49,7 +49,7 @@ Page({
       // theme: 'dark',                   // 主题，默认`light`
       events: { // 为元素绑定的事件方法
         tap: (e) => {
-          console.log('tap1', e);
+
           let data = e.currentTarget.dataset.data
           if (data.tag == 'img') {
             var currentImage = data.attr.src
@@ -61,8 +61,6 @@ Page({
               current: currentImage
             })
           }
-
-
         }
       }
     })

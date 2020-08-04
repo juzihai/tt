@@ -2,12 +2,22 @@
 const config = {
   /** 正式地址*/
   // "apiBaseUrl": 'https://company.gzchinaunion.com/',
+  // "EnterpriseID": "1824",//A杜尚美术 wxd761439fbf570705 
+  // "EnterpriseID": "5385",//A成都焕颜坊美容院 wxc55be904eb7097aa 
+  // "EnterpriseID": "7645",//A山东阅澜式文化创意有限公司 wx9125ddcfb26323de
 
-  // "EnterpriseID": "1512", //wx588f0a9983b3d27b 田禹正式版测试用
+  // "EnterpriseID": "4981",//a益清正式 wxdc90f597804fb320
+  // "EnterpriseID": "3063",//a融汇正式 wx9b9444c94ae8a071
+  // "EnterpriseID": "8654",//a谷银基金 wx6cd14a7fb77bf48c
+  // "EnterpriseID": "6955",//a瑞晟（天津）文化传媒有限公司 wxa076c3926e2da7e2
+
+  // "EnterpriseID": "7103",//p杨秸秆 wx163a906af5fc7211
+  // "EnterpriseID": "1639",//p依斗米业 wxb4377b2602a6c4c8
+  // "EnterpriseID": "2314",//p宝力化肥 wx3129429b4472df08
+
   // "EnterpriseID": "9646", //果资正式 wxadb9c5292f70762a
-  // "EnterpriseID": "2645",//金朵正式 wxadb9c5292f70762a
-  // "EnterpriseID": "4981",//益清正式 wxdc90f597804fb320
-  // "EnterpriseID": "3063",//融汇正式 wx9b9444c94ae8a071
+
+  // "EnterpriseID": "1512",//wx588f0a9983b3d27b 田禹正式版测试用
   // "EnterpriseID": "8343",//婚庆公司 wxf857e7c332c7ed04
   // "EnterpriseID": "9446",//天津乖乖宠物医院 wx98e3d124373d212f
   // "EnterpriseID": "3532",//汽车美容  wx9c425df6d5ecb7ac
@@ -15,23 +25,19 @@ const config = {
   // "EnterpriseID": "7720",//伊美尔连锁整形美容 wx2e8e4434a39d3508
   // "EnterpriseID": "6236",//天津明朗广告传媒有限公司 wx999fb45b6c67c707
   // "EnterpriseID": "2016",//果资律师 wxbf16fb811554d7c4
-  // "EnterpriseID": "1824",//杜尚美术 wxd761439fbf570705
-  // "EnterpriseID": "5385",//成都焕颜坊美容院wxc55be904eb7097aa
-  // "EnterpriseID": "6955",//瑞晟（天津）文化传媒有限公司wxa076c3926e2da7e2
-  // "EnterpriseID": "7645",//山东阅澜式文化创意有限公司wx9125ddcfb26323de
-  // "EnterpriseID": "7103",//杨秸秆 wx163a906af5fc7211
-  // "EnterpriseID": "6075", //wxbf16fb811554d7c4大帅
-  
+
+
+
   /** test测试地址*/
-  // "apiBaseUrl": 'https://test.gzchinaunion.com/',
-  // "apiBaseUrl": 'https://lskapi.gzchinaunion.com/',
+  "apiBaseUrl": 'https://test.gzchinaunion.com/',
   // "EnterpriseID": "1276", //wxd4a6cbbab77c70ff 小孟测试
   // "EnterpriseID": "4981", //wx2e8e4434a39d3508 益清测试
-  // "EnterpriseID": "3373", //wxa93d39f1484ac31a 天津金朵科技测试
+  "EnterpriseID": "3373", //wxa93d39f1484ac31a 天津金朵科技测试
 
     /** 电信地址*/
-      "apiBaseUrl": 'https://company.tc-btc.com/',
-      "EnterpriseID": "8755", //wx851b067e0eec4ca4 天津金朵科技测试
+      // "apiBaseUrl": 'https://company.tc-btc.com/',
+      // "EnterpriseID": "8755", //wx851b067e0eec4ca4 天津金朵科技测试
+
 }
 const tips = {
   //基础Http请求码 

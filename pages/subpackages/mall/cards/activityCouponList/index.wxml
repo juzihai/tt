@@ -1,0 +1,51 @@
+<!--pages/subpackages/mall/cards/activityCouponList/index.wxml-->
+
+<wxs src="../../../../../utils/util.wxs" module="util"></wxs>
+<l-segment bind:linchange="changeTabs" l-class="aaa" item-width="30">
+	<l-segment-item tab="未使用" key="0" />
+	<l-segment-item tab="已使用" key="1" />
+	<l-segment-item tab="已过期" key="2" />
+</l-segment>
+
+<view class="inner-container">
+	<view class="wrapper" wx:for="{{coupon.accumulator}}">
+		<view class="content">
+			<view class="money">
+				<text>¥</text>{{item.Money}}
+			</view>
+			<view class='co'>
+				<view class='co_w'></view>
+				<view class="title">
+					优惠券({{item.DTitle}})
+				</view>
+				<view class='co_l'></view>
+			</view>
+		</view>
+		<view class="split-line"></view>
+		<view class="tip">
+			<view class="conditions" wx:if="{{item.LimitTime==0}}">
+				有效期：
+				<view>永久有效</view>
+			</view>
+			<view class="conditions" wx:else>
+				有效期：{{util.formatTime(item.EndTime,"Y/M/D")}}
+			</view>
+			<l-button type="error" wx:if="{{item.Status==0}}" bind:lintap="onGoto" data-cell="{{item}}" data-guid="{{item.GUID}}">立即使用</l-button>
+			<l-button type="warning" wx:if="{{item.Status==1}}">已使用</l-button>
+			<l-button type="warning" wx:if="{{item.Status==2}}">已过期</l-button>
+		</view>
+	</view>
+</view>
+
+<l-toast />
+
+<l-status-show show="{{coupon.empty}}" type="data" full-screen="{{false}}" l-class="l-class"></l-status-show>
+<l-loadmore show type="{{loadingType}}" end-text="已到底部啦!"></l-loadmore>
+
+<l-popup content-align="center" show="{{showCoupon}}" wx:if="{{showCoupon}}" animation="{{flase}}">
+
+	<cover-view class="cover-view" wx:if="{{showCoupon}}">
+		<canvas canvas-id='canvas' style="width:{{code_w}}px; height:{{code_w}}px;" bindlongtap='save'></canvas>
+	</cover-view>
+
+</l-popup>

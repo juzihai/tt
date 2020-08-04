@@ -1,6 +1,7 @@
 import { Http } from "../utils/http-a";
 import { Paging } from "../utils/paging";
 
+
 /** 接口 */
 class Area extends Http {
 
