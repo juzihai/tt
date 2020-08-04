@@ -1,5 +1,4 @@
-////app.js
-import date from "./components/lin-ui/common/async-validator/validator/date";
+
 
 require('./utils/page.js')
 import {

@@ -1,39 +1,69 @@
 <!--pages/subpackages/mall/cards/activityCouponDetail/index.wxml-->
 <wxs src="../../../../../utils/util.wxs" module="util"></wxs>
-<view class="inner-container">
-	<view class="wrapper" >
-		<view class="content">
-			<view class="money">
-				<text>¥</text>{{couponModel.Money}}
+
+
+	<view class="ticket-container">
+		<view class="ticket-container-top">
+			<view class="ticket-left">
+				<view class="name">{{couponModel.Title}}</view>
+				<view class="date" wx:if="{{couponModel.LimitTime==0}}">有效期： 永久有效</view>
+				<view class="date" wx:else>有效期至{{util.formatTime(couponModel.EndTime,"Y/M/D")}}</view>
 			</view>
-			<view class='co'>
-				<view class='co_w'></view>
-				<view class="title">
-					优惠券({{couponModel.Title}})
-				</view>
-				<view class='co_l'></view>
+			<view class="ticket-right">
+				<view class="number">{{couponModel.Money}}</view>
+				<view class="text">¥</view>
 			</view>
 		</view>
-		<view class="split-line"></view>
-		<view class="tip">
-			<view class="conditions" wx:if="{{couponModel.LimitTime==0}}">
-				有效期：
-				<view>永久有效</view>
-			</view>
-			<view class="conditions" wx:else>
-				有效期：{{util.formatTime(couponModel.EndTime,"Y/M/D")}}
-			</view>
-			<!-- <l-button type="warning" wx:if="{{couponModel.Status==0}}">未使用</l-button>
-			<l-button type="warning" wx:if="{{couponModel.Status==1}}">已使用</l-button>
-			<l-button type="warning" wx:if="{{couponModel.Status==2}}">已过期</l-button> -->
+		<view class="ticket-container-bottom">
+			<l-collapse>
+				<l-collapse-item l-body-class="l-body-class" l-title-class="l-title-class" customTitle="{{true}}">
+					<!--自定义标题-->
+					<view class="title" slot="title">
+						<view class="ticket-detail-container">使用规则
+							<l-icon name="down" size="16" color="#999"/>
+						</view>
+					</view>
+					<text >{{couponModel.Remark ?couponModel.Remark:'暂无'}}</text>
+				</l-collapse-item>
+			</l-collapse>
 		</view>
 	</view>
-</view>
 
-<content-card class="content11" name="使用说明" cardPadding>
-	<text >{{couponModel.Remark ?couponModel.Remark:'暂无'}}</text>
 
-</content-card>
+<!--<view class="inner-container">-->
+<!--	<view class="wrapper" >-->
+<!--		<view class="content">-->
+<!--			<view class="money">-->
+<!--				<text>¥</text>{{couponModel.Money}}-->
+<!--			</view>-->
+<!--			<view class='co'>-->
+<!--				<view class='co_w'></view>-->
+<!--				<view class="title">-->
+<!--					优惠券({{couponModel.Title}})-->
+<!--				</view>-->
+<!--				<view class='co_l'></view>-->
+<!--			</view>-->
+<!--		</view>-->
+<!--		<view class="split-line"></view>-->
+<!--		<view class="tip">-->
+<!--			<view class="conditions" wx:if="{{couponModel.LimitTime==0}}">-->
+<!--				有效期：-->
+<!--				<view>永久有效</view>-->
+<!--			</view>-->
+<!--			<view class="conditions" wx:else>-->
+<!--				有效期：{{util.formatTime(couponModel.EndTime,"Y/M/D")}}-->
+<!--			</view>-->
+<!--			&lt;!&ndash; <l-button type="warning" wx:if="{{couponModel.Status==0}}">未使用</l-button>-->
+<!--			<l-button type="warning" wx:if="{{couponModel.Status==1}}">已使用</l-button>-->
+<!--			<l-button type="warning" wx:if="{{couponModel.Status==2}}">已过期</l-button> &ndash;&gt;-->
+<!--		</view>-->
+<!--	</view>-->
+<!--</view>-->
+
+<!--<content-card class="content11" name="使用说明" cardPadding>-->
+<!--	<text >{{couponModel.Remark ?couponModel.Remark:'暂无'}}</text>-->
+
+<!--</content-card>-->
 
 <content-card class="content11" name="优惠券二维码" cardPadding>
 	<cover-view class="cover-view" wx:if="{{showCoupon}}">
