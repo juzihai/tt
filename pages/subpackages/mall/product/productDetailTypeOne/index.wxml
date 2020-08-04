@@ -54,7 +54,7 @@
 
 		<content-card class="container " name="取消政策与服务" cardPadding="{{false}}" bind:tapping="onMore" wx:if='{{row}}'>
 			<view class="intro">
-				<s-table hasBorder='yes' tdWidth='175' s-class-header='my-class' s-class-row='my-class-row' headers='{{headers}}' list='{{row}}'></s-table>
+				<s-table hasBorder='yes' tdWidth='{{tdWidth}}' s-class-header='my-class' s-class-row='my-class-row' headers='{{headers}}' list='{{row}}'></s-table>
 			</view>
 		</content-card>
 

@@ -1,7 +1,8 @@
 // pages/subpackages/mall/product/productDetailTypeOne/index.js
-import {getWindowHeightRpx} from "../../../../../utils/system";
+import {getSystemSize, getWindowHeightRpx, getWindowWidthtRpx} from "../../../../../utils/system";
 import {HotelMaterialType} from "../../../../../models/hotelMaterialType";
 import {HotelRoomType} from "../../../../../models/hotelRoomType";
+import {px2rpx} from "../../../../../miniprogram_npm/lin-ui/utils/util";
 const app = getApp();
 Page({
 
@@ -14,11 +15,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
+    const windowWidth = await getWindowWidthtRpx()
     const windowHeight = await getWindowHeightRpx();
     const h = windowHeight - 100; // 100 是底部tabbar的高度  自定义的tabbar高度是不包含在 windowHeight里的
+    const tdWidth =(windowWidth-10)/2
+
     let obj=JSON.parse(options.obj)
 
     this.setData({
+      tdWidth,
       obj,
       spu:obj.spu,
       selectDay:obj.selectDay,

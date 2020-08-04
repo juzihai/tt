@@ -11,6 +11,12 @@ const getSystemSize = async function () {
   }
 }
 
+const getWindowWidthtRpx = async function () {
+  const res = await getSystemSize();
+  const w = res.windowWidth
+  return w;
+}
+
 const getWindowHeightRpx = async function () {
   const res = await getSystemSize();
   const h = px2rpx(res.windowHeight);
@@ -19,5 +25,6 @@ const getWindowHeightRpx = async function () {
 
 export {
   getSystemSize,
-  getWindowHeightRpx
+  getWindowHeightRpx,
+  getWindowWidthtRpx
 }

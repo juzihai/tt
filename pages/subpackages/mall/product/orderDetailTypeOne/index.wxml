@@ -15,7 +15,7 @@
             <view class="right-container">
                 <text class="title">{{order.RoomTypeName}}</text>
                 <text class="subTitle">{{order.TotalRoom}}间，</text>
-                <text class="subTitle">{{order.StartValidityTime}}~{{item.EndValidityTime}}</text>
+                <text class="subTitle">{{order.StartValidityTime}} ~ {{order.EndValidityTime}}</text>
 <!--                <text class="title">{{item.RoomTypeName}}</text>-->
 <!--                 <l-price color="red" value-size="28" unit-size="20" autofix value="{{item.ProductMoney}}"></l-price> -->
 <!--                <text class="subTitle">x {{item.TotalRoom}}</text>-->

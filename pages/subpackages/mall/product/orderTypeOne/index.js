@@ -92,7 +92,11 @@ Page({
     }
 
   },
-  async formSubmit(e) {
+
+
+
+
+  formSubmit: app.util.throttle(async function (e) {
     const params = e.detail.value
 
     // 传入表单数据，调用验证方法
@@ -133,5 +137,5 @@ Page({
       })
     }
 
-  }
+  }, 1000)
 })

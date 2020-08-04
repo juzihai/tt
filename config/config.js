@@ -31,7 +31,7 @@ const config = {
 
     /** 电信地址*/
       "apiBaseUrl": 'https://company.tc-btc.com/',
-      "EnterpriseID": "8755", //wxa93d39f1484ac31a 天津金朵科技测试
+      "EnterpriseID": "8755", //wx851b067e0eec4ca4 天津金朵科技测试
 }
 const tips = {
   //基础Http请求码 
