@@ -1,7 +1,6 @@
 <!--pages/subpackages/mall/cards/activityCouponDetail/index.wxml-->
 <wxs src="../../../../../utils/util.wxs" module="util"></wxs>
 
-
 	<view class="ticket-container">
 		<view class="ticket-container-top">
 			<view class="ticket-left">
@@ -28,7 +27,6 @@
 			</l-collapse>
 		</view>
 	</view>
-
 
 <!--<view class="inner-container">-->
 <!--	<view class="wrapper" >-->
@@ -68,5 +66,6 @@
 <content-card class="content11" name="优惠券二维码" cardPadding>
 	<cover-view class="cover-view" wx:if="{{showCoupon}}">
 		<canvas canvas-id='canvas' style="width:{{code_w}}px; height:{{code_w}}px;" bindlongtap='save'></canvas>
+		<text class="bottom-text">核销码：{{GUID}}</text>
 	</cover-view>
 </content-card>

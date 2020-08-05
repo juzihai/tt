@@ -55,6 +55,7 @@ Page({
       }
     });
     this.setData({
+      GUID,
       couponModel,
       showCoupon:true
     })

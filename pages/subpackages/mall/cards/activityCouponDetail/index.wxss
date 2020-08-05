@@ -128,7 +128,7 @@
 }
 .cover-view{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20rpx;
@@ -224,4 +224,9 @@
 
 .ticket-detail-container l-icon{
   margin-left: 6rpx;
+}
+
+.bottom-text{
+  margin-top: 10rpx;
+  font-weight: bold;
 }

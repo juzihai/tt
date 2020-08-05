@@ -20,41 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b51d9da6-a886-414d-8d26-f2f4f8246f3a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/coupon/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/coupon/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/coupon/index.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/coupon/index.wxss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/imgs/coupon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/activityCouponCustomerReceive.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/subpackages/mall/cards/activityCouponDetail/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/subpackages/mall/cards/activityCouponDetail/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/subpackages/mall/cards/activityCouponDetail/index.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/subpackages/mall/cards/activityCouponDetail/index.wxss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/subpackages/mall/cards/activityCouponList/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/subpackages/mall/cards/activityCouponList/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/subpackages/mall/cards/activityCouponList/index.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/subpackages/mall/cards/activityCouponList/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/miniprogram_npm/lin-ui/step/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram_npm/lin-ui/step/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/area.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/area.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/navigator/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/navigator/index/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/navigator/index/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/navigator/index/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/navigator/index/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/navigator/index/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/navigator/mine/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/navigator/mine/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/navigator/mine/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/navigator/mine/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/cards/coupon/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/cards/coupon/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/product/orderDetail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/product/orderDetail/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/propaganda/article/articleDetail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/propaganda/article/articleDetail/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/cards/activityCouponDetail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/cards/activityCouponDetail/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/cards/activityCouponDetail/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/cards/activityCouponDetail/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/cards/activityCouponDetail/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/cards/activityCouponDetail/index.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/cards/activityCouponList/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/cards/activityCouponList/index.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/product/productDetailTypeOne/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/product/productDetailTypeOne/index.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/http-a.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/http-a.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/http.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/page.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
