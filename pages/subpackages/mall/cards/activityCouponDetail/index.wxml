@@ -14,8 +14,8 @@
 			</view>
 		</view>
 		<view class="ticket-container-bottom">
-			<l-collapse>
-				<l-collapse-item l-body-class="l-body-class" l-title-class="l-title-class" customTitle="{{true}}">
+			<l-collapse expand-item-id="{{expandArray}}">
+				<l-collapse-item l-body-class="l-body-class" l-title-class="l-title-class" customTitle="{{true}}" item-id="0">
 					<!--自定义标题-->
 					<view class="title" slot="title">
 						<view class="ticket-detail-container">使用规则
@@ -63,9 +63,9 @@
 
 <!--</content-card>-->
 
-<content-card class="content11" name="优惠券二维码" cardPadding>
+<content-card class="bottom-content" name="优惠券二维码" cardPadding>
 	<cover-view class="cover-view" wx:if="{{showCoupon}}">
 		<canvas canvas-id='canvas' style="width:{{code_w}}px; height:{{code_w}}px;" bindlongtap='save'></canvas>
-		<text class="bottom-text">核销码：{{GUID}}</text>
 	</cover-view>
+	<view class="bottom-text">核销码：{{GUID}}</view>
 </content-card>

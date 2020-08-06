@@ -111,7 +111,7 @@
     padding-right: 20rpx;
 }
 .title {
-    color: #eee;
+    /* color: #eee; */
     font-size: 30rpx;
 }
 .conditions {
@@ -178,7 +178,7 @@ QRCode-container{
     flex-direction: column;
     border: 1px #eee dotted;
     border-radius: 20rpx;
-    margin: 10rpx;
+    margin: 20rpx;
     background-color: white;
 }
 

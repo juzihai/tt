@@ -115,7 +115,12 @@
 /*  border-style: none;*/
 /*  width: 100rpx;*/
 /*}*/
-
+.bottom-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .canvas{
   display: flex;
@@ -229,4 +234,8 @@
 .bottom-text{
   margin-top: 10rpx;
   font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
