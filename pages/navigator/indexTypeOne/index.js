@@ -3,7 +3,7 @@ var Moment = require("../../../utils/moment");
 import {
   HotelRoomType
 } from "../../../models/hotelRoomType";
-
+import { AppModel} from '../../../models/app.js';
 const app = getApp();
 import {
   HotelRotationchart
@@ -147,8 +147,27 @@ Page({
       url: `/pages/subpackages/mall/product/productImages/index`,
     })
   },
-  onTap(e){
-    console.log(e)
+  async onTap(e){
+    // 用户授权
+    await AppModel.getSetting()
+    let phone = wx.getStorageSync('phoneNumber')
+    if(!phone){
+      wx.showModal({
+        title: '提示',
+        content: '您还未登录是否现在登录',
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            wx.switchTab({
+              url: '/pages/navigator/mine/index',
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+      return
+    }
     let spu=e.detail
     let obj={
        spu,
@@ -162,8 +181,27 @@ Page({
       url: `/pages/subpackages/mall/product/productDetailTypeOne/index?obj=${JSON.stringify(obj)}`,
     })
   },
-  onRight(e){
-    console.log(e)
+ async onRight(e){
+       // 用户授权
+       await AppModel.getSetting()
+       let phone = wx.getStorageSync('phoneNumber')
+       if(!phone){
+         wx.showModal({
+           title: '提示',
+           content: '您还未登录是否现在登录',
+           success(res) {
+             if (res.confirm) {
+               console.log('用户点击确定')
+               wx.switchTab({
+                 url: '/pages/navigator/mine/index',
+               })
+             } else if (res.cancel) {
+               console.log('用户点击取消')
+             }
+           }
+         })
+         return
+       }
     let spu=e.detail
     let obj={
       ID:spu.ID,

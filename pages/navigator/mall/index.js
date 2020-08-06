@@ -33,7 +33,7 @@ Page({
     bannerG: null,
     themeH: null,
     spuPaging: null,
-    loadingType: "loading",
+    // loadingType: "loading",
 
   },
 

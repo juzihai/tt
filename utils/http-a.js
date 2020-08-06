@@ -35,7 +35,7 @@ class Http {
 
         },
         success: (res) => {
-
+          wx.hideLoading();
           //这里可以根据自己项目服务端定义的正确的返回码来进行，接口请求成功后的处理，当然也可以在这里进行报文加解密的统一处理
 
           const statusCode = res.statusCode.toString()
@@ -53,11 +53,12 @@ class Http {
           }
         },
         fail: (error) => {
+           wx.hideLoading();
           _that._show_error(1)
           reject(error);
         },
         complete: (res) => {
-          wx.hideLoading();
+         
           let a=JSON.stringify(data)
           console.log('接口=', url, '参数=', data,a, '返回参数', res );
         }
