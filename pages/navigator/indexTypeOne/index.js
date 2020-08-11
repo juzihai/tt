@@ -64,14 +64,18 @@ Page({
       EndValidityTime: checkOutDate,
       selectDay:Moment(checkOutDate).differ(checkInDate)
     })
+    this.initDataAll()
+    this.initBottomList()
   },
   onShow(){
     let getDate = wx.getStorageSync("ROOM_SOURCE_DATE");
-    this.setData({
-      StartValidityTime: getDate.checkInDate,
-      EndValidityTime: getDate.checkOutDate,
-      selectDay:Moment(getDate.checkOutDate).differ(getDate.checkInDate)
-    })
+    if(getDate){
+      this.setData({
+        StartValidityTime: getDate.checkInDate,
+        EndValidityTime: getDate.checkOutDate,
+        selectDay:Moment(getDate.checkOutDate).differ(getDate.checkInDate)
+      })
+    }
     this.initDataAll()
     this.initBottomList()
   },
@@ -92,6 +96,7 @@ Page({
   async initBottomList() {
     let StartValidityTime= app.util.tsFormatTime(this.data.StartValidityTime,'YMD')
     let EndValidityTime= app.util.tsFormatTime(this.data.EndValidityTime,'YMD')
+
     let obj = {
       "EnterpriseID": app.config.EnterpriseID,
       "StartValidityTime":StartValidityTime,
@@ -100,6 +105,7 @@ Page({
       "Page": 1,
       "Limit": 10
     }
+
     const hotelRoomModel = HotelRoomType.PageSearch(obj)
     this.data.hotelRoomModel = hotelRoomModel
     const hotelRoom = await hotelRoomModel.getMoreData();

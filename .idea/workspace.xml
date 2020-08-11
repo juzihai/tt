@@ -21,10 +21,16 @@
   <component name="ChangeListManager">
     <list default="true" id="b51d9da6-a886-414d-8d26-f2f4f8246f3a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/cards/activityCouponDetail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/cards/activityCouponDetail/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/cards/activityCouponDetail/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/cards/activityCouponDetail/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/cards/activityCouponDetail/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/cards/activityCouponDetail/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/cards/activityCouponList/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/cards/activityCouponList/index.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/navigator/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/navigator/index/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/navigator/indexTypeOne/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/navigator/indexTypeOne/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/navigator/mine/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/navigator/mine/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/navigator/mine/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/navigator/mine/index.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/product/orderDetail/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/product/orderDetail/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/product/orderDetailTypeOne/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/product/orderDetailTypeOne/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/product/orderList/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/product/orderList/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/product/orderListTypeOne/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/product/orderListTypeOne/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/product/orderTypeOne/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/product/orderTypeOne/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/http-a.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/http-a.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +80,7 @@
       <workItem from="1593477821924" duration="8728000" />
       <workItem from="1593574240922" duration="13000" />
       <workItem from="1596608090964" duration="7804000" />
+      <workItem from="1597127130290" duration="2691000" />
     </task>
     <servers />
   </component>

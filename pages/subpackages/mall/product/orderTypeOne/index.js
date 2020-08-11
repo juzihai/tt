@@ -132,10 +132,52 @@ Page({
     }
     const order = await HotelRoomType.HotelPayOrder(obj)
     if (order){
-      wx.navigateTo({
-        url: '/pages/subpackages/mall/product/orderListTypeOne/index',
-      })
+      // wx.navigateTo({
+      //   url: '/pages/subpackages/mall/product/orderListTypeOne/index',
+      // })
+      this.wxPay(order)
     }
 
-  }, 1000)
+  }, 1000),
+
+    //支付
+    wxPay: function (obj) {
+      let that =this;
+  
+        wx.requestPayment({
+          'timeStamp': obj.wcPayDataTimeStamp,
+          'nonceStr': obj.wcPayDataNonceStr,
+          'package': obj.wcPayDataPackage,
+          'signType': obj.wcPayDataSignType,
+          'paySign': obj.wcPayDataPaySign,
+          'success': function (res) {
+            console.log('请求出数据啦1', res)
+            // payModel.OrderNotice(that.data.orderNumber).then(res=>{
+              wx.showModal({
+                title: '提示',
+                content: '您已支付成功,即将跳转到订单列表',
+                showCancel:false,
+                success(res){
+                  wx.navigateTo({
+                    url: '/pages/subpackages/mall/product/orderListTypeOne/index',
+                  })
+                }
+              })
+            // })
+  
+          },
+          'fail': function (res) {
+            console.log('请求出数据啦2', res)
+            var errMsg = res.errMsg;
+            if (errMsg == "requestPayment:fail cancel")
+              wx.showToast({
+                title: '已取消支付',
+                icon: 'none',
+                duration: 2000
+              })
+          } 
+        });
+  
+    },
+    
 })

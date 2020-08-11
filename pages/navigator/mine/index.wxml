@@ -131,3 +131,10 @@
 
 	</view>
 </view>
+      <view class="contact-content">
+        <l-button special="true" open-type="contact">
+          <view class="contact-share-box">
+             <l-icon size="40" name="customer-service" color="#3963bc" />
+          </view>
+        </l-button>
+      </view>

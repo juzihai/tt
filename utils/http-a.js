@@ -60,7 +60,8 @@ class Http {
         complete: (res) => {
          
           let a=JSON.stringify(data)
-          console.log('接口=', url, '参数=', data,a, '返回参数', res );
+          let b=JSON.stringify(res.data)
+          console.log('接口=', url, '参数=',a, '返回参数', b );
         }
       })
     });

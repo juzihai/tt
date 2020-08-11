@@ -172,3 +172,28 @@ page{
   color: #bbb;
   font-size: 20rpx;
 }
+
+/* 悬浮会话 */
+
+.contact-content {
+  margin-bottom: 20rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  /* line-height: 92rpx */
+  position: fixed;
+  right: 40rpx;
+  bottom: 160rpx;
+  z-index: 2;
+}
+
+.contact-share-box {
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  box-shadow: 0px 1px 8px 0px rgba(220, 220, 220, 0.5);
+}
