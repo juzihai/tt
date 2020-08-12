@@ -25,6 +25,18 @@ class File extends Http {
       }
     })
   }
+  //1.用户扫描物料二维码后提交数据（若发正式版无需接收返回值）
+  static MaterielCustomersAdd({ EnterpriseID, OpenID, MaterielID }) {
+    return Http.request({
+      url: "api/V1/MaterielCustomers/Add",
+      data: {
+        EnterpriseID,
+        OpenID,
+        MaterielID
+      }
+    })
+  }
+
 
   //3. 生成二维码（前后台通用）
   static getQRcode({ EnterpriseID, ChannelCode, ChannelName, type }) {

@@ -16,7 +16,6 @@ Page({
    */
   onLoad: function(options) {
 
-    
   },
   onShow(){
     this.initAllData()
@@ -125,17 +124,20 @@ Page({
     }else{
       let messageJson = await Order.WXPay(obj)
       wx.requestPayment({
-        'timeStamp': messageJson.timeStamp,
-        'nonceStr': messageJson.nonceStr,
-        'package': messageJson.package,
-        'signType': messageJson.signType,
-        'paySign': messageJson.paySign,
+        'timeStamp': messageJson.wcPayDataTimeStamp,
+        'nonceStr': messageJson.wcPayDataNonceStr,
+        'package': messageJson.wcPayDataPackage,
+        'signType': messageJson.wcPayDataSignType,
+        'paySign': messageJson.wcPayDataPaySign,
         'success': function (res) {
           wx.showModal({
             title: '提示',
             content: '付款成功',
             showCancel: false,
             success() {
+              that.setData({
+                Status: 1
+              })
               that.initAllData()
             }
           })

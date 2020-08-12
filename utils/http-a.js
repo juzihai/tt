@@ -61,7 +61,7 @@ class Http {
          
           let a=JSON.stringify(data)
           let b=JSON.stringify(res.data)
-          console.log('接口=', url, '参数=',a, '返回参数', b );
+          console.log('接口=', url, '参数=',data, '返回参数', res );
         }
       })
     });

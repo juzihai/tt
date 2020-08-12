@@ -44,7 +44,7 @@ Page({
             app.openIDCallback = OpenID => {
                 console.log('openid回调', OpenID)
                 switch (data.type) {
-                    case 0:
+                    case 0://员工二维码
                         ChannleCode = 'ABCDEFGH'
                         ChannleName = '员工二维码'
                         let JsonCode = JSON.parse(data.JsonCode)
@@ -61,16 +61,25 @@ Page({
                         }
                         File.SaveChannleByPCQRCode(obj)
                         break;
-                    case 1:
+                    case 1://渠道二维码
                         ChannleCode = data.GUID
                         ChannleName = data.JsonCode
-                        const obj1 = {
+                        let obj1 = {
                             "EnterpriseID": app.config.EnterpriseID,
                             "OpenID": OpenID,
                             "ChannleCode": ChannleCode,
                             "ChannleName": ChannleName,
                         }
                         File.SaveChannleByPCQRCode(obj1)
+                        break;
+                    case 2://物料二维码
+                        let MaterielID = data.JsonCode
+                        let obj2 = {
+                            "EnterpriseID": app.config.EnterpriseID,
+                            "OpenID": OpenID,
+                            "MaterielID": MaterielID,
+                        }
+                        File.MaterielCustomersAdd(obj2)
                         break;
                     default:
                 }

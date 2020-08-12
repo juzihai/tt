@@ -1,6 +1,7 @@
 // pages/navigator/index/index.js
+import {File} from "../../../models/file";
+
 const app = getApp();
-import naviConfigs from './navi.js'
 import {
   Product
 } from "../../../models/product";
@@ -41,8 +42,62 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function(options) {
-    // 分享后的页面打开先进入首页再跳转到分享的页面,首页的js要做如下设置
-    if (options.url) {
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline']
+    })
+    const scene = decodeURIComponent(options.scene)
+    console.log('???', scene)
+    if (scene != 'undefined') {
+      const data = await File .SearchModelDetails({ChannleCode: scene})
+      let ChannleCode;
+      let ChannleName;
+      app.openIDCallback = OpenID => {
+        console.log('openid回调', OpenID)
+        switch (data.type) {
+          case 0://员工二维码
+            ChannleCode = 'ABCDEFGH'
+            ChannleName = '员工二维码'
+            let JsonCode = JSON.parse(data.JsonCode)
+            let SharOpenID = JsonCode.SharOpenID
+            if (SharOpenID) {
+              app.globalData.SharOpenID = SharOpenID
+              wx.setStorageSync('SharOpenID', SharOpenID)
+            }
+            let obj = {
+              "EnterpriseID": app.config.EnterpriseID,
+              "OpenID": OpenID,
+              "ChannleCode": ChannleCode,
+              "ChannleName": ChannleName,
+            }
+            File.SaveChannleByPCQRCode(obj)
+            break;
+          case 1://渠道二维码
+            ChannleCode = data.GUID
+            ChannleName = data.JsonCode
+            let obj1 = {
+              "EnterpriseID": app.config.EnterpriseID,
+              "OpenID": OpenID,
+              "ChannleCode": ChannleCode,
+              "ChannleName": ChannleName,
+            }
+            File.SaveChannleByPCQRCode(obj1)
+            break;
+          case 2://物料二维码
+            let MaterielID = data.JsonCode
+            let obj2 = {
+              "EnterpriseID": app.config.EnterpriseID,
+              "OpenID": OpenID,
+              "MaterielID": MaterielID,
+            }
+            File.MaterielCustomersAdd(obj2)
+            break;
+          default:
+        }
+
+      }
+
+    } else if (options.url) {
       let url = decodeURIComponent(options.url);
 
       let SharOpenID = decodeURIComponent(options.SharOpenID);

@@ -57,7 +57,7 @@ App({
       console.log(res)
       let shopInfo = res
 
-      if (this.shopInfoReadyCallback) {2
+      if (this.shopInfoReadyCallback) {
       }
       wx.setStorageSync('shopInfo', shopInfo)
 
@@ -116,9 +116,12 @@ App({
         AuthorizationType: 0,
         QrType: launch.scene
       })
-      if (this.openIDCallback) {
-        this.openIDCallback(OpenID)
+      if(register && register.ResultBool){
+        if (this.openIDCallback) {
+          this.openIDCallback(OpenID)
+        }
       }
+
       let obj = {
         EnterpriseID: this.config.EnterpriseID,
         OpenID: wx.getStorageSync("OpenID")

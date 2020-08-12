@@ -1,6 +1,6 @@
 <!--pages/subpackages/mall/product/orderList/index.wxml-->
     <wxs src="../../../../../utils/util.wxs" module="util"></wxs>
-<l-segment bind:linchange="changeTabs" l-class="aaa" item-width="30">
+<l-segment bind:linchange="changeTabs" l-class="aaa" item-width="30" active-key="{{Status}}">
   <l-segment-item tab="全部" key="-1" />
   <l-segment-item tab="待付款" key="0" />
   <l-segment-item tab="待发货" key="1" />
@@ -40,7 +40,7 @@
       <l-countdown l-class="countdown-text" l-time-class="countdown-blue" time-type="second" time="{{util.dt(item.CreationTime)}}" format="{%m}:{%s}" bind:linend="onTime" />
     </view> -->
     <l-button size="mini" style='margin-left:10rpx' catchtap="onCancelOrder" data-cell="{{item}}">取消订单</l-button>
-    <!-- <l-button size="mini" style='margin-left:10rpx' catchtap="onPay" data-cell="{{item}}">支付</l-button> -->
+    <l-button size="mini" style='margin-left:10rpx' catchtap="onPay" data-cell="{{item}}">支付</l-button>
   </view>
 
   <view class="sub-container" wx:if="{{item.Status==1}}">
