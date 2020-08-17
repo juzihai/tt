@@ -10,8 +10,8 @@
 
 </content-card>
 
-<content-card name="" cardPadding>
+<!-- <content-card name="" cardPadding> -->
     <view class="spu">
         <l-water-flow generic:l-water-flow-item="s-spu-image" bind:linitemtap="onImg"></l-water-flow>
     </view>
-</content-card>
+<!-- </content-card> -->

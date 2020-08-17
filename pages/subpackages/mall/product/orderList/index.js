@@ -130,14 +130,15 @@ Page({
         'signType': messageJson.wcPayDataSignType,
         'paySign': messageJson.wcPayDataPaySign,
         'success': function (res) {
+          Order.OrderLocking( item.OrderNo)
           wx.showModal({
             title: '提示',
             content: '付款成功',
             showCancel: false,
             success() {
-              that.setData({
-                Status: 1
-              })
+              // that.setData({
+              //   Status: 1
+              // })
               that.initAllData()
             }
           })

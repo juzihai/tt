@@ -15,15 +15,15 @@ Page({
       { img: '/imgs/mine/bar1.png', name: '全部订单', url: '/pages/subpackages/mall/product/orderList/index' },
       { img: '/imgs/mine/bar2.png', name: '我的优惠券', url: '/pages/subpackages/mall/cards/couponList/index' },
       { img: '/imgs/mine/bar3.png', name: '联系我们', url: '/pages/subpackages/mall/company/staffList/index?pagePath=mine' },
-      { img: '/imgs/mine/bar4.png', name: '我的积分', url: '' },
+      { img: '/imgs/mine/bar4.png', name: '我的海报', url: '/pages/subpackages/propaganda/poster/posterList/index' },
     ],
     listArr: [
-      { name: '我的海报', url: '/pages/subpackages/propaganda/poster/posterList/index' },
+      // { name: '我的海报', url: '/pages/subpackages/propaganda/poster/posterList/index' },
       { name: '酒店订单', url: '/pages/subpackages/mall/product/orderListTypeOne/index' }, //
       { name: '活动优惠券', url: '/pages/subpackages/mall/cards/activityCouponList/index' }, //
-      { name: '我的活动', url: '' },
-      { name: '我的收藏', url: '' },//
-      { name: '我的浏览', url: '' },
+      // { name: '我的活动', url: '' },
+      // { name: '我的收藏', url: '' },//
+      // { name: '我的浏览', url: '' },
     ],
     phoneNumber: null,
     signIn: '点击签到',

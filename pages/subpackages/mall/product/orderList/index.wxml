@@ -22,6 +22,7 @@
     <text class="red" wx:if="{{item.Status==7}}">后台关闭</text>
     <text class="red" wx:if="{{item.Status==8}}">用户取消</text>
     <text class="red" wx:if="{{item.Status==9}}">订单超时</text>
+    <text class="red" wx:if="{{item.Status==10}}">处理中</text>
   </view>
   <view class="content">
     <image src="{{item.baseUrl+item.ProductListWx[0].ProductImage}}"></image>

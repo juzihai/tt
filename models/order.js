@@ -183,6 +183,16 @@ class Order extends Http {
     })
   }
 
+    //订单回调处理
+    static OrderLocking(OrderNo) {
+      return Http.request({
+        url: "api/V1/Order//OrderLocking",
+        data: {
+          OrderNo
+        }
+      })
+    }
+
 }
 
 export {

@@ -47,7 +47,7 @@ App({
     this._getShopInfo()
     this._login()
     this._addLocation(1)
-
+ 
   },
   onShow(options) {
     wx.setStorageSync('launch', options)

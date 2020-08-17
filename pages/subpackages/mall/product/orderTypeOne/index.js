@@ -164,7 +164,7 @@ Page({
                 }
               })
             // })
-  
+
           },
           'fail': function (res) {
             console.log('请求出数据啦2', res)
