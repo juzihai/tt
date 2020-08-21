@@ -1,6 +1,7 @@
 // 配置项
 const config = {
   /** 正式地址*/
+  
   // "apiBaseUrl": 'https://company.gzchinaunion.com/',
   // "EnterpriseID": "1824",//A杜尚美术 wxd761439fbf570705 
   // "EnterpriseID": "5385",//A成都焕颜坊美容院 wxc55be904eb7097aa 
@@ -36,7 +37,7 @@ const config = {
 
     /** 电信地址*/
       "apiBaseUrl": 'https://company.tc-btc.com/',
-      "EnterpriseID": "8755", //wx3a19a07d883c17ae 天津金朵科技测试
+      "EnterpriseID": "8755", //wx3a19a07d883c17ae 电信测试
 
 }
 const tips = {

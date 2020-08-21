@@ -206,7 +206,7 @@ Page({
     
 
     var key = e.currentTarget.dataset.target;
-    const article = company[key];
+    const article =this.data.company[key];
 
     let result = app.towxml(article, 'markdown', {
       // base: 'https://xxx.com',             // 相对资源的base路径
