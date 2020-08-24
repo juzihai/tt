@@ -6,6 +6,7 @@ const config = {
   // "EnterpriseID": "1824",//A杜尚美术 wxd761439fbf570705 
   // "EnterpriseID": "5385",//A成都焕颜坊美容院 wxc55be904eb7097aa 
   // "EnterpriseID": "7645",//A山东阅澜式文化创意有限公司 wx9125ddcfb26323de
+  // "EnterpriseID": "2258",//A创智车业 wx000970c8d427155a
 
   // "EnterpriseID": "4981",//a益清正式 wxdc90f597804fb320
   // "EnterpriseID": "3063",//a融汇正式 wx9b9444c94ae8a071

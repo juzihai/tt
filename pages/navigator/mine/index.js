@@ -254,5 +254,10 @@ Page({
 
     }
   },
+  onService(){
+    wx.makePhoneCall({
+      phoneNumber: '022-27126802',
+    })
+  }
 
 })

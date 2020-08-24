@@ -47,6 +47,10 @@
 				<view class='item_name'>{{item.name}}</view>
 				<image class='arrow ' src='/imgs/mine/arrow.png '></image>
 			</view>
+			<view class="list_item" bindtap='onService' >
+				<view class='item_name'>联系客服</view>
+				<image class='arrow ' src='/imgs/mine/arrow.png '></image>
+			</view>
 		</block>
 	</view>
 	<!-- 切换登录 -->
