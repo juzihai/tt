@@ -1,9 +1,0 @@
-{
-  "usingComponents": {
-    "l-checkbox-group": "/miniprogram_npm/lin-ui/checkbox-group/index",
-    "l-checkbox": "/miniprogram_npm/lin-ui/checkbox/index",
-
-        "ff-canvas": "../../../f2-canvas/f2-canvas"
-  },
-  "navigationBarTitleText": "统计"
-}

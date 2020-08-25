@@ -15,7 +15,6 @@
   <view class="action" >
     <l-button icon="share" size="medium" open-type="share" icon-color="#ffffff" icon-size="32">立即分享</l-button>
   </view>
-
 </view>
 
 <view class="container">

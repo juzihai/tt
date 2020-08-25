@@ -13,6 +13,7 @@ Page({
    */
   onLoad: function (options) {
     var url = options.url;
+    url = decodeURIComponent(url)
     console.log(url)
     this.setData({
       url: url

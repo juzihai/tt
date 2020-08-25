@@ -6,7 +6,8 @@ class Company extends Http {
   //查询企业详情
   static SearchModelDetails(EnterpriseID) {
     return Http.request({
-      url: "api/V1/Company/SearchModelDetailsWX",
+      // url: "api/V1/Company/SearchModelDetailsWX",
+      url: "api/V1/Company/QueryDetail",//新版查询详情
       data: {
         EnterpriseID
       }
