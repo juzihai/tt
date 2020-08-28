@@ -27,7 +27,7 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -251,6 +251,21 @@
 					"id": -1,
 					"name": "酒店提交预定",
 					"pathName": "pages/subpackages/mall/product/orderTypeOne/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/subpackages/mall/product/classiFication/index",
+					"pathName": "pages/subpackages/mall/groupBuying/productList/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/subpackages/mall/groupBuying/productDetail/index",
+					"pathName": "pages/subpackages/mall/groupBuying/productDetail/index",
+					"query": "pid=11",
 					"scene": null
 				}
 			]

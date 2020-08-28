@@ -12,7 +12,7 @@ import {
   HotProduct
 } from "../../../models/hotProduct.js";
 import {
-  HotActivity
+  HotActivity  
 } from "../../../models/hotActivity.js";
 import {
   ProductRotationchart
@@ -259,6 +259,11 @@ Page({
   onActicity() {
     wx.navigateTo({
       url: '/pages/subpackages/mall/cards/coupon/index',
+    })
+  },
+   onActicity1() {
+    wx.navigateTo({
+      url: '/pages/subpackages/mall/groupBuying/productList/index',
     })
   },
   onMore() {

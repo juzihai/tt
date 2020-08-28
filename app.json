@@ -96,6 +96,7 @@
     "s-sale-explain": "/components/sale-explain/index",
     "s-spu-image": "/components/spu-image/index",
     "s-spu-typeOne": "/components/spu-typeOne/index",
+    "s-spu-typeTwo": "/components/spu-typeTwo/index",
     "l-dialog":"/miniprogram_npm/lin-ui/dialog/index",
     "s-coupon": "components/coupon/index"
 
@@ -126,6 +127,11 @@
         "product/addressAdd/index",
         "product/search/index",
         "product/calendar/index",
+        "groupBuying/productList/index",
+        "groupBuying/productDetail/index",
+        "groupBuying/orderPay/index",
+        "groupBuying/orderList/index",
+        "groupBuying/orderDetail/index",
         "activity/activity/index",
         "activity/activityDetail/index",
         "activity/hotActivityDetail/index",

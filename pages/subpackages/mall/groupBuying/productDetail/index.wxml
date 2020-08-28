@@ -1,0 +1,88 @@
+
+
+<scroll-view scroll-y style="height:{{h}}rpx;">
+    <!-- 轮播 -->
+    <swiper class="top" autoplay indicator-dots wx:if="{{banner.Data.length>0}}">
+        <swiper-item wx:for="{{banner.Data}}" wx:key="index">
+            <image class="top" mode="aspectFill" src="{{banner.ShowResourcesUrl}}{{item.ImageUrl}}"></image>
+        </swiper-item>
+    </swiper>
+    <image wx:else class="top" mode="aspectFill" src="{{spu.ShowResourcesUrl+spu.ProductImage}}"></image>
+    <!-- 商品描述 -->
+    <s-spu-description spu="{{spu}}"></s-spu-description>
+
+    <view class="sku-pending">
+        <view class="specs">
+            <text>发货方式：</text>
+            <text wx:if="{{payState.Logistics}}">物流</text>
+            <text wx:if="{{payState.PickUp &&payState.Logistics}}">/</text>
+            <text wx:if="{{payState.PickUp}}">自提</text>
+            <text wx:if="{{!payState.PickUp &&!payState.Logistics}}">暂无</text>
+        </view>
+        <view class="arrow-right">
+            <l-icon name="right" color="#157658" size="24"></l-icon>
+        </view>
+    </view>
+    <swiper autoplay vertical interval="3000" circular class="swiper" duration="1000">
+        <swiper-item wx:for="{{3}}" class="swiper-item" >
+            <!--        <image src="http://i1.sleeve.7yue.pro/assets/09f32ac8-1af4-4424-b221-44b10bd0986e.png" class="swiper"></image>-->
+            <l-list title="用户小红，～" icon="notification" tag-content="还差2人拼成" tag-position="right" gap="10"/>
+            <l-list title="用户小红，用户小王，～" icon="notification" tag-content="还差1人拼成" tagShape="circle" tag-position="right" gap="10"/>
+        </swiper-item>
+    </swiper>
+
+    <!-- <view class="sku-pending">
+      <view class="specs">
+        <text>优惠券：</text>
+        <text>{{spu.ProductName}}</text>
+      </view>
+      <view class="arrow-right">
+        <l-icon name="right" color="#157658" size="24"></l-icon>
+      </view>
+    </view>
+
+
+    <view class="sku-pending">
+      <view class="specs">
+        <text>已选择：</text>
+        <text>{{spu.ProductName}}</text>
+      </view>
+      <view class="arrow-right">
+        <l-icon name="right" color="#157658" size="24"></l-icon>
+      </view>
+    </view>
+
+
+   -->
+
+    <!-- 属性 -->
+    <!-- <view class="explain">
+        <s-sale-explain texts="{{explain}}"></s-sale-explain>
+    </view> -->
+    <!-- 图片展示 -->
+    <!-- <view class="detail-img-container">
+        <block wx:for="{{banner.Data}}" wx:key="index">
+            <image mode="widthFix" class="detail-img" src="{{banner.ShowResourcesUrl}}{{item.ImageUrl}}"></image>
+        </block>
+    </view> -->
+    <view class="detail-img-container" >
+        <towxml nodes="{{article}}"/>
+    </view>
+
+</scroll-view>
+
+<l-popup content-align="bottom" show="{{showRealm}}">
+    <s-realm bind:specadd="onSpecAdd" bind:specchange="onSpecChange" order-way="{{orderWay}}" spu="{{spu}}"></s-realm>
+</l-popup>
+
+
+<s-tap-bar class="tapbar"
+           bind:gotohome="onGotoHome"
+           bind:gotocart="onGotoCart"
+           bind:addtocart="onAddToCart"
+           bind:buy="onBuy"
+           leftTitle="单独购买"
+           rightTitle="发起拼单"
+></s-tap-bar>
+
+<l-toast />

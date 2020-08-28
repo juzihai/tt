@@ -19,7 +19,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b51d9da6-a886-414d-8d26-f2f4f8246f3a" name="Default Changelist" comment="" />
+    <list default="true" id="b51d9da6-a886-414d-8d26-f2f4f8246f3a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/enum.js" beforeDir="false" afterPath="$PROJECT_DIR$/core/enum.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/navigator/mall/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/navigator/mall/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/navigator/mall/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/navigator/mall/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/navigator/mall/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/navigator/mall/index.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/product/productDetail1/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/product/productDetail1/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,6 +60,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -76,6 +86,9 @@
       <workItem from="1597310964736" duration="1886000" />
       <workItem from="1597797278098" duration="5536000" />
       <workItem from="1598326592775" duration="1262000" />
+      <workItem from="1598338021014" duration="10568000" />
+      <workItem from="1598401508262" duration="1062000" />
+      <workItem from="1598574816892" duration="6579000" />
     </task>
     <servers />
   </component>
@@ -99,6 +112,10 @@
       <screen x="0" y="23" width="1680" height="985" />
     </state>
     <state x="674" y="205" key="RollbackChangesDialog/1680.23.1920.1057/0.23.1680.985@0.23.1680.985" timestamp="1593335135977" />
+    <state x="213" y="136" key="SettingsEditor" timestamp="1598338131194">
+      <screen x="0" y="23" width="1680" height="988" />
+    </state>
+    <state x="213" y="136" key="SettingsEditor/0.23.1680.988@0.23.1680.988" timestamp="1598338131194" />
     <state x="548" y="270" width="598" height="490" key="find.popup" timestamp="1593481768265">
       <screen x="0" y="23" width="1680" height="985" />
     </state>

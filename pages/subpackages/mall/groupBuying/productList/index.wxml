@@ -1,0 +1,8 @@
+<!--pages/subpackages/mall/groupBuying/productList/index.wxml-->
+<content-card name="团购说明" cardPadding>
+    我是说明介绍
+</content-card>
+
+<block wx:for="{{3}}">
+    <s-spu-typeTwo spu="{{3}}" bind:tapping="onTap" bind:tappingRight="onRight" startTime="{{StartValidityTime}}" selectDay="{{selectDay}}"/>
+</block>

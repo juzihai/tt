@@ -3,5 +3,6 @@
     "s-realm": "/components/realm/index",
     "s-tap-bar": "/components/tap-bar/index",
     "s-spu-description": "/components/spu-description/index"
+
   }
 }
