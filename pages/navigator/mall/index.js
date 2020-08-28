@@ -17,6 +17,7 @@ import {
 import {
   ProductRotationchart
 } from "../../../models/productRotationchart.js";
+import {GroupBuying} from "../../../models/groupBuying";
 
 Page({
 
@@ -150,6 +151,7 @@ Page({
       "EnterpriseID": app.config.EnterpriseID,
       "Limit": 11
     });
+
     const themeE = await HotProduct.Search(obj);
     const bannerG = await HotActivity.Search(obj);
     let themeESpu = themeE.Data
@@ -176,6 +178,10 @@ Page({
       activekey
     })
     wx.stopPullDownRefresh();
+    const groupBuying =await GroupBuying.QueryEGroupForWx({"EnterpriseId": app.config.EnterpriseID})
+    this.setData({
+      groupBuying
+    })
   },
   /**切换点击 */
   tabSelect(e) {

@@ -187,63 +187,70 @@ Page({
       })
       return
     }
-    if (event.detail.orderWay === ShoppingWay.CART) {
-      let obj = {
-        OpenId: wx.getStorageSync('OpenID'),
-        EnterpriseId: app.config.EnterpriseID,
-        ProductID: spu.ProductID,
-        ProductNum: event.detail.currentSkuCount,
-        ProductType: this.data.pagePath == "HotProduct" ? 2 : 1
-      }
-      const cart = await ShoppingCart.Add(obj)
-      if (cart.Success) {
-        console.log("加入购物车")
+    if(event.detail.orderWay === ShoppingWay.BUY){
 
-        wx.lin.showToast({
-          title: '添加成功~',
-          icon: 'success'
+    }else if (event.detail.orderWay === ShoppingWay.GROUPBUY){
+        wx.navigateTo({
+          url: `/pages/subpackages/mall/product/order/index`,
         })
-      } else {
-        console.log('添加err')
-      }
-
-    } else if (event.detail.orderWay === ShoppingWay.BUY) {
-      let ProductlList = [];
-      let ProductPrice = this.mainPrice(spu.Price, spu.DiscountPrice).price
-      let ProductNum = event.detail.currentSkuCount;
-      let ProductCountPrice = ProductPrice * ProductNum
-      if (!ProductPrice || ProductPrice==0){
-        wx.showModal({
-          title: '提示',
-          content: '暂不能购买',
-          showCancel:false
-        })
-        return
-      }
-      let item = {
-        ClassID: spu.ClassID,
-        ClassName: spu.ClassName,
-        ID: spu.ID,
-        IsBuy: 1.,
-        ProductCountPrice: ProductCountPrice.toFixed(2),
-        ProductID: spu.ProductID,
-        ProductImage: spu.ProductImage,
-        ProductName: spu.ProductName,
-        ProductNum,
-        ProductPrice: ProductPrice.toFixed(2),
-        SalesStock: spu.SalesStock,
-        baseUrl: spu.ShowResourcesUrl
-      }
-      ProductlList.push(item)
-      let ProductModel = {
-        ProductCount: ProductNum,
-        ProductPrice: ProductCountPrice,
-        ProductlListModel: ProductlList
-      }
-      wx.navigateTo({
-        url: `/pages/subpackages/mall/product/order/index?ProductModel= ${JSON.stringify(ProductModel)} & pagePath=productDetail`,
-      })
     }
+    // if (event.detail.orderWay === ShoppingWay.CART) {
+    //   let obj = {
+    //     OpenId: wx.getStorageSync('OpenID'),
+    //     EnterpriseId: app.config.EnterpriseID,
+    //     ProductID: spu.ProductID,
+    //     ProductNum: event.detail.currentSkuCount,
+    //     ProductType: this.data.pagePath == "HotProduct" ? 2 : 1
+    //   }
+    //   const cart = await ShoppingCart.Add(obj)
+    //   if (cart.Success) {
+    //     console.log("加入购物车")
+    //
+    //     wx.lin.showToast({
+    //       title: '添加成功~',
+    //       icon: 'success'
+    //     })
+    //   } else {
+    //     console.log('添加err')
+    //   }
+    //
+    // } else if (event.detail.orderWay === ShoppingWay.BUY) {
+    //   let ProductlList = [];
+    //   let ProductPrice = this.mainPrice(spu.Price, spu.DiscountPrice).price
+    //   let ProductNum = event.detail.currentSkuCount;
+    //   let ProductCountPrice = ProductPrice * ProductNum
+    //   if (!ProductPrice || ProductPrice==0){
+    //     wx.showModal({
+    //       title: '提示',
+    //       content: '暂不能购买',
+    //       showCancel:false
+    //     })
+    //     return
+    //   }
+    //   let item = {
+    //     ClassID: spu.ClassID,
+    //     ClassName: spu.ClassName,
+    //     ID: spu.ID,
+    //     IsBuy: 1.,
+    //     ProductCountPrice: ProductCountPrice.toFixed(2),
+    //     ProductID: spu.ProductID,
+    //     ProductImage: spu.ProductImage,
+    //     ProductName: spu.ProductName,
+    //     ProductNum,
+    //     ProductPrice: ProductPrice.toFixed(2),
+    //     SalesStock: spu.SalesStock,
+    //     baseUrl: spu.ShowResourcesUrl
+    //   }
+    //   ProductlList.push(item)
+    //   let ProductModel = {
+    //     ProductCount: ProductNum,
+    //     ProductPrice: ProductCountPrice,
+    //     ProductlListModel: ProductlList
+    //   }
+    //   wx.navigateTo({
+    //     url: `/pages/subpackages/mall/product/order/index?ProductModel= ${JSON.stringify(ProductModel)} & pagePath=productDetail`,
+    //   })
+    // }
 
     this.setData({
       showRealm: false

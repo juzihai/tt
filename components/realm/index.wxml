@@ -54,11 +54,11 @@
 
     </view>
 
-
 </scroll-view>
 
 <view wx:if="{{!outStock}}" class="bottom-btn" bindtap="onSpecAdd">
     <text wx:if="{{orderWay==='cart'}}">加入购物车</text>
+    <text wx:elif="{{orderWay==='groupBuy'}}">发起团购</text>
     <text wx:else>立即购买</text>
 </view>
 <view wx:else class="bottom-btn out-stock">
