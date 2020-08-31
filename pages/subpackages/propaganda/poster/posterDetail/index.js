@@ -48,15 +48,12 @@ Page({
                         that.calculateImg(productSrc, function (data) {
                             CanvasDrag.changeBgImage(productSrc);
                         })
-
-
                     } else {
                         wx.showToast({
                             title: '产品图片下载失败！',
                             icon: 'none',
                             duration: 2000,
                             success: function () {
-
                             }
                         })
                     }
@@ -128,12 +125,8 @@ Page({
                     type: 'image',
                     url: productSrc,
                 }
-
             })
-
-
         }
-
     },
 
 
