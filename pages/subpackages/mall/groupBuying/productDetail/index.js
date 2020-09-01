@@ -1,4 +1,6 @@
 // pages/subpackages/mall/groupBuying/productDetail/index.js
+import {GroupBuying} from "../../../../../models/groupBuying";
+
 const app = getApp()
 import {
   Product
@@ -33,28 +35,25 @@ Page({
    */
   onLoad: async function(options) {
     let scene = options.scene;
-    let pagePath = options.pagePath;
-
-    let pid, pcode;
+    let pid, ActivityId, pcode;
 
     if (scene) {
       scene = decodeURIComponent(scene);
       pid = scene.pid;
       pcode = scene.pcode;
+      ActivityId = scene.ActivityId;
     } else {
       pid = options.pid;
       pcode = options.pcode;
+      ActivityId = options.ActivityId;
     }
-
-    // const spu = pagePath == "HotProduct" ? await HotProduct.SearchModelDetails(pid) : await Product.SearchModelDetails(pid);
-    // const banner = pagePath == "HotProduct" ? await HotProduct.SearchRotationChart(pid) : await Product.SearchRotationChart(pid);
-
     const windowHeight = await getWindowHeightRpx();
     const h = windowHeight - 100; // 100 是底部tabbar的高度  自定义的tabbar高度是不包含在 windowHeight里的
     this.setData({
       h,
       pid,
       pcode,
+      ActivityId,
     })
 
     this.initAllData()
@@ -68,19 +67,19 @@ Page({
     if(!pid){
       return
     }
-    let obj = {
-      EnterpriseID: app.config.EnterpriseID,
-      ProductID: pid
+    const payState = await OrderAndPayLogic.GetPayAndLogisticsState({EnterpriseID: app.config.EnterpriseID})
+    const spu =await GroupBuying.QueryEGroupProductDetailForWx({ID:pid})
+    let obj={
+      EnterpriseId: app.config.EnterpriseID,
+      ProductCode:this.data.pcode
     }
-    const spu = await Product.RewritePageSearchWX(obj)
-    const banner = await Product.SearchRotationChart(pid)
-    const payState = await OrderAndPayLogic.GetPayAndLogisticsState(obj)
+    const groupList =await GroupBuying.QueryProductEGroupListForWx(obj)
     this.setData({
       spu,
-      banner,
+      groupList,
       payState: payState.ResultValue
     })
-    let result = app.towxml(spu.ProductDetail, 'markdown', {
+    let result = app.towxml(spu.Info, 'markdown', {
       // base: 'https://xxx.com',             // 相对资源的base路径
       // theme: 'dark',                   // 主题，默认`light`
       events: {                    // 为元素绑定的事件方法
@@ -122,14 +121,14 @@ Page({
     }
   },
 
-  onAddToCart(event) {
+  onBuy(event) {
     this.setData({
       showRealm: true,
       orderWay: ShoppingWay.BUY
     })
   },
 
-  onBuy(event) {
+  onGroupBuy(event) {
     this.setData({
       showRealm: true,
       orderWay: ShoppingWay.GROUPBUY
@@ -162,7 +161,7 @@ Page({
       return
     }
     let spu = event.detail.spu;
-    if (spu.SalesStock == 0) {
+    if (spu.Stock == 0) {
       wx.showModal({
         title: '提示',
         content: '暂无库存，请联系店铺管理员',
@@ -187,71 +186,43 @@ Page({
       })
       return
     }
+
+    let ProductPrice;
     if(event.detail.orderWay === ShoppingWay.BUY){
-
+      ProductPrice=spu.Price
     }else if (event.detail.orderWay === ShoppingWay.GROUPBUY){
-        wx.navigateTo({
-          url: `/pages/subpackages/mall/product/order/index`,
-        })
+      ProductPrice=spu.GroupPrice
     }
-    // if (event.detail.orderWay === ShoppingWay.CART) {
-    //   let obj = {
-    //     OpenId: wx.getStorageSync('OpenID'),
-    //     EnterpriseId: app.config.EnterpriseID,
-    //     ProductID: spu.ProductID,
-    //     ProductNum: event.detail.currentSkuCount,
-    //     ProductType: this.data.pagePath == "HotProduct" ? 2 : 1
-    //   }
-    //   const cart = await ShoppingCart.Add(obj)
-    //   if (cart.Success) {
-    //     console.log("加入购物车")
-    //
-    //     wx.lin.showToast({
-    //       title: '添加成功~',
-    //       icon: 'success'
-    //     })
-    //   } else {
-    //     console.log('添加err')
-    //   }
-    //
-    // } else if (event.detail.orderWay === ShoppingWay.BUY) {
-    //   let ProductlList = [];
-    //   let ProductPrice = this.mainPrice(spu.Price, spu.DiscountPrice).price
-    //   let ProductNum = event.detail.currentSkuCount;
-    //   let ProductCountPrice = ProductPrice * ProductNum
-    //   if (!ProductPrice || ProductPrice==0){
-    //     wx.showModal({
-    //       title: '提示',
-    //       content: '暂不能购买',
-    //       showCancel:false
-    //     })
-    //     return
-    //   }
-    //   let item = {
-    //     ClassID: spu.ClassID,
-    //     ClassName: spu.ClassName,
-    //     ID: spu.ID,
-    //     IsBuy: 1.,
-    //     ProductCountPrice: ProductCountPrice.toFixed(2),
-    //     ProductID: spu.ProductID,
-    //     ProductImage: spu.ProductImage,
-    //     ProductName: spu.ProductName,
-    //     ProductNum,
-    //     ProductPrice: ProductPrice.toFixed(2),
-    //     SalesStock: spu.SalesStock,
-    //     baseUrl: spu.ShowResourcesUrl
-    //   }
-    //   ProductlList.push(item)
-    //   let ProductModel = {
-    //     ProductCount: ProductNum,
-    //     ProductPrice: ProductCountPrice,
-    //     ProductlListModel: ProductlList
-    //   }
-    //   wx.navigateTo({
-    //     url: `/pages/subpackages/mall/product/order/index?ProductModel= ${JSON.stringify(ProductModel)} & pagePath=productDetail`,
-    //   })
-    // }
-
+    let ProductNum = event.detail.currentSkuCount;
+    let ProductCountPrice = ProductPrice * ProductNum
+    let ProductlList = [];
+    if (!ProductPrice || ProductPrice==0){
+      wx.showModal({
+        title: '提示',
+        content: '暂不能购买',
+        showCancel:false
+      })
+      return
+    }
+    let item = {
+      ID: spu.ID,
+      ProductCode:spu.ProductCode,
+      ProductName: spu.ProductName,
+      ProductNum,
+      ProductPrice: ProductPrice.toFixed(2),
+      Stock: spu.Stock,
+      baseUrl: spu.ShowResourcesUrl,
+      ProductCountPrice: ProductCountPrice.toFixed(2),
+    }
+    ProductlList.push(item)
+    let ProductModel = {
+      ProductCount: ProductNum,
+      ProductPrice: ProductCountPrice,
+      ProductlListModel: ProductlList
+    }
+    wx.navigateTo({
+      url: `/pages/subpackages/mall/groupBuying/orderPay/index?ProductModel= ${JSON.stringify(ProductModel)}`,
+    })
     this.setData({
       showRealm: false
     })

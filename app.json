@@ -85,6 +85,7 @@
     "l-arc-popup":"/miniprogram_npm/lin-ui/arc-popup/index",
     "l-collapse":"/miniprogram_npm/lin-ui/collapse/index",
     "l-collapse-item":"/miniprogram_npm/lin-ui/collapse-item/index",
+    "l-avatar":"/miniprogram_npm/lin-ui/avatar/index",
     "s-spu-preview": "components/spu-preview/index",
     "s-product-preview": "components/product-preview/index",
     "content-card": "/components/content-card/index",

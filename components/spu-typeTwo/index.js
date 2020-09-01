@@ -7,9 +7,6 @@ Component({
    */
   properties: {
     spu: Object,
-    startTime:String,
-    endTime:String,
-    selectDay:String,
   },
 
   /**

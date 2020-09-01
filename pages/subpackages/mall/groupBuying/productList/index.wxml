@@ -1,8 +1,18 @@
 <!--pages/subpackages/mall/groupBuying/productList/index.wxml-->
+
+<swiper class="top" autoplay indicator-dots wx:if="{{groupBuyModel.ImageListModel.length>0}}">
+    <swiper-item wx:for="{{groupBuyModel.ImageListModel}}" wx:key="index">
+        <image class="top" mode="aspectFill" src="{{groupBuyModel.ShowResourcesUrl}}{{item.ImageUrl}}"></image>
+    </swiper-item>
+</swiper>
+
 <content-card name="团购说明" cardPadding>
-    我是说明介绍
+    {{groupBuyModel.ActivityName}}
 </content-card>
 
-<block wx:for="{{3}}">
-    <s-spu-typeTwo spu="{{3}}" bind:tapping="onTap" bind:tappingRight="onRight" startTime="{{StartValidityTime}}" selectDay="{{selectDay}}"/>
+<block wx:for="{{product.accumulator}}">
+    <s-spu-typeTwo spu="{{item}}" bind:tapping="onTap" bind:tappingRight="onRight" startTime="{{StartValidityTime}}" selectDay="{{selectDay}}"/>
 </block>
+
+<l-status-show show="{{product.empty}}" type="data"></l-status-show>
+<l-loadmore show type="{{loadingType}}" end-text="已到底部啦!"></l-loadmore>

@@ -3,11 +3,11 @@
 <wxs src="../../miniprogram_npm/lin-ui/filter/string.wxs" module="string"></wxs>
 <view class="container" bindtap="onTap">
     <view class="img-container">
-        <image class="img" src="{{spu.baseUrl}}{{spu.Image}}"></image>
+        <image class="img" src="{{spu.baseUrl}}{{spu.CoverImage}}"></image>
     </view>
 
     <view class="left">
-        <text class="title">{{spu.RoomTypeName}}我是产品名称</text>
+        <text class="title">{{spu.ProductName}}</text>
         <!-- <view class="tags">
 
             <l-tag type="reading" bg-color="#DCEBE6" font-color="#157658" size="super-mini" l-class="l-tag">
@@ -21,12 +21,10 @@
             </l-tag>
 
         </view> -->
-        <text class="subtitle">我是产品描述</text>
+<!--        <text class="subtitle">{{spu.Info}}我是产品描述</text>-->
         <view class="price-row">
-
-            <text wx:if="{{selectDay>1}}" class="price-text">（均）</text>
-            <l-price wx:if="{{p.mainPrice(spu.Price, spu.DiscountPrice).display}}"
-                     value="{{p.mainPrice(spu.Price, spu.DiscountPrice).price}}"
+            <l-price wx:if="{{p.mainPrice(spu.Price, spu.GroupPrice).display}}"
+                     value="{{p.mainPrice(spu.Price, spu.GroupPrice).price}}"
                      color="red"
                      unit-size="28"
                      autofix
@@ -34,8 +32,8 @@
                      l-unit-class="l-price-unit">
             </l-price>
             <l-price
-                    wx:if="{{p.slashedPrice(spu.Price, spu.DiscountPrice).display}}"
-                    value="{{p.slashedPrice(spu.Price, spu.DiscountPrice).price}}"
+                    wx:if="{{p.slashedPrice(spu.Price, spu.GroupPrice).display}}"
+                    value="{{p.slashedPrice(spu.Price, spu.GroupPrice).price}}"
                     l-class="discount-price"
                     autofix
                     size="24"
@@ -43,16 +41,16 @@
                     bold="400"
                     deleted>
             </l-price>
-            <l-tag l-class="discount-tag" type="reading"
-                   bg-color="#C95637"
-                   wx:if="{{p.slashedPrice(spu.Price, spu.DiscountPrice).display}}"
-                   size="super-mini">
-                已减{{spu.Price-spu.DiscountPrice}}
-            </l-tag>
+<!--            <l-tag l-class="discount-tag" type="reading"-->
+<!--                   bg-color="#C95637"-->
+<!--                   wx:if="{{p.slashedPrice(spu.Price, spu.GroupPrice).display}}"-->
+<!--                   size="super-mini">-->
+<!--                已减{{spu.Price-spu.GroupPrice}}-->
+<!--            </l-tag>-->
         </view>
     </view>
 
-    <view class="right" catch:tap="onRight" wx:if="{{spu.IsSale}}">
+    <view class="right" catch:tap="onRight" wx:if="{{spu.Stock>0}}">
         <view class="tag-container radius" >
             <view class="top tag topRed">拼团</view>
             <view class="bottom tag bottomRed">在线付</view>

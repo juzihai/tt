@@ -1,2 +1,68 @@
-<!--pages/subpackages/mall/groupBuying/orderList/index.wxml-->
-<text>pages/subpackages/mall/groupBuying/orderList/index.wxml</text>
+<!--pages/subpackages/mall/product/orderList/index.wxml-->
+<wxs src="../../../../../utils/util.wxs" module="util"></wxs>
+<l-segment bind:linchange="changeTabs" l-class="aaa" item-width="30" active-key="{{Status}}">
+    <l-segment-item tab="全部" key="-1" />
+    <l-segment-item tab="待付款" key="0" />
+    <l-segment-item tab="待发货" key="1" />
+    <l-segment-item tab="待收货" key="2" />
+    <l-segment-item tab="已完成" key="3" />
+</l-segment>
+
+
+<view class="card-container" wx:for="{{order.accumulator}}" bindtap="onGoDetail" data-id="{{item.ID}}">
+    <view class="top">
+        <text class="subTitle">订单编号:{{item.OrderNo}}</text>
+        <text class="red" wx:if="{{item.Status==0}}">待支付</text>
+        <text class="red" wx:if="{{item.Status==1}}">待发货</text>
+        <text class="red" wx:if="{{item.Status==2}}">待收货</text>
+        <text class="red" wx:if="{{item.Status==3}}">已签收</text>
+        <text class="red" wx:if="{{item.Status==4}}">退货申请</text>
+        <text class="red" wx:if="{{item.Status==5}}">退货中</text>
+        <text class="red" wx:if="{{item.Status==6}}">已退货</text>
+        <text class="red" wx:if="{{item.Status==7}}">后台关闭</text>
+        <text class="red" wx:if="{{item.Status==8}}">用户取消</text>
+        <text class="red" wx:if="{{item.Status==9}}">订单超时</text>
+        <text class="red" wx:if="{{item.Status==10}}">处理中</text>
+    </view>
+    <view class="content">
+        <image src="{{item.baseUrl+item.ProductListWx[0].ProductImage}}"></image>
+        <view class="right-container">
+            <text class="title">{{item.ProductListWx[0].ProductName}}</text>
+            <text class="subTitle">等{{item.ProductCount}}件商品</text>
+        </view>
+    </view>
+    <view class="bottom">
+        <text>共计{{item.ProductCount}}件商品，实际支付</text>
+        <l-price color="red" value-size="28" unit-size="20" autofix value="{{item.PayPrice}}"></l-price>
+    </view>
+    <view class="sub-container" wx:if="{{item.Status==0}}">
+        <!-- <view class="left">
+          <text class="title">剩余支付时间</text>
+          <l-countdown l-class="countdown-text" l-time-class="countdown-blue" time-type="second" time="{{util.dt(item.CreationTime)}}" format="{%m}:{%s}" bind:linend="onTime" />
+        </view> -->
+        <l-button size="mini" style='margin-left:10rpx' catchtap="onCancelOrder" data-cell="{{item}}">取消订单</l-button>
+        <l-button size="mini" style='margin-left:10rpx' catchtap="onPay" data-cell="{{item}}">支付</l-button>
+    </view>
+
+    <view class="sub-container" wx:if="{{item.Status==1}}">
+        <view class="left">
+        </view>
+        <l-button size="mini" style='margin-left:10rpx' catchtap="onUrged" data-cell="{{item}}">催促发货</l-button>
+    </view>
+    <view class="sub-container" wx:if="{{item.Status==2}}">
+        <view class="left">
+        </view>
+        <!-- <l-button size="mini" style='margin-left:10rpx'>查看物流</l-button> -->
+        <l-button size="mini" style='margin-left:10rpx' catchtap="onReceipt" data-cell="{{item}}">确认收货</l-button>
+    </view>
+    <view class="sub-container" wx:if="{{item.Status==3||item.Status==7||item.Status==8||item.Status==9}}">
+        <view class="left">
+        </view>
+        <l-button size="mini" style='margin-left:10rpx' catchtap="onDelete" data-cell="{{item}}">删除订单</l-button>
+    </view>
+</view>
+
+<l-toast />
+<l-status-show show="{{order.empty}}" type="order" full-screen="{{false}}" l-class="l-class"></l-status-show>
+
+<l-loadmore show type="{{loadingType}}" end-text="已到底部啦!"></l-loadmore>

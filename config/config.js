@@ -28,17 +28,15 @@ const config = {
   // "EnterpriseID": "6236",//天津明朗广告传媒有限公司 wx999fb45b6c67c707
   // "EnterpriseID": "2016",//果资律师 wxbf16fb811554d7c4
 
-
-
   /** test测试地址*/
-  // "apiBaseUrl": 'https://test.gzchinaunion.com/',
+  "apiBaseUrl": 'https://test.gzchinaunion.com/',
   // "EnterpriseID": "1276", //wxd4a6cbbab77c70ff 小孟测试
   // "EnterpriseID": "4981", //wx2e8e4434a39d3508 益清测试
-  // "EnterpriseID": "3373", //wxa93d39f1484ac31a 天津金朵科技测试
+  "EnterpriseID": "3373", //wxa93d39f1484ac31a 天津金朵科技测试
 
     /** 电信地址*/
-      "apiBaseUrl": 'https://company.tc-btc.com/',
-      "EnterpriseID": "8755", //wx3a19a07d883c17ae 电信测试
+      // "apiBaseUrl": 'https://company.tc-btc.com/',
+      // "EnterpriseID": "8755", //wx3a19a07d883c17ae 电信测试
 
 }
 const tips = {

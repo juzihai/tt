@@ -141,7 +141,7 @@ Page({
       })
       setTimeout(function() {
 
-        wx.lin.hideToast()
+        wx.lin.hideToast() 
       }, 500);
       return false
     }

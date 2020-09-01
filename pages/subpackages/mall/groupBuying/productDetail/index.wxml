@@ -2,14 +2,14 @@
 
 <scroll-view scroll-y style="height:{{h}}rpx;">
     <!-- 轮播 -->
-    <swiper class="top" autoplay indicator-dots wx:if="{{banner.Data.length>0}}">
-        <swiper-item wx:for="{{banner.Data}}" wx:key="index">
-            <image class="top" mode="aspectFill" src="{{banner.ShowResourcesUrl}}{{item.ImageUrl}}"></image>
+    <swiper class="top" autoplay indicator-dots wx:if="{{spu.ImageListModel.length>0}}">
+        <swiper-item wx:for="{{spu.ImageListModel}}" wx:key="index">
+            <image class="top" mode="aspectFill" src="{{spu.ShowResourcesUrl}}{{item.ImageUrl}}"></image>
         </swiper-item>
     </swiper>
     <image wx:else class="top" mode="aspectFill" src="{{spu.ShowResourcesUrl+spu.ProductImage}}"></image>
     <!-- 商品描述 -->
-    <s-spu-description spu="{{spu}}"></s-spu-description>
+    <s-spu-description-typeTwo spu="{{spu}}"></s-spu-description-typeTwo>
 
     <view class="sku-pending">
         <view class="specs">
@@ -23,13 +23,17 @@
             <l-icon name="right" color="#157658" size="24"></l-icon>
         </view>
     </view>
-    <swiper autoplay vertical interval="3000" circular class="swiper" duration="1000">
-        <swiper-item wx:for="{{3}}" class="swiper-item" >
-            <!--        <image src="http://i1.sleeve.7yue.pro/assets/09f32ac8-1af4-4424-b221-44b10bd0986e.png" class="swiper"></image>-->
-            <l-list title="用户小红，～" icon="notification" tag-content="还差2人拼成" tag-position="right" gap="10"/>
-            <l-list title="用户小红，用户小王，～" icon="notification" tag-content="还差1人拼成" tagShape="circle" tag-position="right" gap="10"/>
-        </swiper-item>
-    </swiper>
+    <content-card name="这些人刚刚购买成功可参与拼单">
+        <swiper autoplay vertical interval="3000" circular class="swiper" duration="1000">
+            <swiper-item wx:for="{{3}}" class="swiper-item" >
+                <view>
+
+                </view>
+                <l-avatar size="80" icon="user" />
+            </swiper-item>
+        </swiper>
+    </content-card>
+
 
     <!-- <view class="sku-pending">
       <view class="specs">
@@ -79,8 +83,8 @@
 <s-tap-bar class="tapbar"
            bind:gotohome="onGotoHome"
            bind:gotocart="onGotoCart"
-           bind:addtocart="onAddToCart"
-           bind:buy="onBuy"
+           bind:addtocart="onBuy"
+           bind:buy="onGroupBuy"
            leftTitle="单独购买"
            rightTitle="发起拼单"
 ></s-tap-bar>

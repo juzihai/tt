@@ -268,8 +268,9 @@ Page({
     })
   },
    onActicity1() {
+    let groupBuying=this.data.groupBuying
     wx.navigateTo({
-      url: '/pages/subpackages/mall/groupBuying/productList/index',
+      url: `/pages/subpackages/mall/groupBuying/productList/index?ActivityId=${groupBuying.ID}`,
     })
   },
   onMore() {

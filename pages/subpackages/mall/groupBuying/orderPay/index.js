@@ -1,66 +1,126 @@
-// pages/subpackages/mall/groupBuying/orderPay/index.js
+import {GroupBuying} from "../../../../../models/groupBuying";
+
+const app = getApp()
+import {
+  OrderAndPayLogic
+} from "../../../../../models/orderAndPayLogic.js";
+import {
+  getWindowHeightRpx
+} from "../../../../../utils/system";
+import {
+  PreOrder
+} from "../../../../../utils/preOrder.js"
+let preOrder;
 Page({
 
-  /**
-   * 页面的初始数据
-   */
+
   data: {
-
+    showCoupon: false,
+    DeliveryModel: 1, //配送方式
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+  onLoad: async function(options) {
+    preOrder = new PreOrder()
+    const windowHeight = await getWindowHeightRpx();
+    const h = windowHeight - 100; // 100 是底部tabbar的高度  自定义的tabbar高度是不包含在 windowHeight里的
+    wx.lin.showToast({
+      title: '处理中～',
+      mask: true
+    })
+    let ProductModel = JSON.parse(options.ProductModel)
+    // 1、校验店铺是否开通支付，是否支付物流，是否支持自提
+    const payState = await OrderAndPayLogic.GetPayAndLogisticsState({EnterpriseID: app.config.EnterpriseID,})
+    const  GroupBuy= await  GroupBuying.QueryEGroupForWx({EnterpriseId: app.config.EnterpriseID})
+    let orderParam = {
+      ProductCount: ProductModel.ProductCount, //商品总数
+      ProductPrice: ProductModel.ProductPrice, //原订单价格
+      LogisticsFee: GroupBuy.GroupBuy
+    }
+    this.orderParam(orderParam)
+    this.setData({
+      GroupBuy,
+      h,
+      ProductModel,
+      payState: payState.ResultValue, //可支付状态
+    })
+    setTimeout(function() {
+
+      wx.lin.hideToast()
+    }, 500);
+
 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  onShow: function() {
+    let ShippingAddress = wx.getStorageSync("ShippingAddress")
+    this.setData({
+      ShippingAddress
+    })
+    this.initAllData()
+  },
+  //更新订单价格等信息
+  orderParam(obj) {
+    preOrder.orderParam = obj
+    this.setData({
+      preOrder
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+  // 选择收货地址
+  onGetAdd() {
+    wx.navigateTo({
+      url: '/pages/subpackages/mall/product/addressList/index',
+    })
+  },
+  inputRemark(e) {
+    let value = e.detail.value;
+    this.setData({
+      Remark: value
+    })
+  },
+  initAllData(){
 
   },
+  // 提交订单
+  async onNextTap() {
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
+    let ShippingAddress = this.data.ShippingAddress
+    let RealName = ShippingAddress.RealName
+    let TelPhone = ShippingAddress.TelPhone
+    let Address = ShippingAddress.Province + ShippingAddress.City + ShippingAddress.Area + ShippingAddress.Street
 
-  },
+    if (!ShippingAddress) {
+      wx.showModal({
+        title: '提示',
+        content: '请选择联系人信息',
+      })
+      return
+    }
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
+    wx.showLoading({
+      title: '处理中～',
+      mask: true
+    })
 
-  },
+    let ProductlListModel = this.data.ProductModel.ProductlListModel;
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
+    let obj={
+      ProductCode:ProductlListModel[0].ProductCode,
+      OpenId: wx.getStorageSync("OpenID"),
+      Phone:TelPhone,
+      PayMoney:preOrder.OrderPrice,
+      Carriage:preOrder.LogisticsFee,
+      Address,
+      Consignee:RealName,
+      PayNumber:preOrder.orderCostParam.ProductCount,
+    }
+    const order = await GroupBuying.BillCreate(obj)
 
-  },
+    if (order && order.Success) {
+      wx.redirectTo({
+        url: '/pages/subpackages/mall/product/orderList/index',
+      })
+    }
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
   }
 })

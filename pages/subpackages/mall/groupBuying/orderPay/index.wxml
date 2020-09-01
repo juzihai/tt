@@ -1,2 +1,75 @@
-<!--pages/subpackages/mall/groupBuying/orderPay/index.wxml-->
-<text>pages/subpackages/mall/groupBuying/orderPay/index.wxml</text>
+<!--pages/subpackages/mall/product/order/index.wxml-->
+<scroll-view scroll-y style="height:{{h}}rpx;">
+    <view class="address-container" bindtap="onGetAdd" wx:if="{{!preOrder.orderCostParam.orderCheck.pickUp}}">
+        <view class="action">
+            <l-icon color="#157658" name="address"></l-icon>
+        </view>
+        <view class="center" wx:if="{{ShippingAddress}}">
+            <view>
+                <text class="title">{{ShippingAddress.RealName}}</text>
+                <text class="subtitle"> {{ShippingAddress.TelPhone}}</text>
+            </view>
+            <text class="subtitle">{{ShippingAddress.Province+ShippingAddress.City+ShippingAddress.Area+ShippingAddress.Street}}</text>
+        </view>
+        <view wx:else>
+            选择地址～
+        </view>
+        <view class="action">
+            <l-icon color="#157658" name="right"></l-icon>
+        </view>
+    </view>
+
+    <content-card class="content" name="{{item.ClassName}}" wx:for="{{1}}">
+
+        <view class="p-container">
+            <l-card type="primary" wx:for='{{ProductModel.ProductlListModel}}' bindtap="onSpuItem" data-pid="{{item.ID}}" data-pcode="{{item.ProductCode}}" l-img-class="left-card" position="left" image="{{item.baseUrl+item.ProductImage}}">
+                <view class="content">
+                    <text class="title">{{item.ProductName}}</text>
+                    <view class="price-row">
+                        <l-price color="red" value-size="28" unit-size="20" autofix value="{{item.ProductPrice}}"></l-price>
+                    </view>
+                    <!-- <text class="subtitle">{{item.ProductContent}~</text> -->·
+                    <view class="avter-share-container">
+                        <view class="like-container">
+                            <l-icon name="close" color="#666" size="16" />
+                            <view class="number">{{item.ProductNum}}</view>
+                        </view>
+                    </view>
+                </view>
+            </l-card>
+        </view>
+    </content-card>
+
+    <content-card class="content" name="订单信息" cardPadding wx:if="{{ShippingAddress}}">
+        <l-list title="配送方式" desc="普通配送" right-desc="{{preOrder.orderCostParam.orderCheck.pickUp==false? '快递¥'+preOrder.orderCostParam.LogisticsFee:'门店自提'}}"></l-list>
+
+        <l-textarea value="{{Remark}}" bind:lininput="inputRemark" placeholder="订单备注：选填，请先和商家协商一致" wx:if="{{!showRealm}}" />
+        <l-list is-link="{{false}}">
+            <view slot="right-section" class="l-right-class">
+                <text class="subtitle">共{{preOrder.orderCostParam.ProductCount}}件</text>小计：
+                <view class="price-row">
+                    <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{preOrder.orderFee.OrderPrice}}"></l-price>
+
+                </view>
+            </view>
+        </l-list>
+    </content-card>
+
+
+</scroll-view>
+
+<view class="tapbar">
+    <l-list is-link="{{false}}">
+        <view slot="right-section" class="l-right-class">
+            <text class="subtitle">共{{preOrder.orderCostParam.ProductCount}}件</text>合计：
+            <view class="price-row">
+                <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{preOrder.orderFee.PayPrice}}"></l-price>
+
+            </view>
+            <l-button bg-color="orange" class="button" bind:lintap="onNextTap">提交订单</l-button>
+        </view>
+
+    </l-list>
+</view>
+
+<l-toast />

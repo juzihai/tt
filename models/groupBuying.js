@@ -46,7 +46,7 @@ class GroupBuying {
     }
 
     //开团-小程序
-    static BillCreate({ProductCode, OpenId,Phone,PayMoney,Carriage,Address}) {
+    static BillCreate({ProductCode, OpenId,Phone,PayMoney,Carriage,Address,Consignee,PayNumber}) {
         return Http.request({
             url: "api/V1/GroupBuying/BillCreate",
             data: {
@@ -55,7 +55,9 @@ class GroupBuying {
                 Phone,
                 PayMoney,
                 Carriage,
-                Address
+                Address,
+                Consignee,
+                PayNumber
 
             }
         })

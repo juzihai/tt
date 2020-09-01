@@ -1,1 +1,5 @@
 /* pages/subpackages/mall/groupBuying/productList/index.wxss */
+.top{
+    width: 100%;
+    height: 430rpx;
+}
