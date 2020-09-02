@@ -12,8 +12,10 @@ Page({
 
   data: {
     modulecArr: [
-      { img: '/imgs/mine/bar1.png', name: '全部订单', url: '/pages/subpackages/mall/product/orderList/index' },
-      { img: '/imgs/mine/bar2.png', name: '我的优惠券', url: '/pages/subpackages/mall/cards/couponList/index' },
+      // '/pages/subpackages/mall/product/orderList/index'
+      // /pages/subpackages/mall/cards/couponList/index'
+      { img: '/imgs/mine/bar1.png', name: '全部订单', url: '/pages/subpackages/middle/order/orderMid/index' },
+      { img: '/imgs/mine/bar2.png', name: '优惠券', url: '/pages/subpackages/middle/coupon/couponMid/index' },
       { img: '/imgs/mine/bar3.png', name: '联系我们', url: '/pages/subpackages/mall/company/staffList/index?pagePath=mine' },
       { img: '/imgs/mine/bar4.png', name: '我的海报', url: '/pages/subpackages/propaganda/poster/posterList/index' },
     ],
@@ -135,7 +137,6 @@ Page({
   },
     // 点击列表
   click_list(e) {
-
     var bean = e.currentTarget.dataset.bean;
     var index = e.currentTarget.dataset.index;
     console.log(bean)

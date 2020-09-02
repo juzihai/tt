@@ -153,6 +153,13 @@
         "financeProduct/financeProductList/index",
         "financeProduct/financeProductDetail/index"
       ]
+    },
+    {
+      "root": "pages/subpackages/middle",
+      "pages": [
+        "order/orderMid/index",
+        "coupon/couponMid/index"
+      ]
     }
   ],
 
