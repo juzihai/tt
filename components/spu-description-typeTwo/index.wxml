@@ -29,12 +29,12 @@
                     bold="400"
                     deleted>
             </l-price> 
-            <l-tag l-class="discount-tag" type="reading"
-                   bg-color="#c93756"
-                   wx:if="{{spu.GroupPrice}}"
-                   size="super-mini">
-                折扣
-            </l-tag>
+<!--            <l-tag l-class="discount-tag" type="reading"-->
+<!--                   bg-color="#c93756"-->
+<!--                   wx:if="{{spu.GroupPrice}}"-->
+<!--                   size="super-mini">-->
+<!--                折扣-->
+<!--            </l-tag>-->
         </view>
   </view>
 

@@ -27,7 +27,7 @@
 			"outputPath": ""
 		},
 		"useIsolateContext": true,
-		"useCompilerModule": true,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -266,6 +266,13 @@
 					"name": "pages/subpackages/mall/groupBuying/productDetail/index",
 					"pathName": "pages/subpackages/mall/groupBuying/productDetail/index",
 					"query": "pid=11",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "团购订单",
+					"pathName": "pages/subpackages/mall/groupBuying/orderList/index",
+					"query": "",
 					"scene": null
 				}
 			]

@@ -3,20 +3,11 @@ import {GroupBuying} from "../../../../../models/groupBuying";
 
 const app = getApp()
 import {
-  Product
-} from '../../../../../models/product.js'
-import {
-  HotProduct
-} from '../../../../../models/hotProduct.js'
-import {
   getWindowHeightRpx
 } from "../../../../../utils/system";
 import {
   ShoppingWay
 } from "../../../../../core/enum";
-import {
-  ShoppingCart
-} from "../../../../../models/shoppingCart.js";
 import {
   OrderAndPayLogic
 } from "../../../../../models/orderAndPayLogic.js";
@@ -27,7 +18,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    showRealm: false
+    showRealm: false,
+    BillId:0,//拼团团购单标识
   },
 
   /**
@@ -73,10 +65,10 @@ Page({
       EnterpriseId: app.config.EnterpriseID,
       ProductCode:this.data.pcode
     }
-    const groupList =await GroupBuying.QueryProductEGroupListForWx(obj)
+    // const groupList =await GroupBuying.QueryProductEGroupListForWx(obj)
     this.setData({
       spu,
-      groupList,
+      // groupList,
       payState: payState.ResultValue
     })
     let result = app.towxml(spu.Info, 'markdown', {
@@ -131,10 +123,17 @@ Page({
   onGroupBuy(event) {
     this.setData({
       showRealm: true,
-      orderWay: ShoppingWay.GROUPBUY
+      orderWay: ShoppingWay.CREATE_GROUP
     })
   },
-
+  onMakeGroupBuy(event){
+    let BillId=event.detail.ID
+    this.setData({
+      BillId,
+      showRealm: true,
+      orderWay: ShoppingWay.MAKE_GROUP
+    })
+  },
   onGotoHome(event) {
     wx.switchTab({
       url: "/pages/navigator/index/index"
@@ -190,7 +189,9 @@ Page({
     let ProductPrice;
     if(event.detail.orderWay === ShoppingWay.BUY){
       ProductPrice=spu.Price
-    }else if (event.detail.orderWay === ShoppingWay.GROUPBUY){
+    }else if (event.detail.orderWay === ShoppingWay.CREATE_GROUP){
+      ProductPrice=spu.GroupPrice
+    }else if (event.detail.orderWay === ShoppingWay.MAKE_GROUP){
       ProductPrice=spu.GroupPrice
     }
     let ProductNum = event.detail.currentSkuCount;
@@ -216,6 +217,8 @@ Page({
     }
     ProductlList.push(item)
     let ProductModel = {
+      BillId:this.data.BillId,
+      orderWay:event.detail.orderWay,
       ProductCount: ProductNum,
       ProductPrice: ProductCountPrice,
       ProductlListModel: ProductlList

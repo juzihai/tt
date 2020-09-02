@@ -15,21 +15,32 @@
         <view class="specs">
             <text>发货方式：</text>
             <text wx:if="{{payState.Logistics}}">物流</text>
-            <text wx:if="{{payState.PickUp &&payState.Logistics}}">/</text>
-            <text wx:if="{{payState.PickUp}}">自提</text>
-            <text wx:if="{{!payState.PickUp &&!payState.Logistics}}">暂无</text>
+<!--            <text wx:if="{{payState.PickUp &&payState.Logistics}}">/</text>-->
+<!--            <text wx:if="{{payState.PickUp}}">自提</text>-->
+<!--            <text wx:if="{{!payState.PickUp &&!payState.Logistics}}">暂无</text>-->
         </view>
         <view class="arrow-right">
             <l-icon name="right" color="#157658" size="24"></l-icon>
         </view>
     </view>
     <content-card name="这些人刚刚购买成功可参与拼单">
-        <swiper autoplay vertical interval="3000" circular class="swiper" duration="1000">
-            <swiper-item wx:for="{{3}}" class="swiper-item" >
-                <view>
-
+        <swiper autoplay interval="5000" display-multiple-items="2" circular vertical class="p-swiper">
+            <swiper-item wx:for="{{4}}" bind:tap="onMakeGroupBuy" data-cell="{{item}}">
+                <view class="sw-container">
+                    <view class="left-container">
+                        <view class="left">
+                            <l-avatar l-class="avatar-bg" icon-style="color:#5bf320;size:50" size="70" icon="user" />
+                            <l-avatar l-class="avatar-bg" icon-style="color:#5bf320;size:50" size="70" icon="user" />
+                            <view>名字或订单号</view>
+                        </view>
+                        <view>
+                            <view class="right">几人拼团</view>
+                        </view>
+                    </view>
+                    <view class="right-container">
+                        立即拼团
+                    </view>
                 </view>
-                <l-avatar size="80" icon="user" />
             </swiper-item>
         </swiper>
     </content-card>
@@ -76,7 +87,7 @@
 </scroll-view>
 
 <l-popup content-align="bottom" show="{{showRealm}}">
-    <s-realm bind:specadd="onSpecAdd" bind:specchange="onSpecChange" order-way="{{orderWay}}" spu="{{spu}}"></s-realm>
+    <s-realm-typeTwo bind:specadd="onSpecAdd" bind:specchange="onSpecChange" order-way="{{orderWay}}" spu="{{spu}}"></s-realm-typeTwo>
 </l-popup>
 
 

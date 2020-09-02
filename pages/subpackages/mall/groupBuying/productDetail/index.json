@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "s-realm": "/components/realm/index",
+    "s-realm-typeTwo": "/components/realm-typeTwo/index",
     "s-tap-bar": "/components/tap-bar/index",
     "s-spu-description-typeTwo": "/components//spu-description-typeTwo/index"
   }

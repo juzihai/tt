@@ -10,6 +10,7 @@ import {
 import {
   PreOrder
 } from "../../../../../utils/preOrder.js"
+import {ShoppingWay} from "../../../../../core/enum";
 let preOrder;
 Page({
 
@@ -100,24 +101,33 @@ Page({
       title: '处理中～',
       mask: true
     })
-
-    let ProductlListModel = this.data.ProductModel.ProductlListModel;
+    let ProductModel = this.data.ProductModel
+    let ProductlListModel = ProductModel.ProductlListModel;
 
     let obj={
+      BillId:ProductModel.BillId,
       ProductCode:ProductlListModel[0].ProductCode,
       OpenId: wx.getStorageSync("OpenID"),
-      Phone:TelPhone,
+      Phone:wx.getStorageSync("phoneNumber"),
       PayMoney:preOrder.OrderPrice,
       Carriage:preOrder.LogisticsFee,
       Address,
       Consignee:RealName,
+      ConsigneePhone:TelPhone,
       PayNumber:preOrder.orderCostParam.ProductCount,
     }
-    const order = await GroupBuying.BillCreate(obj)
+    let order;
+    if (ProductModel.orderWay === ShoppingWay.CREATE_GROUP){
+      order = await GroupBuying.BillCreate(obj)
+    }else if(ProductModel.orderWay === ShoppingWay.MAKE_GROUP){
+      order = await GroupBuying.BillMakeGroup(obj)
+    }else if(ProductModel.orderWay === ShoppingWay.BUY){
+      order = await GroupBuying.AloneBuyForWx(obj)
+    }
 
     if (order && order.Success) {
       wx.redirectTo({
-        url: '/pages/subpackages/mall/product/orderList/index',
+        url: '/pages/subpackages/mall/groupBuying/orderList/index',
       })
     }
 

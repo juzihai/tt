@@ -18,7 +18,7 @@ Page({
       { img: '/imgs/mine/bar4.png', name: '我的海报', url: '/pages/subpackages/propaganda/poster/posterList/index' },
     ],
     listArr: [
-      // { name: '我的海报', url: '/pages/subpackages/propaganda/poster/posterList/index' },
+      { name: '团购订单', url: '/pages/subpackages/mall/groupBuying/orderList/index' },
       { name: '酒店订单', url: '/pages/subpackages/mall/product/orderListTypeOne/index' }, //
       { name: '活动优惠券', url: '/pages/subpackages/mall/cards/activityCouponList/index' }, //
       // { name: '我的活动', url: '' },

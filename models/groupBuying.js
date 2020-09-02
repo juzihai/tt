@@ -46,7 +46,7 @@ class GroupBuying {
     }
 
     //开团-小程序
-    static BillCreate({ProductCode, OpenId,Phone,PayMoney,Carriage,Address,Consignee,PayNumber}) {
+    static BillCreate({ProductCode, OpenId,Phone,PayMoney,Carriage,Address,Consignee,ConsigneePhone,PayNumber}) {
         return Http.request({
             url: "api/V1/GroupBuying/BillCreate",
             data: {
@@ -57,6 +57,7 @@ class GroupBuying {
                 Carriage,
                 Address,
                 Consignee,
+                ConsigneePhone,
                 PayNumber
 
             }
@@ -64,7 +65,7 @@ class GroupBuying {
     }
 
     //拼团-小程序
-    static BillMakeGroup({BillId, OpenId,Phone,PayMoney,Carriage,Address}) {
+    static BillMakeGroup({BillId, OpenId,Phone,PayMoney,Carriage,Address, Consignee,ConsigneePhone, PayNumber }) {
         return Http.request({
             url: "api/V1/GroupBuying/BillMakeGroup",
             data: {
@@ -73,7 +74,10 @@ class GroupBuying {
                 Phone,
                 PayMoney,
                 Carriage,
-                Address
+                Address,
+                Consignee,
+                ConsigneePhone,
+                PayNumber,
 
             }
         })
@@ -90,7 +94,7 @@ class GroupBuying {
     }
 
     //单独购买-小程序
-    static AloneBuyForWx({ProductCode, OpenId,Phone,PayMoney,Carriage,Address}) {
+    static AloneBuyForWx({ProductCode, OpenId,Phone,PayMoney,Carriage,Address, Consignee,ConsigneePhone, PayNumber}) {
         return Http.request({
             url: "api/V1/GroupBuying/AloneBuyForWx",
             data: {
@@ -99,11 +103,25 @@ class GroupBuying {
                 Phone,
                 PayMoney,
                 Carriage,
-                Address
-
+                Address,
+                Consignee,
+                ConsigneePhone,
+                PayNumber,
             }
         })
     }
+
+    //客户团购订单查询-小程序
+    static QueryEGroupBillList({ OpenId, EnterpriseId , Page, Limit }) {
+        return new Paging({
+            url: "api/V1/GroupBuying/QueryEGroupBillList",
+            data: {
+                OpenId,
+                EnterpriseId
+            }
+        }, Page, Limit)
+    }
+
 
 }
 

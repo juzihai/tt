@@ -7,7 +7,8 @@ const CellStatus = {
 const ShoppingWay = {
   CART: 'cart',
   BUY: 'buy',
-  GROUPBUY: 'groupBuy'
+  CREATE_GROUP: 'create_group',
+  MAKE_GROUP: 'make_group'
 }
 
 

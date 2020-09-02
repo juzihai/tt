@@ -20,35 +20,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b51d9da6-a886-414d-8d26-f2f4f8246f3a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/components/spu-description-typeTwo/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/spu-description-typeTwo/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/spu-description-typeTwo/index.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/spu-description-typeTwo/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/realm-typeTwo/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/realm-typeTwo/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/realm-typeTwo/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/realm-typeTwo/index.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/spu-typeTwo/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/spu-typeTwo/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/spu-typeTwo/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/components/spu-typeTwo/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/spu-description-typeTwo/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/components/spu-description-typeTwo/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/enum.js" beforeDir="false" afterPath="$PROJECT_DIR$/core/enum.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/groupBuying.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/groupBuying.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/navigator/mall/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/navigator/mall/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/navigator/mall/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/navigator/mall/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/navigator/mine/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/navigator/mine/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderDetail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderDetail/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderDetail/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderDetail/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderDetail/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderDetail/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderDetail/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderDetail/index.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderList/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderList/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderList/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderList/index.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderList/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderList/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderList/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderList/index.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderPay/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderPay/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderPay/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderPay/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderPay/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderPay/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderPay/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderPay/index.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/productDetail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/productDetail/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/productDetail/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/productDetail/index.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/productDetail/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/productDetail/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/productList/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/productList/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/productList/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/productList/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/productList/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/productList/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/productList/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/productList/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/product/order/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/product/order/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/product/productList/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/product/productList/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/productDetail/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/productDetail/index.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -118,7 +109,8 @@
       <workItem from="1598574816892" duration="13727000" />
       <workItem from="1598842629775" duration="3749000" />
       <workItem from="1598850040107" duration="14707000" />
-      <workItem from="1598925396105" duration="24658000" />
+      <workItem from="1598925396105" duration="24972000" />
+      <workItem from="1599006661294" duration="16187000" />
     </task>
     <servers />
   </component>

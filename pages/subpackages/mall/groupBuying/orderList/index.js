@@ -1,7 +1,7 @@
+import {GroupBuying} from "../../../../../models/groupBuying";
+
 const app = getApp();
-import {
-  Order
-} from "../../../../../models/order.js";
+
 Page({
 
   /**
@@ -31,43 +31,37 @@ Page({
     let obj = {
       EnterpriseId: app.config.EnterpriseID,
       OpenId: wx.getStorageSync("OpenID"),
-      Status: this.data.Status
+      // Status: this.data.Status
     }
-    const scheduled =await Order.ScheduledSearchDetails()
-    const orderModel = Order.QueryForWx(obj)
+    const orderModel = GroupBuying.QueryEGroupBillList(obj)
     this.data.orderModel = orderModel //类属性
     const order = await orderModel.getMoreData(); //todo
     this.setData({
-      scheduled,
       order
     })
     wx.stopPullDownRefresh();
   },
-  // onTime(e) {
-  //   this.initAllData()
-  // },
-  onCancelOrder(e){
+  onBillOut(e){
     wx.showModal({
       title: '提示',
-      content: '是否取消订单',
+      content: '是否退团',
       success:res=> {
         if (res.confirm) {
-          this.CancelOrder(e)
+          this.BillOut(e)
         }
       }
     })
   },
-  async CancelOrder(e) {
+  async BillOut(e) {
     let item = e.currentTarget.dataset.cell
     let obj = {
-      ID: item.ID,
-      OederNumber: item.OrderNo
+      ID: item.ID
     }
     wx.lin.showToast({
       title: '处理中～',
       mask: true
     })
-    const orderModel = await Order.CancelOrder(obj)
+    const orderModel = await GroupBuying.BillOut(obj)
     setTimeout(function() {
       wx.lin.hideToast()
     }, 100)
@@ -191,9 +185,9 @@ Page({
     this.initAllData()
   },
   onGoDetail(e) {
-    let id = e.currentTarget.dataset.id
+    let item = e.currentTarget.dataset.cell
     wx.navigateTo({
-      url: '/pages/subpackages/mall/product/orderDetail/index?id=' + id,
+      url: '/pages/subpackages/mall/groupBuying/orderDetail/index?OrderNo=' + item.OrderNo,
     })
   },
 
