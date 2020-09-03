@@ -121,7 +121,15 @@ class GroupBuying {
             }
         }, Page, Limit)
     }
-
+    //客户团购订单详情-小程序
+    static QueryEGroupBillDetail({OrderNo}) {
+        return Http.request({
+            url: "api/V1/GroupBuying/QueryEGroupBillDetail",
+            data: {
+                OrderNo
+            }
+        })
+    }
 
 }
 

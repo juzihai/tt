@@ -65,10 +65,10 @@ Page({
       EnterpriseId: app.config.EnterpriseID,
       ProductCode:this.data.pcode
     }
-    // const groupList =await GroupBuying.QueryProductEGroupListForWx(obj)
+    const groupList =await GroupBuying.QueryProductEGroupListForWx(obj)
     this.setData({
       spu,
-      // groupList,
+      groupList,
       payState: payState.ResultValue
     })
     let result = app.towxml(spu.Info, 'markdown', {
@@ -127,7 +127,10 @@ Page({
     })
   },
   onMakeGroupBuy(event){
-    let BillId=event.detail.ID
+    console.log(event)
+    let item =event.currentTarget.dataset.cell
+    console.log(item)
+    let BillId=item.ID
     this.setData({
       BillId,
       showRealm: true,

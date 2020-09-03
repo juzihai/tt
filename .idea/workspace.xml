@@ -19,29 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b51d9da6-a886-414d-8d26-f2f4f8246f3a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/components/realm-typeTwo/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/realm-typeTwo/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/realm-typeTwo/index.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/realm-typeTwo/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/spu-description-typeTwo/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/components/spu-description-typeTwo/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/enum.js" beforeDir="false" afterPath="$PROJECT_DIR$/core/enum.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/groupBuying.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/groupBuying.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/navigator/mine/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/navigator/mine/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderDetail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderDetail/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderDetail/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderDetail/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderDetail/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderDetail/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderDetail/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderDetail/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderList/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderList/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderList/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderList/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderPay/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/orderPay/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/productDetail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/productDetail/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/productDetail/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/productDetail/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/productDetail/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/productDetail/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/productDetail/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/subpackages/mall/groupBuying/productDetail/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
-    </list>
+    <list default="true" id="b51d9da6-a886-414d-8d26-f2f4f8246f3a" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -110,7 +88,7 @@
       <workItem from="1598842629775" duration="3749000" />
       <workItem from="1598850040107" duration="14707000" />
       <workItem from="1598925396105" duration="24972000" />
-      <workItem from="1599006661294" duration="16187000" />
+      <workItem from="1599006661294" duration="16411000" />
     </task>
     <servers />
   </component>
