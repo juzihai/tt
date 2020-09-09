@@ -212,6 +212,7 @@ Page({
       ID: spu.ID,
       ProductCode:spu.ProductCode,
       ProductName: spu.ProductName,
+      ProductImage: spu.CoverImage,
       ProductNum,
       ProductPrice: ProductPrice.toFixed(2),
       Stock: spu.Stock,

@@ -160,6 +160,13 @@
         "order/orderMid/index",
         "coupon/couponMid/index"
       ]
+    },
+    {
+      "root": "pages/subpackages/property",
+      "pages": [
+        "cards/myCouponList/index",
+        "cards/myCouponDetail/index"
+      ]
     }
   ],
 

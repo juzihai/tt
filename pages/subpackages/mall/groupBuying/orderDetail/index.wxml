@@ -27,7 +27,7 @@
             <text class="red" wx:if="{{order.Status==4}}">退货退款</text>
         </view>
         <view class="content" wx:for="{{1}}">
-            <image src="{{order.ShowResourcesUrl+order.CoverImage}}"></image>
+            <image src="{{order.CoverImage}}"></image>
             <view class="right-container">
                 <text class="title">{{order.ProductName}}</text>
                <l-price color="red" value-size="28" unit-size="20" autofix value="{{order.IsAloneBuy?order.Price :order.GroupPrice}}"></l-price>
@@ -63,8 +63,9 @@
     <content-card class="content" name="订单信息" cardPadding>
         <view class="orderInfo-container">
             <view class="item">
-                <text>订单创建时间</text>
-                <text>{{util.formatTime(order.GroupTime,"Y/M/D h/m/s")}}</text>
+                <text>成团时间</text>
+                <text wx:if="{{order.GroupTime==0}}" >暂无</text>
+                <text wx:else >{{util.formatTime(order.GroupTime,"Y/M/D h/m/s")}}</text>
             </view>
             <view class="item">
                 <text>邮费</text>
@@ -90,12 +91,12 @@
 
 </scroll-view>
 
-<view class="tapbar">
-    <!-- <view class="sub-container" wx:if="{{order.Status==1}}">
+<!-- <view class="tapbar">
+    <view class="sub-container" wx:if="{{order.Status==1}}">
         <view class="left">
         </view>
         <l-button size="mini" style='margin-left:10rpx' catchtap="onUrged" data-cell="{{order}}">催促发货</l-button>
-    </view> -->
-</view>
+    </view>
+</view> -->
 
 <l-action-sheet l-class-title="action-title" />

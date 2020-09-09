@@ -124,7 +124,6 @@
       <text class="subtitle">共{{preOrder.orderCostParam.ProductCount}}件</text>合计：
       <view class="price-row">
         <l-price color="#157658" value-size="28" unit-size="20" autofix value="{{preOrder.orderFee.PayPrice}}"></l-price>
-
       </view>
       <l-button bg-color="orange" class="button" bind:lintap="onNextTap">提交订单</l-button>
     </view>
@@ -134,7 +133,7 @@
 
 
 <l-popup content-align="bottom" show="{{showCoupon}}" z-index="999" bind:lintap="onPopupBack">
-  <s-coupon-realm bind:specadd="onCouponAdd" couponData="{{getAllUseCouponByProduct.Data}}"></s-coupon-realm>
+  <s-coupon-realm bind:specadd="onCouponAdd" couponData="{{getAllUseCouponByProduct.Data}}" platformCouponData="{{getAllUsePlatformProductCouponByProduct.Data}}" ></s-coupon-realm>
 </l-popup>
 
 

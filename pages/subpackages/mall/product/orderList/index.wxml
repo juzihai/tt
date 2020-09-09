@@ -45,13 +45,11 @@
   </view>
 
   <view class="sub-container" wx:if="{{item.Status==1}}">
-    <view class="left">
-    </view>
+     <l-button size="mini" style='margin-left:10rpx' catchtap="onRefund" data-cell="{{item}}">退款申请</l-button>
     <l-button size="mini" style='margin-left:10rpx' catchtap="onUrged" data-cell="{{item}}">催促发货</l-button>
   </view>
   <view class="sub-container" wx:if="{{item.Status==2}}">
-    <view class="left">
-    </view>
+    <l-button size="mini" style='margin-left:10rpx' catchtap="onRefund" data-cell="{{item}}">退款申请</l-button>
     <!-- <l-button size="mini" style='margin-left:10rpx'>查看物流</l-button> -->
     <l-button size="mini" style='margin-left:10rpx' catchtap="onReceipt" data-cell="{{item}}">确认收货</l-button>
   </view>

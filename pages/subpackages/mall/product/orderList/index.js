@@ -100,6 +100,33 @@ Page({
     }, 100)
     this.initAllData()
   },
+  onRefund(e){
+    wx.showModal({
+      title: '提示',
+      content: '是否申请退款',
+      success: res => {
+        if (res.confirm) {
+          this.Refund(e)
+        }
+      }
+    })
+  },
+  async Refund(e) {
+    let item = e.currentTarget.dataset.cell
+    let obj = {
+      OrderNo: item.OrderNo
+    }
+    wx.lin.showToast({
+      title: '处理中～',
+      mask: true,
+      duration:15000
+    })
+    const orderModel = await Order.Refund(obj)
+    setTimeout(function() {
+      wx.lin.hideToast()
+    }, 100)
+    this.initAllData()
+  },
   async onPay(e) {
     let item = e.currentTarget.dataset.cell
     //TODO 待支付
@@ -123,14 +150,17 @@ Page({
       })
     }else{
       let messageJson = await Order.WXPay(obj)
+      console.log('1111')
       wx.requestPayment({
-        'timeStamp': messageJson.wcPayDataTimeStamp,
-        'nonceStr': messageJson.wcPayDataNonceStr,
-        'package': messageJson.wcPayDataPackage,
-        'signType': messageJson.wcPayDataSignType,
-        'paySign': messageJson.wcPayDataPaySign,
+        'timeStamp': messageJson.timeStamp,
+        'nonceStr': messageJson.nonceStr,
+        'package': messageJson.package,
+        'signType': messageJson.signType,
+        'paySign': messageJson.paySign,
         'success': function (res) {
-          Order.OrderLocking( item.OrderNo)
+          console.log('222',res)
+          //电信版本使用
+          // Order.OrderLocking( item.OrderNo)
           wx.showModal({
             title: '提示',
             content: '付款成功',
@@ -144,7 +174,7 @@ Page({
           })
         },
         'fail': function (res) {
-
+          console.log('333',res)
           var errMsg = res.errMsg;
           if (errMsg == "requestPayment:fail cancel")
             wx.showToast({

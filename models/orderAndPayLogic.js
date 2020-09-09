@@ -100,6 +100,19 @@ class OrderAndPayLogic extends Http {
       }
     })
   }
+    //平台产品优惠券
+    static GetAllUsePlatformProductCouponByProduct({Phone, EnterpriseID, OpenId, sorted }) {
+      return Http.request({
+        url: "api/V1/OrderAndPayLogic/GetAllUsePlatformProductCouponByProduct",
+        data: {
+          EnterpriseID,
+          Phone,
+          OpenId,
+          sorted
+        }
+      })
+    }
+    
   //9.产品价格和库存校验 并返回总价 （小程序）
   static CheckProductPriceAndStockModel({ Date }) {
     return Http.request({
@@ -110,14 +123,15 @@ class OrderAndPayLogic extends Http {
     })
   }
   //10.获取运费总价
-  static CheckLogisticsMatchProduct({ EnterpriseID, OpenId, sorted, Code}) {
+  static CheckLogisticsMatchProduct({ EnterpriseID, OpenId, sorted, Code,metre}) {
     return Http.request({
       url: "api/V1/OrderAndPayLogic/CheckLogisticsMatchProduct",
       data: {
         EnterpriseID,
         OpenId,
         sorted,
-        Code
+        Code,
+        metre
       }
     })
   }

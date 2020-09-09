@@ -32,7 +32,8 @@ const config = {
   "apiBaseUrl": 'https://test.gzchinaunion.com/',
   // "EnterpriseID": "1276", //wxd4a6cbbab77c70ff 小孟测试
   // "EnterpriseID": "4981", //wx2e8e4434a39d3508 益清测试
-  "EnterpriseID": "3373", //wxa93d39f1484ac31a 天津金朵科技测试
+  // "EnterpriseID": "3373", //wxa93d39f1484ac31a 天津金朵科技测试
+  "EnterpriseID": "8869", //wxbf16fb811554d7c4 子企业
 
     /** 电信地址*/
       // "apiBaseUrl": 'https://company.tc-btc.com/',
@@ -89,6 +90,17 @@ const tips = {
   "1303.10": ' 商家物流数据不匹配',
   //logisticsShopStatus
   "1304.1": ' 校验城市是否已经存在',
+
+  "2112.3": ' 库存不足',
+  "2112.5": ' 参数有误',
+  "2114.5": ' 参数有误',
+  "2114.6": ' 此团人已满',
+  "2114.8": ' 参团限制',
+  "2114.9": ' 参团限制（此团已经参与）',
+  "2118.5": ' 参数有误',
+  "2120.5": ' 参数有误',
+  "2122.5": ' 参数有误',
+  "2124.5": ' 参数有误',
 }
 
 

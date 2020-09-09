@@ -1,0 +1,51 @@
+<!--pages/subpackages/mall/cards/activityCouponList/index.wxml-->
+
+<wxs src="../../../../../utils/util.wxs" module="util"></wxs>
+<l-segment bind:linchange="changeTabs" l-class="aaa" item-width="30">
+    <l-segment-item tab="未使用" key="0" />
+    <l-segment-item tab="已使用" key="1" />
+    <l-segment-item tab="已过期" key="2" />
+</l-segment>
+
+<block wx:for="{{coupon.accumulator}}">
+    <view class="ticket-container">
+        <view class="ticket-container-top">
+            <view class="ticket-left">
+                <view class="name">{{item.Name}}</view>
+                <view class="date">限购 {{item.CompanyName}} 店铺部分商品</view>
+                <view class="date">{{item.ClassName}}</view>
+                <view class="date" wx:if="{{item.LimitTime==0}}">有效期： 永久有效</view>
+                <view class="date" wx:else>有效期 {{util.formatTime(item.StartValidity*1000,"Y/M/D")}}～{{util.formatTime(item.EndValidity*1000,"Y/M/D")}}</view>
+            </view>
+            <view class="ticket-right">
+                <view class="text">满</view>
+                <view class="number">{{item.Denomination}}</view>
+                <view class="text">减</view>
+                <view class="number">{{item.ReductionAmount}}</view>
+                <view class="text">¥</view>
+            </view>
+        </view>
+        <view class="ticket-container-bottom">
+            <l-collapse>
+                <l-collapse-item l-body-class="l-body-class" l-title-class="l-title-class" customTitle="{{true}}">
+                    <!--自定义标题-->
+                    <view class="title" slot="title">
+                        <view class="ticket-detail-container">说明
+                            <l-icon name="down" size="16" color="#999"/>
+                        </view>
+                        <!-- <l-button type="error" catchtap="onGoto" data-cell="{{item}}" data-guid="{{item.GUID}}">查看详情</l-button> -->
+                    </view>
+                    <text >{{item.Memo ?item.Memo:'暂无'}}</text>
+                </l-collapse-item>
+            </l-collapse>
+        </view>
+    </view>
+</block>
+
+
+
+<l-toast />
+
+<l-status-show show="{{coupon.empty}}" type="data" full-screen="{{false}}" l-class="l-class"></l-status-show>
+<l-loadmore show type="{{loadingType}}" end-text="已到底部啦!"></l-loadmore>
+

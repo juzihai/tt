@@ -98,6 +98,49 @@ class AppModel extends Http {
     });
 
   }
+  //地址解析
+  static getGeocoder(geocoder){
+    return new Promise((resolve, reject) => {
+      qqmapsdk.geocoder(({
+        address: geocoder, //地址参数，例：固定地址，address: '北京市海淀区彩和坊路海淀西大街74号'
+        success:res=>{
+          resolve(res)
+        },
+        fail: function (error) {
+          console.error(error);
+          reject(error)
+        },
+      }))
+
+    })
+  }
+
+  //调用距离计算接口
+  static getCalculateDistance({from,to}){
+    console.log(from)
+    console.log(to)
+    return new Promise((resolve, reject) => {
+      qqmapsdk.calculateDistance(({
+        // mode: 'driving',//可选值：'driving'（驾车）、'walking'（步行），不填默认：'walking',可不填
+        //from参数不填默认当前地址
+        //获取表单提交的经纬度并设置from和to参数（示例为string格式）
+        from: from || '', //若起点有数据则采用起点坐标，若为空默认当前地址
+        to: to, //终点坐标
+        success:res=>{
+          resolve(res)
+        },
+        fail: function (error) {
+          console.error(error);
+          reject(error)
+        },
+      }))
+
+    })
+  }
+
+
+
+
 
   //获取请求时间
   static  WXMonitorGet({WXRequestTime}){

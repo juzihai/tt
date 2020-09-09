@@ -133,7 +133,7 @@ Page({
     const order = await HotelRoomType.HotelPayOrder(obj)
     if (order){
       // wx.navigateTo({
-      //   url: '/pages/subpackages/mall/product/orderListTypeOne/index',
+      //   url: '/pages/subpackages/mall/product/orderListTypeOne/index', 
       // })
       this.wxPay(order)
     }

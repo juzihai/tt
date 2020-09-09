@@ -112,12 +112,13 @@ class GroupBuying {
     }
 
     //客户团购订单查询-小程序
-    static QueryEGroupBillList({ OpenId, EnterpriseId , Page, Limit }) {
+    static QueryEGroupBillList({ OpenId, EnterpriseId ,Status, Page, Limit }) {
         return new Paging({
             url: "api/V1/GroupBuying/QueryEGroupBillList",
             data: {
                 OpenId,
-                EnterpriseId
+                EnterpriseId,
+                Status
             }
         }, Page, Limit)
     }
@@ -130,7 +131,15 @@ class GroupBuying {
             }
         })
     }
-
+    //支付错误回调
+    static QueryEGroupPayError({OrderNo}) {
+        return Http.request({
+            url: "api/V1/GroupBuying/QueryEGroupPayError",
+            data: {
+                OrderNo
+            }
+        })
+    }
 }
 
 export {

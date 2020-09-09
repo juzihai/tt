@@ -1,3 +1,5 @@
+import {AppModel} from "../../../../../models/app";
+
 const app = getApp()
 import {
   Order
@@ -39,9 +41,11 @@ Page({
     let obj = {
       EnterpriseID: app.config.EnterpriseID,
       OpenId: wx.getStorageSync("OpenID"),
+      Phone: wx.getStorageSync("phoneNumber"),
       sorted
     }
     const getAllUseCouponByProduct = await OrderAndPayLogic.GetAllUseCouponByProduct(obj)
+    const getAllUsePlatformProductCouponByProduct = await OrderAndPayLogic.GetAllUsePlatformProductCouponByProduct(obj)
     // 1、校验店铺是否开通支付，是否支付物流，是否支持自提
     const payState = await OrderAndPayLogic.GetPayAndLogisticsState({
       EnterpriseID: app.config.EnterpriseID,
@@ -60,7 +64,8 @@ Page({
       sorted, //展示商品
       payState: payState.ResultValue, //可支付状态
       // DeliveryModel, //取货方式
-      getAllUseCouponByProduct: getAllUseCouponByProduct.ResultValue //优惠券
+      getAllUseCouponByProduct: getAllUseCouponByProduct.ResultValue, //优惠券
+      getAllUsePlatformProductCouponByProduct: getAllUsePlatformProductCouponByProduct.ResultValue ,//平台优惠券
     })
     setTimeout(function() {
 
@@ -143,7 +148,7 @@ Page({
 
         wx.lin.hideToast() 
       }, 500);
-      return false
+      return false1
     }
     setTimeout(function() {
 
@@ -155,14 +160,30 @@ Page({
   async initAllData() {
     //查询邮费信息
 
-
     if (preOrder.orderCostParam.orderCheck.pickUp == false) { //快递
-      if (this.data.ShippingAddress && this.data.sorted) {
+      let ShippingAddress= this.data.ShippingAddress
+      if (ShippingAddress && this.data.sorted) {
+        let address=ShippingAddress.Province+ShippingAddress.City+ShippingAddress.Area+ShippingAddress.Street
+        const geocoder=await AppModel.getGeocoder(address)
+        console.log(geocoder)
+        let fromAndTo={
+          from:{
+            latitude: geocoder.result.location.lat,
+            longitude: geocoder.result.location.lng
+          },
+          to:[{
+            latitude: wx.getStorageSync("shopInfo").Latitude,
+            longitude: wx.getStorageSync("shopInfo").Longitude,
+          }]
+        }
+        const calculateDistance=await AppModel.getCalculateDistance(fromAndTo)
+        console.log(calculateDistance)
         let obj1 = {
           EnterpriseID: app.config.EnterpriseID,
           OpenId: wx.getStorageSync("OpenID"),
           sorted: this.data.sorted,
-          Code: this.data.ShippingAddress.Code
+          Code: this.data.ShippingAddress.Code,
+          metre:calculateDistance.result.elements[0].distance
         }
 
         try {
@@ -241,7 +262,8 @@ Page({
   // 选择优惠券
   onCoupon(e) {
     let data = this.data.getAllUseCouponByProduct
-    if (data.Data.length > 0) {
+    let data1 = this.data.getAllUsePlatformProductCouponByProduct
+    if (data.Data.length > 0 ||data1.Data.length > 0){
       this.setData({
         showCoupon: true
       })
@@ -253,7 +275,6 @@ Page({
         showCancel: false
       })
     }
-
   },
   //取消弹框
   onPopupBack() {
@@ -264,12 +285,14 @@ Page({
   // 弹框确定选中
   async onCouponAdd(event) {
     let couponData = event.detail.couponData
+    let type = event.detail.type
     let CouponPrice = 0;
     couponData.forEach(i => {
       CouponPrice += i.ReductionAmount
     })
 
     this.setData({
+      type:type,
       OrderCouponListModel: couponData,
       showCoupon: false
     })
@@ -410,6 +433,8 @@ Page({
       })
     }
 
+    let type =this.data.type
+
 
     let obj = {
       EnterpriseID: app.config.EnterpriseID,
@@ -430,8 +455,10 @@ Page({
       Phone: wx.getStorageSync('phoneNumber'),
       DeliveryModel: pickUp ? 2 : 1, //配送方式（1：物流；2：自提；）
       OrderDetailListModel,
-      OrderCouponListModel,
+      OrderCouponListModel:type ==1? OrderCouponListModel:[],
+      PlatformOrderCouponListModel:type==2 ? OrderCouponListModel:[],
       ShoppingCarDetailList,
+      Type:type
 
     }
 

@@ -26,10 +26,12 @@ class Order extends Http {
     DeliveryModel,
     OrderDetailListModel,
     OrderCouponListModel,
+    PlatformOrderCouponListModel,
     SubCompanyID,
     Phone,
     PickUpAddress,
-    ShoppingCarDetailList
+    ShoppingCarDetailList,
+    Type
   }) {
     return Http.request({
       url: "api/V1/Order/Add",
@@ -50,10 +52,12 @@ class Order extends Http {
         DeliveryModel,
         OrderDetailListModel,
         OrderCouponListModel,
+        PlatformOrderCouponListModel,
         SubCompanyID,
         Phone,
         PickUpAddress,
-        ShoppingCarDetailList
+        ShoppingCarDetailList,
+        Type
       }
     })
   }
@@ -134,6 +138,15 @@ class Order extends Http {
       }
     })
   }
+    //申请退款（小程序）
+    static Refund({ OrderNo }) {
+      return Http.request({
+        url: "api/V1/Order/Refund",
+        data: {
+          OrderNo
+        }
+      })
+    }
   //核销订单（小程序）
   static WriteOff({ OrderNo, OperatPerson, OperatPersonName}) {
     return Http.request({

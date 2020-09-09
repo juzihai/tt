@@ -20,15 +20,35 @@ Page({
     this.initAllData();
   },
   async initAllData() {
-    let obj = {
-      ActivityId:this.data.ActivityId
-    }
     const groupBuyModel =await GroupBuying.QueryEGroupForWx({EnterpriseId: app.config.EnterpriseID})
-    const productModel = GroupBuying.QueryEGroupProductListForWx(obj)
+    const productModel = GroupBuying.QueryEGroupProductListForWx({ ActivityId:groupBuyModel.ID})
     this.data.productModel = productModel //类属性
     const product = await productModel.getMoreData();//todo
+    wx.stopPullDownRefresh()
+
+    let result = app.towxml(groupBuyModel.Explain, 'markdown', {
+      // base: 'https://xxx.com',             // 相对资源的base路径
+      // theme: 'dark',                   // 主题，默认`light`
+      events: {                    // 为元素绑定的事件方法
+        tap: (e) => {
+          console.log('tap', e);
+          let data = e.currentTarget.dataset.data
+          if (data.tag == 'img') {
+            var currentImage = data.attr.src
+            var imageList = []
+            imageList.push(currentImage)
+
+            wx.previewImage({
+              urls: imageList,
+              current: currentImage
+            })
+          }
+        }
+      }
+    })
 
     this.setData({
+      article: result,
       product,
       groupBuyModel
     })

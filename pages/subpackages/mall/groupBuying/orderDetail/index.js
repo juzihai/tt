@@ -28,7 +28,7 @@ Page({
   onLoad: async function(options) {
     let OrderNo = options.OrderNo
     const windowHeight = await getWindowHeightRpx();
-    const h = windowHeight - 100; // 100 是底部tabbar的高度  自定义的tabbar高度是不包含在 windowHeight里
+    const h = windowHeight - 0; // 100 是底部tabbar的高度  自定义的tabbar高度是不包含在 windowHeight里
     this.setData({
       OrderNo,
       h

@@ -23,14 +23,14 @@
             <l-icon name="right" color="#157658" size="24"></l-icon>
         </view>
     </view>
-    <content-card name="这些人刚刚购买成功可参与拼单">
-        <swiper autoplay interval="5000" display-multiple-items="2" circular vertical class="p-swiper">
+    <content-card name="这些人刚刚购买成功可参与拼单" wx:if="{{groupList.length>0}}">
+        <swiper autoplay interval="5000" display-multiple-items="{{groupList.length==1  ?1:2 }}" circular vertical class="p-swiper">
             <swiper-item wx:for="{{groupList}}" bind:tap="onMakeGroupBuy" data-cell="{{item}}">
                 <view class="sw-container">
                     <view class="left-container">
                         <view class="left">
-                            <l-avatar wx:for="{{item.CurrentGroupNumber}}" wx:if="{{i<2}}" wx:for-index='i' l-class="avatar-bg" icon-style="color:#5bf320;size:50" size="70" icon="user" />
-                            <view>团购单号：{{item.BillNo}}</view>
+                            <l-avatar wx:for="{{item.CurrentGroupNumber}}" wx:if="{{i<3}}" wx:for-index='i' l-class="avatar-bg" icon-style="color:#5bf320;size:50" size="70" icon="user" />
+                            <!-- <view>团购单号：{{item.BillNo}}</view> -->
                         </view>
                         <view>
                             <view class="right">剩余{{item.GroupNumber-item.CurrentGroupNumber}}人</view>

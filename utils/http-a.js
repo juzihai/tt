@@ -41,7 +41,7 @@ class Http {
           const statusCode = res.statusCode.toString()
           if (statusCode.startsWith('2')) {
             let resultCode = res.data.ResultCode
-            if (resultCode && resultCode.startsWith('2')) {
+            if (resultCode && resultCode==200) {
               resolve(res);
             } else {
               reject(res)

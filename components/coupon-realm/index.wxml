@@ -1,14 +1,19 @@
 <!--components/order-realm/index.wxml-->
 <scroll-view class="container"  scroll-y >
-  <block wx:for="{{couponData}}" wx:for-item="classItem" wx:for-index="classIndex">
+  <l-segment bind:linchange="changeTabs" l-class="aaa" item-width="30">
+    <l-segment-item tab="普通优惠券" key="1" />
+    <l-segment-item tab="平台优惠券" key="2" />
+  </l-segment>
+
+  <block wx:for="{{couponData}}" wx:for-item="classItem" wx:for-index="classIndex" wx:if="{{Status==1}}">
     <content-card class="content" name="{{classItem.ClassName}}" cardPadding >
       <view class='buttun-wrapper'>
-        <l-radio-group l-class="l-radio-group" bind:linchange="radioChange"              data-index="{{classIndex}}">
+        <l-radio-group l-class="l-radio-group" bind:linchange="radioChange"  data-index="{{classIndex}}">
           <l-radio
             l-class="l-radio l-title-class-border"
             wx:for="{{classItem.list}}"
             wx:key="{{item.CouponId}}"
-            key="{{item.CouponId}}" 
+            key="{{item.CouponId}}"
             placement="{{position}}"
             cell="{{item}}"
             >
@@ -19,7 +24,24 @@
     </content-card>
   </block>
 
-
+  <block wx:for="{{platformCouponData}}" wx:for-item="classItem" wx:for-index="classIndex" wx:if="{{Status==2}}">
+    <content-card class="content" name="{{classItem.ClassName}}" cardPadding >
+      <view class='buttun-wrapper'>
+        <l-radio-group l-class="l-radio-group" bind:linchange="radioChange1"  data-index="{{classIndex}}">
+          <l-radio
+                  l-class="l-radio l-title-class-border"
+                  wx:for="{{classItem.list}}"
+                  wx:key="{{item.CouponId}}"
+                  key="{{item.CouponId}}"
+                  placement="{{position}}"
+                  cell="{{item}}"
+          >
+            满{{item.Denomination}}元减{{item.ReductionAmount}}元
+          </l-radio>
+        </l-radio-group>
+      </view>
+    </content-card>
+  </block>
 
 
 </scroll-view>

@@ -6,16 +6,23 @@
 </view>
 <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
 	<view class="cu-item arrow" bindtap="toMyConpon">
-		<view class="content" >
+		<view class="content">
 			<text class="cuIcon-profile text-grey"></text>
 			<text class="text-grey">我的优惠券</text>
 		</view>
 	</view>
-  	<view class="cu-item arrow" bindtap="toActiveConpon">
-		<view class="content" >
+	<view class="cu-item arrow" bindtap="toActiveConpon">
+		<view class="content">
 			<text class="cuIcon-present text-grey"></text>
 			<text class="text-grey">活动优惠券</text>
 		</view>
 	</view>
+	<view class="cu-item arrow" bindtap="toPlatformConpon">
+		<view class="content">
+			<text class="cuIcon-present text-grey"></text>
+			<text class="text-grey">平台优惠券</text>
+		</view>
+	</view>
+
 </view>
 <view class="cu-tabbar-height"></view>

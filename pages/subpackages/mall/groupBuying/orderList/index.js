@@ -31,7 +31,7 @@ Page({
     let obj = {
       EnterpriseId: app.config.EnterpriseID,
       OpenId: wx.getStorageSync("OpenID"),
-      // Status: this.data.Status
+      Status: this.data.Status
     }
     const orderModel = GroupBuying.QueryEGroupBillList(obj)
     this.data.orderModel = orderModel //类属性
@@ -44,7 +44,7 @@ Page({
   onBillOut(e){
     wx.showModal({
       title: '提示',
-      content: '是否退团',
+      content: '是否退申请退团退款',
       success:res=> {
         if (res.confirm) {
           this.BillOut(e)

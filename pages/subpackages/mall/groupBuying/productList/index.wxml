@@ -1,18 +1,51 @@
 <!--pages/subpackages/mall/groupBuying/productList/index.wxml-->
+<!-- <view class='cu-card  '>
+    <view class='cu-item shadow bg-white'>
+      <view class='image'>
+        <swiper style='width:100%;height:486rpx' class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+          <swiper-item wx:for="{{carHomeData.date}}" wx:key>
+            <image src="{{item.carImage}}" mode='aspectFill'></image>
+          </swiper-item>
+        </swiper>
+        <view class="cu-tag bg-blue">实拍</view>
+        <view class='cu-bar bg-shadeBottom'>
+          <view class='action'>天津</view>
+          <view class='action text-sm'>
+            <text class="cuIcon-attentionfill "></text> 1k+
+          </view>
+        </view>
+      </view>
 
-<swiper class="top" autoplay indicator-dots wx:if="{{groupBuyModel.ImageListModel.length>0}}">
-    <swiper-item wx:for="{{groupBuyModel.ImageListModel}}" wx:key="index">
-        <image class="top" mode="aspectFill" src="{{groupBuyModel.ShowResourcesUrl}}{{item.ImageUrl}}"></image>
-    </swiper-item>
-</swiper>
+    </view>
 
-<content-card name="团购说明" cardPadding>
-    {{groupBuyModel.ActivityName}}
+  </view> -->
+<view class="bg-white">
+	<swiper class="top" autoplay indicator-dots wx:if="{{groupBuyModel.ImageListModel.length>0}}">
+		<swiper-item wx:for="{{groupBuyModel.ImageListModel}}" wx:key="index">
+			<image class="top" mode="aspectFill" src="{{groupBuyModel.ShowResourcesUrl}}{{item.ImageUrl}}"></image>
+		</swiper-item>
+	</swiper>
+	<!-- <view class='depic flex justify-center align-center text-white' bindtap='goneishi'>
+          <text class='text-white text-sm'>内饰</text>
+        </view> -->
+	<view class='cu-bar depic'>
+		<view class='action text-sm'>
+            正在参与拼团人数：
+			<!-- <text class="cuIcon-attentionfill "></text> -->
+             {{groupBuyModel.GroupPersonNum <=999 ?groupBuyModel.GroupPersonNum :'999+'}}
+		</view>
+	</view>
+
+</view>
+
+
+<content-card name="{{groupBuyModel.ActivityName}}" cardPadding>
+	<towxml nodes="{{article}}" />
 </content-card>
 
 <block wx:for="{{product.accumulator}}">
-    <s-spu-typeTwo spu="{{item}}" bind:tapping="onTap" bind:tappingRight="onRight" startTime="{{StartValidityTime}}" selectDay="{{selectDay}}"/>
+	<s-spu-typeTwo spu="{{item}}" bind:tapping="onTap" bind:tappingRight="onRight" startTime="{{StartValidityTime}}" selectDay="{{selectDay}}" />
 </block>
 
-<l-status-show show="{{product.empty}}" type="data"></l-status-show>
+<l-status-show show="{{product.empty}}" type="data"></l-status-show>·
 <l-loadmore show type="{{loadingType}}" end-text="已到底部啦!"></l-loadmore>

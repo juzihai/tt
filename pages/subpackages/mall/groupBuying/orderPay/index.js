@@ -125,10 +125,40 @@ Page({
       order = await GroupBuying.AloneBuyForWx(obj)
     }
 
-    if (order && order.Success) {
-      wx.redirectTo({
-        url: '/pages/subpackages/mall/groupBuying/orderList/index',
-      })
+    if (order) {
+      wx.requestPayment({
+        'timeStamp': order.timeStamp,
+        'nonceStr': order.nonceStr,
+        'package': order.package,
+        'signType': order.signType,
+        'paySign': order.paySign,
+        'success': function (res) {
+          console.log('222',res)
+          // Order.OrderLocking( item.OrderNo)
+          wx.showModal({
+            title: '提示',
+            content: '付款成功',
+            showCancel: false,
+            success() {
+              wx.redirectTo({
+                url: '/pages/subpackages/mall/groupBuying/orderList/index',
+              })
+            }
+          })
+        },
+        'fail': function (res) {
+          console.log('333',res)
+          var errMsg = res.errMsg;
+          if (errMsg == "requestPayment:fail cancel")
+          GroupBuying.QueryEGroupPayError({OrderNo:order.OrderNo})
+            wx.showToast({
+              title: '已取消支付',
+              icon: 'none',
+              duration: 2000
+            })
+        }
+      });
+
     }
 
 

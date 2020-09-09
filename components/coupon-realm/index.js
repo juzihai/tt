@@ -5,6 +5,7 @@ Component({
    */
   properties: {
     couponData: Object,
+    platformCouponData: Object,
   },
 
   /**
@@ -12,15 +13,23 @@ Component({
    */
   data: {
     couponData: null,
-    position: 'left'
+    position: 'left',
+    Status:1
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
+    changeTabs(e) {
+      let activeKey = e.detail.activeKey
+      this.setData({
+        Status: activeKey
+      })
+    },
     onSpecAdd() {
-      let couponData = this.properties.couponData;
+      let Status=this.data.Status
+      let couponData =Status==1? this.properties.couponData:this.properties.platformCouponData;
       let idArr = []
       let data = []
       for (let i of couponData) {
@@ -39,12 +48,9 @@ Component({
         }
 
       }
-
-
-
-
       this.triggerEvent('specadd', {
         couponData: data,
+        type:this.data.Status
       })
     },
     radioChange: function(e) {
@@ -65,6 +71,27 @@ Component({
       this.setData({
         couponData: couponData
       })
-    }
+    },
+    radioChange1: function(e) {
+      console.log(e)
+      let classIndex = e.currentTarget.dataset.index
+      let platformCouponData = this.properties.platformCouponData;
+      let CouponId = e.detail.key
+      let checked = e.detail.checked
+
+      platformCouponData[classIndex].list.forEach(item => {
+        if (item.CouponId == CouponId) {
+          item.checked = checked
+        } else {
+          item.checked = false
+        }
+
+      })
+      this.setData({
+        platformCouponData: platformCouponData
+      })
+    },
+
+
   }
 })

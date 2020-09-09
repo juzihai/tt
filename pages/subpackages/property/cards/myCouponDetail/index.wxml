@@ -1,0 +1,38 @@
+<!--pages/subpackages/mall/cards/activityCouponDetail/index.wxml-->
+<wxs src="../../../../../utils/util.wxs" module="util"></wxs>
+
+<view class="ticket-container">
+    <view class="ticket-container-top">
+        <view class="ticket-left">
+                <view class="name">{{couponModel.Name}}</view>
+                <view class="date">限购 [{{couponModel.CompanyName}}] 店铺部分商品</view>
+                <view class="date" wx:if="{{couponModel.LimitTime==0}}">有效期： 永久有效</view>
+                <view class="date" wx:else>有效期至{{util.formatTime(couponModel.EndValidity*1000,"Y/M/D")}}</view>
+        </view>
+        <view class="ticket-right">
+                <view class="text">满</view>
+                <view class="number">{{couponModel.Denomination}}</view>
+                <view class="text">减</view>
+                <view class="number">{{couponModel.ReductionAmount}}</view>
+                <view class="text">¥</view>
+        </view>
+    </view>
+    <view class="ticket-container-bottom">
+        <l-collapse expand-item-id="{{expandArray}}">
+            <l-collapse-item l-body-class="l-body-class" l-title-class="l-title-class" customTitle="{{true}}" item-id="0">
+                <!--自定义标题-->
+                <view class="title" slot="title">
+                    <view class="ticket-detail-container">说明
+                        <l-icon name="down" size="16" color="#999"/>
+                    </view>
+                </view>
+                <text >{{couponModel.instructions ?couponModel.instructions:'暂无'}}</text>
+            </l-collapse-item>
+        </l-collapse>
+    </view>
+</view>
+
+<content-card class="bottom-content" name="小程序码" cardPadding>
+    <image class="img" src="{{couponModel.Image}}" bind:tap="onQRCode"></image>
+    <view class="bottom-text">点击长按前往使用</view>
+</content-card>
