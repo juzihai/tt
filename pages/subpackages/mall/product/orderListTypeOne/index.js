@@ -76,7 +76,7 @@ Page({
     let item = e.currentTarget.dataset.cell
     if(!item.IsRefund){
       wx.showToast({
-        title: '暂不支持退款',
+        title: '暂不支持退款或超过退款时间',
         icon:'none'
       })
       return
