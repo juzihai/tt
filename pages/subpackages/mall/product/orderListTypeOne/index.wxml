@@ -2,18 +2,18 @@
 <l-segment bind:linchange="changeTabs" l-class="aaa" item-width="30">
     <l-segment-item tab="全部" key="0"/>
     <l-segment-item tab="已支付" key="1"/>
-    <!-- <l-segment-item tab="退款中" key="2"/>
+    <l-segment-item tab="退款中" key="2"/>
     <l-segment-item tab="退款成功" key="3"/>
-    <l-segment-item tab="拒绝" key="4"/> -->
+    <l-segment-item tab="拒绝" key="4"/>
 </l-segment>
 
 <view class="card-container" wx:for="{{order.accumulator}}" bindtap="onGoDetail" data-id="{{item.ID}}" data-cell="{{item}}">
     <view class="top">
         <text class="subTitle">订单编号:{{item.OrderNo}}</text>
         <text class="red" wx:if="{{item.Status==1}}">已支付</text>
-        <!-- <text class="red" wx:if="{{item.Status==2}}">退款中</text>
+        <text class="red" wx:if="{{item.Status==2}}">退款中</text>
         <text class="red" wx:if="{{item.Status==3}}">退款成功</text>
-        <text class="red" wx:if="{{item.Status==4}}">拒绝退款</text> -->
+        <text class="red" wx:if="{{item.Status==4}}">拒绝退款</text>
     </view>
     <view class="content">
         <image src="{{item.baseUrl+item.Image}}"></image>
@@ -32,7 +32,7 @@
     <view class="sub-container" wx:if="{{item.Status==1}}">
         <view class="left">
         </view>
-        <!-- <l-button size="mini" style='margin-left:10rpx' catchtap="onCancelOrder" data-cell="{{item}}">申请退款</l-button> -->
+        <l-button size="mini" style='margin-left:10rpx' catchtap="onCancelOrder" data-cell="{{item}}">申请退款</l-button>
         <!--        <l-button size="mini" style='margin-left:10rpx' catchtap="onPay" data-cell="{{item}}">支付</l-button>-->
     </view>
 

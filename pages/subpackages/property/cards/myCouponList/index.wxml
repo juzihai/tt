@@ -11,7 +11,7 @@
     <view class="ticket-container">
         <view class="ticket-container-top">
             <view class="ticket-left">
-                <view class="name">{{item.Name}}</view>
+                <view class="name">{{item.CouponName}}</view>
                 <view class="date">限购 {{item.CompanyName}} 店铺部分商品</view>
                 <view class="date">{{item.ClassName}}</view>
                 <view class="date" wx:if="{{item.LimitTime==0}}">有效期： 永久有效</view>

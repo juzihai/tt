@@ -145,11 +145,11 @@ Page({
       let that =this;
   
         wx.requestPayment({
-          'timeStamp': obj.wcPayDataTimeStamp,
-          'nonceStr': obj.wcPayDataNonceStr,
-          'package': obj.wcPayDataPackage,
-          'signType': obj.wcPayDataSignType,
-          'paySign': obj.wcPayDataPaySign,
+          'timeStamp': obj.timeStamp,
+          'nonceStr': obj.nonceStr,
+          'package': obj.package,
+          'signType': obj.signType,
+          'paySign': obj.paySign,
           'success': function (res) {
             console.log('请求出数据啦1', res)
             // payModel.OrderNotice(that.data.orderNumber).then(res=>{

@@ -34,7 +34,8 @@ const config = {
   // "EnterpriseID": "4981", //wx2e8e4434a39d3508 益清测试
   // "EnterpriseID": "3373", //wxa93d39f1484ac31a 天津金朵科技测试
   "EnterpriseID": "8869", //wxbf16fb811554d7c4 子企业
-
+  // "apiBaseUrl": 'https://shl.gzchinaunion.com/',
+  // "EnterpriseID": "6937",//A山东阅澜式文化创意有限公司 wx9125ddcfb26323de
     /** 电信地址*/
       // "apiBaseUrl": 'https://company.tc-btc.com/',
       // "EnterpriseID": "8755", //wx3a19a07d883c17ae 电信测试
